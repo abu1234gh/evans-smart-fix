@@ -24,24 +24,69 @@
         href="style.css"
     >
 
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px 25px;
+        }
+
+        .payment-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        #status {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>
-        Checking Payment
-    </h1>
+    <div class="payment-container">
 
-    <p id="status">
-        Please wait while we confirm your payment...
-    </p>
+        <div
+            class="payment-icon"
+            id="paymentIcon"
+        >
+            ⏳
+        </div>
+
+        <h1 id="title">
+            Checking Payment
+        </h1>
+
+        <p id="status">
+            Please wait while we confirm your payment...
+        </p>
+
+    </div>
 
 
     <!-- =====================================================
          EMAILJS
     ====================================================== -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
 
 
     <script>
@@ -64,11 +109,17 @@
 
 
         /* =====================================================
-           STATUS
+           PAGE ELEMENTS
         ===================================================== */
 
         const statusElement =
             document.getElementById("status");
+
+        const titleElement =
+            document.getElementById("title");
+
+        const paymentIcon =
+            document.getElementById("paymentIcon");
 
 
         /* =====================================================
@@ -89,8 +140,14 @@
 
         if (!booking) {
 
+            titleElement.textContent =
+                "Booking Information Missing";
+
             statusElement.textContent =
-                "We couldn't find your booking information.";
+                "We couldn't find your booking information. Please contact Evan's Smart Fix.";
+
+            paymentIcon.textContent =
+                "⚠️";
 
             throw new Error(
                 "bookingData not found"
@@ -107,6 +164,10 @@
 
             try {
 
+                /* =================================================
+                   CHECK CHECKOUT ID
+                ================================================= */
+
                 if (
                     !booking.sumupCheckoutId
                 ) {
@@ -118,9 +179,20 @@
                 }
 
 
-                statusElement.textContent =
-                    "Confirming your payment...";
+                /* =================================================
+                   UPDATE STATUS
+                ================================================= */
 
+                titleElement.textContent =
+                    "Checking Payment";
+
+                statusElement.textContent =
+                    "Confirming your payment securely...";
+
+
+                /* =================================================
+                   CALL SUPABASE
+                ================================================= */
 
                 const response =
                     await fetch(
@@ -149,6 +221,10 @@
                     );
 
 
+                /* =================================================
+                   READ RESPONSE
+                ================================================= */
+
                 const data =
                     await response.json();
 
@@ -159,7 +235,16 @@
                 );
 
 
+                /* =================================================
+                   CHECK API RESPONSE
+                ================================================= */
+
                 if (!response.ok) {
+
+                    console.error(
+                        "PAYMENT CHECK ERROR:",
+                        data
+                    );
 
                     throw new Error(
                         "Unable to verify payment."
@@ -169,15 +254,68 @@
 
 
                 /* =================================================
+                   PAYMENT VALUES
+                ================================================= */
+
+                const paymentAmount =
+                    Number(
+                        data.amount
+                    );
+
+
+                const bookingAmount =
+                    Number(
+                        booking.total
+                    );
+
+
+                const paymentCurrency =
+                    data.currency;
+
+
+                const paymentStatus =
+                    data.status;
+
+
+                console.log(
+                    "Payment status:",
+                    paymentStatus
+                );
+
+                console.log(
+                    "Payment amount:",
+                    paymentAmount
+                );
+
+                console.log(
+                    "Booking amount:",
+                    bookingAmount
+                );
+
+                console.log(
+                    "Currency:",
+                    paymentCurrency
+                );
+
+
+                /* =================================================
                    PAYMENT SUCCESSFUL
                 ================================================= */
 
                 if (
-                    data.status === "PAID"
+                    paymentStatus === "PAID" &&
+                    paymentCurrency === "GBP" &&
+                    paymentAmount === bookingAmount
                 ) {
 
+                    paymentIcon.textContent =
+                        "✓";
+
+                    titleElement.textContent =
+                        "Payment Successful!";
+
                     statusElement.textContent =
-                        "Payment confirmed. Completing your booking...";
+                        "Your payment has been confirmed. Completing your booking...";
 
 
                     /* =================================================
@@ -192,7 +330,13 @@
                             booking
                         );
 
-                    } catch (customerEmailError) {
+                        console.log(
+                            "Customer email sent successfully."
+                        );
+
+                    } catch (
+                        customerEmailError
+                    ) {
 
                         console.error(
                             "CUSTOMER EMAIL ERROR:",
@@ -214,7 +358,13 @@
                             booking
                         );
 
-                    } catch (businessEmailError) {
+                        console.log(
+                            "Business email sent successfully."
+                        );
+
+                    } catch (
+                        businessEmailError
+                    ) {
 
                         console.error(
                             "BUSINESS EMAIL ERROR:",
@@ -225,23 +375,29 @@
 
 
                     /* =================================================
-                       COMPLETE
+                       CLEAR CART
                     ================================================= */
-
-                    statusElement.textContent =
-                        "Payment successful! Your booking is confirmed.";
-
 
                     localStorage.removeItem(
                         "cart"
                     );
 
 
-                    /*
-                       Keep bookingData for the moment.
-                       We'll use it to display the booking confirmation.
-                    */
+                    /* =================================================
+                       FINAL MESSAGE
+                    ================================================= */
 
+                    titleElement.textContent =
+                        "Booking Confirmed!";
+
+                    statusElement.innerHTML =
+                        "Thank you for choosing Evan's Smart Fix.<br><br>" +
+                        "Your payment has been confirmed and your booking has been received.";
+
+
+                    /* =================================================
+                       RETURN HOME
+                    ================================================= */
 
                     setTimeout(
                         function () {
@@ -250,7 +406,7 @@
                                 "index.html";
 
                         },
-                        3000
+                        5000
                     );
 
 
@@ -264,11 +420,17 @@
                 ================================================= */
 
                 if (
-                    data.status === "PENDING"
+                    paymentStatus === "PENDING"
                 ) {
 
+                    paymentIcon.textContent =
+                        "⏳";
+
+                    titleElement.textContent =
+                        "Payment Processing";
+
                     statusElement.textContent =
-                        "Your payment is still being processed. Please wait...";
+                        "Your payment is still being processed. Checking again shortly...";
 
 
                     setTimeout(
@@ -283,17 +445,84 @@
 
 
                 /* =================================================
-                   PAYMENT FAILED / EXPIRED
+                   PAYMENT FAILED
                 ================================================= */
 
                 if (
-                    data.status === "FAILED" ||
-                    data.status === "EXPIRED"
+                    paymentStatus === "FAILED"
                 ) {
+
+                    paymentIcon.textContent =
+                        "✕";
+
+                    titleElement.textContent =
+                        "Payment Failed";
 
                     statusElement.textContent =
                         "Your payment was not completed. Please return to your booking and try again.";
 
+                    return;
+
+                }
+
+
+                /* =================================================
+                   PAYMENT EXPIRED
+                ================================================= */
+
+                if (
+                    paymentStatus === "EXPIRED"
+                ) {
+
+                    paymentIcon.textContent =
+                        "⌛";
+
+                    titleElement.textContent =
+                        "Payment Expired";
+
+                    statusElement.textContent =
+                        "This payment session has expired. Please return to your booking and try again.";
+
+                    return;
+
+                }
+
+
+                /* =================================================
+                   AMOUNT / CURRENCY MISMATCH
+                ================================================= */
+
+                if (
+                    paymentStatus === "PAID" &&
+                    (
+                        paymentCurrency !== "GBP" ||
+                        paymentAmount !== bookingAmount
+                    )
+                ) {
+
+                    console.error(
+                        "PAYMENT MISMATCH",
+                        {
+                            paymentAmount:
+                                paymentAmount,
+
+                            bookingAmount:
+                                bookingAmount,
+
+                            paymentCurrency:
+                                paymentCurrency
+                        }
+                    );
+
+
+                    paymentIcon.textContent =
+                        "⚠️";
+
+                    titleElement.textContent =
+                        "Payment Verification Issue";
+
+                    statusElement.textContent =
+                        "We received a payment response, but the payment details do not match your booking. Please contact Evan's Smart Fix.";
 
                     return;
 
@@ -304,8 +533,14 @@
                    UNKNOWN STATUS
                 ================================================= */
 
+                paymentIcon.textContent =
+                    "⚠️";
+
+                titleElement.textContent =
+                    "Payment Status Unknown";
+
                 statusElement.textContent =
-                    "We couldn't confirm your payment status. Please contact us.";
+                    "We couldn't confirm your payment status. Please contact Evan's Smart Fix.";
 
             } catch (error) {
 
@@ -315,8 +550,14 @@
                 );
 
 
+                paymentIcon.textContent =
+                    "⚠️";
+
+                titleElement.textContent =
+                    "Unable to Confirm Payment";
+
                 statusElement.textContent =
-                    "We couldn't confirm your payment. Please contact Evan's Smart Fix.";
+                    "We couldn't confirm your payment right now. Please contact Evan's Smart Fix.";
 
             }
 
@@ -324,7 +565,7 @@
 
 
         /* =====================================================
-           START
+           START PAYMENT CHECK
         ===================================================== */
 
         checkPayment();
@@ -338,14 +579,15 @@
 
     <script
         src="https://elfsightcdn.com/platform.js"
-        async
-    ></script>
+        async>
+    </script>
 
 
     <div
         class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773"
-        data-elfsight-app-lazy
-    ></div>
+        data-elfsight-app-lazy>
+    </div>
+
 
 </body>
 

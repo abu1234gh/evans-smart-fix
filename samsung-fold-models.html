@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Samsung Fold Model - Evan's Smart Fix</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #fff;
+            text-align: center;
+        }
+
+        header {
+            background: #0057b8;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .nav-bar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .brands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .model {
+            width: 150px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .model:hover {
+            transform: scale(1.05);
+        }
+
+        .model a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .model img {
+            width: 120px;
+            height: 130px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <h1>Select Your Samsung A Model</h1>
+
+    <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+
+        <a href="cart.html">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
+</header>
+
+<div class="brands">
+
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-fold3">
+            <img src="images/Fold3.png" alt="Samsung Fold3">
+            <br>Samsung Fold3
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-fold4">
+            <img src="images/Fold4.png" alt="Samsung Fold4">
+            <br>Samsung Fold4
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-fold5">
+            <img src="images/Fold5.png" alt="Samsung Fold5">
+            <br>Samsung Fold 5
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-fold6">
+            <img src="images/Fold6.png" alt="Samsung Fold6">
+            <br>Samsung Fold 6
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-fold7">
+            <img src="images/Fold7.png" alt="Samsung Fold7">
+            <br>Samsung Fold 7
+        </a>
+</div>
+    <script>
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const count =
+        document.getElementById("cartCount");
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
+});
+
+</script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773" data-elfsight-app-lazy></div>
+ 
+</body>
+</html>

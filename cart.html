@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+<title>Your Basket</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f7f6f9;
+}
+
+header {
+    background: #0057b8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#cartBox {
+    margin: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #0057b8;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    background: #0057b8;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Your Basket</h1>
+         <nav>
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Basket <span id="cartCount">0</span>
+        </a>
+     </nav>
+</header>
+<div id="total"></div>
+<div id="cartBox"></div>
+
+<button onclick="window.location.href='brands.html'">add another item</button>
+<br>
+<button onclick="checkout()">Proceed to Checkout</button>
+
+<script>
+
+let cart = JSON.parse(
+    localStorage.getItem("cart")
+) || [];
+
+function renderCart() {
+
+    const box =
+    document.getElementById("cartBox");
+
+    const totalBox =
+    document.getElementById("total");
+
+    box.innerHTML = "";
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = cart.length;
+
+    if(cart.length===0){
+
+        box.innerHTML =
+        "<p>Your basket is empty</p>";
+
+        totalBox.innerHTML =
+        "<strong>Total: £0.00</strong>";
+
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach((item,index)=>{
+
+        total += Number(item.price);
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+<div>
+
+<strong>${item.model}</strong>
+
+<br>
+
+${item.repair}
+
+<br>
+
+<small>${item.quality}</small>
+
+<br>
+
+£${Number(item.price).toFixed(2)}
+
+</div>
+
+<button onclick="removeItem(${index})">
+
+Remove
+
+</button>
+
+`;
+
+        box.appendChild(div);
+
+    });
+
+    totalBox.innerHTML =
+
+    "<strong>Total: £"
+    + total.toFixed(2)
+    + "</strong>";
+
+}
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    renderCart();
+
+}
+
+function checkout(){
+
+    if(cart.length===0){
+
+        alert(
+            "Your basket is empty"
+        );
+
+        return;
+
+    }
+
+    window.location.href =
+    "booking-details.html";
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+renderCart();
+
+});
+
+</script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773" data-elfsight-app-lazy></div>
+ 
+</body>
+</html>

@@ -1,0 +1,203 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Samsung J Model - Evan's Smart Fix</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #fff;
+            text-align: center;
+        }
+
+        header {
+            background: #0057b8;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .nav-bar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .brands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .model {
+            width: 150px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .model:hover {
+            transform: scale(1.05);
+        }
+
+        .model a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .model img {
+            width: 120px;
+            height: 130px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <h1>Select Your Samsung A Model</h1>
+
+    <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+        <a href="cart.html">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
+</header>
+
+<div class="brands">
+
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J3(15)">
+            <img src="images/J3.png" alt="Samsung J3">
+            <br>Samsung J3 (2015)
+        </a>
+    </div>
+<div class="model">
+        <a href="repair-booking.html?model=Samsung-J3(16)">
+            <img src="images/J3.png" alt="Samsung J3">
+            <br>Samsung J3 (2016)
+        </a>
+    </div>
+<div class="model">
+        <a href="repair-booking.html?model=Samsung-J3(17)">
+            <img src="images/J3.png" alt="Samsung J3">
+            <br>Samsung J3 (2017)
+        </a>
+    </div>
+<div class="model">
+        <a href="repair-booking.html?model=Samsung-J4">
+            <img src="images/J4.png" alt="Samsung J4">
+            <br>Samsung J4 
+        </a>
+    </div>
+<div class="model">
+        <a href="repair-booking.html?model=Samsung-J4plus">
+            <img src="images/J4plus.png" alt="Samsung J4 Plus">
+            <br>Samsung J4 Plus (2015)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J5(15)">
+            <img src="images/J5.png" alt="Samsung J5">
+            <br>Samsung J5 (2015)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J5(16)">
+            <img src="images/J5.png" alt="Samsung J5">
+            <br>Samsung J5 (2016)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J5(17)">
+            <img src="images/J5.png" alt="Samsung J5">
+            <br>Samsung J5 (2017)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J6">
+            <img src="images/J6.png" alt="Samsung J6">
+            <br>Samsung J6
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J6plus">
+            <img src="images/J6.png" alt="Samsung J6 Plus">
+            <br>Samsung J6 Plus
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J7(15)">
+            <img src="images/J7.png" alt="Samsung J7">
+            <br>Samsung J7 (2015)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J7(16)">
+            <img src="images/J7.png" alt="Samsung J7">
+            <br>Samsung J7 (2016)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J7(17)">
+            <img src="images/J7.png" alt="Samsung J7">
+            <br>Samsung J7 (2017)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J7(18)">
+            <img src="images/J7.png" alt="Samsung J7">
+            <br>Samsung J7 (2018)
+        </a>
+    </div>
+    <div class="model">
+        <a href="repair-booking.html?model=Samsung-J8">
+            <img src="images/J8.png" alt="Samsung J8">
+            <br>Samsung J8
+        </a>
+    </div>
+</div>
+    <script>
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const count =
+        document.getElementById("cartCount");
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
+});
+
+</script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773" data-elfsight-app-lazy></div>
+ 
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Repair - Evan's Smart Fix</title>
+
+<link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+<style>
+    #cartIcon {
+    float: right;
+    font-weight: bold;
+}
+
+#cartCount {
+    background: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 5px;
+}
+#cartBox {
+    margin: 20px;
+    padding: 15px;
+    border: 2px solid #0057b8;
+    border-radius: 10px;
+    background: #f7faff;
+}
+
+
+.model.selected {
+    border: 2px solid #0057b8;
+    background: #e8f1ff;
+    border-radius: 10px;
+}
+
+.repair-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.model {
+    text-align: center;
+}
+
+.model img {
+    width: 120px;
+    height: auto;
+    cursor: pointer;
+}
+
+.model a {
+    text-decoration: none;
+    color: black;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+    <img src="images/logo.png" class="logo">
+
+    <h1>Select Your Repair</h1>
+
+    <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+        <a href="cart.html" class="cart-link">
+            🛒 Basket <span id="cartCount">0</span>
+        </a>
+    </nav>
+</header>
+
+
+
+<h2 id="selectedModel"></h2>
+
+<div class="repair-grid">
+
+    <div class="model"><a id="screen"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/01_screen_replacement.svg"><br>Screen Repair</a></div>
+
+    <div class="model"><a id="battery"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/02_battery_replacement.svg"><br>Battery Replacement</a></div>
+
+    <div class="model"><a id="charging"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/03_charging_port.svg"><br>Charging Port</a></div>
+
+    <div class="model"><a id="backglass"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/04_rear_back_glass.svg"><br>Back Glass</a></div>
+
+    <div class="model"><a id="housing"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/05_housing_replacement.svg"><br>Housing Replace</a></div>
+
+    <div class="model"><a id="mic"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/06_microphone_repair.svg"><br>Microphone</a></div>
+
+    <div class="model"><a id="rearcam"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/07_rear_camera.svg"><br>Rear Camera</a></div>
+
+    <div class="model"><a id="diagnostic"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/08_diagnostic.svg"><br>Diagnostic</a></div>
+
+    <div class="model"><a id="button"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/09_button_repair.svg"><br>Button Repair</a></div>
+
+    <div class="model"><a id="frontcam"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/10_front_camera.svg"><br>Front Camera</a></div>
+
+    <div class="model"><a id="loudspeaker"><img src="https://evanssmartfix.co.uk/wp-content/uploads/2026/03/11_loudspeaker.svg"><br>Loudspeaker</a></div>
+
+</div>
+
+<!-- CART UI -->
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+function updateCartUI() {
+
+    const count = document.getElementById("cartCount");
+
+    if (count) {
+        count.textContent = cart.length;
+
+        count.classList.add("bump");
+
+        setTimeout(() => {
+            count.classList.remove("bump");
+        }, 200);
+    }
+}
+const params = new URLSearchParams(window.location.search);
+
+const model = params.get("model");
+
+console.log("Model from URL:", model);
+console.log("Model from URL:", model);
+function addToBasket(model, repairName, quality) {
+    const item = {
+        model: model,
+        repair: repairName,
+        quality: quality
+    };
+
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+}
+
+function setupRepair(id, repairName) {
+
+    document.getElementById(id).addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        window.location.href =
+            "repair-quality.html?model="
+            + encodeURIComponent(model)
+            + "&repair="
+            + encodeURIComponent(repairName);
+
+    });
+
+}
+setupRepair("screen", "Screen Replacement");
+setupRepair("battery", "Battery Replacement");
+setupRepair("charging", "Charging Port Repair");
+setupRepair("backglass", "Back Glass Repair");
+setupRepair("housing", "Housing Replacement");
+setupRepair("mic", "Microphone Repair");
+setupRepair("rearcam", "Rear Camera Repair");
+setupRepair("diagnostic", "Diagnostic Service");
+setupRepair("button", "Button Repair");
+setupRepair("frontcam", "Front Camera Repair");
+setupRepair("loudspeaker", "Loudspeaker Repair");
+
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", function () {
+            if (cart.length === 0) {
+                alert("Your basket is empty");
+                return;
+            }
+
+            const query = new URLSearchParams({
+                model: model,
+                repairs: cart.join(",")
+            });
+
+            window.location.href = "booking-details.html?" + query.toString();
+        });
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    updateCartUI()
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const count =
+        document.getElementById("cartCount");
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
+});
+
+</script>
+</script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773" data-elfsight-app-lazy></div>
+ 
+</body>
+</html>

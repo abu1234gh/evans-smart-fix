@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Repair Details - Evan's Smart Fix</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="images/logo.png">
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+
+    /* =========================
+       CONFIRMATION POPUP
+    ========================= */
+
+    .confirmation-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .confirmation-popup {
+        width: min(500px, 100%);
+        max-height: 90vh;
+        overflow-y: auto;
+        background: white;
+        border-radius: 20px;
+        padding: 32px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        animation: popupIn 0.3s ease;
+    }
+
+    @keyframes popupIn {
+
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+    }
+
+    .success-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 15px;
+        background: #0057b8;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        font-weight: bold;
+    }
+
+    .confirmation-popup h2 {
+        color: #0057b8;
+        margin-bottom: 8px;
+        font-size: 26px;
+    }
+
+    .confirmation-popup p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .reference-box {
+        background: #f4f7fb;
+        border: 1px solid #dce7f5;
+        border-radius: 12px;
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .reference-box span {
+        display: block;
+        color: #666;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .reference-box strong {
+        display: block;
+        color: #0057b8;
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .confirmation-details {
+        text-align: left;
+        background: #fafafa;
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .confirmation-details p {
+        margin: 7px 0;
+        color: #333;
+    }
+
+    .confirmation-details strong {
+        color: #0057b8;
+    }
+
+    .close-confirmation {
+        width: 100%;
+        border: none;
+        padding: 13px;
+        margin-top: 15px;
+        border-radius: 10px;
+        background: #0057b8;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close-confirmation:hover {
+        background: #004494;
+    }
+
+    .submit-status {
+        text-align: center;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    /* =========================
+       MOBILE POPUP
+    ========================= */
+
+    @media (max-width: 600px) {
+
+        .confirmation-overlay {
+            padding: 12px;
+        }
+
+        .confirmation-popup {
+            padding: 25px 18px;
+            max-height: 85vh;
+        }
+
+        .confirmation-popup h2 {
+            font-size: 23px;
+        }
+
+        .success-icon {
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <img
+        src="images/logo.png"
+        alt="Evan's Smart Fix Logo"
+        class="logo"
+    >
+
+    <h1>Repair Details</h1>
+
+    <nav class="nav-bar">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="brands.html">
+            Repairs
+        </a>
+
+        <a href="cart.html" class="cart-link">
+
+            🛒 Basket
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     REPAIR FORM
+========================= -->
+
+<form id="repairForm">
+
+    <h2>Repair Details</h2>
+
+
+    <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+        required
+    >
+
+
+    <input
+        type="text"
+        id="brand"
+        placeholder="Enter your brand"
+        required
+    >
+
+
+    <input
+        type="text"
+        id="model"
+        placeholder="Enter your model"
+        required
+    >
+
+
+    <input
+        type="text"
+        id="repairs"
+        placeholder="Enter your repair"
+        required
+    >
+
+
+    <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+    >
+
+
+    <input
+        type="text"
+        id="address"
+        placeholder="Enter your address"
+        required
+    >
+
+
+    <input
+        type="tel"
+        id="phone"
+        placeholder="Enter your phone number"
+        required
+    >
+
+
+    <button
+        type="submit"
+        id="submitButton"
+    >
+        Submit Repair
+    </button>
+
+
+    <p
+        id="submitStatus"
+        class="submit-status"
+    ></p>
+
+</form>
+
+
+<!-- =========================
+     CONFIRMATION POPUP
+========================= -->
+
+<div
+    class="confirmation-overlay"
+    id="confirmationOverlay"
+>
+
+    <div class="confirmation-popup">
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Booking Submitted!
+        </h2>
+
+
+        <p>
+            Your repair request has been received successfully.
+        </p>
+
+
+        <div class="reference-box">
+
+            <span>
+                Your Booking Reference
+            </span>
+
+            <strong id="bookingReference">
+                ESF-
+            </strong>
+
+        </div>
+
+
+        <div class="confirmation-details">
+
+            <p>
+                <strong>Name:</strong>
+                <span id="confirmName"></span>
+            </p>
+
+
+            <p>
+                <strong>Device:</strong>
+                <span id="confirmDevice"></span>
+            </p>
+
+
+            <p>
+                <strong>Repair:</strong>
+                <span id="confirmRepair"></span>
+            </p>
+
+
+            <p>
+                <strong>Email:</strong>
+                <span id="confirmEmail"></span>
+            </p>
+
+        </div>
+
+
+        <p>
+            We'll contact you using the details you provided.
+        </p>
+
+
+        <button
+            type="button"
+            class="close-confirmation"
+            id="closeConfirmation"
+        >
+            Done
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        2024 Evan's Smart Fix. All rights reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     EMAILJS + FORM SCRIPT
+========================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =========================
+       SUPABASE
+    ========================= */
+
+    const SUPABASE_URL =
+        "https://tblqoawewcyomwgjahry.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+        "sb_publishable_dWJV8sw3Wis--2ZIuQ_Ypg_hI9yhTMW";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+        );
+
+
+    console.log(
+        "Supabase client created:",
+        supabaseClient
+    );
+
+
+    /* =========================
+       EMAILJS
+    ========================= */
+
+    emailjs.init(
+        "fOQMvcH10BYyM_Y9O"
+    );
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+
+    if (cartCount) {
+
+        cartCount.textContent =
+            cart.length;
+
+    }
+
+
+    /* =========================
+       GET FORM
+    ========================= */
+
+    const repairForm =
+        document.getElementById("repairForm");
+
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    const submitStatus =
+        document.getElementById("submitStatus");
+
+
+    /* =========================
+       FORM SUBMISSION
+    ========================= */
+
+    repairForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /* =========================
+               GET FORM VALUES
+            ========================= */
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const address =
+                document
+                    .getElementById("address")
+                    .value
+                    .trim();
+
+
+            const brand =
+                document
+                    .getElementById("brand")
+                    .value
+                    .trim();
+
+
+            const model =
+                document
+                    .getElementById("model")
+                    .value
+                    .trim();
+
+
+            const repairs =
+                document
+                    .getElementById("repairs")
+                    .value
+                    .trim();
+
+
+            /* =========================
+               CHECK FORM
+            ========================= */
+
+            if (
+                !name ||
+                !phone ||
+                !email ||
+                !address ||
+                !brand ||
+                !model ||
+                !repairs
+            ) {
+
+                alert(
+                    "Please complete all fields before submitting."
+                );
+
+                return;
+
+            }
+
+
+            /* =========================
+               DISABLE BUTTON
+            ========================= */
+
+            submitButton.disabled =
+                true;
+
+
+            submitButton.textContent =
+                "Sending...";
+
+
+            submitStatus.textContent =
+                "Sending your repair request...";
+
+
+            /* =========================
+               GENERATE REFERENCE
+            ========================= */
+
+            const reference =
+                "ESF-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8)
+                    .toUpperCase();
+
+
+            /* =========================
+               EMAILJS DATA
+            ========================= */
+
+            const templateParams = {
+
+                name:
+                    name,
+
+                phone:
+                    phone,
+
+                email:
+                    email,
+
+                address:
+                    address,
+
+                brand:
+                    brand,
+
+                model:
+                    model,
+
+                device:
+                    brand + " " + model,
+
+                repairs:
+                    repairs,
+
+                reference:
+                    reference
+
+            };
+
+
+            try {
+
+
+                /* =========================
+                   SEND EMAIL
+                ========================= */
+
+                await emailjs.send(
+                    "service_nijiuhj",
+                    "template_xqu1fle",
+                    templateParams
+                );
+
+
+                console.log(
+                    "Email sent successfully"
+                );
+
+
+                /* =========================
+                   SAVE TO SUPABASE
+                ========================= */
+
+                submitStatus.textContent =
+                    "Saving your booking...";
+
+
+                const supabaseResult =
+                    await supabaseClient
+                        .from("bookings")
+                        .insert({
+
+                            order_reference:
+                                reference,
+
+                            customer_name:
+                                name,
+
+                            customer_phone:
+                                phone,
+
+                            customer_email:
+                                email,
+
+                            customer_address:
+                                address,
+
+                            device_model:
+                                brand + " " + model,
+
+                            repair:
+                                repairs,
+
+                            status:
+                                "Pending"
+
+                        });
+
+
+                console.log(
+                    "SUPABASE RESULT:",
+                    supabaseResult
+                );
+
+
+                /* =========================
+                   CHECK SUPABASE
+                ========================= */
+
+                if (
+                    supabaseResult.error
+                ) {
+
+                    console.error(
+                        "SUPABASE BOOKING ERROR:",
+                        supabaseResult.error
+                    );
+
+
+                    /*
+                       IMPORTANT:
+                       Email has already been sent,
+                       but database saving failed.
+                    */
+
+                    alert(
+                        "Your email was sent, but we couldn't save the booking to our booking system. Please contact us."
+                    );
+
+
+                    submitButton.disabled =
+                        false;
+
+
+                    submitButton.textContent =
+                        "Submit Repair";
+
+
+                    submitStatus.textContent =
+                        "";
+
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "BOOKING SAVED TO SUPABASE SUCCESSFULLY"
+                );
+
+
+                /* =========================
+                   SAVE BOOKING LOCALLY
+                ========================= */
+
+                const bookingData = {
+
+                    reference:
+                        reference,
+
+                    name:
+                        name,
+
+                    phone:
+                        phone,
+
+                    email:
+                        email,
+
+                    address:
+                        address,
+
+                    brand:
+                        brand,
+
+                    model:
+                        model,
+
+                    repairs:
+                        repairs
+
+                };
+
+
+                localStorage.setItem(
+                    "bookingData",
+                    JSON.stringify(
+                        bookingData
+                    )
+                );
+
+
+                /* =========================
+                   FILL POPUP
+                ========================= */
+
+                document.getElementById(
+                    "bookingReference"
+                ).textContent =
+                    reference;
+
+
+                document.getElementById(
+                    "confirmName"
+                ).textContent =
+                    name;
+
+
+                document.getElementById(
+                    "confirmDevice"
+                ).textContent =
+                    brand + " " + model;
+
+
+                document.getElementById(
+                    "confirmRepair"
+                ).textContent =
+                    repairs;
+
+
+                document.getElementById(
+                    "confirmEmail"
+                ).textContent =
+                    email;
+
+
+                /* =========================
+                   SHOW POPUP
+                ========================= */
+
+                document.getElementById(
+                    "confirmationOverlay"
+                ).style.display =
+                    "flex";
+
+
+                /* =========================
+                   RESET FORM
+                ========================= */
+
+                repairForm.reset();
+
+
+                submitButton.disabled =
+                    false;
+
+
+                submitButton.textContent =
+                    "Submit Repair";
+
+
+                submitStatus.textContent =
+                    "";
+
+
+            } catch (error) {
+
+
+                console.error(
+                    "BOOKING ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Something went wrong while submitting your booking. Please try again."
+                );
+
+
+                submitButton.disabled =
+                    false;
+
+
+                submitButton.textContent =
+                    "Submit Repair";
+
+
+                submitStatus.textContent =
+                    "";
+
+            }
+
+        }
+    );
+
+
+    /* =========================
+       CLOSE POPUP
+    ========================= */
+
+    const closeConfirmation =
+        document.getElementById(
+            "closeConfirmation"
+        );
+
+
+    closeConfirmation.addEventListener(
+        "click",
+        function () {
+
+            document.getElementById(
+                "confirmationOverlay"
+            ).style.display =
+                "none";
+
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+});
+
+</script>
+
+
+
+<!-- =========================
+     WHATSAPP CHAT
+========================= -->
+
+<script
+    src="https://elfsightcdn.com/platform.js"
+    async>
+</script>
+
+<div
+    class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773"
+    data-elfsight-app-lazy>
+</div>
+
+
+</body>
+
+</html>

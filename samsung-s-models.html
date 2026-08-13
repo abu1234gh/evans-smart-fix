@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Samsung S Model - Evan's Smart Fix</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #fff;
+            text-align: center;
+        }
+
+        header {
+            background: #0057b8;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .nav-bar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .brands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .model {
+            width: 150px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .model:hover {
+            transform: scale(1.05);
+        }
+
+        .model a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .model img {
+            width: 120px;
+            height: 130px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <h1>Select Your Samsung S Model</h1>
+
+    <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+
+        <a href="cart.html">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
+</header>
+<div class="brands" id="modelContainer"></div>
+
+<script>
+
+const samsungSmodels = [
+
+{
+name:"Samsung S6",
+image:"images/samsung-s6.png"
+},
+
+{
+name:"Samsung S6 Edge",
+image:"images/samsung-s6edge.png"
+},
+
+{
+name:"Samsung S7",
+image:"images/samsung-s7.png"
+},
+
+{
+name:"Samsung S7 Edge",
+image:"images/samsung-s7edge.png"
+},
+
+{
+name:"Samsung S8",
+image:"images/samsung-s8.png"
+},
+
+{
+name:"Samsung S8+",
+image:"images/samsung-s8plus.png"
+},
+
+{
+name:"Samsung S9",
+image:"images/samsung-s9.png"
+},
+
+{
+name:"Samsung S9+",
+image:"images/samsung-s9plus.png"
+},
+
+{
+name:"Samsung S10",
+image:"images/samsung-s10.png"
+},
+
+{
+name:"Samsung S10e",
+image:"images/samsung-s10e.png"
+},
+
+{
+name:"Samsung S10+",
+image:"images/samsung-s10plus.png"
+},
+
+{
+name:"Samsung S20",
+image:"images/samsung-s20.png"
+},
+
+{
+name:"Samsung S20 FE",
+image:"images/samsung-s20fe.png"
+},
+
+{
+name:"Samsung S20+",
+image:"images/samsung-s20plus.png"
+},
+
+{
+name:"Samsung S20 Ultra",
+image:"images/samsung-s20ultra.png"
+},
+
+{
+name:"Samsung S21",
+image:"images/samsung-s21.png"
+},
+
+{
+name:"Samsung S21 FE",
+image:"images/samsung-s21fe.png"
+},
+
+{
+name:"Samsung S21+",
+image:"images/samsung-s21plus.png"
+},
+
+{
+name:"Samsung S21 Ultra",
+image:"images/samsung-s21ultra.png"
+},
+
+{
+name:"Samsung S22",
+image:"images/samsung-s22.png"
+},
+
+{
+name:"Samsung S22+",
+image:"images/samsung-s22plus.png"
+},
+
+{
+name:"Samsung S22 Ultra",
+image:"images/samsung-s22ultra.png"
+},
+
+{
+name:"Samsung S23",
+image:"images/samsung-s23.png"
+},
+
+{
+name:"Samsung S23 FE",
+image:"images/samsung-s23fe.png"
+},
+
+{
+name:"Samsung S23+",
+image:"images/samsung-s23plus.png"
+},
+
+{
+name:"Samsung S23 Ultra",
+image:"images/samsung-s23ultra.png"
+},
+
+{
+name:"Samsung S24",
+image:"images/samsung-s24.png"
+},
+
+{
+name:"Samsung S24+",
+image:"images/samsung-s24plus.png"
+},
+
+{
+name:"Samsung S24 Ultra",
+image:"images/samsung-s24ultra.png"
+},
+
+{
+name:"Samsung S25",
+image:"images/samsung-s25.png"
+},
+
+{
+name:"Samsung S25+",
+image:"images/samsung-s25plus.png"
+},
+
+{
+name:"Samsung S25 Ultra",
+image:"images/samsung-s25ultra.png"
+},
+
+{
+name:"Samsung S26",
+image:"images/samsung-s26.png"
+},
+
+{
+name:"Samsung S26+",
+image:"images/samsung-s26plus.png"
+},
+
+{
+name:"Samsung S26 Ultra",
+image:"images/samsung-s26ultra.png"
+}
+
+];
+
+const container =
+document.getElementById("modelContainer");
+
+samsungSmodels.forEach(phone=>{
+
+const modelCode =
+phone.name.replace(/\s+/g,"");
+
+container.innerHTML += `
+
+<div class="model">
+
+<a href="repair-booking.html?model=${encodeURIComponent(modelCode)}">
+
+<img src="${phone.image}"
+alt="${phone.name}">
+
+<br>${phone.name}
+
+</a>
+
+</div>
+
+`;
+
+});
+
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const count =
+        document.getElementById("cartCount");
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
+});
+
+</script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773" data-elfsight-app-lazy></div>
+ 
+</body>
+</html>

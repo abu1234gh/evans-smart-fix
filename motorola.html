@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Model - Evan's Smart Fix</title>
+
+    <link rel="stylesheet" href="style.css">
+        <link rel=" website icon" type="png"
+         href="images/logo.png">
+</head>
+
+<body>
+
+    <header>
+    <img src="images/logo.png" alt="Logo" class="logo">     
+        <h1>Select Your motorola model</h1>
+ <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+
+        <a href="cart.html" class="cart-link">
+            🛒 Basket <span id="cartCount">0</span>
+        </a>
+    </nav>
+    </header>
+    <div class="brands">
+<div class="model">
+    <a href="repair-booking.html?model=E13">
+        <img src="images/E13.png" alt="E13" width="120" height="130">
+        <br>
+        E13</a>
+</div>
+<div class="model"> 
+    <a href="repair-booking.html?model=E14">
+        <img src="images/E14.png" alt="E14" width="120" height="130">
+        <br>
+        E14</a>
+    </div>
+    <div class ="model">
+    <a href="repair-booking.html?model=E22">
+        <img src="images/E22.png" alt="E22" width="120" height="130">
+        <br>
+        E22</a> 
+    </div>
+    <div class="model">
+    <a href="repair-booking.html?model=G13">
+        <img src="images/G13.png" alt="G13" width="120" height="130">
+        <br>
+        G13</a>
+    </div>
+    <div class="model">
+    <a href="repair-booking.html?model=G14">
+        <img src="images/G14.png" alt="G14" width="120" height="130">
+        <br>
+        G14</a>
+    </div>
+    <div class="model">
+    <a href="repair-booking.html?model=G15">
+        <img src="images/G15.png" alt="G15" width="120" height="130">
+        <br>
+        G15</a>
+    </div>
+    <div class="model">
+    <a href="repair-booking.html?model=G32">
+        <img src="images/G32.png" alt="G32" width="120" height="130">
+        <br>
+        G32</a>
+    </div>
+    </style>
+    
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const count =
+        document.getElementById("cartCount");
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
+});
+
+</script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-3ea2a3b5-71ad-425b-8ae2-587cdc2f5773" data-elfsight-app-lazy></div>
+ 
+</body>
+</html>

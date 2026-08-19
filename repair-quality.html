@@ -66,6 +66,18 @@
     text-align: center;
 }
 
+/* Genuine quality option */
+.genuine-button {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #0057b8;
+    border-radius: 10px;
+    background: #f7faff;
+    color: #0057b8;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 </style>
 </head>
 
@@ -94,6 +106,18 @@
 <h2 id="selectedRepair"></h2>
 
 <div class="repair-grid">
+
+<div class="model">
+
+    <button id="GradeGenuine" class="genuine-button" type="button">
+        Genuine
+    </button>
+
+    <br>
+
+    <strong id="priceGenuine"></strong>
+
+</div>
 
 <div class="model">
 
@@ -8832,6 +8856,7 @@ function setupGrade(elementId, priceElementId, quality) {
 }
 
 
+setupGrade("GradeGenuine", "priceGenuine", "Genuine");
 setupGrade("GradeA", "priceA", "Original");
 setupGrade("GradeB", "priceB", "Grade B");
 setupGrade("GradeC", "priceC", "Grade C");

@@ -42,7 +42,7 @@
 
 .repair-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     padding: 20px;
 }
@@ -64,18 +64,6 @@
 
 #selectedRepair {
     text-align: center;
-}
-
-/* Genuine quality option */
-.genuine-button {
-    width: 120px;
-    height: 120px;
-    border: 2px solid #0057b8;
-    border-radius: 10px;
-    background: #f7faff;
-    color: #0057b8;
-    font-weight: bold;
-    font-size: 16px;
 }
 
 </style>
@@ -106,34 +94,13 @@
 <h2 id="selectedRepair"></h2>
 
 <div class="repair-grid">
-<div class="repair-grid">
-
-    <!-- GENUINE -->
-    <div class="model">
-
-        <a id="GradeGenuine">
-
-            <img src="images/genuine.png" alt="Genuine">
-
-            <br>
-
-            Genuine
-
-        </a>
-
-        <br>
-
-        <strong id="priceGenuine"></strong>
-
-    </div>
-
 
     <!-- ORIGINAL -->
     <div class="model">
 
         <a id="GradeA">
 
-            <img src="images/A.png">
+            <img src="images/A.png" alt="Original">
 
             <br>
 
@@ -153,7 +120,7 @@
 
         <a id="GradeB">
 
-            <img src="images/B.png">
+            <img src="images/B.png" alt="Grade B">
 
             <br>
 
@@ -173,7 +140,7 @@
 
         <a id="GradeC">
 
-            <img src="images/C.png">
+            <img src="images/C.png" alt="Grade C">
 
             <br>
 
@@ -186,63 +153,6 @@
         <strong id="priceC"></strong>
 
     </div>
-
-</div>
-
-
-<div class="model">
-
-    <a id="GradeA">
-
-        <img src="images/A.png">
-
-        <br>
-
-        A
-
-    </a>
-
-    <br>
-
-    <strong id="priceA"></strong>
-
-</div>
-
-<div class="model">
-
-    <a id="GradeB">
-
-        <img src="images/B.png">
-
-        <br>
-
-        Grade B
-
-    </a>
-
-    <br>
-
-    <strong id="priceB"></strong>
-
-</div>
-
-<div class="model">
-
-    <a id="GradeC">
-
-        <img src="images/C.png">
-
-        <br>
-
-        Grade C
-
-    </a>
-
-    <br>
-
-    <strong id="priceC"></strong>
-
-</div>
 
 </div>
 
@@ -8927,7 +8837,6 @@ function setupGrade(elementId, priceElementId, quality) {
 }
 
 
-setupGrade("GradeGenuine", "priceGenuine", "Genuine");
 setupGrade("GradeA", "priceA", "Original");
 setupGrade("GradeB", "priceB", "Grade B");
 setupGrade("GradeC", "priceC", "Grade C");

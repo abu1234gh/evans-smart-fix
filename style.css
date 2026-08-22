@@ -1361,30 +1361,5 @@ nav a[href="cart.html"]:hover {
 .confirmation-container strong {
     color: #000000 !important;
 }
-.social-top-bar {
-    width: 100%;
-    background: #111;
-    color: white;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-
-    padding: 6px 10px;
-
-    font-size: 13px;
-    box-sizing: border-box;
-}
-
-.social-top-bar a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.social-top-bar a:hover {
-    text-decoration: underline;
-}
 
 

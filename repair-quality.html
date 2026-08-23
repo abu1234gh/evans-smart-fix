@@ -8713,19 +8713,6 @@ function normaliseModel(model) {
 
 function getPrice(quality) {
 
-    /* =========================================================
-       TEMPORARY DIAGNOSTIC TEST PRICE
-       Forces every Diagnostic Service to £1.00 regardless of
-       the individual model pricing table above.
-    ========================================================= */
-
-    if (
-        normaliseModel(cleanRepair) ===
-        normaliseModel("Diagnostic Service")
-    ) {
-        return 1.00;
-    }
-
     let brand = "";
 
     const modelLower = cleanModel.toLowerCase();

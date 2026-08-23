@@ -295,15 +295,51 @@ alt="Evan's Smart Fix logo"
 <p id="status"></p>
 
 
-<!-- SumUp securely renders the payment form inside this container -->
+<!-- =========================================================
+     SUMUP PAYMENT POPUP
+========================================================= -->
+
 <div
-    id="sumup-card"
-    style="
-        display:none;
-        margin-top:20px;
-        max-width:500px;
-    "
-></div>
+    id="paymentModal"
+    class="payment-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="payment-modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="paymentModalTitle"
+    >
+
+        <button
+            type="button"
+            id="closePaymentModal"
+            class="payment-modal-close"
+            aria-label="Close secure payment"
+        >
+            ×
+        </button>
+
+
+        <div class="payment-modal-header">
+
+            <h2 id="paymentModalTitle">
+                Secure Payment
+            </h2>
+
+            <p>
+                Complete your payment securely with SumUp.
+            </p>
+
+        </div>
+
+
+        <div id="sumup-card"></div>
+
+    </div>
+
+</div>
 
 
 </div>
@@ -1064,6 +1100,116 @@ function goToStep(step) {
 
 
 /* =========================================================
+   SUMUP PAYMENT POPUP
+========================================================= */
+
+const paymentModal =
+    document.getElementById(
+        "paymentModal"
+    );
+
+const closePaymentModal =
+    document.getElementById(
+        "closePaymentModal"
+    );
+
+let activeCheckoutId =
+    null;
+
+let paymentWidgetMounted =
+    false;
+
+
+function openPaymentModal() {
+
+    if (!paymentModal) {
+        return;
+    }
+
+    paymentModal.style.display =
+        "flex";
+
+    paymentModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function hidePaymentModal() {
+
+    if (!paymentModal) {
+        return;
+    }
+
+    paymentModal.style.display =
+        "none";
+
+    paymentModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+if (closePaymentModal) {
+
+    closePaymentModal.addEventListener(
+        "click",
+        function () {
+
+            hidePaymentModal();
+
+            /*
+               Do not create another checkout.
+               The existing mounted SumUp widget stays alive and can
+               be reopened with the same checkout.
+            */
+
+            if (
+                payButton &&
+                activeCheckoutId &&
+                paymentWidgetMounted
+            ) {
+
+                payButton.style.display =
+                    "inline-block";
+
+                payButton.disabled =
+                    false;
+
+                payButton.textContent =
+                    "Resume Secure Payment";
+
+                const status =
+                    document.getElementById(
+                        "status"
+                    );
+
+                if (status) {
+
+                    status.textContent =
+                        "Payment window closed. You can resume your secure payment.";
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    SUMUP PAYMENT / BOOKING
 ========================================================= */
 
@@ -1081,6 +1227,28 @@ if (payButton) {
 
             const status =
                 document.getElementById("status");
+
+
+            /* =================================================
+               RESUME EXISTING PAYMENT WIDGET
+            ================================================= */
+
+            if (
+                activeCheckoutId &&
+                paymentWidgetMounted
+            ) {
+
+                openPaymentModal();
+
+                payButton.style.display =
+                    "none";
+
+                status.textContent =
+                    "Secure payment window opened.";
+
+                return;
+
+            }
 
 
             /* =================================================
@@ -1433,8 +1601,11 @@ if (payButton) {
                     );
 
 
-                sumupCardContainer.style.display =
-                    "block";
+                activeCheckoutId =
+                    checkoutId;
+
+
+                openPaymentModal();
 
 
                 payButton.style.display =
@@ -1442,7 +1613,7 @@ if (payButton) {
 
 
                 status.textContent =
-                    "Enter your payment details below.";
+                    "Secure payment window opened.";
 
 
                 window.SumUpCard.mount({
@@ -1467,6 +1638,9 @@ if (payButton) {
 
                     onLoad:
                         function () {
+
+                            paymentWidgetMounted =
+                                true;
 
                             status.textContent =
                                 "Secure payment ready.";
@@ -1563,6 +1737,8 @@ if (payButton) {
                                 status.textContent =
                                     "Payment submitted. Verifying securely...";
 
+
+                                hidePaymentModal();
 
                                 window.location.href =
                                     "payment-success.html";

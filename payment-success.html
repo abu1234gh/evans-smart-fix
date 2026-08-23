@@ -54,6 +54,57 @@
             line-height: 1.6;
         }
 
+        .booking-result {
+            display: none;
+            margin: 30px auto 0;
+            padding: 22px;
+            max-width: 520px;
+            text-align: left;
+            border: 1px solid #dddddd;
+            border-radius: 12px;
+            background: #f8fafc;
+        }
+
+        .booking-result h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .booking-row {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .booking-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .booking-row span {
+            display: block;
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 4px;
+        }
+
+        .booking-row strong {
+            display: block;
+            white-space: pre-line;
+            word-break: break-word;
+        }
+
+        .return-home-btn {
+            display: none;
+            margin: 24px auto 0;
+            padding: 12px 22px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+            background: #0057b8;
+            color: #ffffff;
+        }
+
     </style>
 
 </head>
@@ -76,6 +127,41 @@
         <p id="status">
             Please wait while we confirm your payment...
         </p>
+
+        <div
+            class="booking-result"
+            id="bookingResult"
+        >
+            <h2>Booking Details</h2>
+
+            <div class="booking-row">
+                <span>Booking Reference</span>
+                <strong id="resultReference"></strong>
+            </div>
+
+            <div class="booking-row">
+                <span>Name</span>
+                <strong id="resultName"></strong>
+            </div>
+
+            <div class="booking-row">
+                <span>Devices & Repairs</span>
+                <strong id="resultBooking"></strong>
+            </div>
+
+            <div class="booking-row">
+                <span>Total Paid</span>
+                <strong id="resultTotal"></strong>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="return-home-btn"
+            id="returnHomeButton"
+        >
+            Return Home
+        </button>
 
     </div>
 
@@ -121,6 +207,24 @@
         const paymentIcon =
             document.getElementById("paymentIcon");
 
+        const bookingResult =
+            document.getElementById("bookingResult");
+
+        const resultReference =
+            document.getElementById("resultReference");
+
+        const resultName =
+            document.getElementById("resultName");
+
+        const resultBooking =
+            document.getElementById("resultBooking");
+
+        const resultTotal =
+            document.getElementById("resultTotal");
+
+        const returnHomeButton =
+            document.getElementById("returnHomeButton");
+
 
         /* =====================================================
            BOOKING DATA
@@ -152,6 +256,279 @@
             throw new Error(
                 "bookingData not found"
             );
+
+        }
+
+
+        /* =====================================================
+           EMAIL / BOOKING HELPERS
+        ===================================================== */
+
+        function buildRepairRows(items) {
+
+            if (
+                !Array.isArray(items) ||
+                !items.length
+            ) {
+
+                return `
+                    <tr>
+                        <td
+                            colspan="4"
+                            style="
+                                padding:12px;
+                                border:1px solid #dddddd;
+                                text-align:center;
+                            "
+                        >
+                            No repairs selected.
+                        </td>
+                    </tr>
+                `;
+
+            }
+
+
+            return items.map(function(item) {
+
+                const device =
+                    item.model ||
+                    item.device ||
+                    "Unknown device";
+
+                const repair =
+                    item.repair ||
+                    "Repair";
+
+                const quality =
+                    item.quality ||
+                    "Not specified";
+
+                const price =
+                    Number(
+                        item.price || 0
+                    );
+
+
+                return `
+                    <tr>
+                        <td style="padding:10px;border:1px solid #dddddd;">
+                            ${device}
+                        </td>
+
+                        <td style="padding:10px;border:1px solid #dddddd;">
+                            ${repair}
+                        </td>
+
+                        <td style="padding:10px;border:1px solid #dddddd;">
+                            ${quality}
+                        </td>
+
+                        <td style="padding:10px;border:1px solid #dddddd;text-align:right;">
+                            £${price.toFixed(2)}
+                        </td>
+                    </tr>
+                `;
+
+            }).join("");
+
+        }
+
+
+        function buildBookingText(items) {
+
+            if (
+                booking.booking &&
+                String(booking.booking).trim()
+            ) {
+
+                return String(
+                    booking.booking
+                );
+
+            }
+
+
+            if (
+                !Array.isArray(items) ||
+                !items.length
+            ) {
+
+                return "No repair details available.";
+
+            }
+
+
+            return items.map(function(item, index) {
+
+                const device =
+                    item.model ||
+                    item.device ||
+                    "Unknown device";
+
+                const repair =
+                    item.repair ||
+                    "Repair";
+
+                const quality =
+                    item.quality ||
+                    "Not specified";
+
+                const price =
+                    Number(
+                        item.price || 0
+                    );
+
+
+                return (
+                    "Device " +
+                    (index + 1) +
+                    ": " +
+                    device +
+                    "\nRepair: " +
+                    repair +
+                    "\nQuality: " +
+                    quality +
+                    "\nPrice: £" +
+                    price.toFixed(2)
+                );
+
+            }).join(
+                "\n\n--------------------\n\n"
+            );
+
+        }
+
+
+        function createEmailParams() {
+
+            const reference =
+                booking.reference ||
+                booking.booking_reference ||
+                booking.order_reference ||
+                "";
+
+            const bookingText =
+                buildBookingText(
+                    booking.items
+                );
+
+            const repairRows =
+                buildRepairRows(
+                    booking.items
+                );
+
+            const formattedTotal =
+                "£" +
+                Number(
+                    booking.total || 0
+                ).toFixed(2);
+
+            const devices =
+                booking.devices ||
+                booking.device ||
+                "";
+
+            const repairs =
+                booking.repairs ||
+                booking.repair ||
+                "";
+
+
+            /*
+               Multiple aliases are included deliberately.
+
+               EmailJS ignores template variables it does not use,
+               so this keeps both your older and newer templates
+               compatible.
+            */
+
+            return {
+
+                name:
+                    booking.name || "",
+
+                customer_name:
+                    booking.name || "",
+
+                phone:
+                    booking.phone || "",
+
+                customer_phone:
+                    booking.phone || "",
+
+                email:
+                    booking.email || "",
+
+                customer_email:
+                    booking.email || "",
+
+                address:
+                    booking.address || "",
+
+                customer_address:
+                    booking.address || "",
+
+                reference:
+                    reference,
+
+                booking_reference:
+                    reference,
+
+                order_reference:
+                    reference,
+
+                device:
+                    devices,
+
+                devices:
+                    devices,
+
+                model:
+                    devices,
+
+                repair:
+                    repairs,
+
+                repairs:
+                    repairs,
+
+                quality:
+                    booking.qualities || "",
+
+                qualities:
+                    booking.qualities || "",
+
+                prices:
+                    booking.prices || "",
+
+                booking:
+                    bookingText,
+
+                booking_details:
+                    bookingText,
+
+                repair_rows:
+                    repairRows,
+
+                repairs_table:
+                    repairRows,
+
+                total:
+                    formattedTotal,
+
+                total_price:
+                    formattedTotal,
+
+                amount:
+                    Number(
+                        booking.total || 0
+                    ).toFixed(2),
+
+                checkout_id:
+                    booking.sumupCheckoutId || ""
+
+            };
 
         }
 
@@ -319,29 +696,61 @@
 
 
                     /* =================================================
+                       BUILD EMAIL DATA
+                    ================================================= */
+
+                    const emailParams =
+                        createEmailParams();
+
+
+                    console.log(
+                        "EMAIL PARAMS:",
+                        emailParams
+                    );
+
+
+                    /* =================================================
                        SEND CUSTOMER EMAIL
                     ================================================= */
 
-                    try {
+                    const customerEmailKey =
+                        "esf_customer_email_sent_" +
+                        booking.sumupCheckoutId;
 
-                        await emailjs.send(
-                            "service_nijiuhj",
-                            "template_xqu1fle",
-                            booking
-                        );
 
-                        console.log(
-                            "Customer email sent successfully."
-                        );
-
-                    } catch (
-                        customerEmailError
+                    if (
+                        !localStorage.getItem(
+                            customerEmailKey
+                        )
                     ) {
 
-                        console.error(
-                            "CUSTOMER EMAIL ERROR:",
+                        try {
+
+                            await emailjs.send(
+                                "service_nijiuhj",
+                                "template_xqu1fle",
+                                emailParams
+                            );
+
+                            localStorage.setItem(
+                                customerEmailKey,
+                                "1"
+                            );
+
+                            console.log(
+                                "Customer email sent successfully."
+                            );
+
+                        } catch (
                             customerEmailError
-                        );
+                        ) {
+
+                            console.error(
+                                "CUSTOMER EMAIL ERROR:",
+                                customerEmailError
+                            );
+
+                        }
 
                     }
 
@@ -350,26 +759,44 @@
                        SEND BUSINESS EMAIL
                     ================================================= */
 
-                    try {
+                    const businessEmailKey =
+                        "esf_business_email_sent_" +
+                        booking.sumupCheckoutId;
 
-                        await emailjs.send(
-                            "service_nijiuhj",
-                            "template_z80ezit",
-                            booking
-                        );
 
-                        console.log(
-                            "Business email sent successfully."
-                        );
-
-                    } catch (
-                        businessEmailError
+                    if (
+                        !localStorage.getItem(
+                            businessEmailKey
+                        )
                     ) {
 
-                        console.error(
-                            "BUSINESS EMAIL ERROR:",
+                        try {
+
+                            await emailjs.send(
+                                "service_nijiuhj",
+                                "template_z80ezit",
+                                emailParams
+                            );
+
+                            localStorage.setItem(
+                                businessEmailKey,
+                                "1"
+                            );
+
+                            console.log(
+                                "Business email sent successfully."
+                            );
+
+                        } catch (
                             businessEmailError
-                        );
+                        ) {
+
+                            console.error(
+                                "BUSINESS EMAIL ERROR:",
+                                businessEmailError
+                            );
+
+                        }
 
                     }
 
@@ -384,30 +811,53 @@
 
 
                     /* =================================================
-                       FINAL MESSAGE
+                       SHOW SUCCESS PAGE
                     ================================================= */
+
+                    const bookingText =
+                        buildBookingText(
+                            booking.items
+                        );
+
 
                     titleElement.textContent =
                         "Booking Confirmed!";
 
+
                     statusElement.innerHTML =
-                        "Thank you for choosing Evan's Smart Fix.<br><br>" +
-                        "Your payment has been confirmed and your booking has been received.";
+                        "Your payment has been confirmed and your booking has been received.<br><br>" +
+                        "A confirmation email has been sent.";
 
 
-                    /* =================================================
-                       RETURN HOME
-                    ================================================= */
+                    resultReference.textContent =
+                        booking.reference ||
+                        booking.booking_reference ||
+                        booking.order_reference ||
+                        "Unavailable";
 
-                    setTimeout(
-                        function () {
 
-                            window.location.href =
-                                "index.html";
+                    resultName.textContent =
+                        booking.name ||
+                        "Unavailable";
 
-                        },
-                        5000
-                    );
+
+                    resultBooking.textContent =
+                        bookingText;
+
+
+                    resultTotal.textContent =
+                        "£" +
+                        Number(
+                            booking.total || 0
+                        ).toFixed(2);
+
+
+                    bookingResult.style.display =
+                        "block";
+
+
+                    returnHomeButton.style.display =
+                        "inline-block";
 
 
                     return;
@@ -565,6 +1015,29 @@
 
 
         /* =====================================================
+           RETURN HOME BUTTON
+        ===================================================== */
+
+        returnHomeButton.addEventListener(
+            "click",
+            function () {
+
+                localStorage.removeItem(
+                    "cart"
+                );
+
+                localStorage.removeItem(
+                    "bookingData"
+                );
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+        /* =====================================================
            START PAYMENT CHECK
         ===================================================== */
 
@@ -589,8 +1062,6 @@
     </div>
 
 
-
-<script src="social-dropdown.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const whatsappButton = document.createElement("a");
 
-    whatsappButton.href = "https://wa.me/447861154960";
+    whatsappButton.href = "https://wa.me/44";
     whatsappButton.target = "_blank";
     whatsappButton.className = "whatsapp-button";
 

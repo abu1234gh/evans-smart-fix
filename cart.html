@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/logo.png">
+<link rel="icon" href="images/logo.png">
 <title>Your Basket</title>
 
 <style>
@@ -66,211 +66,331 @@ button {
     margin: 10px auto 20px;
 }
 
-.cart-actions button {
+.cart-actions button { font-size: 14px; }
+
+/* Checkout choice modal */
+.checkout-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 100000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.checkout-overlay.open { display: flex; }
+
+.checkout-modal {
+    width: min(560px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    padding: 28px;
+    text-align: left;
+    color: #172033;
+    position: relative;
+}
+
+.checkout-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    color: #444;
+    border: 0;
+    font-size: 28px;
+    line-height: 1;
+    padding: 4px 8px;
+    margin: 0;
+}
+
+.checkout-modal h2 {
+    color: #0057b8;
+    margin: 0 35px 6px 0;
+}
+
+.checkout-modal .subtext {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.checkout-login-form label {
+    display: block;
+    font-weight: 700;
+    margin: 12px 0 5px;
+}
+
+.checkout-login-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #cbd3df;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.checkout-wide-btn,
+.checkout-login-form button {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.checkout-guest {
+    background: white;
+    color: #0057b8;
+    border: 2px solid #0057b8;
+}
+
+.checkout-register {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    color: #0057b8;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.checkout-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #777;
+    margin: 18px 0 8px;
+}
+
+.checkout-divider::before,
+.checkout-divider::after {
+    content: "";
+    height: 1px;
+    background: #ddd;
+    flex: 1;
+}
+
+#checkoutStatus {
+    min-height: 20px;
+    margin-top: 10px;
+    color: #b00020;
     font-size: 14px;
 }
 </style>
 </head>
-
 <body>
 
 <header>
     <h1>Your Basket</h1>
-         <nav>
+    <nav>
         <a href="index.html">Home</a>
         <a href="brands.html">Repairs</a>
-<details class="social-dropdown">
-    <summary>Socials ▾</summary>
-
-    <div class="social-dropdown-menu">
-
-        <a href="YOUR_INSTAGRAM_LINK"
-           target="_blank"
-           rel="noopener noreferrer">
-            Instagram
-        </a>
-
-        <a href="YOUR_TIKTOK_LINK"
-           target="_blank"
-           rel="noopener noreferrer">
-            TikTok
-        </a>
-
-      
-    </div>
-</details>
-
-<a href="cart.html" class="cart-link">
-    🛒 Basket
-    <span id="cartCount">0</span>
-</a>
-     </nav>
+        <details class="social-dropdown">
+            <summary>Socials ▾</summary>
+            <div class="social-dropdown-menu">
+                <a href="YOUR_INSTAGRAM_LINK" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="YOUR_TIKTOK_LINK" target="_blank" rel="noopener noreferrer">TikTok</a>
+            </div>
+        </details>
+        <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
 </header>
+
 <div id="total"></div>
 <div id="cartBox"></div>
 
 <div class="cart-actions">
     <button onclick="window.location.href='brands.html'">Add Another Item</button>
-    <button onclick="checkout()">Proceed to Checkout</button>
+    <button id="checkoutButton" type="button">Proceed to Checkout</button>
 </div>
 
-<script>
+<!-- Login / guest choice now happens HERE on cart.html, so there is no checkout-choice redirect loop. -->
+<div id="checkoutOverlay" class="checkout-overlay" aria-hidden="true">
+    <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+        <button class="checkout-close" id="checkoutClose" type="button" aria-label="Close">×</button>
+        <h2 id="checkoutTitle">Continue to checkout</h2>
+        <p class="subtext">Log in to save this repair to your account, or continue without an account.</p>
 
-let cart = JSON.parse(
-    localStorage.getItem("cart")
-) || [];
+        <form id="checkoutLoginForm" class="checkout-login-form">
+            <label for="checkoutEmail">Email</label>
+            <input type="email" id="checkoutEmail" autocomplete="email" required>
+
+            <label for="checkoutPassword">Password</label>
+            <input type="password" id="checkoutPassword" autocomplete="current-password" required>
+
+            <button id="checkoutLoginButton" type="submit">Log In & Continue</button>
+            <div id="checkoutStatus" aria-live="polite"></div>
+        </form>
+
+        <div class="checkout-divider">or</div>
+
+        <button id="checkoutGuestButton" class="checkout-wide-btn checkout-guest" type="button">Continue as Guest</button>
+
+        <a class="checkout-register" href="register.html?next=booking-details.html">Create Account</a>
+    </div>
+</div>
+
+<script src="auth.js"></script>
+<script>
+let cart = [];
+
+function loadCart() {
+    try {
+        const stored = JSON.parse(localStorage.getItem("cart"));
+        cart = Array.isArray(stored) ? stored : [];
+    } catch (error) {
+        console.error("Could not read basket:", error);
+        cart = [];
+    }
+    return cart;
+}
+
+function saveCheckoutBackup() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    sessionStorage.setItem("checkoutCartBackup", JSON.stringify(cart));
+}
 
 function renderCart() {
+    loadCart();
 
-    const box =
-    document.getElementById("cartBox");
-
-    const totalBox =
-    document.getElementById("total");
+    const box = document.getElementById("cartBox");
+    const totalBox = document.getElementById("total");
+    const count = document.getElementById("cartCount");
 
     box.innerHTML = "";
+    if (count) count.textContent = cart.length;
 
-    document.getElementById(
-        "cartCount"
-    ).textContent = cart.length;
-
-    if(cart.length===0){
-
-        box.innerHTML =
-        "<p>Your basket is empty</p>";
-
-        totalBox.innerHTML =
-        "<strong>Total: £0.00</strong>";
-
+    if (!cart.length) {
+        box.innerHTML = "<p>Your basket is empty</p>";
+        totalBox.innerHTML = "<strong>Total: £0.00</strong>";
         return;
     }
 
     let total = 0;
 
-    cart.forEach((item,index)=>{
+    cart.forEach((item, index) => {
+        total += Number(item.price || 0);
 
-        total += Number(item.price);
-
-        const div =
-        document.createElement("div");
-
+        const div = document.createElement("div");
         div.className = "item";
-
         div.innerHTML = `
-
-<div>
-
-<strong>${item.model}</strong>
-
-<br>
-
-${item.repair}
-
-<br>
-
-<small>${item.quality}</small>
-
-<br>
-
-£${Number(item.price).toFixed(2)}
-
-</div>
-
-<button onclick="removeItem(${index})">
-
-Remove
-
-</button>
-
-`;
-
+            <div>
+                <strong>${item.model || item.device || "Device"}</strong><br>
+                ${item.repair || "Repair"}<br>
+                ${item.quality ? `<small>${item.quality}</small><br>` : ""}
+                £${Number(item.price || 0).toFixed(2)}
+            </div>
+            <button type="button" onclick="removeItem(${index})">Remove</button>
+        `;
         box.appendChild(div);
-
     });
 
-    totalBox.innerHTML =
-
-    "<strong>Total: £"
-    + total.toFixed(2)
-    + "</strong>";
-
+    totalBox.innerHTML = "<strong>Total: £" + total.toFixed(2) + "</strong>";
 }
 
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
+function removeItem(index) {
+    loadCart();
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
-
 }
 
-function checkout(){
+function openCheckoutModal() {
+    const overlay = document.getElementById("checkoutOverlay");
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+}
 
-    // Re-read the basket at the exact moment Checkout is clicked.
-    // This avoids using an old in-memory copy of the cart.
-    let checkoutCart = [];
+function closeCheckoutModal() {
+    const overlay = document.getElementById("checkoutOverlay");
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+}
+
+async function startCheckout() {
+    loadCart();
+
+    if (!cart.length) {
+        alert("Your basket is empty");
+        return;
+    }
+
+    saveCheckoutBackup();
 
     try {
-        checkoutCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const session = await window.ESFAuth.getSession();
+
+        if (session) {
+            localStorage.setItem("checkoutMode", "account");
+            window.location.href = "booking-details.html";
+            return;
+        }
     } catch (error) {
-        console.error("Could not read basket from localStorage:", error);
+        console.error("Could not check login session:", error);
+        // Login being unavailable should not block guest checkout.
     }
 
-    // Fall back to the cart currently displayed on this page.
-    if (!checkoutCart.length && Array.isArray(cart) && cart.length) {
-        checkoutCart = cart;
-    }
-
-    if(checkoutCart.length===0){
-
-        alert(
-            "Your basket is empty"
-        );
-
-        return;
-
-    }
-
-    // Save the basket in BOTH localStorage and sessionStorage before
-    // moving pages. checkout-choice.html can restore it from the backup
-    // if the browser temporarily fails to read the normal cart value.
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(checkoutCart)
-    );
-
-    sessionStorage.setItem(
-        "checkoutCartBackup",
-        JSON.stringify(checkoutCart)
-    );
-
-    window.location.href =
-    "checkout-choice.html";
-
+    openCheckoutModal();
 }
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+document.getElementById("checkoutButton").addEventListener("click", startCheckout);
+document.getElementById("checkoutClose").addEventListener("click", closeCheckoutModal);
 
-cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
-
-renderCart();
-
+document.getElementById("checkoutOverlay").addEventListener("click", function(event) {
+    if (event.target === this) closeCheckoutModal();
 });
 
+document.getElementById("checkoutGuestButton").addEventListener("click", function() {
+    loadCart();
+    if (!cart.length) {
+        alert("Your basket is empty");
+        return;
+    }
+
+    saveCheckoutBackup();
+    localStorage.setItem("checkoutMode", "guest");
+    window.location.href = "booking-details.html";
+});
+
+document.getElementById("checkoutLoginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    loadCart();
+    if (!cart.length) {
+        alert("Your basket is empty");
+        return;
+    }
+
+    const status = document.getElementById("checkoutStatus");
+    const button = document.getElementById("checkoutLoginButton");
+    const email = document.getElementById("checkoutEmail").value.trim();
+    const password = document.getElementById("checkoutPassword").value;
+
+    button.disabled = true;
+    status.textContent = "Logging you in...";
+
+    try {
+        const client = await window.ESFAuth.getClient();
+        const { error } = await client.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+
+        saveCheckoutBackup();
+        localStorage.setItem("checkoutMode", "account");
+        window.location.href = "booking-details.html";
+    } catch (error) {
+        console.error(error);
+        status.textContent = error.message || "We couldn't log you in.";
+        button.disabled = false;
+    }
+});
+
+document.addEventListener("DOMContentLoaded", renderCart);
 </script>
 
-
 <script src="social-dropdown.js"></script>
-  <script src="whatsapp.js"></script>
+<script src="whatsapp.js"></script>
 </body>
 </html>

@@ -211,7 +211,22 @@ function removeItem(index){
 
 function checkout(){
 
-    if(cart.length===0){
+    // Re-read the basket at the exact moment Checkout is clicked.
+    // This avoids using an old in-memory copy of the cart.
+    let checkoutCart = [];
+
+    try {
+        checkoutCart = JSON.parse(localStorage.getItem("cart")) || [];
+    } catch (error) {
+        console.error("Could not read basket from localStorage:", error);
+    }
+
+    // Fall back to the cart currently displayed on this page.
+    if (!checkoutCart.length && Array.isArray(cart) && cart.length) {
+        checkoutCart = cart;
+    }
+
+    if(checkoutCart.length===0){
 
         alert(
             "Your basket is empty"
@@ -220,6 +235,19 @@ function checkout(){
         return;
 
     }
+
+    // Save the basket in BOTH localStorage and sessionStorage before
+    // moving pages. checkout-choice.html can restore it from the backup
+    // if the browser temporarily fails to read the normal cart value.
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(checkoutCart)
+    );
+
+    sessionStorage.setItem(
+        "checkoutCartBackup",
+        JSON.stringify(checkoutCart)
+    );
 
     window.location.href =
     "checkout-choice.html";

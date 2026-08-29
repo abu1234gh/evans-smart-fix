@@ -1,3 +1,19 @@
+/* =========================================================
+   LOAD ACCOUNT BUTTON ON EVERY PAGE THAT USES THIS SCRIPT
+========================================================= */
+
+(function loadAccountNavigation() {
+    if (document.querySelector('script[data-esf-auth-nav="true"]')) {
+        return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "auth-nav.js";
+    script.async = true;
+    script.dataset.esfAuthNav = "true";
+    document.head.appendChild(script);
+})();
+
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================================

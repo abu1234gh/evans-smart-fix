@@ -1,0 +1,273 @@
+/* =========================================================
+   EVAN'S SMART FIX - LOGIN / ACCOUNT PAGES
+========================================================= */
+
+.auth-page {
+    width: min(980px, calc(100% - 30px));
+    margin: 45px auto 70px;
+}
+
+.auth-card {
+    width: min(500px, 100%);
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #dfe6ef;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
+}
+
+.auth-card h2,
+.account-panel h2 {
+    color: #0057b8;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: #667085;
+    margin-bottom: 24px;
+}
+
+.auth-form {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    display: block !important;
+}
+
+.auth-form::before {
+    display: none !important;
+}
+
+.auth-field {
+    margin-bottom: 16px;
+}
+
+.auth-field label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.auth-field input {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 12px 14px !important;
+    border: 1px solid #cfd7e3 !important;
+    border-radius: 9px !important;
+    background: #fff !important;
+    font-size: 15px !important;
+}
+
+.auth-field input:focus {
+    outline: none;
+    border-color: #0057b8 !important;
+    box-shadow: 0 0 0 3px rgba(0, 87, 184, .12) !important;
+}
+
+.auth-primary,
+.auth-secondary,
+.auth-danger {
+    width: 100% !important;
+    margin: 8px 0 0 !important;
+    padding: 12px 16px !important;
+    border: none !important;
+    border-radius: 9px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+}
+
+.auth-primary {
+    background: #0057b8 !important;
+    color: #fff !important;
+}
+
+.auth-primary:hover {
+    background: #004494 !important;
+}
+
+.auth-secondary {
+    background: #eef4fb !important;
+    color: #0057b8 !important;
+    border: 1px solid #cfe0f4 !important;
+}
+
+.auth-secondary:hover {
+    background: #e2edf9 !important;
+}
+
+.auth-danger {
+    background: #fff0f0 !important;
+    color: #b42318 !important;
+    border: 1px solid #f4c7c7 !important;
+}
+
+.auth-status {
+    min-height: 24px;
+    margin-top: 14px;
+    font-size: 14px;
+    color: #667085;
+}
+
+.auth-status.error {
+    color: #b42318;
+}
+
+.auth-status.success {
+    color: #067647;
+}
+
+.auth-links {
+    margin-top: 20px;
+    text-align: center;
+    color: #667085;
+}
+
+.auth-links a {
+    color: #0057b8;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 24px 0;
+    color: #98a2b3;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    height: 1px;
+    background: #e4e7ec;
+    flex: 1;
+}
+
+.checkout-choice-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.checkout-choice-side {
+    background: #fff;
+    border: 1px solid #dfe6ef;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .06);
+}
+
+.checkout-choice-side h3 {
+    color: #0057b8;
+    margin-bottom: 10px;
+}
+
+.checkout-summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.checkout-summary-line:last-child {
+    border-bottom: 0;
+}
+
+.account-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.account-panel {
+    background: #fff;
+    border: 1px solid #dfe6ef;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .06);
+}
+
+.account-email {
+    color: #667085;
+    margin-bottom: 22px;
+    word-break: break-word;
+}
+
+.booking-history-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.booking-history-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    background: #fbfcfe;
+}
+
+.booking-history-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.booking-reference {
+    color: #0057b8;
+    font-weight: 800;
+}
+
+.booking-status {
+    background: #eef4fb;
+    color: #0057b8;
+    border-radius: 999px;
+    padding: 4px 9px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.booking-history-card p {
+    margin: 5px 0;
+}
+
+.empty-history {
+    color: #667085;
+    padding: 20px 0;
+}
+
+@media (max-width: 800px) {
+    .checkout-choice-grid,
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .auth-page {
+        width: min(100% - 18px, 980px);
+        margin-top: 22px;
+    }
+
+    .auth-card,
+    .checkout-choice-side,
+    .account-panel {
+        padding: 20px 16px;
+        border-radius: 14px;
+    }
+}

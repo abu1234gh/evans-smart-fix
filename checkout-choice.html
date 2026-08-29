@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Evan's Smart Fix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+
+<header>
+    <img src="images/logo.png" class="logo" alt="Evan's Smart Fix logo">
+    <h1>Checkout</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+        <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
+</header>
+
+<main class="auth-page">
+    <div class="checkout-choice-grid">
+        <section class="auth-card" style="width:100%;">
+            <h2>Log in to continue</h2>
+            <p class="auth-subtitle">Use your account and we'll keep this booking in your repair history.</p>
+
+            <form id="checkoutLoginForm" class="auth-form">
+                <div class="auth-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" autocomplete="email" required>
+                </div>
+
+                <div class="auth-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" autocomplete="current-password" required>
+                </div>
+
+                <button type="submit" class="auth-primary" id="loginButton">Log In & Continue</button>
+                <p id="authStatus" class="auth-status" aria-live="polite"></p>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <button type="button" class="auth-secondary" id="guestButton">Continue as Guest</button>
+
+            <div class="auth-links">
+                New customer?
+                <a href="register.html?next=booking-details.html">Create Account</a>
+            </div>
+        </section>
+
+        <aside class="checkout-choice-side">
+            <h3>Your Basket</h3>
+            <div class="checkout-summary-line">
+                <span>Items</span>
+                <strong id="summaryItems">0</strong>
+            </div>
+            <div class="checkout-summary-line">
+                <span>Total</span>
+                <strong id="summaryTotal">£0.00</strong>
+            </div>
+            <p class="auth-subtitle" style="margin-top:18px;margin-bottom:0;">
+                Logging in is optional. Guest checkout works exactly as before.
+            </p>
+        </aside>
+    </div>
+</main>
+
+<script src="auth.js"></script>
+<script>
+(async function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+
+    document.getElementById("cartCount").textContent = cart.length;
+    document.getElementById("summaryItems").textContent = cart.length;
+    document.getElementById("summaryTotal").textContent = "£" + total.toFixed(2);
+
+    if (!cart.length) {
+        window.location.href = "cart.html";
+        return;
+    }
+
+    try {
+        const session = await window.ESFAuth.getSession();
+        if (session) {
+            localStorage.setItem("checkoutMode", "account");
+            window.location.href = "booking-details.html";
+            return;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    const form = document.getElementById("checkoutLoginForm");
+    const button = document.getElementById("loginButton");
+    const guestButton = document.getElementById("guestButton");
+    const status = document.getElementById("authStatus");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        button.disabled = true;
+        status.className = "auth-status";
+        status.textContent = "Logging you in...";
+
+        try {
+            const client = await window.ESFAuth.getClient();
+            const { error } = await client.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+
+            localStorage.setItem("checkoutMode", "account");
+            window.location.href = "booking-details.html";
+        } catch (error) {
+            status.className = "auth-status error";
+            status.textContent = error.message || "We couldn't log you in.";
+            button.disabled = false;
+        }
+    });
+
+    guestButton.addEventListener("click", function () {
+        localStorage.setItem("checkoutMode", "guest");
+        window.location.href = "booking-details.html";
+    });
+})();
+</script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

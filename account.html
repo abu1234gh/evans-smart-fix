@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Evan's Smart Fix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+
+<header>
+    <img src="images/logo.png" class="logo" alt="Evan's Smart Fix logo">
+    <h1>My Account</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+        <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
+</header>
+
+<main class="auth-page">
+    <div class="account-grid">
+        <section class="account-panel">
+            <h2>My Details</h2>
+            <p class="account-email" id="accountEmail">Loading...</p>
+
+            <form id="profileForm" class="auth-form">
+                <div class="auth-field">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" autocomplete="name">
+                </div>
+
+                <div class="auth-field">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" autocomplete="tel">
+                </div>
+
+                <div class="auth-field">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" autocomplete="street-address">
+                </div>
+
+                <button type="submit" class="auth-primary" id="saveButton">Save Details</button>
+                <p id="profileStatus" class="auth-status" aria-live="polite"></p>
+            </form>
+
+            <button type="button" class="auth-danger" id="logoutButton">Log Out</button>
+        </section>
+
+        <section class="account-panel">
+            <h2>My Repair Bookings</h2>
+            <p class="auth-subtitle">Bookings made while you are logged in will appear here.</p>
+            <div id="bookingHistory" class="booking-history-list">
+                <p class="empty-history">Loading your bookings...</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="auth.js"></script>
+<script>
+(async function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").textContent = cart.length;
+
+    const client = await window.ESFAuth.getClient();
+    const { data: userData, error: userError } = await client.auth.getUser();
+    const user = userData.user;
+
+    if (userError || !user) {
+        window.location.href = "login.html?next=account.html";
+        return;
+    }
+
+    const metadata = user.user_metadata || {};
+    document.getElementById("accountEmail").textContent = user.email || "";
+    document.getElementById("name").value = metadata.full_name || metadata.name || "";
+    document.getElementById("phone").value = metadata.phone || "";
+    document.getElementById("address").value = metadata.address || "";
+
+    const profileForm = document.getElementById("profileForm");
+    const profileStatus = document.getElementById("profileStatus");
+    const saveButton = document.getElementById("saveButton");
+
+    profileForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        saveButton.disabled = true;
+        profileStatus.className = "auth-status";
+        profileStatus.textContent = "Saving...";
+
+        const { error } = await client.auth.updateUser({
+            data: {
+                full_name: document.getElementById("name").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                address: document.getElementById("address").value.trim()
+            }
+        });
+
+        if (error) {
+            profileStatus.className = "auth-status error";
+            profileStatus.textContent = error.message;
+        } else {
+            profileStatus.className = "auth-status success";
+            profileStatus.textContent = "Details saved.";
+        }
+
+        saveButton.disabled = false;
+    });
+
+    document.getElementById("logoutButton").addEventListener("click", async function () {
+        await client.auth.signOut();
+        localStorage.removeItem("checkoutMode");
+        window.location.href = "index.html";
+    });
+
+    const history = document.getElementById("bookingHistory");
+
+    try {
+        const { data: bookings, error } = await client
+            .from("bookings")
+            .select("*")
+            .eq("user_id", user.id);
+
+        if (error) throw error;
+
+        if (!bookings || !bookings.length) {
+            history.innerHTML = '<p class="empty-history">You don\'t have any account bookings yet.</p>';
+            return;
+        }
+
+        const sorted = [...bookings].sort((a, b) => {
+            const aTime = a.created_at ? new Date(a.created_at).getTime() : 0;
+            const bTime = b.created_at ? new Date(b.created_at).getTime() : 0;
+            return bTime - aTime;
+        });
+
+        history.innerHTML = sorted.map(booking => {
+            const reference = booking.order_reference || "Booking";
+            const device = booking.device_model || "Device not listed";
+            const repair = booking.repair || "Repair";
+            const status = booking.status || "Received";
+            const total = Number(booking.total_price || 0).toFixed(2);
+            const date = booking.created_at
+                ? new Date(booking.created_at).toLocaleDateString("en-GB")
+                : "";
+
+            return `
+                <article class="booking-history-card">
+                    <div class="booking-history-top">
+                        <div>
+                            <div class="booking-reference">${escapeHtml(reference)}</div>
+                            ${date ? `<small>${escapeHtml(date)}</small>` : ""}
+                        </div>
+                        <span class="booking-status">${escapeHtml(status)}</span>
+                    </div>
+                    <p><strong>Device:</strong> ${escapeHtml(device)}</p>
+                    <p><strong>Repair:</strong> ${escapeHtml(repair)}</p>
+                    <p><strong>Total:</strong> £${total}</p>
+                </article>
+            `;
+        }).join("");
+    } catch (error) {
+        console.error(error);
+        history.innerHTML = `
+            <p class="empty-history">
+                Booking history is not connected yet. Run the supplied Supabase setup SQL first.
+            </p>
+        `;
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+})();
+</script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

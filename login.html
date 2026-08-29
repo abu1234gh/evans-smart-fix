@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Evan's Smart Fix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+
+<header>
+    <img src="images/logo.png" class="logo" alt="Evan's Smart Fix logo">
+    <h1>Log In</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="brands.html">Repairs</a>
+        <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
+</header>
+
+<main class="auth-page">
+    <section class="auth-card">
+        <h2>Welcome back</h2>
+        <p class="auth-subtitle">Log in to view your details and repair bookings.</p>
+
+        <form id="loginForm" class="auth-form">
+            <div class="auth-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" autocomplete="email" required>
+            </div>
+
+            <div class="auth-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="auth-primary" id="loginButton">Log In</button>
+            <p id="authStatus" class="auth-status" aria-live="polite"></p>
+        </form>
+
+        <div class="auth-links">
+            Don't have an account?
+            <a id="registerLink" href="register.html">Create Account</a>
+        </div>
+    </section>
+</main>
+
+<script src="auth.js"></script>
+<script>
+(function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount) cartCount.textContent = cart.length;
+
+    const nextPage = window.ESFAuth.safeNext("account.html");
+    const registerLink = document.getElementById("registerLink");
+    registerLink.href = "register.html?next=" + encodeURIComponent(nextPage);
+
+    const form = document.getElementById("loginForm");
+    const button = document.getElementById("loginButton");
+    const status = document.getElementById("authStatus");
+
+    window.ESFAuth.getSession().then(session => {
+        if (session) {
+            window.location.href = nextPage;
+        }
+    }).catch(console.error);
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        status.className = "auth-status";
+        status.textContent = "Logging you in...";
+        button.disabled = true;
+
+        try {
+            const client = await window.ESFAuth.getClient();
+            const { error } = await client.auth.signInWithPassword({ email, password });
+
+            if (error) throw error;
+
+            localStorage.setItem("checkoutMode", "account");
+            window.location.href = nextPage;
+        } catch (error) {
+            status.className = "auth-status error";
+            status.textContent = error.message || "We couldn't log you in.";
+            button.disabled = false;
+        }
+    });
+})();
+</script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

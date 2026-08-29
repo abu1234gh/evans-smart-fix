@@ -1,248 +1,1968 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book Repair - Evan's Smart Fix</title>
+
 <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/logo.png">
-<title>Your Basket</title>
+<link rel="icon" href="images/logo.png">
 
-<style>
-body {
-    font-family: Arial;
-    margin: 0;
-    background: #f7f6f9;
-}
+<!-- SUPABASE -->
 
-header {
-    background: #0057b8;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-#cartBox {
-    margin: 20px;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    border: 2px solid #0057b8;
-    text-align: center;
-}
+<!-- SUMUP PAYMENT WIDGET -->
+<script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
 
-#total {
-    text-align: center;
-    margin: 20px 0 0;
-}
-
-.item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-button {
-    background: #0057b8;
-    color: white;
-    border: none;
-    padding: 7px 14px;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 6px;
-    width: auto;
-}
-
-.cart-actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 10px auto 20px;
-}
-
-.cart-actions button {
-    font-size: 14px;
-}
-</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Your Basket</h1>
-         <nav>
-        <a href="index.html">Home</a>
-        <a href="brands.html">Repairs</a>
-<details class="social-dropdown">
-    <summary>Socials ▾</summary>
 
-    <div class="social-dropdown-menu">
+<img
+src="images/logo.png"
+class="logo"
+alt="Evan's Smart Fix logo"
 
-        <a href="YOUR_INSTAGRAM_LINK"
-           target="_blank"
-           rel="noopener noreferrer">
-            Instagram
-        </a>
+>
 
-        <a href="YOUR_TIKTOK_LINK"
-           target="_blank"
-           rel="noopener noreferrer">
-            TikTok
-        </a>
+<h1>Complete Your Booking</h1>
 
-      
-    </div>
-</details>
+<nav>
 
-<a href="cart.html" class="cart-link">
-    🛒 Basket
+
+<a href="index.html">
+    Home
+</a>
+
+<a href="brands.html">
+    Repairs
+</a>
+
+<a href="cart.html">
+    Basket
     <span id="cartCount">0</span>
 </a>
-     </nav>
+
+
+</nav>
+
 </header>
-<div id="total"></div>
-<div id="cartBox"></div>
 
-<div class="cart-actions">
-    <button onclick="window.location.href='brands.html'">Add Another Item</button>
-    <button onclick="checkout()">Proceed to Checkout</button>
+<div class="checkout-layout">
+
+<div class="checkout-main">
+
+<form
+    id="orderForm"
+    class="checkout-form-container"
+>
+
+<!-- =========================================================
+     PROGRESS STEPS
+========================================================= -->
+
+<div class="steps">
+
+
+<div
+    class="step active"
+    data-step="1"
+>
+    1 Details
 </div>
 
-<script>
+<div
+    class="step"
+    data-step="2"
+>
+    2 Confirm
+</div>
 
-let cart = JSON.parse(
-    localStorage.getItem("cart")
-) || [];
+<div
+    class="step"
+    data-step="3"
+>
+    3 Payment
+</div>
 
-function renderCart() {
+<div
+    class="step"
+    data-step="4"
+>
+    4 Complete
+</div>
 
-    const box =
-    document.getElementById("cartBox");
-
-    const totalBox =
-    document.getElementById("total");
-
-    box.innerHTML = "";
-
-    document.getElementById(
-        "cartCount"
-    ).textContent = cart.length;
-
-    if(cart.length===0){
-
-        box.innerHTML =
-        "<p>Your basket is empty</p>";
-
-        totalBox.innerHTML =
-        "<strong>Total: £0.00</strong>";
-
-        return;
-    }
-
-    let total = 0;
-
-    cart.forEach((item,index)=>{
-
-        total += Number(item.price);
-
-        const div =
-        document.createElement("div");
-
-        div.className = "item";
-
-        div.innerHTML = `
-
-<div>
-
-<strong>${item.model}</strong>
-
-<br>
-
-${item.repair}
-
-<br>
-
-<small>${item.quality}</small>
-
-<br>
-
-£${Number(item.price).toFixed(2)}
 
 </div>
 
-<button onclick="removeItem(${index})">
+<!-- =========================================================
+     STEP 1
+========================================================= -->
 
-Remove
+<div
+    id="step1"
+    class="step-page"
+>
 
+
+<h2>
+    Enter Details
+</h2>
+
+
+<div class="checkout-form">
+
+
+    <div class="form-group">
+
+        <label for="name">
+            Name
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="phone">
+            Phone
+        </label>
+
+        <input
+            type="text"
+            id="phone"
+            name="phone"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="email">
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="address">
+            Address
+        </label>
+
+        <input
+            type="text"
+            id="address"
+            name="address"
+            required
+        >
+
+    </div>
+
+</div>
+
+
+<button
+    type="button"
+    class="confirm-btn"
+    onclick="goToStep(2)"
+>
+    Continue
 </button>
 
-`;
 
-        box.appendChild(div);
+</div>
+
+<!-- =========================================================
+     STEP 2
+========================================================= -->
+
+<div
+    id="step2"
+    class="step-page"
+    style="display: none;"
+>
+
+
+<h2>
+    Review
+</h2>
+
+
+<p>
+    <b>Devices & Repairs</b>
+</p>
+
+
+<div id="model"></div>
+
+
+<br>
+
+
+<button
+    type="button"
+    class="confirm-btn"
+    onclick="goToStep(3)"
+>
+    Confirm
+</button>
+
+</div>
+
+<!-- =========================================================
+     STEP 3
+========================================================= -->
+
+<div
+    id="step3"
+    class="step-page"
+    style="display: none;"
+>
+
+
+<h2>
+    Payment
+</h2>
+
+
+<p>
+    Total Amount:
+</p>
+
+<h3 id="paymentAmount"></h3>
+
+
+<br>
+
+
+<input
+    type="checkbox"
+    id="terms"
+    required
+>
+
+<label for="terms">
+
+    I agree to the
+
+    <a
+        href="terms_and_conditions.html"
+        target="_blank"
+    >
+        Terms & Conditions
+    </a>
+
+</label>
+
+
+<br><br>
+
+
+<button
+    type="button"
+    class="confirm-btn"
+    id="payButton"
+>
+    Continue to Secure Payment
+</button>
+
+
+<p id="status"></p>
+
+
+<!-- =========================================================
+     SUMUP PAYMENT POPUP
+========================================================= -->
+
+<div
+    id="paymentModal"
+    class="payment-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="payment-modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="paymentModalTitle"
+    >
+
+        <button
+            type="button"
+            id="closePaymentModal"
+            class="payment-modal-close"
+            aria-label="Close secure payment"
+        >
+            ×
+        </button>
+
+
+        <div class="payment-modal-header">
+
+            <h2 id="paymentModalTitle">
+                Secure Payment
+            </h2>
+
+            <p>
+                Complete your payment securely with SumUp.
+            </p>
+
+        </div>
+
+
+        <div id="sumup-card"></div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- =========================================================
+     STEP 4
+========================================================= -->
+
+<div
+    id="step4"
+    class="step-page"
+    style="display: none;"
+>
+
+
+<div class="confirmation-container">
+
+
+    <div class="confirmation-icon">
+        ✓
+    </div>
+
+
+    <h2>
+        Booking Confirmed!
+    </h2>
+
+
+    <p class="confirmation-message">
+
+        Thank you for choosing
+        Evan's Smart Fix.
+
+        Your repair booking has been
+        received successfully.
+
+    </p>
+
+
+    <div class="booking-reference-box">
+
+        <span>
+            Booking Reference
+        </span>
+
+        <strong id="bookingReference"></strong>
+
+    </div>
+
+
+    <div class="confirmation-details">
+
+        <h3>
+            Booking Details
+        </h3>
+
+
+        <div class="confirmation-row">
+
+            <span>
+                Name
+            </span>
+
+            <strong id="confirmationName"></strong>
+
+        </div>
+
+
+        <div class="confirmation-row">
+
+            <span>
+                Devices & Repairs
+            </span>
+
+            <strong id="confirmationDevice"></strong>
+
+        </div>
+
+
+        <div class="confirmation-row total-row">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="confirmationTotal"></strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="next-steps">
+
+        <h3>
+            What's next?
+        </h3>
+
+
+        <div class="next-step">
+
+            <span>
+                1
+            </span>
+
+            <p>
+                Your booking has been received.
+            </p>
+
+        </div>
+
+
+        <div class="next-step">
+
+            <span>
+                2
+            </span>
+
+            <p>
+                We'll review your repair details.
+            </p>
+
+        </div>
+
+
+        <div class="next-step">
+
+            <span>
+                3
+            </span>
+
+            <p>
+                We'll contact you about your repair.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <p class="email-notice">
+
+        A confirmation email has been
+        sent to your email address.
+
+    </p>
+
+
+    <button
+        type="button"
+        class="confirm-btn"
+        id="homeButton"
+    >
+        Return Home
+    </button>
+
+</div>
+
+
+</div>
+
+<!-- HIDDEN VALUES -->
+
+<input
+type="hidden"
+id="device"
+name="device"
+
+>
+
+<input
+type="hidden"
+id="repairs"
+name="repairs"
+
+>
+
+</form>
+
+</div>
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<div class="checkout-sidebar">
+
+
+<h3>
+    Summary
+</h3>
+
+
+<div id="sidebarModel"></div>
+
+
+<hr>
+
+
+<h3>
+    Total
+</h3>
+
+<div id="totalPrice"></div>
+
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://tblqoawewcyomwgjahry.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_dWJV8sw3Wis--2ZIuQ_Ypg_hI9yhTMW";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+// Reuse this same client for the site-wide account button/auth helper.
+window.esfSupabaseClient = supabaseClient;
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function loadCheckoutCart() {
+
+    // First try the normal basket saved by cart.html.
+    try {
+        const storedCart = JSON.parse(localStorage.getItem("cart"));
+
+        if (Array.isArray(storedCart) && storedCart.length) {
+            return storedCart;
+        }
+    } catch (error) {
+        console.warn("Could not read normal basket:", error);
+    }
+
+    // If the browser lost the normal basket during the checkout jump,
+    // restore the backup made by cart.html.
+    try {
+        const backupCart = JSON.parse(sessionStorage.getItem("checkoutCartBackup"));
+
+        if (Array.isArray(backupCart) && backupCart.length) {
+            localStorage.setItem("cart", JSON.stringify(backupCart));
+            return backupCart;
+        }
+    } catch (error) {
+        console.warn("Could not restore checkout basket backup:", error);
+    }
+
+    return [];
+}
+
+let cart = loadCheckoutCart();
+
+
+const cartCount =
+    document.getElementById("cartCount");
+
+
+if (cartCount) {
+    cartCount.textContent = cart.length;
+}
+
+
+/* =========================================================
+   PREFILL DETAILS FOR LOGGED-IN CUSTOMERS
+========================================================= */
+
+async function prefillLoggedInCustomer() {
+
+    try {
+
+        const { data, error } =
+            await supabaseClient.auth.getUser();
+
+        if (error || !data.user) {
+            return;
+        }
+
+        const user = data.user;
+        const metadata = user.user_metadata || {};
+
+        const nameInput = document.getElementById("name");
+        const phoneInput = document.getElementById("phone");
+        const emailInput = document.getElementById("email");
+        const addressInput = document.getElementById("address");
+
+        if (nameInput && !nameInput.value) {
+            nameInput.value = metadata.full_name || metadata.name || "";
+        }
+
+        if (phoneInput && !phoneInput.value) {
+            phoneInput.value = metadata.phone || "";
+        }
+
+        if (emailInput && !emailInput.value) {
+            emailInput.value = user.email || "";
+        }
+
+        if (addressInput && !addressInput.value) {
+            addressInput.value = metadata.address || "";
+        }
+
+        localStorage.setItem("checkoutMode", "account");
+
+    } catch (error) {
+
+        console.error(
+            "Could not prefill account details:",
+            error
+        );
+
+    }
+}
+
+prefillLoggedInCustomer();
+
+
+/* =========================================================
+   CREATE BOOKING HTML
+   Used on website confirmation/review pages
+========================================================= */
+
+function createBookingHTML() {
+
+    if (!cart.length) {
+
+        return `
+            <p>No repairs selected.</p>
+        `;
+
+    }
+
+
+    return cart.map(function(item, index) {
+
+        const device =
+            item.model ||
+            item.device ||
+            "Unknown device";
+
+
+        const repair =
+            item.repair ||
+            "Repair";
+
+
+        const quality =
+            item.quality ||
+            "";
+
+
+        const price =
+            Number(item.price || 0);
+
+
+        return `
+
+            <div class="repair-item">
+
+                <strong>
+                    Device ${index + 1}:
+                </strong>
+
+                ${device}
+
+                <br><br>
+
+                <strong>
+                    Repair:
+                </strong>
+
+                ${repair}
+
+                ${
+                    quality
+                        ? `
+                            <br>
+
+                            <strong>
+                                Quality:
+                            </strong>
+
+                            ${quality}
+                        `
+                        : ""
+                }
+
+                <br>
+
+                <strong>
+                    Price:
+                </strong>
+
+                £${price.toFixed(2)}
+
+            </div>
+
+            ${
+                index < cart.length - 1
+                    ? "<hr>"
+                    : ""
+            }
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   CREATE BOOKING TEXT
+   Used for Supabase / local booking data
+========================================================= */
+
+function createBookingText() {
+
+    if (!cart.length) {
+        return "No repairs selected.";
+    }
+
+
+    return cart.map(function(item, index) {
+
+        const device =
+            item.model ||
+            item.device ||
+            "Unknown device";
+
+
+        const repair =
+            item.repair ||
+            "Repair";
+
+
+        const quality =
+            item.quality ||
+            "";
+
+
+        const price =
+            Number(item.price || 0);
+
+
+        return (
+
+            "Device " +
+            (index + 1) +
+            ": " +
+            device +
+
+            "\nRepair: " +
+            repair +
+
+            (
+                quality
+                    ? "\nQuality: " + quality
+                    : ""
+            ) +
+
+            "\nPrice: £" +
+            price.toFixed(2)
+
+        );
+
+    }).join(
+        "\n\n--------------------\n\n"
+    );
+
+}
+
+
+/* =========================================================
+   CREATE EMAIL REPAIR ROWS
+   IMPORTANT:
+   This now creates ONLY <tr> rows.
+   The EmailJS template creates the main table.
+========================================================= */
+
+function createEmailRepairTable() {
+
+    if (!cart.length) {
+
+        return `
+            <tr>
+
+                <td
+                    colspan="4"
+                    style="
+                        padding:15px;
+                        border:1px solid #999999;
+                        text-align:center;
+                    "
+                >
+                    No repairs selected.
+                </td>
+
+            </tr>
+        `;
+
+    }
+
+
+    let rows = "";
+
+
+    cart.forEach(function(item) {
+
+        const device =
+            item.model ||
+            item.device ||
+            "Unknown device";
+
+
+        const repair =
+            item.repair ||
+            "Repair";
+
+
+        const quality =
+            item.quality ||
+            "Not specified";
+
+
+        const price =
+            Number(item.price || 0);
+
+
+        rows += `
+
+            <tr>
+
+                <td style="
+                    padding:10px 8px;
+                    border:1px solid #999999;
+                    vertical-align:top;
+                    word-break:break-word;
+                    font-size:13px;
+                    line-height:1.4;
+                ">
+                    ${device}
+                </td>
+
+
+                <td style="
+                    padding:10px 8px;
+                    border:1px solid #999999;
+                    vertical-align:top;
+                    word-break:break-word;
+                    font-size:13px;
+                    line-height:1.4;
+                ">
+                    ${repair}
+                </td>
+
+
+                <td style="
+                    padding:10px 8px;
+                    border:1px solid #999999;
+                    vertical-align:top;
+                    word-break:break-word;
+                    font-size:13px;
+                    line-height:1.4;
+                ">
+                    ${quality}
+                </td>
+
+
+                <td style="
+                    padding:10px 8px;
+                    border:1px solid #999999;
+                    text-align:right;
+                    vertical-align:top;
+                    font-weight:bold;
+                    white-space:nowrap;
+                    font-size:13px;
+                ">
+                    £${price.toFixed(2)}
+                </td>
+
+            </tr>
+
+        `;
 
     });
 
-    totalBox.innerHTML =
 
-    "<strong>Total: £"
-    + total.toFixed(2)
-    + "</strong>";
+    return rows;
 
 }
 
-function removeItem(index){
 
-    cart.splice(index,1);
+/* =========================================================
+   DEVICE TEXT
+========================================================= */
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
+const deviceText =
+    cart.length
+        ? cart.map(function(item) {
+
+            return (
+                item.model ||
+                item.device ||
+                "Unknown device"
+            );
+
+        }).join(", ")
+        : "No device";
+
+
+/* =========================================================
+   REPAIR TEXT
+========================================================= */
+
+const repairText =
+    cart.length
+        ? cart.map(function(item) {
+
+            return (
+                item.repair ||
+                "Repair"
+            );
+
+        }).join(", ")
+        : "No repair";
+
+
+/* =========================================================
+   QUALITY TEXT
+========================================================= */
+
+const qualityText =
+    cart.length
+        ? cart.map(function(item) {
+
+            return (
+                item.quality ||
+                "Not specified"
+            );
+
+        }).join(", ")
+        : "Not specified";
+
+
+/* =========================================================
+   PRICE TEXT
+========================================================= */
+
+const priceText =
+    cart.length
+        ? cart.map(function(item) {
+
+            return (
+                "£" +
+                Number(item.price || 0).toFixed(2)
+            );
+
+        }).join(", ")
+        : "£0.00";
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+const total =
+    cart.reduce(
+        function(sum, item) {
+
+            return (
+                sum +
+                Number(item.price || 0)
+            );
+
+        },
+        0
     );
 
-    renderCart();
+
+/* =========================================================
+   DEBUG
+========================================================= */
+
+console.log(
+    "========== BOOKING DEBUG =========="
+);
+
+console.log("Cart:", cart);
+console.log("Devices:", deviceText);
+console.log("Repairs:", repairText);
+console.log("Quality:", qualityText);
+console.log("Prices:", priceText);
+console.log("Total:", total);
+
+console.log(
+    "Email repair rows:",
+    createEmailRepairTable()
+);
+
+console.log(
+    "===================================="
+);
+
+
+/* =========================================================
+   DISPLAY REVIEW
+========================================================= */
+
+const modelElement =
+    document.getElementById("model");
+
+
+if (modelElement) {
+
+    modelElement.innerHTML =
+        createBookingHTML();
 
 }
 
-function checkout(){
 
-    if(cart.length===0){
+/* =========================================================
+   DISPLAY SIDEBAR
+========================================================= */
 
-        alert(
-            "Your basket is empty"
+const sidebarModel =
+    document.getElementById("sidebarModel");
+
+
+if (sidebarModel) {
+
+    sidebarModel.innerHTML =
+        createBookingHTML();
+
+}
+
+
+/* =========================================================
+   DISPLAY TOTAL
+========================================================= */
+
+const paymentAmount =
+    document.getElementById("paymentAmount");
+
+
+if (paymentAmount) {
+
+    paymentAmount.innerHTML =
+        "<strong>£" +
+        total.toFixed(2) +
+        "</strong>";
+
+}
+
+
+const totalPrice =
+    document.getElementById("totalPrice");
+
+
+if (totalPrice) {
+
+    totalPrice.innerHTML =
+        "<strong>£" +
+        total.toFixed(2) +
+        "</strong>";
+
+}
+
+
+/* =========================================================
+   STEP NAVIGATION
+========================================================= */
+
+function goToStep(step) {
+
+    document
+        .querySelectorAll(".step-page")
+        .forEach(function(page) {
+
+            page.style.display = "none";
+
+        });
+
+
+    const selectedStep =
+        document.getElementById(
+            "step" + step
         );
 
-        return;
+
+    if (selectedStep) {
+
+        selectedStep.style.display =
+            "block";
 
     }
 
-    window.location.href =
-    "checkout-choice.html";
+
+    document
+        .querySelectorAll(".step")
+        .forEach(function(stepElement) {
+
+            stepElement.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const activeStep =
+        document.querySelector(
+            `.step[data-step="${step}"]`
+        );
+
+
+    if (activeStep) {
+
+        activeStep.classList.add(
+            "active"
+        );
+
+    }
 
 }
 
+
+/* =========================================================
+   SUMUP PAYMENT POPUP
+========================================================= */
+
+const paymentModal =
+    document.getElementById(
+        "paymentModal"
+    );
+
+const closePaymentModal =
+    document.getElementById(
+        "closePaymentModal"
+    );
+
+let activeCheckoutId =
+    null;
+
+let paymentWidgetMounted =
+    false;
+
+
+function openPaymentModal() {
+
+    if (!paymentModal) {
+        return;
+    }
+
+    paymentModal.style.display =
+        "flex";
+
+    paymentModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function hidePaymentModal() {
+
+    if (!paymentModal) {
+        return;
+    }
+
+    paymentModal.style.display =
+        "none";
+
+    paymentModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+if (closePaymentModal) {
+
+    closePaymentModal.addEventListener(
+        "click",
+        function () {
+
+            hidePaymentModal();
+
+            /*
+               Do not create another checkout.
+               The existing mounted SumUp widget stays alive and can
+               be reopened with the same checkout.
+            */
+
+            if (
+                payButton &&
+                activeCheckoutId &&
+                paymentWidgetMounted
+            ) {
+
+                payButton.style.display =
+                    "inline-block";
+
+                payButton.disabled =
+                    false;
+
+                payButton.textContent =
+                    "Resume Secure Payment";
+
+                const status =
+                    document.getElementById(
+                        "status"
+                    );
+
+                if (status) {
+
+                    status.textContent =
+                        "Payment window closed. You can resume your secure payment.";
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SUMUP PAYMENT / BOOKING
+========================================================= */
+
+const payButton =
+    document.getElementById("payButton");
+
+if (payButton) {
+
+    payButton.addEventListener(
+        "click",
+        async function () {
+
+            const terms =
+                document.getElementById("terms");
+
+            const status =
+                document.getElementById("status");
+
+
+            /* =================================================
+               RESUME EXISTING PAYMENT WIDGET
+            ================================================= */
+
+            if (
+                activeCheckoutId &&
+                paymentWidgetMounted
+            ) {
+
+                openPaymentModal();
+
+                payButton.style.display =
+                    "none";
+
+                status.textContent =
+                    "Secure payment window opened.";
+
+                return;
+
+            }
+
+
+            /* =================================================
+               CHECK TERMS
+            ================================================= */
+
+            if (!terms.checked) {
+
+                alert(
+                    "Please accept the Terms & Conditions before continuing."
+                );
+
+                return;
+            }
+
+
+            /* =================================================
+               CUSTOMER DETAILS
+            ================================================= */
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+            const address =
+                document
+                    .getElementById("address")
+                    .value
+                    .trim();
+
+
+            /* =================================================
+               VALIDATION
+            ================================================= */
+
+            if (
+                !name ||
+                !phone ||
+                !email ||
+                !address
+            ) {
+
+                alert(
+                    "Please complete all your details before continuing."
+                );
+
+                goToStep(1);
+
+                return;
+            }
+
+
+            /* =================================================
+               SAVE LATEST DETAILS TO LOGGED-IN ACCOUNT
+               (Guest checkout is unaffected.)
+            ================================================= */
+
+            try {
+
+                const { data: accountData } =
+                    await supabaseClient.auth.getUser();
+
+                if (accountData.user) {
+
+                    await supabaseClient.auth.updateUser({
+                        data: {
+                            full_name: name,
+                            phone: phone,
+                            address: address
+                        }
+                    });
+
+                }
+
+            } catch (accountError) {
+
+                console.warn(
+                    "Could not update saved account details:",
+                    accountError
+                );
+
+            }
+
+
+            /* =================================================
+               CART CHECK
+            ================================================= */
+
+            if (!cart.length) {
+
+                alert(
+                    "Your basket is empty. Please select a repair first."
+                );
+
+                return;
+            }
+
+
+            /* =================================================
+               DISABLE BUTTON
+            ================================================= */
+
+            payButton.disabled = true;
+
+            payButton.textContent =
+                "Preparing Payment...";
+
+            status.textContent =
+                "Preparing your secure payment...";
+
+
+            /* =================================================
+               BOOKING REFERENCE
+            ================================================= */
+
+            const bookingReference =
+                "ESF-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8)
+                    .toUpperCase();
+
+
+            /* =================================================
+               BOOKING DATA
+            ================================================= */
+
+            const bookingData = {
+
+                reference:
+                    bookingReference,
+
+                name:
+                    name,
+
+                phone:
+                    phone,
+
+                email:
+                    email,
+
+                address:
+                    address,
+
+                items:
+                    cart,
+
+                devices:
+                    deviceText,
+
+                repairs:
+                    repairText,
+
+                qualities:
+                    qualityText,
+
+                prices:
+                    priceText,
+
+                booking:
+                    createBookingText(),
+
+                total:
+                    total,
+
+                checkout_mode:
+                    localStorage.getItem("checkoutMode") || "guest"
+
+            };
+
+
+            /* =================================================
+               SAVE LOCALLY
+            ================================================= */
+
+            localStorage.setItem(
+                "bookingData",
+                JSON.stringify(
+                    bookingData
+                )
+            );
+
+
+            /* =================================================
+               SAVE BOOKING AS PENDING
+            ================================================= */
+
+            try {
+
+                const supabaseResult =
+                    await supabaseClient
+                        .from("bookings")
+                        .insert({
+
+                            order_reference:
+                                bookingReference,
+
+                            customer_name:
+                                name,
+
+                            customer_phone:
+                                phone,
+
+                            customer_email:
+                                email,
+
+                            customer_address:
+                                address,
+
+                            device_model:
+                                deviceText,
+
+                            repair:
+                                repairText,
+
+                            total_price:
+                                total,
+
+                            status:
+                                "Pending"
+
+                        });
+
+
+                if (supabaseResult.error) {
+
+                    console.error(
+                        "SUPABASE ERROR:",
+                        supabaseResult.error
+                    );
+
+                    throw new Error(
+                        "Could not save booking."
+                    );
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    error
+                );
+
+                status.textContent =
+                    "We couldn't save your booking.";
+
+                alert(
+                    "There was a problem saving your booking. Please try again."
+                );
+
+                payButton.disabled =
+                    false;
+
+                payButton.textContent =
+                    "Continue to Secure Payment";
+
+                return;
+            }
+
+
+            /* =================================================
+               CREATE SUMUP CHECKOUT
+            ================================================= */
+
+            status.textContent =
+                "Connecting to secure payment...";
+
+
+            try {
+
+                const sumupResponse =
+                    await fetch(
+                        "https://tblqoawewcyomwgjahry.supabase.co/functions/v1/evans-smart-six-sum-up",
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    amount:
+                                        Number(
+                                            total.toFixed(2)
+                                        ),
+
+                                    reference:
+                                        bookingReference,
+
+                                    return_url:
+                                        "https://evanssmartfix.co.uk/payment-success.html"
+
+                                })
+
+                        }
+                    );
+
+
+                const sumupData =
+                    await sumupResponse.json();
+
+
+                console.log(
+                    "SUMUP RESPONSE:",
+                    sumupData
+                );
+
+
+                const checkoutId =
+                    sumupData.checkout_id ||
+                    sumupData.id;
+
+
+                if (
+                    !sumupResponse.ok ||
+                    !checkoutId
+                ) {
+
+                    console.error(
+                        "SUMUP CHECKOUT ERROR:",
+                        sumupData
+                    );
+
+                    throw new Error(
+                        "Unable to create SumUp checkout."
+                    );
+                }
+
+
+                /* =================================================
+                   SAVE CHECKOUT ID
+                ================================================= */
+
+                bookingData.sumupCheckoutId =
+                    checkoutId;
+
+
+                localStorage.setItem(
+                    "bookingData",
+                    JSON.stringify(
+                        bookingData
+                    )
+                );
+
+
+                /* =================================================
+                   MOUNT SUMUP PAYMENT WIDGET
+                ================================================= */
+
+                if (
+                    !window.SumUpCard ||
+                    typeof window.SumUpCard.mount !== "function"
+                ) {
+
+                    throw new Error(
+                        "SumUp Payment Widget failed to load."
+                    );
+                }
+
+
+                const sumupCardContainer =
+                    document.getElementById(
+                        "sumup-card"
+                    );
+
+
+                activeCheckoutId =
+                    checkoutId;
+
+
+                openPaymentModal();
+
+
+                payButton.style.display =
+                    "none";
+
+
+                status.textContent =
+                    "Secure payment window opened.";
+
+
+                window.SumUpCard.mount({
+
+                    id:
+                        "sumup-card",
+
+                    checkoutId:
+                        checkoutId,
+
+                    amount:
+                        total.toFixed(2),
+
+                    currency:
+                        "GBP",
+
+                    locale:
+                        "en-GB",
+
+                    email:
+                        email,
+
+                    onLoad:
+                        function () {
+
+                            paymentWidgetMounted =
+                                true;
+
+                            status.textContent =
+                                "Secure payment ready.";
+
+                        },
+
+                    onResponse:
+                        function (
+                            type,
+                            body
+                        ) {
+
+                            console.log(
+                                "SUMUP WIDGET RESPONSE:",
+                                type,
+                                body
+                            );
+
+
+                            if (
+                                type === "sent"
+                            ) {
+
+                                status.textContent =
+                                    "Processing your payment...";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "auth-screen"
+                            ) {
+
+                                status.textContent =
+                                    "Please complete your bank security check.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "invalid"
+                            ) {
+
+                                status.textContent =
+                                    "Please check your payment details.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "error"
+                            ) {
+
+                                console.error(
+                                    "SUMUP WIDGET ERROR:",
+                                    body
+                                );
+
+                                status.textContent =
+                                    "There was a problem processing the payment. Please try again.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "fail"
+                            ) {
+
+                                status.textContent =
+                                    "Payment was not completed. Please try again.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "success"
+                            ) {
+
+                                /*
+                                   The widget callback alone is NOT treated
+                                   as proof of payment.
+
+                                   payment-success.html uses the saved
+                                   checkout ID and your Supabase
+                                   check-sumup-payment function to verify
+                                   that SumUp actually reports PAID.
+                                */
+
+                                status.textContent =
+                                    "Payment submitted. Verifying securely...";
+
+
+                                hidePaymentModal();
+
+                                window.location.href =
+                                    "payment-success.html";
+
+                            }
+
+                        }
+
+                });
+
+
+            } catch (error) {
+
+                console.error(
+                    "SUMUP ERROR:",
+                    error
+                );
+
+
+                status.textContent =
+                    "Unable to start payment.";
+
+                alert(
+                    "We couldn't start the payment. Please try again."
+                );
+
+
+                payButton.disabled =
+                    false;
+
+                payButton.textContent =
+                    "Continue to Secure Payment";
+
+            }
+
+        }
+    );
+
+}
+/* =========================================================
+   RETURN HOME
+========================================================= */
+
+const homeButton =
+    document.getElementById("homeButton");
+
+
+if (homeButton) {
+
+    homeButton.addEventListener(
+        "click",
+        function() {
+
+            localStorage.removeItem(
+                "cart"
+            );
+
+            localStorage.removeItem(
+                "bookingData"
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE CART COUNT
+========================================================= */
+
 document.addEventListener(
-"DOMContentLoaded",
-function(){
+    "DOMContentLoaded",
+    function() {
 
-cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+        const storedCart =
+            JSON.parse(
+                localStorage.getItem("cart")
+            ) || [];
 
-renderCart();
 
-});
+        const count =
+            document.getElementById(
+                "cartCount"
+            );
+
+
+        if (count) {
+
+            count.textContent =
+                storedCart.length;
+
+        }
+
+    }
+);
 
 </script>
+
 
 
 <script src="social-dropdown.js"></script>
   <script src="whatsapp.js"></script>
 </body>
+
 </html>

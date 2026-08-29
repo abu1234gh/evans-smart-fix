@@ -42,7 +42,7 @@
 
 .repair-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     padding: 20px;
 }
@@ -64,6 +64,12 @@
 
 #selectedRepair {
     text-align: center;
+}
+
+@media (max-width: 700px) {
+    .repair-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 </style>
@@ -151,6 +157,26 @@
         <br>
 
         <strong id="priceC"></strong>
+
+    </div>
+
+
+    <!-- GENUINE -->
+    <div class="model">
+
+        <a id="Genuine">
+
+            <img src="images/A.png" alt="Genuine">
+
+            <br>
+
+            Genuine
+
+        </a>
+
+        <br>
+
+        <strong id="priceGenuine">Contact Us</strong>
 
     </div>
 
@@ -12125,6 +12151,13 @@ function setupGrade(elementId, priceElementId, quality) {
 setupGrade("GradeA", "priceA", "Original");
 setupGrade("GradeB", "priceB", "Grade B");
 setupGrade("GradeC", "priceC", "Grade C");
+
+const genuineElement = document.getElementById("Genuine");
+genuineElement.style.cursor = "pointer";
+genuineElement.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "contact.html";
+});
 
 
 /* =========================================================

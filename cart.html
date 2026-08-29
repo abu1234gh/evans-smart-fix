@@ -27,22 +27,47 @@ header {
     background: white;
     border-radius: 10px;
     border: 2px solid #0057b8;
+    text-align: center;
+}
+
+#total {
+    text-align: center;
+    margin: 20px 0 0;
 }
 
 .item {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
 button {
     background: #0057b8;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 7px 14px;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 6px;
+    width: auto;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px auto 20px;
+}
+
+.cart-actions button {
+    font-size: 14px;
 }
 </style>
 </head>
@@ -84,9 +109,10 @@ button {
 <div id="total"></div>
 <div id="cartBox"></div>
 
-<button onclick="window.location.href='brands.html'">add another item</button>
-<br>
-<button onclick="checkout()">Proceed to Checkout</button>
+<div class="cart-actions">
+    <button onclick="window.location.href='brands.html'">Add Another Item</button>
+    <button onclick="checkout()">Proceed to Checkout</button>
+</div>
 
 <script>
 

@@ -12148,16 +12148,43 @@ function setupGrade(elementId, priceElementId, quality) {
 }
 
 
-setupGrade("GradeA", "priceA", "Original");
-setupGrade("GradeB", "priceB", "Grade B");
-setupGrade("GradeC", "priceC", "Grade C");
+/* =========================================================
+   DIAGNOSTIC SERVICE
+   Diagnostic has one fixed price, so it skips quality selection
+   and is added straight to the basket.
+========================================================= */
 
-const genuineElement = document.getElementById("Genuine");
-genuineElement.style.cursor = "pointer";
-genuineElement.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "contact.html";
-});
+const isDiagnostic =
+    normaliseModel(cleanRepair) === normaliseModel("Diagnostic Service");
+
+if (isDiagnostic) {
+
+    const repairGrid = document.querySelector(".repair-grid");
+
+    if (repairGrid) {
+        repairGrid.style.display = "none";
+    }
+
+    title.innerHTML = `${cleanModel}<br>Diagnostic Service<br><small>Adding to basket...</small>`;
+
+    const diagnosticPrice = getPrice("Original");
+
+    addToBasket("Diagnostic Service", diagnosticPrice);
+
+} else {
+
+    setupGrade("GradeA", "priceA", "Original");
+    setupGrade("GradeB", "priceB", "Grade B");
+    setupGrade("GradeC", "priceC", "Grade C");
+
+    const genuineElement = document.getElementById("Genuine");
+    genuineElement.style.cursor = "pointer";
+    genuineElement.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "contact.html";
+    });
+
+}
 
 
 /* =========================================================

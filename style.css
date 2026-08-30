@@ -1529,3 +1529,231 @@ nav a[href="cart.html"]:hover {
 .whatsapp-button:hover {
     transform: scale(1.05);
 }
+/* =========================================================
+   MOBILE CATALOGUE REDESIGN — Brand / Model / Repair pages
+   Phone-only overrides. Desktop layouts remain unchanged.
+========================================================= */
+@media (max-width: 768px) {
+
+    /* Keep the selection-page header compact on phones */
+    body > header,
+    .top-bar {
+        position: relative;
+        padding: 12px 14px;
+        gap: 8px 12px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    body > header .logo,
+    .top-bar .logo {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 auto;
+    }
+
+    body > header h1,
+    .top-bar h1 {
+        width: auto;
+        flex: 1 1 auto;
+        order: initial;
+        font-size: clamp(19px, 5.5vw, 24px);
+        line-height: 1.15;
+        text-align: left;
+    }
+
+    body > header .nav-bar,
+    body > header nav,
+    .top-bar .nav-bar {
+        width: 100%;
+        margin: 2px 0 0;
+        gap: 6px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    body > header .nav-bar > a,
+    body > header nav > a,
+    .top-bar .nav-bar > a,
+    .top-bar summary {
+        padding: 7px 10px;
+        font-size: 13px;
+        line-height: 1.2;
+        border-radius: 10px;
+    }
+
+    /* BRAND PAGE */
+    .brands {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        padding: 18px 12px 36px !important;
+        width: 100%;
+        max-width: 560px;
+    }
+
+    .brands > .brand {
+        min-width: 0;
+        background: #fff;
+        border: 1px solid rgba(0, 87, 184, .10);
+        border-radius: 16px;
+        box-shadow: 0 5px 16px rgba(18, 38, 63, .08);
+        overflow: hidden;
+    }
+
+    .brands > .brand > a {
+        min-height: 142px;
+        padding: 16px 10px 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        color: #172033;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .brands > .brand img {
+        display: block;
+        width: 100% !important;
+        max-width: 105px;
+        height: 70px !important;
+        margin: 0 !important;
+        object-fit: contain;
+    }
+
+    /* MODEL PAGES */
+    .brands > .model,
+    .samsung-series > .model {
+        min-width: 0;
+        min-height: 170px;
+        padding: 12px 8px 13px;
+        border-radius: 16px;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        box-shadow: 0 5px 16px rgba(18, 38, 63, .08);
+    }
+
+    .brands > .model > a,
+    .samsung-series > .model > a {
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        color: #172033;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .brands > .model img,
+    .samsung-series > .model img {
+        display: block;
+        width: 100% !important;
+        max-width: 92px !important;
+        height: 112px !important;
+        margin: 0 auto !important;
+        object-fit: contain;
+    }
+
+    .samsung-series {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        padding: 18px 12px 36px !important;
+        width: 100%;
+        max-width: 560px;
+    }
+
+    /* REPAIR PAGE */
+    #selectedModel {
+        margin: 18px 14px 4px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.3;
+        color: #172033;
+    }
+
+    .repair-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        padding: 14px 12px 36px !important;
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .repair-grid > .model {
+        min-width: 0;
+        min-height: 138px;
+        padding: 14px 8px 12px;
+        border-radius: 16px;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        box-shadow: 0 5px 16px rgba(18, 38, 63, .08);
+    }
+
+    .repair-grid > .model > a {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #172033;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .repair-grid > .model img {
+        width: 76px !important;
+        height: 76px !important;
+        margin: 0 !important;
+        object-fit: contain;
+    }
+
+    /* Better touch feedback */
+    .brands > .brand:active,
+    .brands > .model:active,
+    .samsung-series > .model:active,
+    .repair-grid > .model:active {
+        transform: scale(.98);
+    }
+}
+
+@media (max-width: 360px) {
+
+    .brands,
+    .samsung-series,
+    .repair-grid {
+        gap: 9px !important;
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+    }
+
+    .brands > .model,
+    .samsung-series > .model {
+        min-height: 158px;
+    }
+
+    .brands > .model img,
+    .samsung-series > .model img {
+        max-width: 82px !important;
+        height: 102px !important;
+    }
+
+    .repair-grid > .model {
+        min-height: 128px;
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Case Brand - Evan's Smart Fix</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="accessory-shop.css">
+<link rel="icon" href="images/logo.png">
+
+<style>
+body{font-family:Arial,sans-serif;text-align:center;background:#fff;margin:0}
+header{background:#0057b8;color:white;padding:20px;text-align:center}
+.brands{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:40px 20px}
+.brand{background:white;padding:30px;width:200px;border-radius:10px;box-shadow:0 0 10px #ccc;transition:.2s}
+.brand:hover{transform:scale(1.05)}
+.brand a{text-decoration:none;color:#0057b8;font-weight:bold;display:block}
+.brand img{margin-bottom:10px;object-fit:contain}
+.case-help{margin:28px auto 0;max-width:650px;padding:0 20px;color:#555}
+</style>
+
+</head>
+<body>
+<header>
+<div class="header-left">
+<img src="images/logo.png" alt="Logo" class="logo">
+<p>Select Your Phone Brand</p>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<details class="nav-dropdown">
+<summary>Shop &amp; Repair</summary>
+<div class="dropdown-menu">
+<a href="brands.html">Book a Repair</a>
+<details class="sub-dropdown">
+<summary>Accessories</summary>
+<div class="sub-dropdown-menu">
+<a href="cases.html">Cases</a>
+<a href="cables.html">Cables</a>
+<a href="chargers.html">Chargers</a>
+<a href="headphones.html">Headphones</a>
+<a href="adapters.html">Adapters</a>
+<a href="screen-protectors.html">Screen Protectors</a>
+<a href="accessories.html">View All Accessories</a>
+</div>
+</details>
+</div>
+</details>
+<a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+</nav>
+
+</header>
+
+<main>
+<p class="case-help">What brand of phone do you need a case for?</p>
+<div class="brands">
+<div class="brand">
+        <a href="iphone-cases.html">
+            <img src="images/_____.png" alt="Phone brand" class="category-image">
+            <br>
+            Apple iPhone
+        </a>
+    </div>
+<div class="brand">
+        <a href="samsung-cases.html">
+            <img src="images/_____.png" alt="Phone brand" class="category-image">
+            Samsung
+        </a>
+    </div>
+</div>
+</main>
+
+<script src="accessory-shop.js"></script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

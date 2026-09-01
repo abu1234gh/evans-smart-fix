@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chargers - Evan's Smart Fix</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="accessory-shop.css">
+<link rel="icon" href="images/logo.png">
+</head>
+<body>
+<header>
+<div class="header-left">
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo" width="100" height="100">
+<div><h1>Chargers</h1><p>Evan's Smart Fix</p></div>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<details class="nav-dropdown">
+<summary>Shop &amp; Repair</summary>
+<div class="dropdown-menu">
+<a href="brands.html">Book a Repair</a>
+<details class="sub-dropdown">
+<summary>Accessories</summary>
+<div class="sub-dropdown-menu">
+<a href="cases.html">Cases</a>
+<a href="cables.html">Cables</a>
+<a href="chargers.html">Chargers</a>
+<a href="headphones.html">Headphones</a>
+<a href="adapters.html">Adapters</a>
+<a href="screen-protectors.html">Screen Protectors</a>
+<a href="accessories.html">View All Accessories</a>
+</div>
+</details>
+</div>
+</details>
+<a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+</nav>
+
+</header>
+
+<main class="accessory-page">
+<h2>Chargers</h2>
+<p class="accessory-intro">Fast-charging products currently listed in stock.</p>
+<div class="accessory-toolbar"><input class="accessory-search" type="search" placeholder="Search chargers..." oninput="filterAccessoryProducts(this.value)"></div>
+<div class="accessory-grid">
+<div class="accessory-product" data-search="2M Cable USB To Lightning Fast Charging &amp; High-Speed Data Transfer">
+<img src="images/_____.png" alt="2M Cable USB To Lightning Fast Charging &amp;amp; High-Speed Data Transfer" class="product-image">
+<h3>2M Cable USB To Lightning Fast Charging &amp; High-Speed Data Transfer</h3>
+<div class="product-price">£6.00</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-0">Quantity</label>
+<input id="qty-0" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("2M Cable USB To Lightning Fast Charging & High-Speed Data Transfer","",6.00,document.getElementById("qty-0").value,4)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="1M Fast Charger USB to Lightning">
+<img src="images/_____.png" alt="1M Fast Charger USB to Lightning" class="product-image">
+<h3>1M Fast Charger USB to Lightning</h3>
+<div class="product-price">£5.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-1">Quantity</label>
+<input id="qty-1" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("1M Fast Charger USB to Lightning","",5.00,document.getElementById("qty-1").value,2)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="1M Micro Farst Charger">
+<img src="images/_____.png" alt="1M Micro Farst Charger" class="product-image">
+<h3>1M Micro Farst Charger</h3>
+<div class="product-price">£4.00</div>
+<div class="stock-text">6 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("1M Micro Farst Charger","",4.00,document.getElementById("qty-2").value,6)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="2M Fast Charger USB To Lightning 3A">
+<img src="images/_____.png" alt="2M Fast Charger USB To Lightning 3A" class="product-image">
+<h3>2M Fast Charger USB To Lightning 3A</h3>
+<div class="product-price">£7.00</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("2M Fast Charger USB To Lightning 3A","",7.00,document.getElementById("qty-3").value,4)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="3M Fast Charger USB to Lightning 3A">
+<img src="images/_____.png" alt="3M Fast Charger USB to Lightning 3A" class="product-image">
+<h3>3M Fast Charger USB to Lightning 3A</h3>
+<div class="product-price">£6.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-4">Quantity</label>
+<input id="qty-4" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("3M Fast Charger USB to Lightning 3A","",6.00,document.getElementById("qty-4").value,2)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="3M Fast Charging USB to Lightning">
+<img src="images/_____.png" alt="3M Fast Charging USB to Lightning" class="product-image">
+<h3>3M Fast Charging USB to Lightning</h3>
+<div class="product-price">£8.99</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-5">Quantity</label>
+<input id="qty-5" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("3M Fast Charging USB to Lightning","",8.99,document.getElementById("qty-5").value,4)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="3M Micro Farst Charger">
+<img src="images/_____.png" alt="3M Micro Farst Charger" class="product-image">
+<h3>3M Micro Farst Charger</h3>
+<div class="product-price">£6.00</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-6">Quantity</label>
+<input id="qty-6" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("3M Micro Farst Charger","",6.00,document.getElementById("qty-6").value,4)'>Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable">
+<img src="images/_____.png" alt="DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable" class="product-image">
+<h3>DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable</h3>
+<div class="product-price">£7.00</div>
+<div class="stock-text">3 in stock</div>
+<label for="qty-7">Quantity</label>
+<input id="qty-7" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick='addAccessoryToCart("DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable","",7.00,document.getElementById("qty-7").value,3)'>Add to Basket</button>
+</div></div>
+</main>
+<script src="accessory-shop.js"></script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

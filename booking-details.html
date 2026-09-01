@@ -20,6 +20,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<!-- CUSTOMER ACCOUNT LOGIN -->
+<script src="auth.js"></script>
+
 </head>
 
 <body>
@@ -531,6 +534,118 @@ const supabaseClient =
         SUPABASE_URL,
         SUPABASE_KEY
     );
+
+
+/* =========================================================
+   ACCOUNT / GUEST CHECKOUT
+========================================================= */
+
+let checkoutAccountUser = null;
+
+
+async function prepareCheckoutCustomer() {
+
+    const checkoutMode =
+        localStorage.getItem(
+            "checkoutMode"
+        );
+
+
+    /* Guest checkout stays completely separate */
+    if (checkoutMode !== "account") {
+        return;
+    }
+
+
+    try {
+
+        const user =
+            await window.ESFAuth.getUser();
+
+
+        /* They chose account checkout but are not logged in */
+        if (!user) {
+
+            window.location.href =
+                "login.html?next=booking-details.html";
+
+            return;
+        }
+
+
+        checkoutAccountUser =
+            user;
+
+
+        const metadata =
+            user.user_metadata || {};
+
+
+        const nameInput =
+            document.getElementById("name");
+
+        const phoneInput =
+            document.getElementById("phone");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const addressInput =
+            document.getElementById("address");
+
+
+        if (nameInput && !nameInput.value) {
+
+            nameInput.value =
+                metadata.full_name ||
+                metadata.name ||
+                "";
+
+        }
+
+
+        if (phoneInput && !phoneInput.value) {
+
+            phoneInput.value =
+                metadata.phone ||
+                "";
+
+        }
+
+
+        if (emailInput && !emailInput.value) {
+
+            emailInput.value =
+                user.email ||
+                "";
+
+        }
+
+
+        if (addressInput && !addressInput.value) {
+
+            addressInput.value =
+                metadata.address ||
+                "";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "ACCOUNT CHECKOUT ERROR:",
+            error
+        );
+
+    }
+
+}
+
+
+/* Run now because this script is already below the checkout form */
+prepareCheckoutCustomer();
+
 
 
 /* =========================================================
@@ -1390,6 +1505,14 @@ if (payButton) {
                 booking_reference:
                     bookingReference,
 
+                checkout_mode:
+                    localStorage.getItem("checkoutMode") || "guest",
+
+                user_id:
+                    checkoutAccountUser
+                        ? checkoutAccountUser.id
+                        : null,
+
                 order_type:
                     orderType,
 
@@ -1472,39 +1595,56 @@ if (payButton) {
 
             try {
 
+                const bookingRecord = {
+
+                    order_reference:
+                        bookingReference,
+
+                    customer_name:
+                        name,
+
+                    customer_phone:
+                        phone,
+
+                    customer_email:
+                        email,
+
+                    customer_address:
+                        address,
+
+                    device_model:
+                        deviceText,
+
+                    repair:
+                        repairText,
+
+                    total_price:
+                        total,
+
+                    status:
+                        "Pending"
+
+                };
+
+
+                /*
+                   Only account checkouts get linked to a user.
+                   Guest orders stay as normal guest orders.
+                */
+                if (checkoutAccountUser) {
+
+                    bookingRecord.user_id =
+                        checkoutAccountUser.id;
+
+                }
+
+
                 const supabaseResult =
                     await supabaseClient
                         .from("bookings")
-                        .insert({
-
-                            order_reference:
-                                bookingReference,
-
-                            customer_name:
-                                name,
-
-                            customer_phone:
-                                phone,
-
-                            customer_email:
-                                email,
-
-                            customer_address:
-                                address,
-
-                            device_model:
-                                deviceText,
-
-                            repair:
-                                repairText,
-
-                            total_price:
-                                total,
-
-                            status:
-                                "Pending"
-
-                        });
+                        .insert(
+                            bookingRecord
+                        );
 
 
                 if (supabaseResult.error) {

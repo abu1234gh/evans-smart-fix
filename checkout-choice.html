@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - Evan's Smart Fix</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+
+    <link rel="icon" href="images/logo.png">
+</head>
+
+<body>
+
+<header>
+
+    <img
+        src="images/logo.png"
+        class="logo"
+        alt="Evan's Smart Fix logo"
+    >
+
+    <h1>Checkout</h1>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <details class="nav-dropdown">
+
+            <summary>
+                Shop &amp; Repair
+            </summary>
+
+            <div class="dropdown-menu">
+
+                <a href="brands.html">
+                    Book a Repair
+                </a>
+
+                <details class="sub-dropdown">
+
+                    <summary>
+                        Accessories
+                    </summary>
+
+                    <div class="sub-dropdown-menu">
+
+                        <a href="cases.html">
+                            Cases
+                        </a>
+
+                        <a href="cables.html">
+                            Cables
+                        </a>
+
+                        <a href="chargers.html">
+                            Chargers
+                        </a>
+
+                        <a href="headphones.html">
+                            Headphones
+                        </a>
+
+                        <a href="adapters.html">
+                            Adapters
+                        </a>
+
+                        <a href="screen-protectors.html">
+                            Screen Protectors
+                        </a>
+
+                        <a href="accessories.html">
+                            View All Accessories
+                        </a>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </details>
+
+        <a href="cart.html" class="cart-link">
+
+            🛒 Basket
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="auth-page">
+
+    <div class="checkout-choice-grid">
+
+        <section
+            class="auth-card"
+            style="width:auto; margin:0;"
+        >
+
+            <h2>
+                How would you like to continue?
+            </h2>
+
+            <p class="auth-subtitle">
+                Use your account for saved details and order history,
+                or checkout as a guest.
+            </p>
+
+
+            <div id="accountArea">
+
+                <button
+                    type="button"
+                    class="auth-primary"
+                    id="accountButton"
+                >
+                    Log In &amp; Continue
+                </button>
+
+                <div class="auth-links">
+
+                    Don't have an account?
+
+                    <a
+                        href="register.html?next=booking-details.html"
+                    >
+                        Create Account
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-divider">
+                or
+            </div>
+
+
+            <button
+                type="button"
+                class="auth-secondary"
+                id="guestButton"
+            >
+                Continue as Guest
+            </button>
+
+
+            <p
+                id="authStatus"
+                class="auth-status"
+                aria-live="polite"
+            ></p>
+
+        </section>
+
+
+        <aside class="checkout-choice-side">
+
+            <h3>
+                Your Basket
+            </h3>
+
+            <div id="checkoutSummary"></div>
+
+
+            <div
+                class="checkout-summary-line"
+                style="font-weight:700;"
+            >
+
+                <span>
+                    Total
+                </span>
+
+                <span id="checkoutTotal">
+                    £0.00
+                </span>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+<script src="auth.js"></script>
+
+<script>
+
+(function () {
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+
+    const status =
+        document.getElementById(
+            "authStatus"
+        );
+
+
+    const accountButton =
+        document.getElementById(
+            "accountButton"
+        );
+
+
+    const guestButton =
+        document.getElementById(
+            "guestButton"
+        );
+
+
+    const summary =
+        document.getElementById(
+            "checkoutSummary"
+        );
+
+
+    const totalEl =
+        document.getElementById(
+            "checkoutTotal"
+        );
+
+
+    const countEl =
+        document.getElementById(
+            "cartCount"
+        );
+
+
+    if (!cart.length) {
+
+        window.location.href =
+            "cart.html";
+
+        return;
+
+    }
+
+
+    function qty(item) {
+
+        if (
+            item &&
+            item.type === "accessory"
+        ) {
+
+            const n =
+                Number(
+                    item.quantity || 1
+                );
+
+            return n > 0
+                ? n
+                : 1;
+
+        }
+
+        return 1;
+
+    }
+
+
+    function price(item) {
+
+        return Number(
+            item.price || 0
+        );
+
+    }
+
+
+    const cartCount =
+        cart.reduce(
+            (sum, item) =>
+                sum + qty(item),
+            0
+        );
+
+
+    if (countEl) {
+
+        countEl.textContent =
+            cartCount;
+
+    }
+
+
+    let total = 0;
+
+
+    summary.innerHTML =
+        cart.map(item => {
+
+            const quantity =
+                qty(item);
+
+
+            const lineTotal =
+                price(item) *
+                quantity;
+
+
+            total +=
+                lineTotal;
+
+
+            const name =
+                item.type === "accessory"
+                    ? (
+                        item.name ||
+                        "Accessory"
+                    )
+                    : (
+                        item.model ||
+                        "Repair"
+                    );
+
+
+            const detail =
+                item.type === "accessory"
+                    ? (
+                        item.variation ||
+                        ""
+                    )
+                    : (
+                        item.repair ||
+                        ""
+                    );
+
+
+            return `
+                <div
+                    class="checkout-summary-line"
+                >
+
+                    <span>
+
+                        ${name}
+
+                        ${
+                            detail
+                                ? `<br><small>${detail}</small>`
+                                : ""
+                        }
+
+                        ${
+                            quantity > 1
+                                ? `<br><small>Qty: ${quantity}</small>`
+                                : ""
+                        }
+
+                    </span>
+
+                    <strong>
+                        £${lineTotal.toFixed(2)}
+                    </strong>
+
+                </div>
+            `;
+
+        }).join("");
+
+
+    totalEl.textContent =
+        "£" +
+        total.toFixed(2);
+
+
+    guestButton.addEventListener(
+        "click",
+        function () {
+
+            localStorage.setItem(
+                "checkoutMode",
+                "guest"
+            );
+
+            window.location.href =
+                "booking-details.html";
+
+        }
+    );
+
+
+    accountButton.addEventListener(
+        "click",
+        function () {
+
+            localStorage.setItem(
+                "checkoutMode",
+                "account"
+            );
+
+            window.location.href =
+                "login.html?next=booking-details.html";
+
+        }
+    );
+
+
+    window.ESFAuth
+        .getSession()
+        .then(session => {
+
+            if (
+                !session ||
+                !session.user
+            ) {
+
+                return;
+
+            }
+
+
+            const email =
+                session.user.email ||
+                "your account";
+
+
+            accountButton.textContent =
+                "Continue with " +
+                email;
+
+
+            accountButton.onclick =
+                function () {
+
+                    localStorage.setItem(
+                        "checkoutMode",
+                        "account"
+                    );
+
+                    window.location.href =
+                        "booking-details.html";
+
+                };
+
+        })
+        .catch(error => {
+
+            console.error(error);
+
+            status.textContent =
+                "Account check unavailable. You can still continue as a guest.";
+
+        });
+
+})();
+
+</script>
+
+
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+
+</body>
+</html>

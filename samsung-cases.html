@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samsung Cases - Evan's Smart Fix</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="accessory-shop.css">
+<link rel="icon" href="images/logo.png">
+
+</head>
+<body>
+<header>
+<div class="header-left">
+<img src="images/logo.png" alt="Logo" class="logo">
+<p>Samsung Cases</p>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<details class="nav-dropdown">
+<summary>Shop &amp; Repair</summary>
+<div class="dropdown-menu">
+<a href="brands.html">Book a Repair</a>
+<details class="sub-dropdown">
+<summary>Accessories</summary>
+<div class="sub-dropdown-menu">
+<a href="cases.html">Cases</a>
+<a href="cables.html">Cables</a>
+<a href="chargers.html">Chargers</a>
+<a href="headphones.html">Headphones</a>
+<a href="adapters.html">Adapters</a>
+<a href="screen-protectors.html">Screen Protectors</a>
+<a href="accessories.html">View All Accessories</a>
+</div>
+</details>
+</div>
+</details>
+<a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+</nav>
+
+</header>
+
+<main class="accessory-page">
+<h2>Samsung Cases</h2>
+<p class="accessory-intro">Choose your Samsung model, then choose the case type you want.</p>
+<p><a href="cases.html" style="color:#0057b8;text-decoration:none;font-weight:bold;">← Change Brand</a></p>
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search phone model..." oninput="filterAccessoryProducts(this.value)">
+</div>
+<div class="accessory-grid">
+<div class="accessory-product" data-search="Samsung S26 Case Shockproof Wallet MagSafe MagSafe Premium">
+<img src="images/_____.png" alt="Samsung S26 Case" class="product-image">
+<h3>Samsung S26 Case</h3>
+<label for="case-var-0">Case type</label>
+<select id="case-var-0" onchange="updateCaseCard(0)"><option value="0">Shockproof — £8.00 (2 in stock)</option><option value="1">Wallet — £8.00 (3 in stock)</option><option value="2">MagSafe — £9.00 (5 in stock)</option><option value="3">MagSafe Premium — £11.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-0">£8.00</div>
+<div class="stock-text" id="case-stock-0">2 in stock</div>
+<label for="case-qty-0">Quantity</label>
+<input id="case-qty-0" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(0)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S26+ Case Wallet MagSafe MagSafe Premium">
+<img src="images/_____.png" alt="Samsung S26+ Case" class="product-image">
+<h3>Samsung S26+ Case</h3>
+<label for="case-var-1">Case type</label>
+<select id="case-var-1" onchange="updateCaseCard(1)"><option value="0">Wallet — £8.00 (2 in stock)</option><option value="1">MagSafe — £9.00 (4 in stock)</option><option value="2">MagSafe Premium — £11.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-1">£8.00</div>
+<div class="stock-text" id="case-stock-1">2 in stock</div>
+<label for="case-qty-1">Quantity</label>
+<input id="case-qty-1" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(1)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S26 Ultra Case MagSafe MagSafe Premium">
+<img src="images/_____.png" alt="Samsung S26 Ultra Case" class="product-image">
+<h3>Samsung S26 Ultra Case</h3>
+<label for="case-var-2">Case type</label>
+<select id="case-var-2" onchange="updateCaseCard(2)"><option value="0">MagSafe — £9.00 (6 in stock)</option><option value="1">MagSafe Premium — £11.00 (8 in stock)</option></select>
+<div class="product-price" id="case-price-2">£9.00</div>
+<div class="stock-text" id="case-stock-2">6 in stock</div>
+<label for="case-qty-2">Quantity</label>
+<input id="case-qty-2" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(2)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S25 Edge Case Wallet Shockproof MagSafe">
+<img src="images/_____.png" alt="Samsung S25 Edge Case" class="product-image">
+<h3>Samsung S25 Edge Case</h3>
+<label for="case-var-3">Case type</label>
+<select id="case-var-3" onchange="updateCaseCard(3)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Shockproof — £8.00 (2 in stock)</option><option value="2">MagSafe — £9.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-3">£8.00</div>
+<div class="stock-text" id="case-stock-3">4 in stock</div>
+<label for="case-qty-3">Quantity</label>
+<input id="case-qty-3" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(3)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S25 FE Case Wallet Basic MagSafe Shockproof">
+<img src="images/_____.png" alt="Samsung S25 FE Case" class="product-image">
+<h3>Samsung S25 FE Case</h3>
+<label for="case-var-4">Case type</label>
+<select id="case-var-4" onchange="updateCaseCard(4)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Basic — £5.00 (1 in stock)</option><option value="2">MagSafe — £9.00 (4 in stock)</option><option value="3">Shockproof — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-4">£8.00</div>
+<div class="stock-text" id="case-stock-4">4 in stock</div>
+<label for="case-qty-4">Quantity</label>
+<input id="case-qty-4" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(4)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S25+ Case Wallet MagSafe Ring Shockproof">
+<img src="images/_____.png" alt="Samsung S25+ Case" class="product-image">
+<h3>Samsung S25+ Case</h3>
+<label for="case-var-5">Case type</label>
+<select id="case-var-5" onchange="updateCaseCard(5)"><option value="0">Wallet — £8.00 (10 in stock)</option><option value="1">MagSafe — £9.00 (3 in stock)</option><option value="2">Ring — £8.00 (1 in stock)</option><option value="3">Shockproof — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-5">£8.00</div>
+<div class="stock-text" id="case-stock-5">10 in stock</div>
+<label for="case-qty-5">Quantity</label>
+<input id="case-qty-5" type="number" min="1" max="10" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(5)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S25 Ultra Case MagSafe Premium Ring Basic MagSafe">
+<img src="images/_____.png" alt="Samsung S25 Ultra Case" class="product-image">
+<h3>Samsung S25 Ultra Case</h3>
+<label for="case-var-6">Case type</label>
+<select id="case-var-6" onchange="updateCaseCard(6)"><option value="0">MagSafe Premium — £11.00 (3 in stock)</option><option value="1">Ring — £8.00 (2 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option><option value="3">MagSafe — £9.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-6">£11.00</div>
+<div class="stock-text" id="case-stock-6">3 in stock</div>
+<label for="case-qty-6">Quantity</label>
+<input id="case-qty-6" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(6)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S24 Case Wallet MagSafe MagSafe Premium Basic Basic MagSafe Shockproof Fancy">
+<img src="images/_____.png" alt="Samsung S24 Case" class="product-image">
+<h3>Samsung S24 Case</h3>
+<label for="case-var-7">Case type</label>
+<select id="case-var-7" onchange="updateCaseCard(7)"><option value="0">Wallet — £8.00 (2 in stock)</option><option value="1">MagSafe — £9.00 (2 in stock)</option><option value="2">MagSafe Premium — £11.00 (1 in stock)</option><option value="3">Basic — £5.00 (1 in stock)</option><option value="4">Basic — £5.00 (6 in stock)</option><option value="5">MagSafe — £9.00 (2 in stock)</option><option value="6">Shockproof — £8.00 (3 in stock)</option><option value="7">Fancy — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-7">£8.00</div>
+<div class="stock-text" id="case-stock-7">2 in stock</div>
+<label for="case-qty-7">Quantity</label>
+<input id="case-qty-7" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(7)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S24/25 Case Wallet Basic Fancy Basic Ring">
+<img src="images/_____.png" alt="Samsung S24/25 Case" class="product-image">
+<h3>Samsung S24/25 Case</h3>
+<label for="case-var-8">Case type</label>
+<select id="case-var-8" onchange="updateCaseCard(8)"><option value="0">Wallet — £8.00 (13 in stock)</option><option value="1">Basic — £5.00 (3 in stock)</option><option value="2">Fancy — £8.00 (2 in stock)</option><option value="3">Basic — £5.00 (1 in stock)</option><option value="4">Ring — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-8">£8.00</div>
+<div class="stock-text" id="case-stock-8">13 in stock</div>
+<label for="case-qty-8">Quantity</label>
+<input id="case-qty-8" type="number" min="1" max="13" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(8)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S24 FE Case Shockproof Basic Wallet">
+<img src="images/_____.png" alt="Samsung S24 FE Case" class="product-image">
+<h3>Samsung S24 FE Case</h3>
+<label for="case-var-9">Case type</label>
+<select id="case-var-9" onchange="updateCaseCard(9)"><option value="0">Shockproof — £8.00 (2 in stock)</option><option value="1">Basic — £5.00 (2 in stock)</option><option value="2">Wallet — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-9">£8.00</div>
+<div class="stock-text" id="case-stock-9">2 in stock</div>
+<label for="case-qty-9">Quantity</label>
+<input id="case-qty-9" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(9)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S24+ Case Fancy Basic MagSafe Wallet Shockproof">
+<img src="images/_____.png" alt="Samsung S24+ Case" class="product-image">
+<h3>Samsung S24+ Case</h3>
+<label for="case-var-10">Case type</label>
+<select id="case-var-10" onchange="updateCaseCard(10)"><option value="0">Fancy — £8.00 (3 in stock)</option><option value="1">Basic — £5.00 (11 in stock)</option><option value="2">MagSafe — £9.00 (1 in stock)</option><option value="3">Wallet — £8.00 (8 in stock)</option><option value="4">Shockproof — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-10">£8.00</div>
+<div class="stock-text" id="case-stock-10">3 in stock</div>
+<label for="case-qty-10">Quantity</label>
+<input id="case-qty-10" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(10)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S24 Ultra Case Wallet MagSafe Basic">
+<img src="images/_____.png" alt="Samsung S24 Ultra Case" class="product-image">
+<h3>Samsung S24 Ultra Case</h3>
+<label for="case-var-11">Case type</label>
+<select id="case-var-11" onchange="updateCaseCard(11)"><option value="0">Wallet — £8.00 (3 in stock)</option><option value="1">MagSafe — £9.00 (2 in stock)</option><option value="2">Basic — £5.00 (5 in stock)</option></select>
+<div class="product-price" id="case-price-11">£8.00</div>
+<div class="stock-text" id="case-stock-11">3 in stock</div>
+<label for="case-qty-11">Quantity</label>
+<input id="case-qty-11" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(11)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S23 Case Fancy Basic MagSafe Wallet">
+<img src="images/_____.png" alt="Samsung S23 Case" class="product-image">
+<h3>Samsung S23 Case</h3>
+<label for="case-var-12">Case type</label>
+<select id="case-var-12" onchange="updateCaseCard(12)"><option value="0">Fancy — £8.00 (4 in stock)</option><option value="1">Basic — £5.00 (5 in stock)</option><option value="2">MagSafe — £9.00 (1 in stock)</option><option value="3">Wallet — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-12">£8.00</div>
+<div class="stock-text" id="case-stock-12">4 in stock</div>
+<label for="case-qty-12">Quantity</label>
+<input id="case-qty-12" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(12)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S23 FE Case Wallet Fancy Basic Shockproof">
+<img src="images/_____.png" alt="Samsung S23 FE Case" class="product-image">
+<h3>Samsung S23 FE Case</h3>
+<label for="case-var-13">Case type</label>
+<select id="case-var-13" onchange="updateCaseCard(13)"><option value="0">Wallet — £8.00 (9 in stock)</option><option value="1">Fancy — £8.00 (4 in stock)</option><option value="2">Basic — £5.00 (7 in stock)</option><option value="3">Shockproof — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-13">£8.00</div>
+<div class="stock-text" id="case-stock-13">9 in stock</div>
+<label for="case-qty-13">Quantity</label>
+<input id="case-qty-13" type="number" min="1" max="9" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(13)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S23+ Case Basic MagSafe Wallet Fancy">
+<img src="images/_____.png" alt="Samsung S23+ Case" class="product-image">
+<h3>Samsung S23+ Case</h3>
+<label for="case-var-14">Case type</label>
+<select id="case-var-14" onchange="updateCaseCard(14)"><option value="0">Basic — £5.00 (9 in stock)</option><option value="1">MagSafe — £9.00 (5 in stock)</option><option value="2">Wallet — £8.00 (8 in stock)</option><option value="3">Fancy — £8.00 (7 in stock)</option></select>
+<div class="product-price" id="case-price-14">£5.00</div>
+<div class="stock-text" id="case-stock-14">9 in stock</div>
+<label for="case-qty-14">Quantity</label>
+<input id="case-qty-14" type="number" min="1" max="9" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(14)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S23 Ultra Case Basic Wallet MagSafe Fancy Shockproof">
+<img src="images/_____.png" alt="Samsung S23 Ultra Case" class="product-image">
+<h3>Samsung S23 Ultra Case</h3>
+<label for="case-var-15">Case type</label>
+<select id="case-var-15" onchange="updateCaseCard(15)"><option value="0">Basic — £5.00 (3 in stock)</option><option value="1">Wallet — £8.00 (7 in stock)</option><option value="2">MagSafe — £9.00 (4 in stock)</option><option value="3">Fancy — £8.00 (1 in stock)</option><option value="4">Shockproof — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-15">£5.00</div>
+<div class="stock-text" id="case-stock-15">3 in stock</div>
+<label for="case-qty-15">Quantity</label>
+<input id="case-qty-15" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(15)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S22 Case Wallet Fancy Basic Ring">
+<img src="images/_____.png" alt="Samsung S22 Case" class="product-image">
+<h3>Samsung S22 Case</h3>
+<label for="case-var-16">Case type</label>
+<select id="case-var-16" onchange="updateCaseCard(16)"><option value="0">Wallet — £8.00 (2 in stock)</option><option value="1">Fancy — £8.00 (4 in stock)</option><option value="2">Basic — £5.00 (2 in stock)</option><option value="3">Ring — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-16">£8.00</div>
+<div class="stock-text" id="case-stock-16">2 in stock</div>
+<label for="case-qty-16">Quantity</label>
+<input id="case-qty-16" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(16)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S22+ Case Basic Fancy Wallet Shockproof Ring">
+<img src="images/_____.png" alt="Samsung S22+ Case" class="product-image">
+<h3>Samsung S22+ Case</h3>
+<label for="case-var-17">Case type</label>
+<select id="case-var-17" onchange="updateCaseCard(17)"><option value="0">Basic — £5.00 (9 in stock)</option><option value="1">Fancy — £8.00 (4 in stock)</option><option value="2">Wallet — £8.00 (10 in stock)</option><option value="3">Shockproof — £8.00 (2 in stock)</option><option value="4">Ring — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-17">£5.00</div>
+<div class="stock-text" id="case-stock-17">9 in stock</div>
+<label for="case-qty-17">Quantity</label>
+<input id="case-qty-17" type="number" min="1" max="9" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(17)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S22 Ultra Case Wallet Basic Fancy MagSafe Shockproof">
+<img src="images/_____.png" alt="Samsung S22 Ultra Case" class="product-image">
+<h3>Samsung S22 Ultra Case</h3>
+<label for="case-var-18">Case type</label>
+<select id="case-var-18" onchange="updateCaseCard(18)"><option value="0">Wallet — £8.00 (6 in stock)</option><option value="1">Basic — £5.00 (4 in stock)</option><option value="2">Fancy — £8.00 (1 in stock)</option><option value="3">MagSafe — £9.00 (3 in stock)</option><option value="4">Shockproof — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-18">£8.00</div>
+<div class="stock-text" id="case-stock-18">6 in stock</div>
+<label for="case-qty-18">Quantity</label>
+<input id="case-qty-18" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(18)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S21 Case Wallet Shockproof Basic Fancy">
+<img src="images/_____.png" alt="Samsung S21 Case" class="product-image">
+<h3>Samsung S21 Case</h3>
+<label for="case-var-19">Case type</label>
+<select id="case-var-19" onchange="updateCaseCard(19)"><option value="0">Wallet — £8.00 (5 in stock)</option><option value="1">Shockproof — £8.00 (2 in stock)</option><option value="2">Basic — £5.00 (10 in stock)</option><option value="3">Fancy — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-19">£8.00</div>
+<div class="stock-text" id="case-stock-19">5 in stock</div>
+<label for="case-qty-19">Quantity</label>
+<input id="case-qty-19" type="number" min="1" max="5" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(19)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S21 FE Case Wallet MagSafe Fancy">
+<img src="images/_____.png" alt="Samsung S21 FE Case" class="product-image">
+<h3>Samsung S21 FE Case</h3>
+<label for="case-var-20">Case type</label>
+<select id="case-var-20" onchange="updateCaseCard(20)"><option value="0">Wallet — £8.00 (6 in stock)</option><option value="1">MagSafe — £9.00 (3 in stock)</option><option value="2">Fancy — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-20">£8.00</div>
+<div class="stock-text" id="case-stock-20">6 in stock</div>
+<label for="case-qty-20">Quantity</label>
+<input id="case-qty-20" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(20)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S21+ Case Wallet">
+<img src="images/_____.png" alt="Samsung S21+ Case" class="product-image">
+<h3>Samsung S21+ Case</h3>
+<label for="case-var-21">Case type</label>
+<select id="case-var-21" onchange="updateCaseCard(21)"><option value="0">Wallet — £8.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-21">£8.00</div>
+<div class="stock-text" id="case-stock-21">4 in stock</div>
+<label for="case-qty-21">Quantity</label>
+<input id="case-qty-21" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(21)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S21 Ultra Case Wallet Shockproof Fancy MagSafe Basic">
+<img src="images/_____.png" alt="Samsung S21 Ultra Case" class="product-image">
+<h3>Samsung S21 Ultra Case</h3>
+<label for="case-var-22">Case type</label>
+<select id="case-var-22" onchange="updateCaseCard(22)"><option value="0">Wallet — £8.00 (6 in stock)</option><option value="1">Shockproof — £8.00 (2 in stock)</option><option value="2">Fancy — £8.00 (2 in stock)</option><option value="3">MagSafe — £9.00 (3 in stock)</option><option value="4">Basic — £5.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-22">£8.00</div>
+<div class="stock-text" id="case-stock-22">6 in stock</div>
+<label for="case-qty-22">Quantity</label>
+<input id="case-qty-22" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(22)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S20 Case Wallet">
+<img src="images/_____.png" alt="Samsung S20 Case" class="product-image">
+<h3>Samsung S20 Case</h3>
+<label for="case-var-23">Case type</label>
+<select id="case-var-23" onchange="updateCaseCard(23)"><option value="0">Wallet — £8.00 (13 in stock)</option></select>
+<div class="product-price" id="case-price-23">£8.00</div>
+<div class="stock-text" id="case-stock-23">13 in stock</div>
+<label for="case-qty-23">Quantity</label>
+<input id="case-qty-23" type="number" min="1" max="13" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(23)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S20 FE Case Shockproof Fancy Wallet Basic">
+<img src="images/_____.png" alt="Samsung S20 FE Case" class="product-image">
+<h3>Samsung S20 FE Case</h3>
+<label for="case-var-24">Case type</label>
+<select id="case-var-24" onchange="updateCaseCard(24)"><option value="0">Shockproof — £8.00 (2 in stock)</option><option value="1">Fancy — £8.00 (9 in stock)</option><option value="2">Wallet — £8.00 (3 in stock)</option><option value="3">Basic — £5.00 (5 in stock)</option></select>
+<div class="product-price" id="case-price-24">£8.00</div>
+<div class="stock-text" id="case-stock-24">2 in stock</div>
+<label for="case-qty-24">Quantity</label>
+<input id="case-qty-24" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(24)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S20+ Case Wallet Fancy">
+<img src="images/_____.png" alt="Samsung S20+ Case" class="product-image">
+<h3>Samsung S20+ Case</h3>
+<label for="case-var-25">Case type</label>
+<select id="case-var-25" onchange="updateCaseCard(25)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Fancy — £8.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-25">£8.00</div>
+<div class="stock-text" id="case-stock-25">4 in stock</div>
+<label for="case-qty-25">Quantity</label>
+<input id="case-qty-25" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(25)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S20 Ultra Case Wallet Basic Fancy Shockproof">
+<img src="images/_____.png" alt="Samsung S20 Ultra Case" class="product-image">
+<h3>Samsung S20 Ultra Case</h3>
+<label for="case-var-26">Case type</label>
+<select id="case-var-26" onchange="updateCaseCard(26)"><option value="0">Wallet — £8.00 (3 in stock)</option><option value="1">Basic — £5.00 (2 in stock)</option><option value="2">Fancy — £8.00 (6 in stock)</option><option value="3">Shockproof — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-26">£8.00</div>
+<div class="stock-text" id="case-stock-26">3 in stock</div>
+<label for="case-qty-26">Quantity</label>
+<input id="case-qty-26" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(26)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S11+ Case Wallet Basic">
+<img src="images/_____.png" alt="Samsung S11+ Case" class="product-image">
+<h3>Samsung S11+ Case</h3>
+<label for="case-var-27">Case type</label>
+<select id="case-var-27" onchange="updateCaseCard(27)"><option value="0">Wallet — £8.00 (1 in stock)</option><option value="1">Basic — £5.00 (9 in stock)</option></select>
+<div class="product-price" id="case-price-27">£8.00</div>
+<div class="stock-text" id="case-stock-27">1 in stock</div>
+<label for="case-qty-27">Quantity</label>
+<input id="case-qty-27" type="number" min="1" max="1" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(27)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S10 Case Wallet Ring Shockproof">
+<img src="images/_____.png" alt="Samsung S10 Case" class="product-image">
+<h3>Samsung S10 Case</h3>
+<label for="case-var-28">Case type</label>
+<select id="case-var-28" onchange="updateCaseCard(28)"><option value="0">Wallet — £8.00 (6 in stock)</option><option value="1">Ring — £8.00 (4 in stock)</option><option value="2">Shockproof — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-28">£8.00</div>
+<div class="stock-text" id="case-stock-28">6 in stock</div>
+<label for="case-qty-28">Quantity</label>
+<input id="case-qty-28" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(28)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S10+ Case Wallet Crossbody Cord Ring">
+<img src="images/_____.png" alt="Samsung S10+ Case" class="product-image">
+<h3>Samsung S10+ Case</h3>
+<label for="case-var-29">Case type</label>
+<select id="case-var-29" onchange="updateCaseCard(29)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Crossbody Cord — £8.00 (1 in stock)</option><option value="2">Ring — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-29">£8.00</div>
+<div class="stock-text" id="case-stock-29">4 in stock</div>
+<label for="case-qty-29">Quantity</label>
+<input id="case-qty-29" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(29)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S10E Case Wallet Ring Shockproof">
+<img src="images/_____.png" alt="Samsung S10E Case" class="product-image">
+<h3>Samsung S10E Case</h3>
+<label for="case-var-30">Case type</label>
+<select id="case-var-30" onchange="updateCaseCard(30)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Ring — £8.00 (1 in stock)</option><option value="2">Shockproof — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-30">£8.00</div>
+<div class="stock-text" id="case-stock-30">4 in stock</div>
+<label for="case-qty-30">Quantity</label>
+<input id="case-qty-30" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(30)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S9 Case Wallet Fancy Basic Ring">
+<img src="images/_____.png" alt="Samsung S9 Case" class="product-image">
+<h3>Samsung S9 Case</h3>
+<label for="case-var-31">Case type</label>
+<select id="case-var-31" onchange="updateCaseCard(31)"><option value="0">Wallet — £8.00 (6 in stock)</option><option value="1">Fancy — £8.00 (2 in stock)</option><option value="2">Basic — £5.00 (3 in stock)</option><option value="3">Ring — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-31">£8.00</div>
+<div class="stock-text" id="case-stock-31">6 in stock</div>
+<label for="case-qty-31">Quantity</label>
+<input id="case-qty-31" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(31)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S8+ Case Wallet Ring">
+<img src="images/_____.png" alt="Samsung S8+ Case" class="product-image">
+<h3>Samsung S8+ Case</h3>
+<label for="case-var-32">Case type</label>
+<select id="case-var-32" onchange="updateCaseCard(32)"><option value="0">Wallet — £8.00 (11 in stock)</option><option value="1">Ring — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-32">£8.00</div>
+<div class="stock-text" id="case-stock-32">11 in stock</div>
+<label for="case-qty-32">Quantity</label>
+<input id="case-qty-32" type="number" min="1" max="11" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(32)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S8 Case Wallet Ring">
+<img src="images/_____.png" alt="Samsung S8 Case" class="product-image">
+<h3>Samsung S8 Case</h3>
+<label for="case-var-33">Case type</label>
+<select id="case-var-33" onchange="updateCaseCard(33)"><option value="0">Wallet — £8.00 (3 in stock)</option><option value="1">Ring — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-33">£8.00</div>
+<div class="stock-text" id="case-stock-33">3 in stock</div>
+<label for="case-qty-33">Quantity</label>
+<input id="case-qty-33" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(33)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung S7 Case Basic Wallet">
+<img src="images/_____.png" alt="Samsung S7 Case" class="product-image">
+<h3>Samsung S7 Case</h3>
+<label for="case-var-34">Case type</label>
+<select id="case-var-34" onchange="updateCaseCard(34)"><option value="0">Basic — £5.00 (2 in stock)</option><option value="1">Wallet — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-34">£5.00</div>
+<div class="stock-text" id="case-stock-34">2 in stock</div>
+<label for="case-qty-34">Quantity</label>
+<input id="case-qty-34" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(34)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung J7 Case Basic Wallet">
+<img src="images/_____.png" alt="Samsung J7 Case" class="product-image">
+<h3>Samsung J7 Case</h3>
+<label for="case-var-35">Case type</label>
+<select id="case-var-35" onchange="updateCaseCard(35)"><option value="0">Basic — £5.00 (6 in stock)</option><option value="1">Wallet — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-35">£5.00</div>
+<div class="stock-text" id="case-stock-35">6 in stock</div>
+<label for="case-qty-35">Quantity</label>
+<input id="case-qty-35" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(35)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung J4 Case Wallet Basic">
+<img src="images/_____.png" alt="Samsung J4 Case" class="product-image">
+<h3>Samsung J4 Case</h3>
+<label for="case-var-36">Case type</label>
+<select id="case-var-36" onchange="updateCaseCard(36)"><option value="0">Wallet — £8.00 (1 in stock)</option><option value="1">Basic — £5.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-36">£8.00</div>
+<div class="stock-text" id="case-stock-36">1 in stock</div>
+<label for="case-qty-36">Quantity</label>
+<input id="case-qty-36" type="number" min="1" max="1" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(36)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Flip 3 Case Ring Fancy">
+<img src="images/_____.png" alt="Samsung Flip 3 Case" class="product-image">
+<h3>Samsung Flip 3 Case</h3>
+<label for="case-var-37">Case type</label>
+<select id="case-var-37" onchange="updateCaseCard(37)"><option value="0">Ring — £8.00 (1 in stock)</option><option value="1">Fancy — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-37">£8.00</div>
+<div class="stock-text" id="case-stock-37">1 in stock</div>
+<label for="case-qty-37">Quantity</label>
+<input id="case-qty-37" type="number" min="1" max="1" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(37)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Flip 4 Case Basic Wallet Ring Fancy">
+<img src="images/_____.png" alt="Samsung Flip 4 Case" class="product-image">
+<h3>Samsung Flip 4 Case</h3>
+<label for="case-var-38">Case type</label>
+<select id="case-var-38" onchange="updateCaseCard(38)"><option value="0">Basic — £5.00 (5 in stock)</option><option value="1">Wallet — £8.00 (3 in stock)</option><option value="2">Ring — £8.00 (4 in stock)</option><option value="3">Fancy — £8.00 (5 in stock)</option></select>
+<div class="product-price" id="case-price-38">£5.00</div>
+<div class="stock-text" id="case-stock-38">5 in stock</div>
+<label for="case-qty-38">Quantity</label>
+<input id="case-qty-38" type="number" min="1" max="5" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(38)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Flip 5 Case Wallet Basic">
+<img src="images/_____.png" alt="Samsung Flip 5 Case" class="product-image">
+<h3>Samsung Flip 5 Case</h3>
+<label for="case-var-39">Case type</label>
+<select id="case-var-39" onchange="updateCaseCard(39)"><option value="0">Wallet — £8.00 (7 in stock)</option><option value="1">Basic — £5.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-39">£8.00</div>
+<div class="stock-text" id="case-stock-39">7 in stock</div>
+<label for="case-qty-39">Quantity</label>
+<input id="case-qty-39" type="number" min="1" max="7" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(39)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Flip 7 Case Wallet Ring Basic">
+<img src="images/_____.png" alt="Samsung Flip 7 Case" class="product-image">
+<h3>Samsung Flip 7 Case</h3>
+<label for="case-var-40">Case type</label>
+<select id="case-var-40" onchange="updateCaseCard(40)"><option value="0">Wallet — £8.00 (6 in stock)</option><option value="1">Ring — £8.00 (2 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-40">£8.00</div>
+<div class="stock-text" id="case-stock-40">6 in stock</div>
+<label for="case-qty-40">Quantity</label>
+<input id="case-qty-40" type="number" min="1" max="6" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(40)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Fold 3 Case Basic Premium Wallet Basic">
+<img src="images/_____.png" alt="Samsung Fold 3 Case" class="product-image">
+<h3>Samsung Fold 3 Case</h3>
+<label for="case-var-41">Case type</label>
+<select id="case-var-41" onchange="updateCaseCard(41)"><option value="0">Basic Premium — £7.00 (3 in stock)</option><option value="1">Wallet — £8.00 (2 in stock)</option><option value="2">Basic — £5.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-41">£7.00</div>
+<div class="stock-text" id="case-stock-41">3 in stock</div>
+<label for="case-qty-41">Quantity</label>
+<input id="case-qty-41" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(41)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Fold 4 Case Basic Wallet">
+<img src="images/_____.png" alt="Samsung Fold 4 Case" class="product-image">
+<h3>Samsung Fold 4 Case</h3>
+<label for="case-var-42">Case type</label>
+<select id="case-var-42" onchange="updateCaseCard(42)"><option value="0">Basic — £5.00 (2 in stock)</option><option value="1">Wallet — £8.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-42">£5.00</div>
+<div class="stock-text" id="case-stock-42">2 in stock</div>
+<label for="case-qty-42">Quantity</label>
+<input id="case-qty-42" type="number" min="1" max="2" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(42)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Fold 5 Case Wallet Basic Premium Basic">
+<img src="images/_____.png" alt="Samsung Fold 5 Case" class="product-image">
+<h3>Samsung Fold 5 Case</h3>
+<label for="case-var-43">Case type</label>
+<select id="case-var-43" onchange="updateCaseCard(43)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Basic Premium — £7.00 (3 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-43">£8.00</div>
+<div class="stock-text" id="case-stock-43">4 in stock</div>
+<label for="case-qty-43">Quantity</label>
+<input id="case-qty-43" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(43)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Fold 6 Case Basic Premium Wallet">
+<img src="images/_____.png" alt="Samsung Fold 6 Case" class="product-image">
+<h3>Samsung Fold 6 Case</h3>
+<label for="case-var-44">Case type</label>
+<select id="case-var-44" onchange="updateCaseCard(44)"><option value="0">Basic Premium — £7.00 (3 in stock)</option><option value="1">Wallet — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-44">£7.00</div>
+<div class="stock-text" id="case-stock-44">3 in stock</div>
+<label for="case-qty-44">Quantity</label>
+<input id="case-qty-44" type="number" min="1" max="3" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(44)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Fold 7 Case Wallet Basic Premium">
+<img src="images/_____.png" alt="Samsung Fold 7 Case" class="product-image">
+<h3>Samsung Fold 7 Case</h3>
+<label for="case-var-45">Case type</label>
+<select id="case-var-45" onchange="updateCaseCard(45)"><option value="0">Wallet — £8.00 (8 in stock)</option><option value="1">Basic Premium — £7.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-45">£8.00</div>
+<div class="stock-text" id="case-stock-45">8 in stock</div>
+<label for="case-qty-45">Quantity</label>
+<input id="case-qty-45" type="number" min="1" max="8" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(45)">Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Fold 8 Case Basic Premium">
+<img src="images/_____.png" alt="Samsung Fold 8 Case" class="product-image">
+<h3>Samsung Fold 8 Case</h3>
+<label for="case-var-46">Case type</label>
+<select id="case-var-46" onchange="updateCaseCard(46)"><option value="0">Basic Premium — £7.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-46">£7.00</div>
+<div class="stock-text" id="case-stock-46">4 in stock</div>
+<label for="case-qty-46">Quantity</label>
+<input id="case-qty-46" type="number" min="1" max="4" value="1">
+<button class="add-accessory-btn" onclick="addSelectedCase(46)">Add to Basket</button>
+</div></div>
+</main>
+<script>
+const CASE_PRODUCTS=[{"name": "Samsung S26 Case", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "MagSafe", "price": 9.0, "stock": 5}, {"name": "MagSafe Premium", "price": 11.0, "stock": 3}]}, {"name": "Samsung S26+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 2}, {"name": "MagSafe", "price": 9.0, "stock": 4}, {"name": "MagSafe Premium", "price": 11.0, "stock": 4}]}, {"name": "Samsung S26 Ultra Case", "variations": [{"name": "MagSafe", "price": 9.0, "stock": 6}, {"name": "MagSafe Premium", "price": 11.0, "stock": 8}]}, {"name": "Samsung S25 Edge Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "MagSafe", "price": 9.0, "stock": 1}]}, {"name": "Samsung S25 FE Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 1}, {"name": "MagSafe", "price": 9.0, "stock": 4}, {"name": "Shockproof", "price": 8.0, "stock": 3}]}, {"name": "Samsung S25+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 10}, {"name": "MagSafe", "price": 9.0, "stock": 3}, {"name": "Ring", "price": 8.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 3}]}, {"name": "Samsung S25 Ultra Case", "variations": [{"name": "MagSafe Premium", "price": 11.0, "stock": 3}, {"name": "Ring", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 1}, {"name": "MagSafe", "price": 9.0, "stock": 3}]}, {"name": "Samsung S24 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 2}, {"name": "MagSafe", "price": 9.0, "stock": 2}, {"name": "MagSafe Premium", "price": 11.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 6}, {"name": "MagSafe", "price": 9.0, "stock": 2}, {"name": "Shockproof", "price": 8.0, "stock": 3}, {"name": "Fancy", "price": 8.0, "stock": 1}]}, {"name": "Samsung S24/25 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 13}, {"name": "Basic", "price": 5.0, "stock": 3}, {"name": "Fancy", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 1}, {"name": "Ring", "price": 8.0, "stock": 1}]}, {"name": "Samsung S24 FE Case", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Wallet", "price": 8.0, "stock": 1}]}, {"name": "Samsung S24+ Case", "variations": [{"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 11}, {"name": "MagSafe", "price": 9.0, "stock": 1}, {"name": "Wallet", "price": 8.0, "stock": 8}, {"name": "Shockproof", "price": 8.0, "stock": 2}]}, {"name": "Samsung S24 Ultra Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "MagSafe", "price": 9.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 5}]}, {"name": "Samsung S23 Case", "variations": [{"name": "Fancy", "price": 8.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 5}, {"name": "MagSafe", "price": 9.0, "stock": 1}, {"name": "Wallet", "price": 8.0, "stock": 3}]}, {"name": "Samsung S23 FE Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 9}, {"name": "Fancy", "price": 8.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 7}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "Samsung S23+ Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 9}, {"name": "MagSafe", "price": 9.0, "stock": 5}, {"name": "Wallet", "price": 8.0, "stock": 8}, {"name": "Fancy", "price": 8.0, "stock": 7}]}, {"name": "Samsung S23 Ultra Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 3}, {"name": "Wallet", "price": 8.0, "stock": 7}, {"name": "MagSafe", "price": 9.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 2}]}, {"name": "Samsung S22 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Ring", "price": 8.0, "stock": 3}]}, {"name": "Samsung S22+ Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 9}, {"name": "Fancy", "price": 8.0, "stock": 4}, {"name": "Wallet", "price": 8.0, "stock": 10}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Ring", "price": 8.0, "stock": 3}]}, {"name": "Samsung S22 Ultra Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 6}, {"name": "Basic", "price": 5.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 1}, {"name": "MagSafe", "price": 9.0, "stock": 3}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "Samsung S21 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 5}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 10}, {"name": "Fancy", "price": 8.0, "stock": 2}]}, {"name": "Samsung S21 FE Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 6}, {"name": "MagSafe", "price": 9.0, "stock": 3}, {"name": "Fancy", "price": 8.0, "stock": 2}]}, {"name": "Samsung S21+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}]}, {"name": "Samsung S21 Ultra Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 6}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 2}, {"name": "MagSafe", "price": 9.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 3}]}, {"name": "Samsung S20 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 13}]}, {"name": "Samsung S20 FE Case", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 9}, {"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 5}]}, {"name": "Samsung S20+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 4}]}, {"name": "Samsung S20 Ultra Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 6}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "Samsung S11+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 9}]}, {"name": "Samsung S10 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 6}, {"name": "Ring", "price": 8.0, "stock": 4}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "Samsung S10+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Crossbody Cord", "price": 8.0, "stock": 1}, {"name": "Ring", "price": 8.0, "stock": 2}]}, {"name": "Samsung S10E Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Ring", "price": 8.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "Samsung S9 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 6}, {"name": "Fancy", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 3}, {"name": "Ring", "price": 8.0, "stock": 1}]}, {"name": "Samsung S8+ Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 11}, {"name": "Ring", "price": 8.0, "stock": 3}]}, {"name": "Samsung S8 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "Ring", "price": 8.0, "stock": 3}]}, {"name": "Samsung S7 Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Wallet", "price": 8.0, "stock": 1}]}, {"name": "Samsung J7 Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 6}, {"name": "Wallet", "price": 8.0, "stock": 1}]}, {"name": "Samsung J4 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 2}]}, {"name": "Samsung Flip 3 Case", "variations": [{"name": "Ring", "price": 8.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 1}]}, {"name": "Samsung Flip 4 Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 5}, {"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "Ring", "price": 8.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 5}]}, {"name": "Samsung Flip 5 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 7}, {"name": "Basic", "price": 5.0, "stock": 3}]}, {"name": "Samsung Flip 7 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 6}, {"name": "Ring", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 1}]}, {"name": "Samsung Fold 3 Case", "variations": [{"name": "Basic Premium", "price": 7.0, "stock": 3}, {"name": "Wallet", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 2}]}, {"name": "Samsung Fold 4 Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Wallet", "price": 8.0, "stock": 4}]}, {"name": "Samsung Fold 5 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Basic Premium", "price": 7.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 1}]}, {"name": "Samsung Fold 6 Case", "variations": [{"name": "Basic Premium", "price": 7.0, "stock": 3}, {"name": "Wallet", "price": 8.0, "stock": 3}]}, {"name": "Samsung Fold 7 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 8}, {"name": "Basic Premium", "price": 7.0, "stock": 1}]}, {"name": "Samsung Fold 8 Case", "variations": [{"name": "Basic Premium", "price": 7.0, "stock": 4}]}];
+function updateCaseCard(i){
+ const s=document.getElementById("case-var-"+i);
+ const v=CASE_PRODUCTS[i].variations[Number(s.value)];
+ document.getElementById("case-price-"+i).textContent="£"+Number(v.price).toFixed(2);
+ document.getElementById("case-stock-"+i).textContent=v.stock+" in stock";
+ const q=document.getElementById("case-qty-"+i);
+ q.max=v.stock;
+ if(Number(q.value)>Number(v.stock))q.value=v.stock;
+}
+function addSelectedCase(i){
+ const s=document.getElementById("case-var-"+i);
+ const v=CASE_PRODUCTS[i].variations[Number(s.value)];
+ addAccessoryToCart(CASE_PRODUCTS[i].name,v.name,v.price,document.getElementById("case-qty-"+i).value,v.stock);
+}
+</script>
+
+<script src="accessory-shop.js"></script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

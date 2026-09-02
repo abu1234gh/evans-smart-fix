@@ -1,308 +1,608 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo.png">
-<title>Your Basket</title>
 
-<style>
-body {
-    font-family: Arial;
-    margin: 0;
-    background: #f7f6f9;
-}
+    <title>Your Basket</title>
 
-header {
-    background: #0057b8;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+    <style>
 
-#cartBox {
-    margin: 20px;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    border: 2px solid #0057b8;
-}
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f7f6f9;
+        }
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-}
+        header {
+            background: #0057b8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-button {
-    background: #0057b8;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-</style>
+        #cartBox {
+            margin: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #0057b8;
+            text-align: center;
+        }
+
+        #total {
+            text-align: center;
+            margin: 20px 0 0;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        button {
+            background: #0057b8;
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 6px;
+            width: auto;
+        }
+
+        /*
+        ============================
+        CART ACTION BUTTONS
+        ============================
+        */
+
+        .cart-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .cart-actions button {
+            width: auto !important;
+            min-width: 170px;
+            max-width: 220px;
+            flex: 0 0 auto;
+            padding: 12px 18px;
+            margin: 0;
+            border: none;
+            border-radius: 8px;
+            background: #0057b8;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .cart-actions button:hover {
+            opacity: 0.9;
+        }
+
+        /*
+        Keep both buttons next to each other
+        on mobile as well.
+        */
+
+        @media (max-width: 600px) {
+
+            .cart-actions {
+                flex-direction: row;
+                gap: 8px;
+                padding: 0 10px;
+            }
+
+            .cart-actions button {
+                flex: 1;
+                min-width: 0;
+                max-width: none;
+                padding: 11px 7px;
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
     <h1>Your Basket</h1>
-         <nav>
-        <a href="index.html">Home</a>
-        <details class="nav-dropdown">
 
-    <summary>
-        Shop &amp; Repair
-    </summary>
+    <nav>
 
-    <div class="dropdown-menu">
-
-        <a href="brands.html">
-            Book a Repair
+        <a href="index.html">
+            Home
         </a>
 
-        <details class="sub-dropdown">
+        <a href="brands.html">
+            Repairs
+        </a>
+
+
+        <details class="social-dropdown">
 
             <summary>
-                Accessories
+                Socials ▾
             </summary>
 
-            <div class="sub-dropdown-menu">
+            <div class="social-dropdown-menu">
 
-                <a href="cases.html">
-                    Cases
+                <a
+                    href="YOUR_INSTAGRAM_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Instagram
                 </a>
 
-                <a href="cables.html">
-                    Cables
-                </a>
-
-                <a href="chargers.html">
-                    Chargers
-                </a>
-
-                <a href="headphones.html">
-                    Headphones
-                </a>
-
-                <a href="adapters.html">
-                    Adapters
-                </a>
-
-                <a href="screen-protectors.html">
-                    Screen Protectors
-                </a>
-
-                <a href="accessories.html">
-                    View All Accessories
+                <a
+                    href="YOUR_TIKTOK_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    TikTok
                 </a>
 
             </div>
 
         </details>
 
-    </div>
 
-</details>
         <a href="cart.html" class="cart-link">
-            🛒 Basket <span id="cartCount">0</span>
+
+            🛒 Basket
+
+            <span id="cartCount">
+                0
+            </span>
+
         </a>
-     </nav>
+
+    </nav>
+
 </header>
+
+
+
 <div id="total"></div>
+
 <div id="cartBox"></div>
 
-<button onclick="window.location.href='brands.html'">add another item</button>
-<br>
-<button onclick="checkout()">Proceed to Checkout</button>
+
+
+<!--
+================================
+CART BUTTONS
+================================
+-->
+
+<div class="cart-actions">
+
+    <button
+        type="button"
+        onclick="window.location.href='brands.html'"
+    >
+        Add Another Item
+    </button>
+
+
+    <button
+        type="button"
+        onclick="checkout()"
+    >
+        Proceed to Checkout
+    </button>
+
+</div>
+
+
 
 <script>
 
-let cart = JSON.parse(
-    localStorage.getItem("cart")
-) || [];
+let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
 
-function isAccessory(item) {
-    return item && item.type === "accessory";
-}
 
-function getQuantity(item) {
-    if (!isAccessory(item)) return 1;
 
-    const qty = Number(item.quantity || 1);
-    return qty > 0 ? qty : 1;
-}
-
-function getUnitPrice(item) {
-    return Number(item.price || 0);
-}
-
-function getLineTotal(item) {
-    return getUnitPrice(item) * getQuantity(item);
-}
-
-function getCartCount() {
-    return cart.reduce(function(total, item) {
-        return total + getQuantity(item);
-    }, 0);
-}
+/*
+============================
+DISPLAY CART
+============================
+*/
 
 function renderCart() {
 
-    const box = document.getElementById("cartBox");
-    const totalBox = document.getElementById("total");
+
+    const box =
+        document.getElementById(
+            "cartBox"
+        );
+
+
+    const totalBox =
+        document.getElementById(
+            "total"
+        );
+
 
     box.innerHTML = "";
 
+
     document.getElementById(
         "cartCount"
-    ).textContent = getCartCount();
+    ).textContent = cart.length;
+
+
+
+    /*
+    EMPTY CART
+    */
 
     if (cart.length === 0) {
+
 
         box.innerHTML =
             "<p>Your basket is empty</p>";
 
+
         totalBox.innerHTML =
             "<strong>Total: £0.00</strong>";
 
+
         return;
+
     }
+
+
 
     let total = 0;
 
-    cart.forEach((item, index) => {
 
-        total += getLineTotal(item);
 
-        const div =
-            document.createElement("div");
+    cart.forEach(
+        (item, index) => {
 
-        div.className = "item";
 
-        if (isAccessory(item)) {
+            total +=
+                Number(item.price);
 
-            const name =
-                item.name ||
-                item.model ||
-                "Accessory";
 
-            const variation =
-                item.variation ||
-                item.option ||
-                "";
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-            const quantity =
-                getQuantity(item);
 
-            const unitPrice =
-                getUnitPrice(item);
+            div.className =
+                "item";
 
-            div.innerHTML = `
-                <div>
-                    <strong>${name}</strong>
-                    <br>
-                    Accessory
-                    ${variation ? `<br><small>${variation}</small>` : ""}
-                    <br>
-                    Qty: ${quantity}
-                    <br>
-                    £${unitPrice.toFixed(2)} each
-                    ${quantity > 1 ? `<br><strong>Line total: £${getLineTotal(item).toFixed(2)}</strong>` : ""}
-                </div>
 
-                <button onclick="removeItem(${index})">
-                    Remove
-                </button>
-            `;
 
-        } else {
+            /*
+            Support both repair items
+            and accessory items.
+            */
 
-            const model =
-                item.model ||
-                item.device ||
-                "Unknown device";
+            if (item.type === "accessory") {
 
-            const repair =
-                item.repair ||
-                "Repair";
 
-            const quality =
-                item.quality ||
-                "";
+                const quantity =
+                    Number(
+                        item.quantity || 1
+                    );
 
-            div.innerHTML = `
-                <div>
-                    <strong>${model}</strong>
-                    <br>
-                    ${repair}
-                    ${quality ? `<br><small>${quality}</small>` : ""}
-                    <br>
-                    £${getUnitPrice(item).toFixed(2)}
-                </div>
 
-                <button onclick="removeItem(${index})">
-                    Remove
-                </button>
-            `;
+                const itemPrice =
+                    Number(
+                        item.price || 0
+                    );
+
+
+                div.innerHTML = `
+
+                    <div>
+
+                        <strong>
+                            ${item.name || "Accessory"}
+                        </strong>
+
+                        ${
+                            item.variation
+                            ?
+                            `<br>${item.variation}`
+                            :
+                            ""
+                        }
+
+                        <br>
+
+                        <small>
+                            Quantity: ${quantity}
+                        </small>
+
+                        <br>
+
+                        £${itemPrice.toFixed(2)}
+
+                    </div>
+
+
+                    <button
+                        onclick="removeItem(${index})"
+                    >
+                        Remove
+                    </button>
+
+                `;
+
+
+            } else {
+
+
+                div.innerHTML = `
+
+                    <div>
+
+                        <strong>
+                            ${item.model || ""}
+                        </strong>
+
+                        <br>
+
+                        ${item.repair || ""}
+
+                        <br>
+
+                        <small>
+                            ${item.quality || ""}
+                        </small>
+
+                        <br>
+
+                        £${Number(
+                            item.price || 0
+                        ).toFixed(2)}
+
+                    </div>
+
+
+                    <button
+                        onclick="removeItem(${index})"
+                    >
+                        Remove
+                    </button>
+
+                `;
+
+            }
+
+
+            box.appendChild(div);
+
         }
+    );
 
-        box.appendChild(div);
-    });
+
 
     totalBox.innerHTML =
-        "<strong>Total: £" +
-        total.toFixed(2) +
-        "</strong>";
+
+        "<strong>Total: £"
+
+        + total.toFixed(2)
+
+        + "</strong>";
+
 }
+
+
+
+/*
+============================
+REMOVE ITEM
+============================
+*/
 
 function removeItem(index) {
 
-    cart.splice(index, 1);
+
+    cart.splice(
+        index,
+        1
+    );
+
 
     localStorage.setItem(
         "cart",
         JSON.stringify(cart)
     );
 
+
     renderCart();
+
 }
+
+
+
+/*
+============================
+PROCEED TO CHECKOUT
+============================
+*/
 
 function checkout() {
 
-    if (cart.length === 0) {
+
+    /*
+    Re-read the basket at the
+    exact moment checkout is clicked.
+    */
+
+    let checkoutCart = [];
+
+
+    try {
+
+
+        checkoutCart =
+            JSON.parse(
+                localStorage.getItem(
+                    "cart"
+                )
+            ) || [];
+
+
+    } catch (error) {
+
+
+        console.error(
+            "Could not read basket from localStorage:",
+            error
+        );
+
+    }
+
+
+
+    /*
+    Fall back to the cart currently
+    displayed on this page.
+    */
+
+    if (
+        !checkoutCart.length
+        &&
+        Array.isArray(cart)
+        &&
+        cart.length
+    ) {
+
+
+        checkoutCart =
+            cart;
+
+    }
+
+
+
+    /*
+    EMPTY CART
+    */
+
+    if (
+        checkoutCart.length === 0
+    ) {
+
 
         alert(
             "Your basket is empty"
         );
 
+
         return;
+
     }
+
+
+
+    /*
+    Save basket before leaving cart.
+    */
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(
+            checkoutCart
+        )
+    );
+
+
+    /*
+    Keep backup for checkout-choice.html.
+    */
+
+    sessionStorage.setItem(
+        "checkoutCartBackup",
+        JSON.stringify(
+            checkoutCart
+        )
+    );
+
+
+
+    /*
+    Continue to checkout choice.
+
+    checkout-choice.html will:
+
+    Logged in:
+    go straight to booking-details.html.
+
+    Logged out:
+    show Login or Continue as Guest.
+    */
 
     window.location.href =
         "checkout-choice.html";
+
 }
+
+
+
+/*
+============================
+PAGE LOAD
+============================
+*/
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function () {
+
 
         cart =
             JSON.parse(
-                localStorage.getItem("cart")
+                localStorage.getItem(
+                    "cart"
+                )
             ) || [];
 
+
         renderCart();
+
     }
 );
 
 </script>
 
+
 <script src="social-dropdown.js"></script>
-  <script src="whatsapp.js"></script>
+<script src="whatsapp.js"></script>
+
+
 </body>
 </html>

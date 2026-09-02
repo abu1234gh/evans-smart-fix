@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,6 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth.css">
-
     <link rel="icon" href="images/logo.png">
 </head>
 
@@ -30,70 +30,13 @@
             Home
         </a>
 
-        <details class="nav-dropdown">
-
-            <summary>
-                Shop &amp; Repair
-            </summary>
-
-            <div class="dropdown-menu">
-
-                <a href="brands.html">
-                    Book a Repair
-                </a>
-
-                <details class="sub-dropdown">
-
-                    <summary>
-                        Accessories
-                    </summary>
-
-                    <div class="sub-dropdown-menu">
-
-                        <a href="cases.html">
-                            Cases
-                        </a>
-
-                        <a href="cables.html">
-                            Cables
-                        </a>
-
-                        <a href="chargers.html">
-                            Chargers
-                        </a>
-
-                        <a href="headphones.html">
-                            Headphones
-                        </a>
-
-                        <a href="adapters.html">
-                            Adapters
-                        </a>
-
-                        <a href="screen-protectors.html">
-                            Screen Protectors
-                        </a>
-
-                        <a href="accessories.html">
-                            View All Accessories
-                        </a>
-
-                    </div>
-
-                </details>
-
-            </div>
-
-        </details>
+        <a href="brands.html">
+            Repairs
+        </a>
 
         <a href="cart.html" class="cart-link">
-
             🛒 Basket
-
-            <span id="cartCount">
-                0
-            </span>
-
+            <span id="cartCount">0</span>
         </a>
 
     </nav>
@@ -105,44 +48,75 @@
 
     <div class="checkout-choice-grid">
 
+
+        <!-- LOGGED OUT CHECKOUT OPTIONS -->
         <section
             class="auth-card"
-            style="width:auto; margin:0;"
+            id="loggedOutCheckout"
+            style="width:100%; display:none;"
         >
 
-            <h2>
-                How would you like to continue?
-            </h2>
+            <h2>Log in to continue</h2>
 
             <p class="auth-subtitle">
-                Use your account for saved details and order history,
-                or checkout as a guest.
+                Log in to use your saved details and keep this booking
+                in your repair history.
             </p>
 
 
-            <div id="accountArea">
+            <form
+                id="checkoutLoginForm"
+                class="auth-form"
+            >
+
+                <div class="auth-field">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
 
                 <button
-                    type="button"
+                    type="submit"
                     class="auth-primary"
-                    id="accountButton"
+                    id="loginButton"
                 >
                     Log In &amp; Continue
                 </button>
 
-                <div class="auth-links">
 
-                    Don't have an account?
+                <p
+                    id="authStatus"
+                    class="auth-status"
+                    aria-live="polite"
+                ></p>
 
-                    <a
-                        href="register.html?next=booking-details.html"
-                    >
-                        Create Account
-                    </a>
-
-                </div>
-
-            </div>
+            </form>
 
 
             <div class="auth-divider">
@@ -159,56 +133,381 @@
             </button>
 
 
-            <p
-                id="authStatus"
-                class="auth-status"
-                aria-live="polite"
-            ></p>
+            <div class="auth-links">
+
+                New customer?
+
+                <a href="register.html?next=booking-details.html">
+                    Create Account
+                </a>
+
+            </div>
 
         </section>
 
 
-        <aside class="checkout-choice-side">
+        <!-- BASKET SUMMARY -->
+        <aside
+            class="checkout-choice-side"
+            id="basketSummary"
+        >
 
             <h3>
                 Your Basket
             </h3>
 
-            <div id="checkoutSummary"></div>
+
+            <div class="checkout-summary-line">
+
+                <span>
+                    Items
+                </span>
+
+                <strong id="summaryItems">
+                    0
+                </strong>
+
+            </div>
 
 
-            <div
-                class="checkout-summary-line"
-                style="font-weight:700;"
-            >
+            <div class="checkout-summary-line">
 
                 <span>
                     Total
                 </span>
 
-                <span id="checkoutTotal">
+                <strong id="summaryTotal">
                     £0.00
-                </span>
+                </strong>
 
             </div>
 
+
+            <p
+                class="auth-subtitle"
+                style="margin-top:18px;margin-bottom:0;"
+            >
+                Log in to use your account details,
+                or continue as a guest.
+            </p>
+
         </aside>
+
 
     </div>
 
 </main>
 
 
+
 <script src="auth.js"></script>
+
 
 <script>
 
-(function () {
+(async function () {
 
-    const cart =
-        JSON.parse(
-            localStorage.getItem("cart")
-        ) || [];
+
+    /*
+    ============================
+    LOAD / RESTORE THE BASKET
+    ============================
+    */
+
+    function readCheckoutCart() {
+
+        let savedCart = [];
+
+
+        try {
+
+            savedCart =
+                JSON.parse(
+                    localStorage.getItem("cart")
+                ) || [];
+
+        } catch (error) {
+
+            console.error(
+                "Could not read basket from localStorage:",
+                error
+            );
+
+        }
+
+
+        /*
+        If localStorage somehow loses the cart,
+        restore the checkout backup created by cart.html.
+        */
+
+        if (!savedCart.length) {
+
+            try {
+
+                const backup =
+                    JSON.parse(
+                        sessionStorage.getItem(
+                            "checkoutCartBackup"
+                        )
+                    ) || [];
+
+
+                if (backup.length) {
+
+                    savedCart = backup;
+
+                    localStorage.setItem(
+                        "cart",
+                        JSON.stringify(backup)
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Could not restore checkout basket:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        return savedCart;
+
+    }
+
+
+
+    /*
+    ============================
+    GET CART
+    ============================
+    */
+
+    const cart = readCheckoutCart();
+
+
+    const total = cart.reduce(
+        (sum, item) =>
+            sum + Number(item.price || 0),
+        0
+    );
+
+
+
+    /*
+    ============================
+    UPDATE BASKET DISPLAY
+    ============================
+    */
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = cart.length;
+
+
+    document.getElementById(
+        "summaryItems"
+    ).textContent = cart.length;
+
+
+    document.getElementById(
+        "summaryTotal"
+    ).textContent =
+        "£" + total.toFixed(2);
+
+
+
+    /*
+    ============================
+    EMPTY BASKET
+    ============================
+    */
+
+    if (!cart.length) {
+
+        const grid =
+            document.querySelector(
+                ".checkout-choice-grid"
+            );
+
+
+        if (grid) {
+
+            grid.innerHTML = `
+
+                <section
+                    class="auth-card"
+                    style="
+                        width:100%;
+                        max-width:650px;
+                        margin:0 auto;
+                    "
+                >
+
+                    <h2>
+                        We couldn't load your basket
+                    </h2>
+
+                    <p class="auth-subtitle">
+
+                        Your checkout basket wasn't
+                        available on this page.
+
+                        Go back to your basket and try
+                        Proceed to Checkout again.
+
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="auth-primary"
+                        onclick="
+                            window.location.href='cart.html'
+                        "
+                    >
+
+                        Back to Basket
+
+                    </button>
+
+                </section>
+
+            `;
+
+        }
+
+
+        return;
+
+    }
+
+
+
+    /*
+    ============================
+    KEEP CART BACKED UP
+    ============================
+    */
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    sessionStorage.setItem(
+        "checkoutCartBackup",
+        JSON.stringify(cart)
+    );
+
+
+
+    /*
+    ============================
+    CHECK IF ALREADY LOGGED IN
+    ============================
+
+    If logged in:
+    DO NOT show guest checkout.
+    DO NOT show another continue button.
+
+    Send them straight to
+    booking-details.html.
+
+    booking-details.html will then
+    load their saved account details.
+    */
+
+    try {
+
+        const session =
+            await window.ESFAuth.getSession();
+
+
+        if (session) {
+
+            localStorage.setItem(
+                "checkoutMode",
+                "account"
+            );
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            sessionStorage.setItem(
+                "checkoutCartBackup",
+                JSON.stringify(cart)
+            );
+
+
+            window.location.replace(
+                "booking-details.html"
+            );
+
+
+            return;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Could not check login session:",
+            error
+        );
+
+    }
+
+
+
+    /*
+    ============================
+    USER IS LOGGED OUT
+    ============================
+
+    Only now do we display:
+    - Login
+    - Continue as Guest
+    - Create Account
+    */
+
+    const loggedOutCheckout =
+        document.getElementById(
+            "loggedOutCheckout"
+        );
+
+
+    loggedOutCheckout.style.display =
+        "block";
+
+
+
+    /*
+    ============================
+    LOGIN
+    ============================
+    */
+
+    const form =
+        document.getElementById(
+            "checkoutLoginForm"
+        );
+
+
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
 
 
     const status =
@@ -217,11 +516,120 @@
         );
 
 
-    const accountButton =
-        document.getElementById(
-            "accountButton"
-        );
+    form.addEventListener(
+        "submit",
+        async function (event) {
 
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
+
+
+            button.disabled = true;
+
+
+            status.className =
+                "auth-status";
+
+
+            status.textContent =
+                "Logging you in...";
+
+
+            try {
+
+                const client =
+                    await window.ESFAuth.getClient();
+
+
+                const { error } =
+                    await client.auth.signInWithPassword({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                /*
+                Successful login.
+
+                Mark checkout as account checkout,
+                preserve basket and go straight
+                to customer details.
+                */
+
+                localStorage.setItem(
+                    "checkoutMode",
+                    "account"
+                );
+
+
+                localStorage.setItem(
+                    "cart",
+                    JSON.stringify(cart)
+                );
+
+
+                sessionStorage.setItem(
+                    "checkoutCartBackup",
+                    JSON.stringify(cart)
+                );
+
+
+                window.location.href =
+                    "booking-details.html";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Checkout login failed:",
+                    error
+                );
+
+
+                status.className =
+                    "auth-status error";
+
+
+                status.textContent =
+                    error.message ||
+                    "We couldn't log you in.";
+
+
+                button.disabled = false;
+
+            }
+
+        }
+    );
+
+
+
+    /*
+    ============================
+    GUEST CHECKOUT
+    ============================
+    */
 
     const guestButton =
         document.getElementById(
@@ -229,171 +637,28 @@
         );
 
 
-    const summary =
-        document.getElementById(
-            "checkoutSummary"
-        );
-
-
-    const totalEl =
-        document.getElementById(
-            "checkoutTotal"
-        );
-
-
-    const countEl =
-        document.getElementById(
-            "cartCount"
-        );
-
-
-    if (!cart.length) {
-
-        window.location.href =
-            "cart.html";
-
-        return;
-
-    }
-
-
-    function qty(item) {
-
-        if (
-            item &&
-            item.type === "accessory"
-        ) {
-
-            const n =
-                Number(
-                    item.quantity || 1
-                );
-
-            return n > 0
-                ? n
-                : 1;
-
-        }
-
-        return 1;
-
-    }
-
-
-    function price(item) {
-
-        return Number(
-            item.price || 0
-        );
-
-    }
-
-
-    const cartCount =
-        cart.reduce(
-            (sum, item) =>
-                sum + qty(item),
-            0
-        );
-
-
-    if (countEl) {
-
-        countEl.textContent =
-            cartCount;
-
-    }
-
-
-    let total = 0;
-
-
-    summary.innerHTML =
-        cart.map(item => {
-
-            const quantity =
-                qty(item);
-
-
-            const lineTotal =
-                price(item) *
-                quantity;
-
-
-            total +=
-                lineTotal;
-
-
-            const name =
-                item.type === "accessory"
-                    ? (
-                        item.name ||
-                        "Accessory"
-                    )
-                    : (
-                        item.model ||
-                        "Repair"
-                    );
-
-
-            const detail =
-                item.type === "accessory"
-                    ? (
-                        item.variation ||
-                        ""
-                    )
-                    : (
-                        item.repair ||
-                        ""
-                    );
-
-
-            return `
-                <div
-                    class="checkout-summary-line"
-                >
-
-                    <span>
-
-                        ${name}
-
-                        ${
-                            detail
-                                ? `<br><small>${detail}</small>`
-                                : ""
-                        }
-
-                        ${
-                            quantity > 1
-                                ? `<br><small>Qty: ${quantity}</small>`
-                                : ""
-                        }
-
-                    </span>
-
-                    <strong>
-                        £${lineTotal.toFixed(2)}
-                    </strong>
-
-                </div>
-            `;
-
-        }).join("");
-
-
-    totalEl.textContent =
-        "£" +
-        total.toFixed(2);
-
-
     guestButton.addEventListener(
         "click",
         function () {
+
 
             localStorage.setItem(
                 "checkoutMode",
                 "guest"
             );
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            sessionStorage.setItem(
+                "checkoutCartBackup",
+                JSON.stringify(cart)
+            );
+
 
             window.location.href =
                 "booking-details.html";
@@ -402,69 +667,6 @@
     );
 
 
-    accountButton.addEventListener(
-        "click",
-        function () {
-
-            localStorage.setItem(
-                "checkoutMode",
-                "account"
-            );
-
-            window.location.href =
-                "login.html?next=booking-details.html";
-
-        }
-    );
-
-
-    window.ESFAuth
-        .getSession()
-        .then(session => {
-
-            if (
-                !session ||
-                !session.user
-            ) {
-
-                return;
-
-            }
-
-
-            const email =
-                session.user.email ||
-                "your account";
-
-
-            accountButton.textContent =
-                "Continue with " +
-                email;
-
-
-            accountButton.onclick =
-                function () {
-
-                    localStorage.setItem(
-                        "checkoutMode",
-                        "account"
-                    );
-
-                    window.location.href =
-                        "booking-details.html";
-
-                };
-
-        })
-        .catch(error => {
-
-            console.error(error);
-
-            status.textContent =
-                "Account check unavailable. You can still continue as a guest.";
-
-        });
-
 })();
 
 </script>
@@ -472,6 +674,7 @@
 
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>
+
 
 </body>
 </html>

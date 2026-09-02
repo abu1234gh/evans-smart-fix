@@ -7,7 +7,23 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
+<style>
+.accessory-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 
+@media (max-width: 900px) {
+    .accessory-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .accessory-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 <body>
 <header>

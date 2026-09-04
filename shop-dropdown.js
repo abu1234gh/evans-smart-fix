@@ -49,87 +49,63 @@
 
     style.textContent = `
 
-      /* ========================================
-         SHARED SHOP & REPAIR DROPDOWN
-      ======================================== */
-
       .nav-dropdown {
         position: relative;
       }
-
 
       .nav-dropdown > .dropdown-menu {
         min-width: 220px;
       }
 
-
       .shop-accessories-dropdown {
         position: relative;
       }
-
 
       .shop-accessories-dropdown > summary {
         cursor: pointer;
       }
 
 
-      /* ========================================
-         ACCESSORIES MENU - DESKTOP
-         2 ROWS
-      ======================================== */
-
+      /* DESKTOP */
       .shop-accessories-menu {
-
         box-sizing: border-box;
-
         display: grid !important;
 
+        grid-template-columns: repeat(9, minmax(0, 1fr));
         grid-template-rows: repeat(2, auto);
-
         grid-auto-flow: column;
 
-        grid-auto-columns: minmax(135px, 1fr);
-
         gap: 6px;
+        padding: 14px;
 
-        padding: 12px;
-
-        width: max-content;
-
-        max-width: min(
-          1100px,
-          calc(100vw - 32px)
-        );
+        width: min(1450px, calc(100vw - 40px));
+        max-width: calc(100vw - 40px);
 
         position: absolute;
 
         top: 100%;
-
         left: 50%;
 
         transform: translateX(-50%);
 
-        overflow: visible;
-
         z-index: 9999;
+
+        border-radius: 18px;
       }
 
 
       .shop-accessories-menu a {
-
         box-sizing: border-box;
 
         display: flex;
-
         align-items: center;
 
-        justify-content: flex-start;
+        min-width: 0;
 
-        min-width: 135px;
-
-        padding: 10px 12px;
+        padding: 12px 10px;
 
         white-space: normal;
+        overflow-wrap: anywhere;
 
         line-height: 1.25;
 
@@ -137,79 +113,50 @@
       }
 
 
-      /* ========================================
-         LAPTOP / TABLET
-         3 COLUMNS
-      ======================================== */
-
-      @media (max-width: 1000px) {
+      /* SMALLER DESKTOP / LAPTOP */
+      @media (max-width: 1300px) {
 
         .shop-accessories-menu {
-
+          grid-template-columns: repeat(6, minmax(0, 1fr));
           grid-template-rows: none;
-
           grid-auto-flow: row;
 
-          grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-
-          width: min(
-            720px,
-            calc(100vw - 28px)
-          );
-
-          max-width:
-            calc(100vw - 28px);
-        }
-
-
-        .shop-accessories-menu a {
-          min-width: 0;
+          width: calc(100vw - 40px);
         }
 
       }
 
 
-      /* ========================================
-         MOBILE
-         2 COLUMNS
-      ======================================== */
+      /* TABLET */
+      @media (max-width: 900px) {
 
+        .shop-accessories-menu {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+
+          width: calc(100vw - 30px);
+
+          padding: 12px;
+        }
+
+      }
+
+
+      /* MOBILE */
       @media (max-width: 650px) {
 
         .shop-accessories-menu {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
 
-          grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-          width:
-            calc(100vw - 24px);
-
-          max-width:
-            calc(100vw - 24px);
-
-          gap: 5px;
+          width: calc(100vw - 20px);
 
           padding: 10px;
         }
 
-
-        .shop-accessories-menu a {
-
-          padding: 9px 10px;
-
-          font-size: 0.95rem;
-        }
-
       }
 
 
-      /* ========================================
-         SMALL PHONES
-         1 COLUMN
-      ======================================== */
-
-      @media (max-width: 390px) {
+      /* SMALL PHONE */
+      @media (max-width: 380px) {
 
         .shop-accessories-menu {
           grid-template-columns: 1fr;
@@ -290,32 +237,23 @@
 
 
     /*
-      Remove the OLD contents inside
-      Shop & Repair only.
-
-      The rest of the nav stays untouched.
-
+      Only replace Shop & Repair contents.
       Socials stays untouched.
     */
 
     dropdownMenu.innerHTML = "";
 
 
-    /* ========================================
-       BOOK A REPAIR
-    ======================================== */
+    /* BOOK A REPAIR */
 
     const repairLink =
       document.createElement("a");
 
-
     repairLink.href =
       REPAIR_LINK[1];
 
-
     repairLink.textContent =
       REPAIR_LINK[0];
-
 
     dropdownMenu.appendChild(
       repairLink
@@ -323,40 +261,31 @@
 
 
 
-    /* ========================================
-       ACCESSORIES SUBMENU
-    ======================================== */
+    /* ACCESSORIES */
 
     const accessoriesDetails =
       document.createElement("details");
-
 
     accessoriesDetails.className =
       "sub-dropdown shop-accessories-dropdown";
 
 
-
     const accessoriesSummary =
       document.createElement("summary");
 
-
     accessoriesSummary.textContent =
       "Accessories";
-
 
     accessoriesDetails.appendChild(
       accessoriesSummary
     );
 
 
-
     const accessoriesMenu =
       document.createElement("div");
 
-
     accessoriesMenu.className =
       "sub-dropdown-menu shop-accessories-menu";
-
 
 
     ACCESSORY_LINKS.forEach(
@@ -365,14 +294,11 @@
         const link =
           document.createElement("a");
 
-
         link.href =
           href;
 
-
         link.textContent =
           label;
-
 
         accessoriesMenu.appendChild(
           link
@@ -382,11 +308,9 @@
     );
 
 
-
     accessoriesDetails.appendChild(
       accessoriesMenu
     );
-
 
     dropdownMenu.appendChild(
       accessoriesDetails
@@ -405,10 +329,6 @@
   }
 
 
-
-  /* ========================================
-     LOAD WHEN PAGE IS READY
-  ======================================== */
 
   if (
     document.readyState === "loading"

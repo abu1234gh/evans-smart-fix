@@ -3,152 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Log In - Evan's Smart Fix</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth.css">
     <link rel="icon" href="images/logo.png">
 </head>
+
 <body>
 
 <header>
-    <img src="images/logo.png" class="logo" alt="Evan's Smart Fix logo">
+    <img
+        src="images/logo.png"
+        class="logo"
+        alt="Evan's Smart Fix logo"
+    >
+
     <h1>Log In</h1>
+
     <nav>
         <a href="index.html">Home</a>
+
         <details class="nav-dropdown">
+            <summary>Shop &amp; Repair</summary>
 
-    <summary>
-        Shop &amp; Repair
-    </summary>
-
-    <div class="dropdown-menu">
-
-        <a href="brands.html">
-            Book a Repair
-        </a>
-
-        <details class="sub-dropdown">
-
-            <summary>
-                Accessories
-            </summary>
-
-            <div class="sub-dropdown-menu">
-
-                <a href="cases.html">
-                    Cases
+            <div class="dropdown-menu">
+                <a href="brands.html">
+                    Book a Repair
                 </a>
 
-                <a href="cables.html">
-                    Cables
-                </a>
+                <details class="sub-dropdown">
+                    <summary>Accessories</summary>
 
-                <a href="chargers.html">
-                    Chargers
-                </a>
+                    <div class="sub-dropdown-menu">
+                        <a href="cases.html">Cases</a>
+                        <a href="cables.html">Cables</a>
+                        <a href="chargers.html">Chargers</a>
+                        <a href="headphones.html">Headphones</a>
+                        <a href="adapters.html">Adapters</a>
 
-                <a href="headphones.html">
-                    Headphones
-                </a>
+                        <a href="screen-protectors.html">
+                            Screen Protectors
+                        </a>
 
-                <a href="adapters.html">
-                    Adapters
-                </a>
-
-                <a href="screen-protectors.html">
-                    Screen Protectors
-                </a>
-
-                <a href="accessories.html">
-                    View All Accessories
-                </a>
-
+                        <a href="accessories.html">
+                            View All Accessories
+                        </a>
+                    </div>
+                </details>
             </div>
-
         </details>
 
-    </div>
-
-</details>
-        <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+        <a href="cart.html" class="cart-link">
+            🛒 Basket <span id="cartCount">0</span>
+        </a>
     </nav>
 </header>
 
 <main class="auth-page">
+
     <section class="auth-card">
+
         <h2>Welcome back</h2>
-        <p class="auth-subtitle">Log in to view your details and repair bookings.</p>
+
+        <p class="auth-subtitle">
+            Log in to view your details and repair bookings.
+        </p>
 
         <form id="loginForm" class="auth-form">
+
             <div class="auth-field">
                 <label for="email">Email</label>
-                <input type="email" id="email" autocomplete="email" required>
+
+                <input
+                    type="email"
+                    id="email"
+                    autocomplete="email"
+                    required
+                >
             </div>
 
             <div class="auth-field">
                 <label for="password">Password</label>
-                <input type="password" id="password" autocomplete="current-password" required>
+
+                <input
+                    type="password"
+                    id="password"
+                    autocomplete="current-password"
+                    required
+                >
             </div>
 
-            <button type="submit" class="auth-primary" id="loginButton">Log In</button>
-            <p id="authStatus" class="auth-status" aria-live="polite"></p>
+            <button
+                type="submit"
+                class="auth-primary"
+                id="loginButton"
+            >
+                Log In
+            </button>
+
+            <p
+                id="authStatus"
+                class="auth-status"
+                aria-live="polite"
+            ></p>
+
         </form>
 
         <div class="auth-links">
-            Don't have an account?
-            <a id="registerLink" href="register.html">Create Account</a>
+            <a
+                id="forgotPasswordLink"
+                href="forgot-password.html"
+            >
+                Forgotten your password?
+            </a>
         </div>
+
+        <div class="auth-links">
+            Don't have an account?
+
+            <a
+                id="registerLink"
+                href="register.html"
+            >
+                Create Account
+            </a>
+        </div>
+
     </section>
+
 </main>
 
 <script src="auth.js"></script>
+
 <script>
 (function () {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartCount = document.getElementById("cartCount");
-    if (cartCount) cartCount.textContent = cart.length;
 
-    const nextPage = window.ESFAuth.safeNext("account.html");
-    const registerLink = document.getElementById("registerLink");
-    registerLink.href = "register.html?next=" + encodeURIComponent(nextPage);
+    const cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
-    const form = document.getElementById("loginForm");
-    const button = document.getElementById("loginButton");
-    const status = document.getElementById("authStatus");
+    const cartCount =
+        document.getElementById("cartCount");
 
-    window.ESFAuth.getSession().then(session => {
-        if (session) {
-            window.location.href = nextPage;
+    if (cartCount) {
+        cartCount.textContent = cart.length;
+    }
+
+
+    /* =============================================
+       NEXT PAGE
+    ============================================= */
+
+    const nextPage =
+        window.ESFAuth.safeNext("account.html");
+
+
+    /* =============================================
+       PAGE LINKS
+    ============================================= */
+
+    const registerLink =
+        document.getElementById("registerLink");
+
+    const forgotPasswordLink =
+        document.getElementById("forgotPasswordLink");
+
+    registerLink.href =
+        "register.html?next=" +
+        encodeURIComponent(nextPage);
+
+    forgotPasswordLink.href =
+        "forgot-password.html?next=" +
+        encodeURIComponent(nextPage);
+
+
+    /* =============================================
+       LOGIN FORM
+    ============================================= */
+
+    const form =
+        document.getElementById("loginForm");
+
+    const button =
+        document.getElementById("loginButton");
+
+    const status =
+        document.getElementById("authStatus");
+
+
+    /* =============================================
+       CHECK EXISTING SESSION
+    ============================================= */
+
+    window.ESFAuth
+        .getSession()
+        .then(function (session) {
+
+            if (session) {
+                window.location.href = nextPage;
+            }
+
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
+
+    /* =============================================
+       LOG IN
+    ============================================= */
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+            status.className = "auth-status";
+            status.textContent = "Logging you in...";
+
+            button.disabled = true;
+
+            try {
+
+                const client =
+                    await window.ESFAuth.getClient();
+
+                const result =
+                    await client.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+                if (result.error) {
+                    throw result.error;
+                }
+
+                localStorage.setItem(
+                    "checkoutMode",
+                    "account"
+                );
+
+                window.location.href = nextPage;
+
+            } catch (error) {
+
+                console.error(error);
+
+                status.className =
+                    "auth-status error";
+
+                /*
+                Supabase deliberately gives the same error
+                for an unknown email and a wrong password.
+                */
+
+                status.innerHTML =
+                    "The email or password is incorrect. " +
+                    "Please try again, reset your password, " +
+                    "or <a href=\"" +
+                    registerLink.href +
+                    "\">create an account</a>.";
+
+                button.disabled = false;
+            }
         }
-    }).catch(console.error);
+    );
 
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-
-        status.className = "auth-status";
-        status.textContent = "Logging you in...";
-        button.disabled = true;
-
-        try {
-            const client = await window.ESFAuth.getClient();
-            const { error } = await client.auth.signInWithPassword({ email, password });
-
-            if (error) throw error;
-
-            localStorage.setItem("checkoutMode", "account");
-            window.location.href = nextPage;
-        } catch (error) {
-            status.className = "auth-status error";
-            status.textContent = error.message || "We couldn't log you in.";
-            button.disabled = false;
-        }
-    });
 })();
 </script>
+
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>
+
 </body>
 </html>

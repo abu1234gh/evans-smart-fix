@@ -1,112 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Select Repair Quality - Evan's Smart Fix</title>
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="images/logo.png">
-
-<style>
-
-#cartIcon {
-    float: right;
-    font-weight: bold;
-}
-
-#cartCount {
-    background: red;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 50%;
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-#cartBox {
-    margin: 20px;
-    padding: 15px;
-    border: 2px solid #0057b8;
-    border-radius: 10px;
-    background: #f7faff;
-}
-
-.model.selected {
-    border: 2px solid #0057b8;
-    background: #e8f1ff;
-    border-radius: 10px;
-}
-
-.repair-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    padding: 20px;
-}
-
-.model {
-    text-align: center;
-}
-
-.model img {
-    width: 120px;
-    height: auto;
-    cursor: pointer;
-}
-
-.model a {
-    text-decoration: none;
-    color: black;
-}
-
-#selectedRepair {
-    text-align: center;
-}
-
-@media (max-width: 700px) {
-    .repair-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Genuine quality option */
-.genuine-button {
-    width: 120px;
-    height: 120px;
-    border: 2px solid #0057b8;
-    border-radius: 10px;
-    background: #f7faff;
-    color: #0057b8;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Evan's Smart Fix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" href="images/logo.png">
 </head>
-
 <body>
 
-<header class="top-bar">
+<header>
+    <img src="images/logo.png" class="logo" alt="Evan's Smart Fix logo">
+    <h1>Log In</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <details class="nav-dropdown">
 
-<img src="images/logo.png" class="logo">
+    <summary>
+        Shop &amp; Repair
+    </summary>
 
-<h1>Select Repair Quality</h1>
+    <div class="dropdown-menu">
 
-<nav class="nav-bar">
+        <a href="brands.html">
+            Book a Repair
+        </a>
 
-    <a href="index.html">Home</a>
+        <details class="sub-dropdown">
 
-    <a href="brands.html">Repairs</a>
+            <summary>
+                Accessories
+            </summary>
 
-    <a href="cart.html" class="cart-link">
-        🛒 Basket <span id="cartCount">0</span>
-    </a>
+            <div class="sub-dropdown-menu">
 
-</nav>
+                <a href="cases.html">
+                    Cases
+                </a>
 
+                <a href="cables.html">
+                    Cables
+                </a>
+
+                <a href="chargers.html">
+                    Chargers
+                </a>
+
+                <a href="headphones.html">
+                    Headphones
+                </a>
+
+                <a href="adapters.html">
+                    Adapters
+                </a>
+
+                <a href="screen-protectors.html">
+                    Screen Protectors
+                </a>
+
+                <a href="accessories.html">
+                    View All Accessories
+                </a>
+
+            </div>
+
+        </details>
+
+    </div>
+
+</details>
+        <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+    </nav>
 </header>
 
 <h2 id="selectedRepair"></h2>

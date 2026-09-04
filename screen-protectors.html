@@ -7,14 +7,24 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
+
+<style>
+.screen-brand-intro{margin:28px auto 0;max-width:650px;padding:0 20px;color:#555;text-align:center}
+.screen-brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;padding:40px 8% 80px;max-width:760px;margin:auto}
+.screen-brand-card{background:#fff;border-radius:15px;padding:30px;text-align:center;border:1px solid rgba(0,87,184,.08);box-shadow:0 8px 20px rgba(0,0,0,.08);transition:.35s}
+.screen-brand-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.screen-brand-card a{text-decoration:none;color:#0057b8;font-weight:bold;display:block;font-size:18px}
+.screen-brand-card img{width:100%;height:150px;object-fit:contain;display:block;margin:0 auto 15px}
+@media(max-width:650px){.screen-brand-grid{grid-template-columns:1fr;padding:30px 18px 55px}}
+</style>
+
 </head>
 <body>
 <header>
 <div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo" width="100" height="100">
-<div><h1>Screen Protectors</h1><p>Evan's Smart Fix</p></div>
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Screen Protectors</h1><p>Choose your phone brand</p></div>
 </div>
-
 <nav>
 <a href="index.html">Home</a>
 <details class="nav-dropdown">
@@ -27,6 +37,7 @@
 <a href="cases.html">Cases</a>
 <a href="cables.html">Cables</a>
 <a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
 <a href="headphones.html">Headphones</a>
 <a href="adapters.html">Adapters</a>
 <a href="screen-protectors.html">Screen Protectors</a>
@@ -37,114 +48,27 @@
 </details>
 <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
 </nav>
-
 </header>
 
-<main class="accessory-page">
-<h2>Screen Protectors</h2>
-<p class="accessory-intro">Screen protectors currently showing as in stock.</p>
-<div class="accessory-toolbar"><input class="accessory-search" type="search" placeholder="Search screen protectors..." oninput="filterAccessoryProducts(this.value)"></div>
-<div class="accessory-grid">
-<div class="accessory-product" data-search="Samsung S24 Full">
-<img src="images/unavailable.png" alt="Samsung S24 Full" class="product-image">
-<h3>Samsung S24 Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">5 in stock</div>
-<label for="qty-0">Quantity</label>
-<input id="qty-0" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S24 Full","",5.00,document.getElementById("qty-0").value,5)'>Add to Basket</button>
+<main>
+<p class="screen-brand-intro">What brand of phone do you need a screen protector for?</p>
+<div class="screen-brand-grid">
+<div class="screen-brand-card">
+<a href="apple-screen-protectors.html">
+<img src="images/apple.png" alt="Apple iPhone">
+Apple iPhone
+</a>
 </div>
-<div class="accessory-product" data-search="Samsung S24 Plus Full">
-<img src="images/unavailable.png" alt="Samsung S24 Plus Full" class="product-image">
-<h3>Samsung S24 Plus Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">5 in stock</div>
-<label for="qty-1">Quantity</label>
-<input id="qty-1" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S24 Plus Full","",5.00,document.getElementById("qty-1").value,5)'>Add to Basket</button>
+<div class="screen-brand-card">
+<a href="samsung-screen-protectors.html">
+<img src="images/samsung.png" alt="Samsung">
+Samsung
+</a>
 </div>
-<div class="accessory-product" data-search="Samsung S24 Ultra Full">
-<img src="images/unavailable.png" alt="Samsung S24 Ultra Full" class="product-image">
-<h3>Samsung S24 Ultra Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-2">Quantity</label>
-<input id="qty-2" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S24 Ultra Full","",5.00,document.getElementById("qty-2").value,4)'>Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Samsung S25 Full">
-<img src="images/unavailable.png" alt="Samsung S25 Full" class="product-image">
-<h3>Samsung S25 Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">5 in stock</div>
-<label for="qty-3">Quantity</label>
-<input id="qty-3" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S25 Full","",5.00,document.getElementById("qty-3").value,5)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Samsung S25 Plus Full">
-<img src="images/unavailable.png" alt="Samsung S25 Plus Full" class="product-image">
-<h3>Samsung S25 Plus Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">6 in stock</div>
-<label for="qty-4">Quantity</label>
-<input id="qty-4" type="number" min="1" max="6" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S25 Plus Full","",5.00,document.getElementById("qty-4").value,6)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Samsung S25 Ultra Full">
-<img src="images/unavailable.png" alt="Samsung S25 Ultra Full" class="product-image">
-<h3>Samsung S25 Ultra Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">3 in stock</div>
-<label for="qty-5">Quantity</label>
-<input id="qty-5" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S25 Ultra Full","",5.00,document.getElementById("qty-5").value,3)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Samsung S26 Full">
-<img src="images/unavailable.png" alt="Samsung S26 Full" class="product-image">
-<h3>Samsung S26 Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-6">Quantity</label>
-<input id="qty-6" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S26 Full","",5.00,document.getElementById("qty-6").value,4)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Samsung S26 Plus Full Glue">
-<img src="images/unavailable.png" alt="Samsung S26 Plus Full Glue" class="product-image">
-<h3>Samsung S26 Plus Full Glue</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-7">Quantity</label>
-<input id="qty-7" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S26 Plus Full Glue","",5.00,document.getElementById("qty-7").value,4)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Samsung S26 Ultra Full">
-<img src="images/unavailable.png" alt="Samsung S26 Ultra Full" class="product-image">
-<h3>Samsung S26 Ultra Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">1 in stock</div>
-<label for="qty-8">Quantity</label>
-<input id="qty-8" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Samsung S26 Ultra Full","",5.00,document.getElementById("qty-8").value,1)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone 13/13 Mini Full">
-<img src="images/unavailable.png" alt="iPhone 13/13 Mini Full" class="product-image">
-<h3>iPhone 13/13 Mini Full</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-9">Quantity</label>
-<input id="qty-9" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("iPhone 13/13 Mini Full","",5.00,document.getElementById("qty-9").value,4)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone 14 Pro Lens">
-<img src="images/unavailable.png" alt="iPhone 14 Pro Lens" class="product-image">
-<h3>iPhone 14 Pro Lens</h3>
-<div class="product-price">£5.00</div>
-<div class="stock-text">9 in stock</div>
-<label for="qty-10">Quantity</label>
-<input id="qty-10" type="number" min="1" max="9" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("iPhone 14 Pro Lens","",5.00,document.getElementById("qty-10").value,9)'>Add to Basket</button>
-</div></div>
 </main>
+
+
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>

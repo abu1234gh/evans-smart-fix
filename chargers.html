@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
+
 </head>
 <body>
 <header>
 <div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo" width="100" height="100">
-<div><h1>Chargers</h1><p>Evan's Smart Fix</p></div>
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Chargers</h1><p>Chargers</p></div>
 </div>
-
 <nav>
 <a href="index.html">Home</a>
 <details class="nav-dropdown">
@@ -27,6 +27,7 @@
 <a href="cases.html">Cases</a>
 <a href="cables.html">Cables</a>
 <a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
 <a href="headphones.html">Headphones</a>
 <a href="adapters.html">Adapters</a>
 <a href="screen-protectors.html">Screen Protectors</a>
@@ -37,106 +38,119 @@
 </details>
 <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
 </nav>
-
 </header>
 
 <main class="accessory-page">
 <h2>Chargers</h2>
-<p class="accessory-intro">Fast-charging products currently listed in stock.</p>
-<div class="accessory-toolbar"><input class="accessory-search" type="search" placeholder="Search chargers..." oninput="filterAccessoryProducts(this.value)"></div>
+<p class="accessory-intro">Wall, home and device chargers from our SumUp catalogue.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
 <div class="accessory-grid">
-<div class="accessory-product" data-search="2M Cable USB To Lightning Fast Charging &amp; High-Speed Data Transfer">
-<img src="images/pf16.png" alt="2M Cable USB To Lightning Fast Charging &amp;amp; High-Speed Data Transfer" class="product-image">
-<h3>2M Cable USB To Lightning Fast Charging &amp; High-Speed Data Transfer</h3>
-<div class="product-price">£6.00</div>
-<div class="stock-text">4 in stock</div>
+<div class="accessory-product" data-search="Apple Power Adapter Charger">
+<img src="https://images.sumup.com/img_6H0AEM8HN48BNR2GVGP847NKV4" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Apple Power Adapter" class="product-image">
+<h3>Apple Power Adapter</h3>
+<div class="product-price">£15.00</div>
+<div class="stock-text">2 in stock</div>
 <label for="qty-0">Quantity</label>
-<input id="qty-0" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("2M Cable USB To Lightning Fast Charging & High-Speed Data Transfer","",6.00,document.getElementById("qty-0").value,4)'>Add to Basket</button>
+<input id="qty-0" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Apple Power Adapter" data-variation="" data-price="15.00" data-stock="2" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="1M Fast Charger USB to Lightning">
-<img src="images/pf15.png" alt="1M Fast Charger USB to Lightning" class="product-image">
-<h3>1M Fast Charger USB to Lightning</h3>
+<div class="accessory-product" data-search="Dk-wholesale-online Panther Force USB Mains Charger 1Amp White Charger">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Dk-wholesale-online Panther Force USB Mains Charger 1Amp White" class="product-image">
+<h3>Dk-wholesale-online Panther Force USB Mains Charger 1Amp White</h3>
 <div class="product-price">£5.00</div>
-<div class="stock-text">2 in stock</div>
-<label for="qty-1">Quantity</label>
-<input id="qty-1" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("1M Fast Charger USB to Lightning","",5.00,document.getElementById("qty-1").value,2)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="1M Micro Farst Charger">
-<img src="images/pf17-s.png" alt="1M Micro Farst Charger" class="product-image">
-<h3>1M Micro Farst Charger</h3>
-<div class="product-price">£4.00</div>
-<div class="stock-text">6 in stock</div>
-<label for="qty-2">Quantity</label>
-<input id="qty-2" type="number" min="1" max="6" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("1M Micro Farst Charger","",4.00,document.getElementById("qty-2").value,6)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="2M Fast Charger USB To Lightning 3A">
-<img src="images/pf37.png" alt="2M Fast Charger USB To Lightning 3A" class="product-image">
-<h3>2M Fast Charger USB To Lightning 3A</h3>
-<div class="product-price">£7.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-3">Quantity</label>
-<input id="qty-3" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("2M Fast Charger USB To Lightning 3A","",7.00,document.getElementById("qty-3").value,4)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="3M Fast Charger USB to Lightning 3A">
-<img src="images/pf12.png" alt="3M Fast Charger USB to Lightning 3A" class="product-image">
-<h3>3M Fast Charger USB to Lightning 3A</h3>
-<div class="product-price">£6.00</div>
-<div class="stock-text">2 in stock</div>
-<label for="qty-4">Quantity</label>
-<input id="qty-4" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("3M Fast Charger USB to Lightning 3A","",6.00,document.getElementById("qty-4").value,2)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="3M Fast Charging USB to Lightning">
-<img src="images/pf22.png" alt="3M Fast Charging USB to Lightning" class="product-image">
-<h3>3M Fast Charging USB to Lightning</h3>
-<div class="product-price">£8.99</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-5">Quantity</label>
-<input id="qty-5" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("3M Fast Charging USB to Lightning","",8.99,document.getElementById("qty-5").value,4)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="3M Micro Farst Charger">
-<img src="images/pf21.png" alt="3M Micro Farst Charger" class="product-image">
-<h3>3M Micro Farst Charger</h3>
-<div class="product-price">£6.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="qty-6">Quantity</label>
-<input id="qty-6" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("3M Micro Farst Charger","",6.00,document.getElementById("qty-6").value,4)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable">
-<img src="images/pf168.png" alt="DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable" class="product-image">
-<h3>DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable</h3>
-<div class="product-price">£7.00</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-7">Quantity</label>
-<input id="qty-7" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("DK Wholesale Ltd Panther Force Fast Charging Type C To 3 In 1 Cable","",7.00,document.getElementById("qty-7").value,3)'>Add to Basket</button>
+<label for="qty-1">Quantity</label>
+<input id="qty-1" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="Dk-wholesale-online Panther Force USB Mains Charger 1Amp White" data-variation="" data-price="5.00" data-stock="3" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Universal Laptop Charger pf252">
-<img src="images/pf252.png" alt="Universal Laptop Charger" class="product-image">
+<div class="accessory-product" data-search="Dual Type USB-A x2 USB-C Charger Charger">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Dual Type USB-A x2 USB-C Charger" class="product-image">
+<h3>Dual Type USB-A x2 USB-C Charger</h3>
+<div class="product-price">£8.00</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="4" value="1" >
+<button class="add-accessory-btn" data-name="Dual Type USB-A x2 USB-C Charger" data-variation="" data-price="8.00" data-stock="4" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Home Charger Lightning PF0076 Charger">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Home Charger Lightning" class="product-image">
+<h3>Home Charger Lightning</h3>
+<div class="product-price">£7.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Home Charger Lightning" data-variation="" data-price="7.00" data-stock="2" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Panther Force Type C 20W Fast Charger Plug- PF074 PF074 Charger">
+<img src="https://images.sumup.com/img_7BQJ5G7WDD8HKS6AZJPHX2B3SY" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Panther Force Type C 20W Fast Charger Plug- PF074" class="product-image">
+<h3>Panther Force Type C 20W Fast Charger Plug- PF074</h3>
+<div class="product-price">£10.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-4">Quantity</label>
+<input id="qty-4" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Panther Force Type C 20W Fast Charger Plug- PF074" data-variation="" data-price="10.00" data-stock="1" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Samsung Type C Super Fast Charger 45W / 25W Charger">
+<img src="https://images.sumup.com/img_34HG85KMEG9T0906HVT376V2T9" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Samsung Type C Super Fast Charger 45W / 25W" class="product-image">
+<h3>Samsung Type C Super Fast Charger 45W / 25W</h3>
+<div class="product-price">£15.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-5">Quantity</label>
+<input id="qty-5" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Samsung Type C Super Fast Charger 45W / 25W" data-variation="" data-price="15.00" data-stock="2" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Travel Charger Micro Charger">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Travel Charger Micro" class="product-image">
+<h3>Travel Charger Micro</h3>
+<div class="product-price">£7.99</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-6">Quantity</label>
+<input id="qty-6" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Travel Charger Micro" data-variation="" data-price="7.99" data-stock="1" data-qty-id="qty-6" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="USB-C + USB-A Charger Charger">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="USB-C + USB-A Charger" class="product-image">
+<h3>USB-C + USB-A Charger</h3>
+<div class="product-price">£10.00</div>
+<div class="stock-text">7 in stock</div>
+<label for="qty-7">Quantity</label>
+<input id="qty-7" type="number" min="1" max="7" value="1" >
+<button class="add-accessory-btn" data-name="USB-C + USB-A Charger" data-variation="" data-price="10.00" data-stock="7" data-qty-id="qty-7" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Universal Laptop Charger PF252 Charger">
+<img src="images/pf252.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Universal Laptop Charger" class="product-image">
 <h3>Universal Laptop Charger</h3>
 <div class="product-price">£35.00</div>
 <div class="stock-text">1 in stock</div>
-<label for="charger-qty-0">Quantity</label>
-<input id="charger-qty-0" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Universal Laptop Charger","",35.00,document.getElementById("charger-qty-0").value,1)'>Add to Basket</button>
+<label for="qty-8">Quantity</label>
+<input id="qty-8" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Universal Laptop Charger" data-variation="" data-price="35.00" data-stock="1" data-qty-id="qty-8" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Universal Laptop Charger 90W pf172">
-<img src="images/pf172.png" alt="Universal Laptop Charger 90W" class="product-image">
+<div class="accessory-product" data-search="Universal Laptop Charger 90W PF172 Charger">
+<img src="images/pf172.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Universal Laptop Charger 90W" class="product-image">
 <h3>Universal Laptop Charger 90W</h3>
 <div class="product-price">£28.00</div>
 <div class="stock-text">1 in stock</div>
-<label for="charger-qty-1">Quantity</label>
-<input id="charger-qty-1" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Universal Laptop Charger 90W","",28.00,document.getElementById("charger-qty-1").value,1)'>Add to Basket</button>
+<label for="qty-9">Quantity</label>
+<input id="qty-9" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Universal Laptop Charger 90W" data-variation="" data-price="28.00" data-stock="1" data-qty-id="qty-9" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Ven-dens 20w Dual Type C/USB PD Fast Charging Plug Charger">
+<img src="https://images.sumup.com/img_29C0YSEQKC904BDKMW2YGVN207" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Ven-dens 20w Dual Type C/USB PD Fast Charging Plug" class="product-image">
+<h3>Ven-dens 20w Dual Type C/USB PD Fast Charging Plug</h3>
+<div class="product-price">£10.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-10">Quantity</label>
+<input id="qty-10" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Ven-dens 20w Dual Type C/USB PD Fast Charging Plug" data-variation="" data-price="10.00" data-stock="2" data-qty-id="qty-10" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
 </div>
 </main>
+
+
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>

@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Power Banks - Evan's Smart Fix</title>
+<title>Watch Cases - Evan's Smart Fix</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
+
 </head>
 <body>
 <header>
 <div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo" width="100" height="100">
-<div><h1>Power Banks</h1><p>Evan's Smart Fix</p></div>
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Watch Cases</h1><p>Watch Cases</p></div>
 </div>
 <nav>
 <a href="index.html">Home</a>
@@ -26,6 +27,7 @@
 <a href="cases.html">Cases</a>
 <a href="cables.html">Cables</a>
 <a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
 <a href="headphones.html">Headphones</a>
 <a href="adapters.html">Adapters</a>
 <a href="screen-protectors.html">Screen Protectors</a>
@@ -37,85 +39,73 @@
 <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
 </nav>
 </header>
+
 <main class="accessory-page">
-<h2>Power Banks</h2>
-<p class="accessory-intro">Portable chargers and power banks currently in stock.</p>
-<div class="accessory-toolbar"><input class="accessory-search" type="search" placeholder="Search power banks..." oninput="filterAccessoryProducts(this.value)"></div>
+<h2>Watch Cases</h2>
+<p class="accessory-intro">Protective cases for smart watches.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
 <div class="accessory-grid">
-<div class="accessory-product" data-search="Panther Force 20000 mAh Powerbank With Built in Cables pf187">
-<img src="images/pf187.png" alt="Panther Force 20000 mAh Powerbank With Built in Cables" class="product-image">
-<h3>Panther Force 20000 mAh Powerbank With Built in Cables</h3>
-<div class="product-price">£24.99</div>
-<div class="stock-text">1 in stock</div>
-<label for="pb-qty-0">Quantity</label>
-<input id="pb-qty-0" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Panther Force 20000 mAh Powerbank With Built in Cables","",24.99,document.getElementById("pb-qty-0").value,1)'>Add to Basket</button>
+<div class="accessory-product" data-search="Watch Case 41mm ESF06 Watch Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 41mm" class="product-image">
+<h3>Watch Case 41mm</h3>
+<div class="product-price">£5.99</div>
+<div class="stock-text">10 in stock</div>
+<label for="qty-0">Quantity</label>
+<input id="qty-0" type="number" min="1" max="10" value="1" >
+<button class="add-accessory-btn" data-name="Watch Case 41mm" data-variation="" data-price="5.99" data-stock="10" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Panther Force MagSafe 5,000 mAh Power Bank pf224">
-<img src="images/pf224.png" alt="Panther Force MagSafe 5,000 mAh Power Bank" class="product-image">
-<h3>Panther Force MagSafe 5,000 mAh Power Bank</h3>
-<div class="product-price">£20.00</div>
-<div class="stock-text">1 in stock</div>
-<label for="pb-qty-1">Quantity</label>
-<input id="pb-qty-1" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Panther Force MagSafe 5,000 mAh Power Bank","",20.00,document.getElementById("pb-qty-1").value,1)'>Add to Basket</button>
+<div class="accessory-product" data-search="Watch Case 42mm ESF05 Watch Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 42mm" class="product-image">
+<h3>Watch Case 42mm</h3>
+<div class="product-price">£4.99</div>
+<div class="stock-text">5 in stock</div>
+<label for="qty-1">Quantity</label>
+<input id="qty-1" type="number" min="1" max="5" value="1" >
+<button class="add-accessory-btn" data-name="Watch Case 42mm" data-variation="" data-price="4.99" data-stock="5" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Panther Force PD3.0 10000mah Power Bank pf80">
-<img src="images/pf80.png" alt="Panther Force PD3.0 10000mah Power Bank" class="product-image">
-<h3>Panther Force PD3.0 10000mah Power Bank</h3>
-<div class="product-price">£19.00</div>
-<div class="stock-text">4 in stock</div>
-<label for="pb-qty-2">Quantity</label>
-<input id="pb-qty-2" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Panther Force PD3.0 10000mah Power Bank","",19.00,document.getElementById("pb-qty-2").value,4)'>Add to Basket</button>
+<div class="accessory-product" data-search="Watch Case 44mm ESF04 Watch Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 44mm" class="product-image">
+<h3>Watch Case 44mm</h3>
+<div class="product-price">£5.99</div>
+<div class="stock-text">10 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="10" value="1" >
+<button class="add-accessory-btn" data-name="Watch Case 44mm" data-variation="" data-price="5.99" data-stock="10" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Power Bank 10000mAh Magnetic Wireless pf186">
-<img src="images/pf186.png" alt="Power Bank 10000mAh Magnetic Wireless" class="product-image">
-<h3>Power Bank 10000mAh Magnetic Wireless</h3>
-<div class="product-price">£20.99</div>
+<div class="accessory-product" data-search="Watch Case 45mm ESF03 Watch Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 45mm" class="product-image">
+<h3>Watch Case 45mm</h3>
+<div class="product-price">£5.99</div>
+<div class="stock-text">3 in stock</div>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="Watch Case 45mm" data-variation="" data-price="5.99" data-stock="3" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Watch Case 46mm ESF02 Watch Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 46mm" class="product-image">
+<h3>Watch Case 46mm</h3>
+<div class="product-price">£4.99</div>
 <div class="stock-text">2 in stock</div>
-<label for="pb-qty-3">Quantity</label>
-<input id="pb-qty-3" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Power Bank 10000mAh Magnetic Wireless","",20.99,document.getElementById("pb-qty-3").value,2)'>Add to Basket</button>
+<label for="qty-4">Quantity</label>
+<input id="qty-4" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Watch Case 46mm" data-variation="" data-price="4.99" data-stock="2" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Power Bank 10000mAh Magnetic Wireless Stand pf269">
-<img src="images/pf269.png" alt="Power Bank 10000mAh Magnetic Wireless Stand" class="product-image">
-<h3>Power Bank 10000mAh Magnetic Wireless Stand</h3>
-<div class="product-price">£20.99</div>
-<div class="stock-text">2 in stock</div>
-<label for="pb-qty-4">Quantity</label>
-<input id="pb-qty-4" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Power Bank 10000mAh Magnetic Wireless Stand","",20.99,document.getElementById("pb-qty-4").value,2)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Power Bank 20000mAh pf83">
-<img src="images/pf83.png" alt="Power Bank 20000mAh" class="product-image">
-<h3>Power Bank 20000mAh</h3>
-<div class="product-price">£39.00</div>
-<div class="stock-text">1 in stock</div>
-<label for="pb-qty-5">Quantity</label>
-<input id="pb-qty-5" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Power Bank 20000mAh","",39.00,document.getElementById("pb-qty-5").value,1)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Power Bank 20000mAh 100W pf50">
-<img src="images/pf50.png" alt="Power Bank 20000mAh 100W" class="product-image">
-<h3>Power Bank 20000mAh 100W</h3>
-<div class="product-price">£45.00</div>
-<div class="stock-text">1 in stock</div>
-<label for="pb-qty-6">Quantity</label>
-<input id="pb-qty-6" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Power Bank 20000mAh 100W","",45.00,document.getElementById("pb-qty-6").value,1)'>Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Power Bank 4000mAh pf185">
-<img src="images/pf185.png" alt="Power Bank 4000mAh" class="product-image">
-<h3>Power Bank 4000mAh</h3>
-<div class="product-price">£15.00</div>
-<div class="stock-text">2 in stock</div>
-<label for="pb-qty-7">Quantity</label>
-<input id="pb-qty-7" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Power Bank 4000mAh","",15.00,document.getElementById("pb-qty-7").value,2)'>Add to Basket</button>
+<div class="accessory-product" data-search="Watch Case 49mm ESF01 Watch Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 49mm" class="product-image">
+<h3>Watch Case 49mm</h3>
+<div class="product-price">£5.99</div>
+<div class="stock-text">6 in stock</div>
+<label for="qty-5">Quantity</label>
+<input id="qty-5" type="number" min="1" max="6" value="1" >
+<button class="add-accessory-btn" data-name="Watch Case 49mm" data-variation="" data-price="5.99" data-stock="6" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
 </div>
 </main>
+
+
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>

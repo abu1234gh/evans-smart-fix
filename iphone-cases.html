@@ -8,30 +8,17 @@
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
 <style>
-.accessory-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-@media (max-width: 900px) {
-    .accessory-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 650px) {
-    .accessory-grid {
-        grid-template-columns: 1fr;
-    }
-}
+.accessory-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.accessory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.accessory-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
 <div class="header-left">
-<img src="images/logo.png" alt="Logo" class="logo">
-<p>Apple iPhone Cases</p>
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Apple iPhone Cases</h1><p>Apple iPhone Cases</p></div>
 </div>
-
 <nav>
 <a href="index.html">Home</a>
 <details class="nav-dropdown">
@@ -44,6 +31,7 @@
 <a href="cases.html">Cases</a>
 <a href="cables.html">Cables</a>
 <a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
 <a href="headphones.html">Headphones</a>
 <a href="adapters.html">Adapters</a>
 <a href="screen-protectors.html">Screen Protectors</a>
@@ -54,443 +42,397 @@
 </details>
 <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
 </nav>
-
 </header>
 
 <main class="accessory-page">
 <h2>Apple iPhone Cases</h2>
-<p class="accessory-intro">Choose your iPhone model, then choose the case type you want.</p>
-<p><a href="cases.html" style="color:#0057b8;text-decoration:none;font-weight:bold;">← Change Brand</a></p>
+<p class="accessory-intro">Choose your phone model, then choose the case type you want.</p>
+<p><a href="cases.html" class="accessory-back-link">← Change Brand</a></p>
 <div class="accessory-toolbar">
 <input class="accessory-search" type="search" placeholder="Search phone model..." oninput="filterAccessoryProducts(this.value)">
 </div>
 <div class="accessory-grid">
-<div class="accessory-product" data-search="iPhone IP17 Case Magsafe Premium Magsafe Ring Case">
-<img src="images/unavailable.png" alt="iPhone IP17 Case" class="product-image">
-<h3>iPhone IP17 Case</h3>
+<div class="accessory-product" data-search="iPhone 11 Case Magsafe Shockproof Crossbody Cord Wallet Fancy Heart chain Beaded chain Magsafe Premium Ring Case Basic">
+<img id="case-img-0" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 11 Case" class="product-image">
+<h3>iPhone 11 Case</h3>
 <label for="case-var-0">Case type</label>
-<select id="case-var-0" onchange="updateCaseCard(0)"><option value="0">Magsafe Premium — £11.00 (4 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Ring Case — £8.00 (1 in stock)</option></select>
-<div class="product-price" id="case-price-0">£11.00</div>
-<div class="stock-text" id="case-stock-0">4 in stock</div>
+<select id="case-var-0" onchange="updateCaseCard(0)"><option value="0" selected>Magsafe — £9.00 (1 in stock)</option><option value="1">Shockproof — £8.00 (1 in stock)</option><option value="2">Crossbody Cord — £8.00 (7 in stock)</option><option value="3">Wallet — £8.00 (1 in stock)</option><option value="4">Fancy — £8.00 (3 in stock)</option><option value="5">Heart chain — £7.00 (7 in stock)</option><option value="6">Beaded chain — £7.00 (1 in stock)</option><option value="7">Magsafe Premium — £11.00 (4 in stock)</option><option value="8">Ring Case — £8.00 (1 in stock)</option><option value="9">Basic — £5.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-0">£9.00</div>
+<div class="stock-text" id="case-stock-0">1 in stock</div>
 <label for="case-qty-0">Quantity</label>
-<input id="case-qty-0" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(0)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP17 pro Case Ring Case Shockproof Magsafe Premium Magsafe">
-<img src="images/unavailable.png" alt="iPhone IP17 pro Case" class="product-image">
-<h3>iPhone IP17 pro Case</h3>
+<input id="case-qty-0" type="number" min="1" max="1" value="1" >
+<button id="case-add-0" class="add-accessory-btn" onclick="addSelectedCase(0)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 11PM Case Fancy Wallet Shockproof Ring Case Basic Magsafe">
+<img id="case-img-1" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 11PM Case" class="product-image">
+<h3>iPhone 11PM Case</h3>
 <label for="case-var-1">Case type</label>
-<select id="case-var-1" onchange="updateCaseCard(1)"><option value="0">Ring Case — £8.00 (2 in stock)</option><option value="1">Shockproof — £8.00 (1 in stock)</option><option value="2">Magsafe Premium — £11.00 (3 in stock)</option><option value="3">Magsafe — £9.00 (3 in stock)</option></select>
+<select id="case-var-1" onchange="updateCaseCard(1)"><option value="0" selected>Fancy — £8.00 (3 in stock)</option><option value="1">Wallet — £8.00 (4 in stock)</option><option value="2">Shockproof — £8.00 (1 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option><option value="4">Basic — £5.00 (4 in stock)</option><option value="5">Magsafe — £9.00 (6 in stock)</option></select>
 <div class="product-price" id="case-price-1">£8.00</div>
-<div class="stock-text" id="case-stock-1">2 in stock</div>
+<div class="stock-text" id="case-stock-1">3 in stock</div>
 <label for="case-qty-1">Quantity</label>
-<input id="case-qty-1" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(1)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IpAir Case Magsafe">
-<img src="images/unavailable.png" alt="iPhone IpAir Case" class="product-image">
-<h3>iPhone IpAir Case</h3>
+<input id="case-qty-1" type="number" min="1" max="3" value="1" >
+<button id="case-add-1" class="add-accessory-btn" onclick="addSelectedCase(1)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 11pro Case Fancy Shockproof Wallet Magsafe Basic Crossbody Cord">
+<img id="case-img-2" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 11pro Case" class="product-image">
+<h3>iPhone 11pro Case</h3>
 <label for="case-var-2">Case type</label>
-<select id="case-var-2" onchange="updateCaseCard(2)"><option value="0">Magsafe — £9.00 (8 in stock)</option></select>
-<div class="product-price" id="case-price-2">£9.00</div>
+<select id="case-var-2" onchange="updateCaseCard(2)"><option value="0" selected>Fancy — £8.00 (8 in stock)</option><option value="1">Shockproof — £8.00 (4 in stock)</option><option value="2">Wallet — £8.00 (4 in stock)</option><option value="3">Magsafe — £9.00 (4 in stock)</option><option value="4">Basic — £5.00 (2 in stock)</option><option value="5">Crossbody Cord — £8.00 (12 in stock)</option></select>
+<div class="product-price" id="case-price-2">£8.00</div>
 <div class="stock-text" id="case-stock-2">8 in stock</div>
 <label for="case-qty-2">Quantity</label>
-<input id="case-qty-2" type="number" min="1" max="8" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(2)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone Ip17PM Case Ring Case Magsafe Premium Magsafe Shockproof">
-<img src="images/unavailable.png" alt="iPhone Ip17PM Case" class="product-image">
-<h3>iPhone Ip17PM Case</h3>
+<input id="case-qty-2" type="number" min="1" max="8" value="1" >
+<button id="case-add-2" class="add-accessory-btn" onclick="addSelectedCase(2)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 12 Case Crossbody Cord Magsafe Magsafe Premium Shockproof Heart chain Beaded chain Fancy Basic Wallet">
+<img id="case-img-3" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Case" class="product-image">
+<h3>iPhone 12 Case</h3>
 <label for="case-var-3">Case type</label>
-<select id="case-var-3" onchange="updateCaseCard(3)"><option value="0">Ring Case — £8.00 (3 in stock)</option><option value="1">Magsafe Premium — £11.00 (2 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Shockproof — £8.00 (1 in stock)</option></select>
+<select id="case-var-3" onchange="updateCaseCard(3)"><option value="0" selected>Crossbody Cord — £8.00 (6 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option><option value="3">Shockproof — £8.00 (2 in stock)</option><option value="4">Heart chain — £7.00 (8 in stock)</option><option value="5">Beaded chain — £7.00 (2 in stock)</option><option value="6">Fancy — £8.00 (6 in stock)</option><option value="7">Basic — £5.00 (4 in stock)</option><option value="8">Wallet — £8.00 (1 in stock)</option></select>
 <div class="product-price" id="case-price-3">£8.00</div>
-<div class="stock-text" id="case-stock-3">3 in stock</div>
+<div class="stock-text" id="case-stock-3">6 in stock</div>
 <label for="case-qty-3">Quantity</label>
-<input id="case-qty-3" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(3)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone Ip16 Case Magsafe Magsafe Premium">
-<img src="images/unavailable.png" alt="iPhone Ip16 Case" class="product-image">
-<h3>iPhone Ip16 Case</h3>
+<input id="case-qty-3" type="number" min="1" max="6" value="1" >
+<button id="case-add-3" class="add-accessory-btn" onclick="addSelectedCase(3)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 12 PM Case Fancy Magsafe Basic Ring Case Shockproof">
+<img id="case-img-4" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 PM Case" class="product-image">
+<h3>iPhone 12 PM Case</h3>
 <label for="case-var-4">Case type</label>
-<select id="case-var-4" onchange="updateCaseCard(4)"><option value="0">Magsafe — £9.00 (5 in stock)</option><option value="1">Magsafe Premium — £11.00 (3 in stock)</option></select>
-<div class="product-price" id="case-price-4">£9.00</div>
-<div class="stock-text" id="case-stock-4">5 in stock</div>
+<select id="case-var-4" onchange="updateCaseCard(4)"><option value="0" selected>Fancy — £8.00 (3 in stock)</option><option value="1">Magsafe — £9.00 (8 in stock)</option><option value="2">Basic — £5.00 (2 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option><option value="4">Shockproof — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-4">£8.00</div>
+<div class="stock-text" id="case-stock-4">3 in stock</div>
 <label for="case-qty-4">Quantity</label>
-<input id="case-qty-4" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(4)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP16 pro Case Magsafe Premium Basic">
-<img src="images/unavailable.png" alt="iPhone IP16 pro Case" class="product-image">
-<h3>iPhone IP16 pro Case</h3>
+<input id="case-qty-4" type="number" min="1" max="3" value="1" >
+<button id="case-add-4" class="add-accessory-btn" onclick="addSelectedCase(4)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 12Pro Case Crossbody Cord Basic Magsafe Magsafe Premium Fancy">
+<img id="case-img-5" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12Pro Case" class="product-image">
+<h3>iPhone 12Pro Case</h3>
 <label for="case-var-5">Case type</label>
-<select id="case-var-5" onchange="updateCaseCard(5)"><option value="0">Magsafe Premium — £11.00 (4 in stock)</option><option value="1">Basic — £5.00 (3 in stock)</option></select>
-<div class="product-price" id="case-price-5">£11.00</div>
-<div class="stock-text" id="case-stock-5">4 in stock</div>
+<select id="case-var-5" onchange="updateCaseCard(5)"><option value="0" selected>Crossbody Cord — £8.00 (3 in stock)</option><option value="1">Basic — £5.00 (2 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Magsafe Premium — £11.00 (3 in stock)</option><option value="4">Fancy — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-5">£8.00</div>
+<div class="stock-text" id="case-stock-5">3 in stock</div>
 <label for="case-qty-5">Quantity</label>
-<input id="case-qty-5" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(5)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone Ip16E Case Shockproof Magsafe Premium Magsafe">
-<img src="images/unavailable.png" alt="iPhone Ip16E Case" class="product-image">
-<h3>iPhone Ip16E Case</h3>
+<input id="case-qty-5" type="number" min="1" max="3" value="1" >
+<button id="case-add-5" class="add-accessory-btn" onclick="addSelectedCase(5)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 12mini Case Crossbody Cord Magsafe Basic Fancy">
+<img id="case-img-6" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12mini Case" class="product-image">
+<h3>iPhone 12mini Case</h3>
 <label for="case-var-6">Case type</label>
-<select id="case-var-6" onchange="updateCaseCard(6)"><option value="0">Shockproof — £8.00 (1 in stock)</option><option value="1">Magsafe Premium — £11.00 (1 in stock)</option><option value="2">Magsafe — £9.00 (6 in stock)</option></select>
+<select id="case-var-6" onchange="updateCaseCard(6)"><option value="0" selected>Crossbody Cord — £8.00 (7 in stock)</option><option value="1">Magsafe — £9.00 (4 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option><option value="3">Fancy — £8.00 (2 in stock)</option></select>
 <div class="product-price" id="case-price-6">£8.00</div>
-<div class="stock-text" id="case-stock-6">1 in stock</div>
+<div class="stock-text" id="case-stock-6">7 in stock</div>
 <label for="case-qty-6">Quantity</label>
-<input id="case-qty-6" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(6)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP16PM Case Basic Magsafe">
-<img src="images/unavailable.png" alt="iPhone IP16PM Case" class="product-image">
-<h3>iPhone IP16PM Case</h3>
+<input id="case-qty-6" type="number" min="1" max="7" value="1" >
+<button id="case-add-6" class="add-accessory-btn" onclick="addSelectedCase(6)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 13 Case Magsafe Magsafe Premium Heart chain Crossbody Cord">
+<img id="case-img-7" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Case" class="product-image">
+<h3>iPhone 13 Case</h3>
 <label for="case-var-7">Case type</label>
-<select id="case-var-7" onchange="updateCaseCard(7)"><option value="0">Basic — £5.00 (4 in stock)</option><option value="1">Magsafe — £9.00 (5 in stock)</option></select>
-<div class="product-price" id="case-price-7">£5.00</div>
-<div class="stock-text" id="case-stock-7">4 in stock</div>
+<select id="case-var-7" onchange="updateCaseCard(7)"><option value="0" selected>Magsafe — £9.00 (1 in stock)</option><option value="1">Magsafe Premium — £11.00 (7 in stock)</option><option value="2">Heart chain — £7.00 (7 in stock)</option><option value="3">Crossbody Cord — £8.00 (7 in stock)</option></select>
+<div class="product-price" id="case-price-7">£9.00</div>
+<div class="stock-text" id="case-stock-7">1 in stock</div>
 <label for="case-qty-7">Quantity</label>
-<input id="case-qty-7" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(7)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP16PRO Case Magsafe Fancy Basic">
-<img src="images/unavailable.png" alt="iPhone IP16PRO Case" class="product-image">
-<h3>iPhone IP16PRO Case</h3>
+<input id="case-qty-7" type="number" min="1" max="1" value="1" >
+<button id="case-add-7" class="add-accessory-btn" onclick="addSelectedCase(7)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 13MINI Case Crossbody Cord Basic Magsafe Magsafe Premium Fancy">
+<img id="case-img-8" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13MINI Case" class="product-image">
+<h3>iPhone 13MINI Case</h3>
 <label for="case-var-8">Case type</label>
-<select id="case-var-8" onchange="updateCaseCard(8)"><option value="0">Magsafe — £9.00 (4 in stock)</option><option value="1">Fancy — £8.00 (2 in stock)</option><option value="2">Basic — £5.00 (5 in stock)</option></select>
-<div class="product-price" id="case-price-8">£9.00</div>
-<div class="stock-text" id="case-stock-8">4 in stock</div>
+<select id="case-var-8" onchange="updateCaseCard(8)"><option value="0" selected>Crossbody Cord — £8.00 (7 in stock)</option><option value="1">Basic — £5.00 (8 in stock)</option><option value="2">Magsafe — £9.00 (3 in stock)</option><option value="3">Magsafe Premium — £11.00 (1 in stock)</option><option value="4">Fancy — £8.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-8">£8.00</div>
+<div class="stock-text" id="case-stock-8">7 in stock</div>
 <label for="case-qty-8">Quantity</label>
-<input id="case-qty-8" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(8)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP16+ Case Basic Magsafe Fancy">
-<img src="images/unavailable.png" alt="iPhone IP16+ Case" class="product-image">
-<h3>iPhone IP16+ Case</h3>
+<input id="case-qty-8" type="number" min="1" max="7" value="1" >
+<button id="case-add-8" class="add-accessory-btn" onclick="addSelectedCase(8)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 13PM Case Ring Case Magsafe Magsafe Premium">
+<img id="case-img-9" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13PM Case" class="product-image">
+<h3>iPhone 13PM Case</h3>
 <label for="case-var-9">Case type</label>
-<select id="case-var-9" onchange="updateCaseCard(9)"><option value="0">Basic — £5.00 (5 in stock)</option><option value="1">Magsafe — £9.00 (12 in stock)</option><option value="2">Fancy — £8.00 (1 in stock)</option></select>
-<div class="product-price" id="case-price-9">£5.00</div>
-<div class="stock-text" id="case-stock-9">5 in stock</div>
+<select id="case-var-9" onchange="updateCaseCard(9)"><option value="0" selected>Ring Case — £8.00 (2 in stock)</option><option value="1">Magsafe — £9.00 (2 in stock)</option><option value="2">Magsafe Premium — £11.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-9">£8.00</div>
+<div class="stock-text" id="case-stock-9">2 in stock</div>
 <label for="case-qty-9">Quantity</label>
-<input id="case-qty-9" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(9)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP15 Case Magsafe Premium Magsafe Basic Fancy Shockproof Basic Fancy Shockproof Ring Case">
-<img src="images/unavailable.png" alt="iPhone IP15 Case" class="product-image">
-<h3>iPhone IP15 Case</h3>
+<input id="case-qty-9" type="number" min="1" max="2" value="1" >
+<button id="case-add-9" class="add-accessory-btn" onclick="addSelectedCase(9)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 13Pro Case Crossbody Cord Magsafe Magsafe Premium Shockproof Basic">
+<img id="case-img-10" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13Pro Case" class="product-image">
+<h3>iPhone 13Pro Case</h3>
 <label for="case-var-10">Case type</label>
-<select id="case-var-10" onchange="updateCaseCard(10)"><option value="0">Magsafe Premium — £11.00 (1 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Basic — £5.00 (2 in stock)</option><option value="3">Fancy — £8.00 (3 in stock)</option><option value="4">Shockproof — £8.00 (1 in stock)</option><option value="5">Basic — £5.00 (3 in stock)</option><option value="6">Fancy — £8.00 (1 in stock)</option><option value="7">Shockproof — £8.00 (2 in stock)</option><option value="8">Ring Case — £8.00 (2 in stock)</option></select>
-<div class="product-price" id="case-price-10">£11.00</div>
-<div class="stock-text" id="case-stock-10">1 in stock</div>
+<select id="case-var-10" onchange="updateCaseCard(10)"><option value="0" selected>Crossbody Cord — £8.00 (6 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2" disabled>Magsafe Premium — £11.00 (Out of stock)</option><option value="3">Shockproof — £8.00 (2 in stock)</option><option value="4">Basic — £5.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-10">£8.00</div>
+<div class="stock-text" id="case-stock-10">6 in stock</div>
 <label for="case-qty-10">Quantity</label>
-<input id="case-qty-10" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(10)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP15+ Case Basic Magsafe Magsafe Premium">
-<img src="images/unavailable.png" alt="iPhone IP15+ Case" class="product-image">
-<h3>iPhone IP15+ Case</h3>
+<input id="case-qty-10" type="number" min="1" max="6" value="1" >
+<button id="case-add-10" class="add-accessory-btn" onclick="addSelectedCase(10)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 14 Case Chain Magsafe Premium Basic Fancy Crossbody Cord">
+<img id="case-img-11" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Case" class="product-image">
+<h3>iPhone 14 Case</h3>
 <label for="case-var-11">Case type</label>
-<select id="case-var-11" onchange="updateCaseCard(11)"><option value="0">Basic — £5.00 (5 in stock)</option><option value="1">Magsafe — £9.00 (6 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option></select>
-<div class="product-price" id="case-price-11">£5.00</div>
-<div class="stock-text" id="case-stock-11">5 in stock</div>
+<select id="case-var-11" onchange="updateCaseCard(11)"><option value="0" selected>Chain — £7.00 (11 in stock)</option><option value="1">Magsafe Premium — £11.00 (3 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option><option value="3">Fancy — £8.00 (3 in stock)</option><option value="4">Crossbody Cord — £8.00 (15 in stock)</option></select>
+<div class="product-price" id="case-price-11">£7.00</div>
+<div class="stock-text" id="case-stock-11">11 in stock</div>
 <label for="case-qty-11">Quantity</label>
-<input id="case-qty-11" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(11)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP15pro Case Magsafe Magsafe Premium Fancy Basic Shockproof">
-<img src="images/unavailable.png" alt="iPhone IP15pro Case" class="product-image">
-<h3>iPhone IP15pro Case</h3>
+<input id="case-qty-11" type="number" min="1" max="11" value="1" >
+<button id="case-add-11" class="add-accessory-btn" onclick="addSelectedCase(11)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 14 PRO Case Crossbody Cord Shockproof Fancy Basic Magsafe Magsafe Premium">
+<img id="case-img-12" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 PRO Case" class="product-image">
+<h3>iPhone 14 PRO Case</h3>
 <label for="case-var-12">Case type</label>
-<select id="case-var-12" onchange="updateCaseCard(12)"><option value="0">Magsafe — £9.00 (8 in stock)</option><option value="1">Magsafe Premium — £11.00 (6 in stock)</option><option value="2">Fancy — £8.00 (5 in stock)</option><option value="3">Basic — £5.00 (2 in stock)</option><option value="4">Shockproof — £8.00 (1 in stock)</option></select>
-<div class="product-price" id="case-price-12">£9.00</div>
-<div class="stock-text" id="case-stock-12">8 in stock</div>
+<select id="case-var-12" onchange="updateCaseCard(12)"><option value="0" selected>Crossbody Cord — £8.00 (4 in stock)</option><option value="1">Shockproof — £8.00 (2 in stock)</option><option value="2">Fancy — £8.00 (5 in stock)</option><option value="3">Basic — £5.00 (5 in stock)</option><option value="4">Magsafe — £9.00 (3 in stock)</option><option value="5">Magsafe Premium — £11.00 (5 in stock)</option></select>
+<div class="product-price" id="case-price-12">£8.00</div>
+<div class="stock-text" id="case-stock-12">4 in stock</div>
 <label for="case-qty-12">Quantity</label>
-<input id="case-qty-12" type="number" min="1" max="8" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(12)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP15PM Case Basic Magsafe Magsafe Premium Fancy">
-<img src="images/unavailable.png" alt="iPhone IP15PM Case" class="product-image">
-<h3>iPhone IP15PM Case</h3>
+<input id="case-qty-12" type="number" min="1" max="4" value="1" >
+<button id="case-add-12" class="add-accessory-btn" onclick="addSelectedCase(12)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 14+ Case Basic Fancy Magsafe Ring Case">
+<img id="case-img-13" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14+ Case" class="product-image">
+<h3>iPhone 14+ Case</h3>
 <label for="case-var-13">Case type</label>
-<select id="case-var-13" onchange="updateCaseCard(13)"><option value="0">Basic — £5.00 (1 in stock)</option><option value="1">Magsafe — £9.00 (5 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option><option value="3">Fancy — £8.00 (1 in stock)</option></select>
+<select id="case-var-13" onchange="updateCaseCard(13)"><option value="0" selected>Basic — £5.00 (4 in stock)</option><option value="1">Fancy — £8.00 (3 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option></select>
 <div class="product-price" id="case-price-13">£5.00</div>
-<div class="stock-text" id="case-stock-13">1 in stock</div>
+<div class="stock-text" id="case-stock-13">4 in stock</div>
 <label for="case-qty-13">Quantity</label>
-<input id="case-qty-13" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(13)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP14 Case Chain Magsafe Premium Basic Fancy Crossbody Cord">
-<img src="images/unavailable.png" alt="iPhone IP14 Case" class="product-image">
-<h3>iPhone IP14 Case</h3>
+<input id="case-qty-13" type="number" min="1" max="4" value="1" >
+<button id="case-add-13" class="add-accessory-btn" onclick="addSelectedCase(13)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 14PM Case Basic Magsafe Magsafe Premium Fancy">
+<img id="case-img-14" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14PM Case" class="product-image">
+<h3>iPhone 14PM Case</h3>
 <label for="case-var-14">Case type</label>
-<select id="case-var-14" onchange="updateCaseCard(14)"><option value="0">Chain — £7.00 (11 in stock)</option><option value="1">Magsafe Premium — £11.00 (3 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option><option value="3">Fancy — £8.00 (3 in stock)</option><option value="4">Crossbody Cord — £8.00 (15 in stock)</option></select>
-<div class="product-price" id="case-price-14">£7.00</div>
-<div class="stock-text" id="case-stock-14">11 in stock</div>
+<select id="case-var-14" onchange="updateCaseCard(14)"><option value="0" selected>Basic — £5.00 (5 in stock)</option><option value="1">Magsafe — £9.00 (8 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option><option value="3">Fancy — £8.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-14">£5.00</div>
+<div class="stock-text" id="case-stock-14">5 in stock</div>
 <label for="case-qty-14">Quantity</label>
-<input id="case-qty-14" type="number" min="1" max="11" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(14)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP14 PRO Case Crossbody Cord Shockproof Fancy Basic Magsafe Magsafe Premium">
-<img src="images/unavailable.png" alt="iPhone IP14 PRO Case" class="product-image">
-<h3>iPhone IP14 PRO Case</h3>
+<input id="case-qty-14" type="number" min="1" max="5" value="1" >
+<button id="case-add-14" class="add-accessory-btn" onclick="addSelectedCase(14)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 15 Case Magsafe Premium Magsafe Basic Fancy Shockproof Ring Case">
+<img id="case-img-15" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Case" class="product-image">
+<h3>iPhone 15 Case</h3>
 <label for="case-var-15">Case type</label>
-<select id="case-var-15" onchange="updateCaseCard(15)"><option value="0">Crossbody Cord — £8.00 (4 in stock)</option><option value="1">Shockproof — £8.00 (2 in stock)</option><option value="2">Fancy — £8.00 (5 in stock)</option><option value="3">Basic — £5.00 (5 in stock)</option><option value="4">Magsafe — £9.00 (3 in stock)</option><option value="5">Magsafe Premium — £11.00 (5 in stock)</option></select>
-<div class="product-price" id="case-price-15">£8.00</div>
-<div class="stock-text" id="case-stock-15">4 in stock</div>
+<select id="case-var-15" onchange="updateCaseCard(15)"><option value="0" selected>Magsafe Premium — £11.00 (1 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Basic — £5.00 (5 in stock)</option><option value="3">Fancy — £8.00 (4 in stock)</option><option value="4">Shockproof — £8.00 (3 in stock)</option><option value="5">Ring Case — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-15">£11.00</div>
+<div class="stock-text" id="case-stock-15">1 in stock</div>
 <label for="case-qty-15">Quantity</label>
-<input id="case-qty-15" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(15)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP14+ Case Basic Fancy Magsafe Ring Case">
-<img src="images/unavailable.png" alt="iPhone IP14+ Case" class="product-image">
-<h3>iPhone IP14+ Case</h3>
+<input id="case-qty-15" type="number" min="1" max="1" value="1" >
+<button id="case-add-15" class="add-accessory-btn" onclick="addSelectedCase(15)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 15+ Case Basic Magsafe Magsafe Premium">
+<img id="case-img-16" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15+ Case" class="product-image">
+<h3>iPhone 15+ Case</h3>
 <label for="case-var-16">Case type</label>
-<select id="case-var-16" onchange="updateCaseCard(16)"><option value="0">Basic — £5.00 (4 in stock)</option><option value="1">Fancy — £8.00 (3 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option></select>
+<select id="case-var-16" onchange="updateCaseCard(16)"><option value="0" selected>Basic — £5.00 (5 in stock)</option><option value="1">Magsafe — £9.00 (6 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option></select>
 <div class="product-price" id="case-price-16">£5.00</div>
-<div class="stock-text" id="case-stock-16">4 in stock</div>
+<div class="stock-text" id="case-stock-16">5 in stock</div>
 <label for="case-qty-16">Quantity</label>
-<input id="case-qty-16" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(16)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP14PM Case Basic Magsafe Magsafe Premium Fancy">
-<img src="images/unavailable.png" alt="iPhone IP14PM Case" class="product-image">
-<h3>iPhone IP14PM Case</h3>
+<input id="case-qty-16" type="number" min="1" max="5" value="1" >
+<button id="case-add-16" class="add-accessory-btn" onclick="addSelectedCase(16)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 15PM Case Basic Magsafe Magsafe Premium Fancy">
+<img id="case-img-17" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15PM Case" class="product-image">
+<h3>iPhone 15PM Case</h3>
 <label for="case-var-17">Case type</label>
-<select id="case-var-17" onchange="updateCaseCard(17)"><option value="0">Basic — £5.00 (5 in stock)</option><option value="1">Magsafe — £9.00 (8 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option><option value="3">Fancy — £8.00 (4 in stock)</option></select>
+<select id="case-var-17" onchange="updateCaseCard(17)"><option value="0" selected>Basic — £5.00 (1 in stock)</option><option value="1">Magsafe — £9.00 (5 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option><option value="3">Fancy — £8.00 (1 in stock)</option></select>
 <div class="product-price" id="case-price-17">£5.00</div>
-<div class="stock-text" id="case-stock-17">5 in stock</div>
+<div class="stock-text" id="case-stock-17">1 in stock</div>
 <label for="case-qty-17">Quantity</label>
-<input id="case-qty-17" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(17)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP13 Case Magsafe Magsafe Premium Heart chain Crossbody Cord">
-<img src="images/unavailable.png" alt="iPhone IP13 Case" class="product-image">
-<h3>iPhone IP13 Case</h3>
+<input id="case-qty-17" type="number" min="1" max="1" value="1" >
+<button id="case-add-17" class="add-accessory-btn" onclick="addSelectedCase(17)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 15pro Case Magsafe Magsafe Premium Fancy Basic Shockproof">
+<img id="case-img-18" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15pro Case" class="product-image">
+<h3>iPhone 15pro Case</h3>
 <label for="case-var-18">Case type</label>
-<select id="case-var-18" onchange="updateCaseCard(18)"><option value="0">Magsafe — £9.00 (1 in stock)</option><option value="1">Magsafe Premium — £11.00 (7 in stock)</option><option value="2">Heart chain — £7.00 (7 in stock)</option><option value="3">Crossbody Cord — £8.00 (7 in stock)</option></select>
+<select id="case-var-18" onchange="updateCaseCard(18)"><option value="0" selected>Magsafe — £9.00 (8 in stock)</option><option value="1">Magsafe Premium — £11.00 (6 in stock)</option><option value="2">Fancy — £8.00 (5 in stock)</option><option value="3">Basic — £5.00 (2 in stock)</option><option value="4">Shockproof — £8.00 (1 in stock)</option></select>
 <div class="product-price" id="case-price-18">£9.00</div>
-<div class="stock-text" id="case-stock-18">1 in stock</div>
+<div class="stock-text" id="case-stock-18">8 in stock</div>
 <label for="case-qty-18">Quantity</label>
-<input id="case-qty-18" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(18)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP13Pro Case Crossbody Cord Magsafe Shockproof Basic">
-<img src="images/unavailable.png" alt="iPhone IP13Pro Case" class="product-image">
-<h3>iPhone IP13Pro Case</h3>
+<input id="case-qty-18" type="number" min="1" max="8" value="1" >
+<button id="case-add-18" class="add-accessory-btn" onclick="addSelectedCase(18)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 16 pro Case Magsafe Premium Basic Magsafe Fancy">
+<img id="case-img-19" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 pro Case" class="product-image">
+<h3>iPhone 16 pro Case</h3>
 <label for="case-var-19">Case type</label>
-<select id="case-var-19" onchange="updateCaseCard(19)"><option value="0">Crossbody Cord — £8.00 (6 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Shockproof — £8.00 (2 in stock)</option><option value="3">Basic — £5.00 (2 in stock)</option></select>
-<div class="product-price" id="case-price-19">£8.00</div>
-<div class="stock-text" id="case-stock-19">6 in stock</div>
+<select id="case-var-19" onchange="updateCaseCard(19)"><option value="0" selected>Magsafe Premium — £11.00 (4 in stock)</option><option value="1">Basic — £5.00 (8 in stock)</option><option value="2">Magsafe — £9.00 (4 in stock)</option><option value="3">Fancy — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-19">£11.00</div>
+<div class="stock-text" id="case-stock-19">4 in stock</div>
 <label for="case-qty-19">Quantity</label>
-<input id="case-qty-19" type="number" min="1" max="6" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(19)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP13MINI Case Crossbody Cord Basic Magsafe Magsafe Premium Fancy">
-<img src="images/unavailable.png" alt="iPhone IP13MINI Case" class="product-image">
-<h3>iPhone IP13MINI Case</h3>
+<input id="case-qty-19" type="number" min="1" max="4" value="1" >
+<button id="case-add-19" class="add-accessory-btn" onclick="addSelectedCase(19)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 16+ Case Basic Magsafe Fancy">
+<img id="case-img-20" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16+ Case" class="product-image">
+<h3>iPhone 16+ Case</h3>
 <label for="case-var-20">Case type</label>
-<select id="case-var-20" onchange="updateCaseCard(20)"><option value="0">Crossbody Cord — £8.00 (7 in stock)</option><option value="1">Basic — £5.00 (8 in stock)</option><option value="2">Magsafe — £9.00 (3 in stock)</option><option value="3">Magsafe Premium — £11.00 (1 in stock)</option><option value="4">Fancy — £8.00 (3 in stock)</option></select>
-<div class="product-price" id="case-price-20">£8.00</div>
-<div class="stock-text" id="case-stock-20">7 in stock</div>
+<select id="case-var-20" onchange="updateCaseCard(20)"><option value="0" selected>Basic — £5.00 (5 in stock)</option><option value="1">Magsafe — £9.00 (12 in stock)</option><option value="2">Fancy — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-20">£5.00</div>
+<div class="stock-text" id="case-stock-20">5 in stock</div>
 <label for="case-qty-20">Quantity</label>
-<input id="case-qty-20" type="number" min="1" max="7" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(20)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP13PM Case Ring Case Magsafe Magsafe Premium">
-<img src="images/unavailable.png" alt="iPhone IP13PM Case" class="product-image">
-<h3>iPhone IP13PM Case</h3>
+<input id="case-qty-20" type="number" min="1" max="5" value="1" >
+<button id="case-add-20" class="add-accessory-btn" onclick="addSelectedCase(20)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 16PM Case Basic Magsafe">
+<img id="case-img-21" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16PM Case" class="product-image">
+<h3>iPhone 16PM Case</h3>
 <label for="case-var-21">Case type</label>
-<select id="case-var-21" onchange="updateCaseCard(21)"><option value="0">Ring Case — £8.00 (2 in stock)</option><option value="1">Magsafe — £9.00 (2 in stock)</option><option value="2">Magsafe Premium — £11.00 (2 in stock)</option></select>
-<div class="product-price" id="case-price-21">£8.00</div>
-<div class="stock-text" id="case-stock-21">2 in stock</div>
+<select id="case-var-21" onchange="updateCaseCard(21)"><option value="0" selected>Basic — £5.00 (4 in stock)</option><option value="1">Magsafe — £9.00 (5 in stock)</option></select>
+<div class="product-price" id="case-price-21">£5.00</div>
+<div class="stock-text" id="case-stock-21">4 in stock</div>
 <label for="case-qty-21">Quantity</label>
-<input id="case-qty-21" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(21)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone Ip12 Case Basic Crossbody Cord Magsafe Wallet Fancy">
-<img src="images/unavailable.png" alt="iPhone Ip12 Case" class="product-image">
-<h3>iPhone Ip12 Case</h3>
+<input id="case-qty-21" type="number" min="1" max="4" value="1" >
+<button id="case-add-21" class="add-accessory-btn" onclick="addSelectedCase(21)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 17 Case Magsafe Premium Magsafe Ring Case">
+<img id="case-img-22" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Case" class="product-image">
+<h3>iPhone 17 Case</h3>
 <label for="case-var-22">Case type</label>
-<select id="case-var-22" onchange="updateCaseCard(22)"><option value="0">Basic — £5.00 (2 in stock)</option><option value="1">Crossbody Cord — £8.00 (2 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Wallet — £8.00 (1 in stock)</option><option value="4">Fancy — £8.00 (1 in stock)</option></select>
-<div class="product-price" id="case-price-22">£5.00</div>
-<div class="stock-text" id="case-stock-22">2 in stock</div>
+<select id="case-var-22" onchange="updateCaseCard(22)"><option value="0" selected>Magsafe Premium — £11.00 (4 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Ring Case — £8.00 (1 in stock)</option></select>
+<div class="product-price" id="case-price-22">£11.00</div>
+<div class="stock-text" id="case-stock-22">4 in stock</div>
 <label for="case-qty-22">Quantity</label>
-<input id="case-qty-22" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(22)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP12 PM Case Fancy Magsafe Magsafe Basic Ring Case Shockproof">
-<img src="images/unavailable.png" alt="iPhone IP12 PM Case" class="product-image">
-<h3>iPhone IP12 PM Case</h3>
+<input id="case-qty-22" type="number" min="1" max="4" value="1" >
+<button id="case-add-22" class="add-accessory-btn" onclick="addSelectedCase(22)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 17 pro Case Ring Case Shockproof Magsafe Premium Magsafe">
+<img id="case-img-23" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 pro Case" class="product-image">
+<h3>iPhone 17 pro Case</h3>
 <label for="case-var-23">Case type</label>
-<select id="case-var-23" onchange="updateCaseCard(23)"><option value="0">Fancy — £8.00 (3 in stock)</option><option value="1">Magsafe — £9.00 (4 in stock)</option><option value="2">Magsafe — £9.00 (4 in stock)</option><option value="3">Basic — £5.00 (2 in stock)</option><option value="4">Ring Case — £8.00 (1 in stock)</option><option value="5">Shockproof — £8.00 (1 in stock)</option></select>
+<select id="case-var-23" onchange="updateCaseCard(23)"><option value="0" selected>Ring Case — £8.00 (2 in stock)</option><option value="1">Shockproof — £8.00 (1 in stock)</option><option value="2">Magsafe Premium — £11.00 (3 in stock)</option><option value="3">Magsafe — £9.00 (3 in stock)</option></select>
 <div class="product-price" id="case-price-23">£8.00</div>
-<div class="stock-text" id="case-stock-23">3 in stock</div>
+<div class="stock-text" id="case-stock-23">2 in stock</div>
 <label for="case-qty-23">Quantity</label>
-<input id="case-qty-23" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(23)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP12mini Case Crossbody Cord Magsafe Basic Fancy">
-<img src="images/unavailable.png" alt="iPhone IP12mini Case" class="product-image">
-<h3>iPhone IP12mini Case</h3>
+<input id="case-qty-23" type="number" min="1" max="2" value="1" >
+<button id="case-add-23" class="add-accessory-btn" onclick="addSelectedCase(23)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 6 Case Case">
+<img id="case-img-24" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 6 Case" class="product-image">
+<h3>iPhone 6 Case</h3>
 <label for="case-var-24">Case type</label>
-<select id="case-var-24" onchange="updateCaseCard(24)"><option value="0">Crossbody Cord — £8.00 (7 in stock)</option><option value="1">Magsafe — £9.00 (4 in stock)</option><option value="2">Basic — £5.00 (1 in stock)</option><option value="3">Fancy — £8.00 (2 in stock)</option></select>
-<div class="product-price" id="case-price-24">£8.00</div>
-<div class="stock-text" id="case-stock-24">7 in stock</div>
+<select id="case-var-24" onchange="updateCaseCard(24)"><option value="0" selected>Case — £5.00 (4 in stock)</option></select>
+<div class="product-price" id="case-price-24">£5.00</div>
+<div class="stock-text" id="case-stock-24">4 in stock</div>
 <label for="case-qty-24">Quantity</label>
-<input id="case-qty-24" type="number" min="1" max="7" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(24)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP12Pro Case Crossbody Cord Basic Magsafe Magsafe Premium Fancy">
-<img src="images/unavailable.png" alt="iPhone IP12Pro Case" class="product-image">
-<h3>iPhone IP12Pro Case</h3>
+<input id="case-qty-24" type="number" min="1" max="4" value="1" >
+<button id="case-add-24" class="add-accessory-btn" onclick="addSelectedCase(24)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone SE2 Case Wallet Fancy">
+<img id="case-img-25" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone SE2 Case" class="product-image">
+<h3>iPhone SE2 Case</h3>
 <label for="case-var-25">Case type</label>
-<select id="case-var-25" onchange="updateCaseCard(25)"><option value="0">Crossbody Cord — £8.00 (3 in stock)</option><option value="1">Basic — £5.00 (2 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Magsafe Premium — £11.00 (3 in stock)</option><option value="4">Fancy — £8.00 (1 in stock)</option></select>
+<select id="case-var-25" onchange="updateCaseCard(25)"><option value="0" selected>Wallet — £8.00 (5 in stock)</option><option value="1">Fancy — £8.00 (2 in stock)</option></select>
 <div class="product-price" id="case-price-25">£8.00</div>
-<div class="stock-text" id="case-stock-25">3 in stock</div>
+<div class="stock-text" id="case-stock-25">5 in stock</div>
 <label for="case-qty-25">Quantity</label>
-<input id="case-qty-25" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(25)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP12 Case Crossbody Cord Magsafe Magsafe Premium Shockproof Heart chain Beaded chain Fancy Basic Shockproof">
-<img src="images/unavailable.png" alt="iPhone IP12 Case" class="product-image">
-<h3>iPhone IP12 Case</h3>
+<input id="case-qty-25" type="number" min="1" max="5" value="1" >
+<button id="case-add-25" class="add-accessory-btn" onclick="addSelectedCase(25)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone XR Case Wallet Magsafe Premium Magsafe Basic">
+<img id="case-img-26" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XR Case" class="product-image">
+<h3>iPhone XR Case</h3>
 <label for="case-var-26">Case type</label>
-<select id="case-var-26" onchange="updateCaseCard(26)"><option value="0">Crossbody Cord — £8.00 (4 in stock)</option><option value="1">Magsafe — £9.00 (1 in stock)</option><option value="2">Magsafe Premium — £11.00 (1 in stock)</option><option value="3">Shockproof — £8.00 (1 in stock)</option><option value="4">Heart chain — £7.00 (8 in stock)</option><option value="5">Beaded chain — £7.00 (2 in stock)</option><option value="6">Fancy — £8.00 (5 in stock)</option><option value="7">Basic — £5.00 (2 in stock)</option><option value="8">Shockproof — £8.00 (1 in stock)</option></select>
+<select id="case-var-26" onchange="updateCaseCard(26)"><option value="0" selected>Wallet — £8.00 (2 in stock)</option><option value="1" disabled>Magsafe Premium — £11.00 (Out of stock)</option><option value="2">Magsafe — £9.00 (3 in stock)</option><option value="3">Basic — £5.00 (3 in stock)</option></select>
 <div class="product-price" id="case-price-26">£8.00</div>
-<div class="stock-text" id="case-stock-26">4 in stock</div>
+<div class="stock-text" id="case-stock-26">2 in stock</div>
 <label for="case-qty-26">Quantity</label>
-<input id="case-qty-26" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(26)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP11 Case Magsafe Shockproof Crossbody Cord Wallet Fancy Heart chain Beaded chain Magsafe Premium Ring Case Basic">
-<img src="images/unavailable.png" alt="iPhone IP11 Case" class="product-image">
-<h3>iPhone IP11 Case</h3>
+<input id="case-qty-26" type="number" min="1" max="2" value="1" >
+<button id="case-add-26" class="add-accessory-btn" onclick="addSelectedCase(26)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone XS Case Shockproof Magsafe Fancy Ring Case Wallet">
+<img id="case-img-27" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XS Case" class="product-image">
+<h3>iPhone XS Case</h3>
 <label for="case-var-27">Case type</label>
-<select id="case-var-27" onchange="updateCaseCard(27)"><option value="0">Magsafe — £9.00 (1 in stock)</option><option value="1">Shockproof — £8.00 (1 in stock)</option><option value="2">Crossbody Cord — £8.00 (7 in stock)</option><option value="3">Wallet — £8.00 (1 in stock)</option><option value="4">Fancy — £8.00 (3 in stock)</option><option value="5">Heart chain — £7.00 (7 in stock)</option><option value="6">Beaded chain — £7.00 (1 in stock)</option><option value="7">Magsafe Premium — £11.00 (4 in stock)</option><option value="8">Ring Case — £8.00 (1 in stock)</option><option value="9">Basic — £5.00 (2 in stock)</option></select>
-<div class="product-price" id="case-price-27">£9.00</div>
-<div class="stock-text" id="case-stock-27">1 in stock</div>
+<select id="case-var-27" onchange="updateCaseCard(27)"><option value="0" selected>Shockproof — £8.00 (2 in stock)</option><option value="1">Magsafe — £9.00 (1 in stock)</option><option value="2">Fancy — £8.00 (5 in stock)</option><option value="3">Ring Case — £8.00 (4 in stock)</option><option value="4">Wallet — £8.00 (2 in stock)</option></select>
+<div class="product-price" id="case-price-27">£8.00</div>
+<div class="stock-text" id="case-stock-27">2 in stock</div>
 <label for="case-qty-27">Quantity</label>
-<input id="case-qty-27" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(27)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP11PM Case Fancy Wallet Shockproof Ring Case Basic Magsafe">
-<img src="images/unavailable.png" alt="iPhone IP11PM Case" class="product-image">
-<h3>iPhone IP11PM Case</h3>
+<input id="case-qty-27" type="number" min="1" max="2" value="1" >
+<button id="case-add-27" class="add-accessory-btn" onclick="addSelectedCase(27)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone XSMAX Case Wallet Fancy Magsafe Shockproof">
+<img id="case-img-28" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XSMAX Case" class="product-image">
+<h3>iPhone XSMAX Case</h3>
 <label for="case-var-28">Case type</label>
-<select id="case-var-28" onchange="updateCaseCard(28)"><option value="0">Fancy — £8.00 (3 in stock)</option><option value="1">Wallet — £8.00 (4 in stock)</option><option value="2">Shockproof — £8.00 (1 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option><option value="4">Basic — £5.00 (4 in stock)</option><option value="5">Magsafe — £9.00 (6 in stock)</option></select>
+<select id="case-var-28" onchange="updateCaseCard(28)"><option value="0" selected>Wallet — £8.00 (4 in stock)</option><option value="1">Fancy — £8.00 (5 in stock)</option><option value="2">Magsafe — £9.00 (4 in stock)</option><option value="3">Shockproof — £8.00 (3 in stock)</option></select>
 <div class="product-price" id="case-price-28">£8.00</div>
-<div class="stock-text" id="case-stock-28">3 in stock</div>
+<div class="stock-text" id="case-stock-28">4 in stock</div>
 <label for="case-qty-28">Quantity</label>
-<input id="case-qty-28" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(28)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IP11pro Case Fancy Shockproof Wallet Magsafe Basic Crossbody Cord">
-<img src="images/unavailable.png" alt="iPhone IP11pro Case" class="product-image">
-<h3>iPhone IP11pro Case</h3>
+<input id="case-qty-28" type="number" min="1" max="4" value="1" >
+<button id="case-add-28" class="add-accessory-btn" onclick="addSelectedCase(28)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 16 Case Magsafe Magsafe Premium">
+<img id="case-img-29" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Case" class="product-image">
+<h3>iPhone 16 Case</h3>
 <label for="case-var-29">Case type</label>
-<select id="case-var-29" onchange="updateCaseCard(29)"><option value="0">Fancy — £8.00 (8 in stock)</option><option value="1">Shockproof — £8.00 (4 in stock)</option><option value="2">Wallet — £8.00 (4 in stock)</option><option value="3">Magsafe — £9.00 (4 in stock)</option><option value="4">Basic — £5.00 (2 in stock)</option><option value="5">Crossbody Cord — £8.00 (12 in stock)</option></select>
-<div class="product-price" id="case-price-29">£8.00</div>
-<div class="stock-text" id="case-stock-29">8 in stock</div>
+<select id="case-var-29" onchange="updateCaseCard(29)"><option value="0" selected>Magsafe — £9.00 (5 in stock)</option><option value="1">Magsafe Premium — £11.00 (3 in stock)</option></select>
+<div class="product-price" id="case-price-29">£9.00</div>
+<div class="stock-text" id="case-stock-29">5 in stock</div>
 <label for="case-qty-29">Quantity</label>
-<input id="case-qty-29" type="number" min="1" max="8" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(29)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IPXR Case Wallet Magsafe Basic">
-<img src="images/unavailable.png" alt="iPhone IPXR Case" class="product-image">
-<h3>iPhone IPXR Case</h3>
+<input id="case-qty-29" type="number" min="1" max="5" value="1" >
+<button id="case-add-29" class="add-accessory-btn" onclick="addSelectedCase(29)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 16E Case Shockproof Magsafe Premium Magsafe">
+<img id="case-img-30" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16E Case" class="product-image">
+<h3>iPhone 16E Case</h3>
 <label for="case-var-30">Case type</label>
-<select id="case-var-30" onchange="updateCaseCard(30)"><option value="0">Wallet — £8.00 (2 in stock)</option><option value="1">Magsafe — £9.00 (3 in stock)</option><option value="2">Basic — £5.00 (3 in stock)</option></select>
+<select id="case-var-30" onchange="updateCaseCard(30)"><option value="0" selected>Shockproof — £8.00 (1 in stock)</option><option value="1">Magsafe Premium — £11.00 (1 in stock)</option><option value="2">Magsafe — £9.00 (6 in stock)</option></select>
 <div class="product-price" id="case-price-30">£8.00</div>
-<div class="stock-text" id="case-stock-30">2 in stock</div>
+<div class="stock-text" id="case-stock-30">1 in stock</div>
 <label for="case-qty-30">Quantity</label>
-<input id="case-qty-30" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(30)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IPXS Case Shockproof Magsafe Fancy Ring Case Wallet">
-<img src="images/unavailable.png" alt="iPhone IPXS Case" class="product-image">
-<h3>iPhone IPXS Case</h3>
+<input id="case-qty-30" type="number" min="1" max="1" value="1" >
+<button id="case-add-30" class="add-accessory-btn" onclick="addSelectedCase(30)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 17PM Case Ring Case Magsafe Premium Magsafe Shockproof">
+<img id="case-img-31" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17PM Case" class="product-image">
+<h3>iPhone 17PM Case</h3>
 <label for="case-var-31">Case type</label>
-<select id="case-var-31" onchange="updateCaseCard(31)"><option value="0">Shockproof — £8.00 (2 in stock)</option><option value="1">Magsafe — £9.00 (1 in stock)</option><option value="2">Fancy — £8.00 (5 in stock)</option><option value="3">Ring Case — £8.00 (4 in stock)</option><option value="4">Wallet — £8.00 (2 in stock)</option></select>
+<select id="case-var-31" onchange="updateCaseCard(31)"><option value="0" selected>Ring Case — £8.00 (3 in stock)</option><option value="1">Magsafe Premium — £11.00 (2 in stock)</option><option value="2">Magsafe — £9.00 (2 in stock)</option><option value="3">Shockproof — £8.00 (1 in stock)</option></select>
 <div class="product-price" id="case-price-31">£8.00</div>
-<div class="stock-text" id="case-stock-31">2 in stock</div>
+<div class="stock-text" id="case-stock-31">3 in stock</div>
 <label for="case-qty-31">Quantity</label>
-<input id="case-qty-31" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(31)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone IPSE2 Case Wallet Fancy">
-<img src="images/unavailable.png" alt="iPhone IPSE2 Case" class="product-image">
-<h3>iPhone IPSE2 Case</h3>
+<input id="case-qty-31" type="number" min="1" max="3" value="1" >
+<button id="case-add-31" class="add-accessory-btn" onclick="addSelectedCase(31)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 7+8+ compatible Case Fancy Basic">
+<img id="case-img-32" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 7+8+ compatible Case" class="product-image">
+<h3>iPhone 7+8+ compatible Case</h3>
 <label for="case-var-32">Case type</label>
-<select id="case-var-32" onchange="updateCaseCard(32)"><option value="0">Wallet — £8.00 (5 in stock)</option><option value="1">Fancy — £8.00 (2 in stock)</option></select>
+<select id="case-var-32" onchange="updateCaseCard(32)"><option value="0" selected>Fancy — £8.00 (7 in stock)</option><option value="1">Basic — £5.00 (3 in stock)</option></select>
 <div class="product-price" id="case-price-32">£8.00</div>
-<div class="stock-text" id="case-stock-32">5 in stock</div>
+<div class="stock-text" id="case-stock-32">7 in stock</div>
 <label for="case-qty-32">Quantity</label>
-<input id="case-qty-32" type="number" min="1" max="5" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(32)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone Ip7and 8 compatible Case Wallet Fancy Magsafe Premium Ring Case Shockproof">
-<img src="images/unavailable.png" alt="iPhone Ip7and 8 compatible Case" class="product-image">
-<h3>iPhone Ip7and 8 compatible Case</h3>
+<input id="case-qty-32" type="number" min="1" max="7" value="1" >
+<button id="case-add-32" class="add-accessory-btn" onclick="addSelectedCase(32)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone 7and 8 compatible Case Wallet Fancy Magsafe Premium Ring Case Shockproof">
+<img id="case-img-33" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 7and 8 compatible Case" class="product-image">
+<h3>iPhone 7and 8 compatible Case</h3>
 <label for="case-var-33">Case type</label>
-<select id="case-var-33" onchange="updateCaseCard(33)"><option value="0">Wallet — £8.00 (3 in stock)</option><option value="1">Fancy — £8.00 (4 in stock)</option><option value="2">Magsafe Premium — £11.00 (3 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option><option value="4">Shockproof — £8.00 (3 in stock)</option></select>
+<select id="case-var-33" onchange="updateCaseCard(33)"><option value="0" selected>Wallet — £8.00 (3 in stock)</option><option value="1">Fancy — £8.00 (4 in stock)</option><option value="2">Magsafe Premium — £11.00 (3 in stock)</option><option value="3">Ring Case — £8.00 (1 in stock)</option><option value="4">Shockproof — £8.00 (3 in stock)</option></select>
 <div class="product-price" id="case-price-33">£8.00</div>
 <div class="stock-text" id="case-stock-33">3 in stock</div>
 <label for="case-qty-33">Quantity</label>
-<input id="case-qty-33" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(33)">Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="iPhone Ip7+8+ compatible Case Fancy Basic">
-<img src="images/unavailable.png" alt="iPhone Ip7+8+ compatible Case" class="product-image">
-<h3>iPhone Ip7+8+ compatible Case</h3>
+<input id="case-qty-33" type="number" min="1" max="3" value="1" >
+<button id="case-add-33" class="add-accessory-btn" onclick="addSelectedCase(33)" >Add to Basket</button>
+</div><div class="accessory-product" data-search="iPhone Air Case Case">
+<img id="case-img-34" src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone Air Case" class="product-image">
+<h3>iPhone Air Case</h3>
 <label for="case-var-34">Case type</label>
-<select id="case-var-34" onchange="updateCaseCard(34)"><option value="0">Fancy — £8.00 (7 in stock)</option><option value="1">Basic — £5.00 (3 in stock)</option></select>
-<div class="product-price" id="case-price-34">£8.00</div>
-<div class="stock-text" id="case-stock-34">7 in stock</div>
+<select id="case-var-34" onchange="updateCaseCard(34)"><option value="0" selected>Case — £9.00 (8 in stock)</option></select>
+<div class="product-price" id="case-price-34">£9.00</div>
+<div class="stock-text" id="case-stock-34">8 in stock</div>
 <label for="case-qty-34">Quantity</label>
-<input id="case-qty-34" type="number" min="1" max="7" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(34)">Add to Basket</button>
+<input id="case-qty-34" type="number" min="1" max="8" value="1" >
+<button id="case-add-34" class="add-accessory-btn" onclick="addSelectedCase(34)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="iPhone IP6 Case Basic">
-<img src="images/unavailable.png" alt="iPhone IP6 Case" class="product-image">
-<h3>iPhone IP6 Case</h3>
-<label for="case-var-35">Case type</label>
-<select id="case-var-35" onchange="updateCaseCard(35)"><option value="0">Basic — £5.00 (4 in stock)</option></select>
-<div class="product-price" id="case-price-35">£5.00</div>
-<div class="stock-text" id="case-stock-35">4 in stock</div>
-<label for="case-qty-35">Quantity</label>
-<input id="case-qty-35" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(35)">Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="iPhone IPXSMAX Case Wallet Fancy Magsafe Shockproof">
-<img src="images/unavailable.png" alt="iPhone IPXSMAX Case" class="product-image">
-<h3>iPhone IPXSMAX Case</h3>
-<label for="case-var-36">Case type</label>
-<select id="case-var-36" onchange="updateCaseCard(36)"><option value="0">Wallet — £8.00 (4 in stock)</option><option value="1">Fancy — £8.00 (5 in stock)</option><option value="2">Magsafe — £9.00 (4 in stock)</option><option value="3">Shockproof — £8.00 (3 in stock)</option></select>
-<div class="product-price" id="case-price-36">£8.00</div>
-<div class="stock-text" id="case-stock-36">4 in stock</div>
-<label for="case-qty-36">Quantity</label>
-<input id="case-qty-36" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick="addSelectedCase(36)">Add to Basket</button>
-</div></div>
 </main>
+
 <script>
-const CASE_PRODUCTS=[{"name": "iPhone IP17 Case", "variations": [{"name": "Magsafe Premium", "price": 11.0, "stock": 4}, {"name": "Magsafe", "price": 9.0, "stock": 3}, {"name": "Ring Case", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP17 pro Case", "variations": [{"name": "Ring Case", "price": 8.0, "stock": 2}, {"name": "Shockproof", "price": 8.0, "stock": 1}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3}, {"name": "Magsafe", "price": 9.0, "stock": 3}]}, {"name": "iPhone IpAir Case", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 8}]}, {"name": "iPhone Ip17PM Case", "variations": [{"name": "Ring Case", "price": 8.0, "stock": 3}, {"name": "Magsafe Premium", "price": 11.0, "stock": 2}, {"name": "Magsafe", "price": 9.0, "stock": 2}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "iPhone Ip16 Case", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 5}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3}]}, {"name": "iPhone IP16 pro Case", "variations": [{"name": "Magsafe Premium", "price": 11.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 3}]}, {"name": "iPhone Ip16E Case", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 1}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1}, {"name": "Magsafe", "price": 9.0, "stock": 6}]}, {"name": "iPhone IP16PM Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 4}, {"name": "Magsafe", "price": 9.0, "stock": 5}]}, {"name": "iPhone IP16PRO Case", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 5}]}, {"name": "iPhone IP16+ Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 5}, {"name": "Magsafe", "price": 9.0, "stock": 12}, {"name": "Fancy", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP15 Case", "variations": [{"name": "Magsafe Premium", "price": 11.0, "stock": 1}, {"name": "Magsafe", "price": 9.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Shockproof", "price": 8.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 3}, {"name": "Fancy", "price": 8.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Ring Case", "price": 8.0, "stock": 2}]}, {"name": "iPhone IP15+ Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 5}, {"name": "Magsafe", "price": 9.0, "stock": 6}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1}]}, {"name": "iPhone IP15pro Case", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 8}, {"name": "Magsafe Premium", "price": 11.0, "stock": 6}, {"name": "Fancy", "price": 8.0, "stock": 5}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP15PM Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 1}, {"name": "Magsafe", "price": 9.0, "stock": 5}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP14 Case", "variations": [{"name": "Chain", "price": 7.0, "stock": 11}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Crossbody Cord", "price": 8.0, "stock": 15}]}, {"name": "iPhone IP14 PRO Case", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 4}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 5}, {"name": "Basic", "price": 5.0, "stock": 5}, {"name": "Magsafe", "price": 9.0, "stock": 3}, {"name": "Magsafe Premium", "price": 11.0, "stock": 5}]}, {"name": "iPhone IP14+ Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Magsafe", "price": 9.0, "stock": 2}, {"name": "Ring Case", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP14PM Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 5}, {"name": "Magsafe", "price": 9.0, "stock": 8}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 4}]}, {"name": "iPhone IP13 Case", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 1}, {"name": "Magsafe Premium", "price": 11.0, "stock": 7}, {"name": "Heart chain", "price": 7.0, "stock": 7}, {"name": "Crossbody Cord", "price": 8.0, "stock": 7}]}, {"name": "iPhone IP13Pro Case", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 6}, {"name": "Magsafe", "price": 9.0, "stock": 3}, {"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Basic", "price": 5.0, "stock": 2}]}, {"name": "iPhone IP13MINI Case", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 7}, {"name": "Basic", "price": 5.0, "stock": 8}, {"name": "Magsafe", "price": 9.0, "stock": 3}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 3}]}, {"name": "iPhone IP13PM Case", "variations": [{"name": "Ring Case", "price": 8.0, "stock": 2}, {"name": "Magsafe", "price": 9.0, "stock": 2}, {"name": "Magsafe Premium", "price": 11.0, "stock": 2}]}, {"name": "iPhone Ip12 Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Crossbody Cord", "price": 8.0, "stock": 2}, {"name": "Magsafe", "price": 9.0, "stock": 2}, {"name": "Wallet", "price": 8.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP12 PM Case", "variations": [{"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Magsafe", "price": 9.0, "stock": 4}, {"name": "Magsafe", "price": 9.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Ring Case", "price": 8.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP12mini Case", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 7}, {"name": "Magsafe", "price": 9.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 2}]}, {"name": "iPhone IP12Pro Case", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Magsafe", "price": 9.0, "stock": 2}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3}, {"name": "Fancy", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP12 Case", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 4}, {"name": "Magsafe", "price": 9.0, "stock": 1}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 1}, {"name": "Heart chain", "price": 7.0, "stock": 8}, {"name": "Beaded chain", "price": 7.0, "stock": 2}, {"name": "Fancy", "price": 8.0, "stock": 5}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Shockproof", "price": 8.0, "stock": 1}]}, {"name": "iPhone IP11 Case", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 1}, {"name": "Crossbody Cord", "price": 8.0, "stock": 7}, {"name": "Wallet", "price": 8.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Heart chain", "price": 7.0, "stock": 7}, {"name": "Beaded chain", "price": 7.0, "stock": 1}, {"name": "Magsafe Premium", "price": 11.0, "stock": 4}, {"name": "Ring Case", "price": 8.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 2}]}, {"name": "iPhone IP11PM Case", "variations": [{"name": "Fancy", "price": 8.0, "stock": 3}, {"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Shockproof", "price": 8.0, "stock": 1}, {"name": "Ring Case", "price": 8.0, "stock": 1}, {"name": "Basic", "price": 5.0, "stock": 4}, {"name": "Magsafe", "price": 9.0, "stock": 6}]}, {"name": "iPhone IP11pro Case", "variations": [{"name": "Fancy", "price": 8.0, "stock": 8}, {"name": "Shockproof", "price": 8.0, "stock": 4}, {"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Magsafe", "price": 9.0, "stock": 4}, {"name": "Basic", "price": 5.0, "stock": 2}, {"name": "Crossbody Cord", "price": 8.0, "stock": 12}]}, {"name": "iPhone IPXR Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 2}, {"name": "Magsafe", "price": 9.0, "stock": 3}, {"name": "Basic", "price": 5.0, "stock": 3}]}, {"name": "iPhone IPXS Case", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 2}, {"name": "Magsafe", "price": 9.0, "stock": 1}, {"name": "Fancy", "price": 8.0, "stock": 5}, {"name": "Ring Case", "price": 8.0, "stock": 4}, {"name": "Wallet", "price": 8.0, "stock": 2}]}, {"name": "iPhone IPSE2 Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 5}, {"name": "Fancy", "price": 8.0, "stock": 2}]}, {"name": "iPhone Ip7and 8 compatible Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 3}, {"name": "Fancy", "price": 8.0, "stock": 4}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3}, {"name": "Ring Case", "price": 8.0, "stock": 1}, {"name": "Shockproof", "price": 8.0, "stock": 3}]}, {"name": "iPhone Ip7+8+ compatible Case", "variations": [{"name": "Fancy", "price": 8.0, "stock": 7}, {"name": "Basic", "price": 5.0, "stock": 3}]}, {"name": "iPhone IP6 Case", "variations": [{"name": "Basic", "price": 5.0, "stock": 4}]}, {"name": "iPhone IPXSMAX Case", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4}, {"name": "Fancy", "price": 8.0, "stock": 5}, {"name": "Magsafe", "price": 9.0, "stock": 4}, {"name": "Shockproof", "price": 8.0, "stock": 3}]}];
+const CASE_PRODUCTS = [{"name": "iPhone 11 Case", "slug": "11", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Crossbody Cord", "price": 8.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Wallet", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Heart chain", "price": 7.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Beaded chain", "price": 7.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone 11PM Case", "slug": "11promax", "variations": [{"name": "Fancy", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Wallet", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 6, "image": "images/unavailable.png"}]}, {"name": "iPhone 11pro Case", "slug": "11pro", "variations": [{"name": "Fancy", "price": 8.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Wallet", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Crossbody Cord", "price": 8.0, "stock": 12, "image": "images/unavailable.png"}]}, {"name": "iPhone 12 Case", "slug": "12", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 6, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Heart chain", "price": 7.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Beaded chain", "price": 7.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 6, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Wallet", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 12 PM Case", "slug": "12promax", "variations": [{"name": "Fancy", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 12Pro Case", "slug": "12pro", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 12mini Case", "slug": "12mini", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone 13 Case", "slug": "13", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Heart chain", "price": 7.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Crossbody Cord", "price": 8.0, "stock": 7, "image": "images/unavailable.png"}]}, {"name": "iPhone 13MINI Case", "slug": "13mini", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone 13PM Case", "slug": "13promax", "variations": [{"name": "Ring Case", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone 13Pro Case", "slug": "13pro", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 6, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 0, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone 14 Case", "slug": "14", "variations": [{"name": "Chain", "price": 7.0, "stock": 11, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Crossbody Cord", "price": 8.0, "stock": 15, "image": "images/unavailable.png"}]}, {"name": "iPhone 14 PRO Case", "slug": "14pro", "variations": [{"name": "Crossbody Cord", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 5, "image": "images/unavailable.png"}]}, {"name": "iPhone 14+ Case", "slug": "14plus", "variations": [{"name": "Basic", "price": 5.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 14PM Case", "slug": "14promax", "variations": [{"name": "Basic", "price": 5.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}]}, {"name": "iPhone 15 Case", "slug": "15", "variations": [{"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone 15+ Case", "slug": "15plus", "variations": [{"name": "Basic", "price": 5.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 6, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 15PM Case", "slug": "15promax", "variations": [{"name": "Basic", "price": 5.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 15pro Case", "slug": "15pro", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 6, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 16 pro Case", "slug": "16pro", "variations": [{"name": "Magsafe Premium", "price": 11.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 8, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone 16+ Case", "slug": "16plus", "variations": [{"name": "Basic", "price": 5.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 12, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 16PM Case", "slug": "16promax", "variations": [{"name": "Basic", "price": 5.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 5, "image": "images/unavailable.png"}]}, {"name": "iPhone 17 Case", "slug": "17", "variations": [{"name": "Magsafe Premium", "price": 11.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 17 pro Case", "slug": "17pro", "variations": [{"name": "Ring Case", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone 6 Case", "slug": "6", "variations": [{"name": "Case", "price": 5.0, "stock": 4, "image": "images/unavailable.png"}]}, {"name": "iPhone SE2 Case", "slug": "se2", "variations": [{"name": "Wallet", "price": 8.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone XR Case", "slug": "xr", "variations": [{"name": "Wallet", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 0, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone XS Case", "slug": "xs", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Wallet", "price": 8.0, "stock": 2, "image": "images/unavailable.png"}]}, {"name": "iPhone XSMAX Case", "slug": "xsmax", "variations": [{"name": "Wallet", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone 16 Case", "slug": "16", "variations": [{"name": "Magsafe", "price": 9.0, "stock": 5, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone 16E Case", "slug": "16e", "variations": [{"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 6, "image": "images/unavailable.png"}]}, {"name": "iPhone 17PM Case", "slug": "17promax", "variations": [{"name": "Ring Case", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Magsafe", "price": 9.0, "stock": 2, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}]}, {"name": "iPhone 7+8+ compatible Case", "slug": "7plus8plus", "variations": [{"name": "Fancy", "price": 8.0, "stock": 7, "image": "images/unavailable.png"}, {"name": "Basic", "price": 5.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone 7and 8 compatible Case", "slug": "7and8", "variations": [{"name": "Wallet", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Fancy", "price": 8.0, "stock": 4, "image": "images/unavailable.png"}, {"name": "Magsafe Premium", "price": 11.0, "stock": 3, "image": "images/unavailable.png"}, {"name": "Ring Case", "price": 8.0, "stock": 1, "image": "images/unavailable.png"}, {"name": "Shockproof", "price": 8.0, "stock": 3, "image": "images/unavailable.png"}]}, {"name": "iPhone Air Case", "slug": "air", "variations": [{"name": "Case", "price": 9.0, "stock": 8, "image": "images/unavailable.png"}]}];
 function updateCaseCard(i){
- const s=document.getElementById("case-var-"+i);
- const v=CASE_PRODUCTS[i].variations[Number(s.value)];
- document.getElementById("case-price-"+i).textContent="£"+Number(v.price).toFixed(2);
- document.getElementById("case-stock-"+i).textContent=v.stock+" in stock";
- const q=document.getElementById("case-qty-"+i);
- q.max=v.stock;
- if(Number(q.value)>Number(v.stock))q.value=v.stock;
+    const select=document.getElementById("case-var-"+i);
+    const v=CASE_PRODUCTS[i].variations[Number(select.value)];
+    const img=document.getElementById("case-img-"+i);
+    img.onerror=function(){this.onerror=null;this.src="images/unavailable.png";};
+    img.src=v.image;
+    document.getElementById("case-price-"+i).textContent="£"+Number(v.price).toFixed(2);
+    document.getElementById("case-stock-"+i).textContent=Number(v.stock)>0 ? v.stock+" in stock" : "Out of stock";
+    const qty=document.getElementById("case-qty-"+i);
+    const btn=document.getElementById("case-add-"+i);
+    const out=Number(v.stock)<=0;
+    qty.max=Math.max(1,Number(v.stock));
+    qty.disabled=out;
+    if(Number(qty.value)>Number(v.stock) && Number(v.stock)>0) qty.value=v.stock;
+    if(!qty.value || Number(qty.value)<1) qty.value=1;
+    btn.disabled=out;
+    btn.textContent=out ? "Out of Stock" : "Add to Basket";
 }
 function addSelectedCase(i){
- const s=document.getElementById("case-var-"+i);
- const v=CASE_PRODUCTS[i].variations[Number(s.value)];
- addAccessoryToCart(CASE_PRODUCTS[i].name,v.name,v.price,document.getElementById("case-qty-"+i).value,v.stock);
+    const select=document.getElementById("case-var-"+i);
+    const v=CASE_PRODUCTS[i].variations[Number(select.value)];
+    if(Number(v.stock)<=0){showAccessoryToast("This case is out of stock");return;}
+    addAccessoryToCart(CASE_PRODUCTS[i].name,v.name,v.price,document.getElementById("case-qty-"+i).value,v.stock);
 }
 </script>
-
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>

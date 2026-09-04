@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
+
 </head>
 <body>
 <header>
 <div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo" width="100" height="100">
-<div><h1>Headphones</h1><p>Evan's Smart Fix</p></div>
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Headphones</h1><p>Headphones</p></div>
 </div>
-
 <nav>
 <a href="index.html">Home</a>
 <details class="nav-dropdown">
@@ -27,6 +27,7 @@
 <a href="cases.html">Cases</a>
 <a href="cables.html">Cables</a>
 <a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
 <a href="headphones.html">Headphones</a>
 <a href="adapters.html">Adapters</a>
 <a href="screen-protectors.html">Screen Protectors</a>
@@ -37,16 +38,74 @@
 </details>
 <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
 </nav>
-
 </header>
 
 <main class="accessory-page">
 <h2>Headphones</h2>
-<p class="accessory-intro">Headphones and earphones.</p>
-<div class="accessory-toolbar"><input class="accessory-search" type="search" placeholder="Search headphones..." oninput="filterAccessoryProducts(this.value)"></div>
-<img src="images/unavailable.png" alt="Headphones" class="page-category-image">
-<div class="accessory-grid"><div class="accessory-empty">No products from this category are currently listed in your stock file.</div></div>
+<p class="accessory-intro">Headphones and gaming headsets from our SumUp catalogue.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
+<div class="accessory-grid">
+<div class="accessory-product" data-search="4 in 1 Wireless Gaming Stereo Headphones Headphones">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="4 in 1 Wireless Gaming Stereo Headphones" class="product-image">
+<h3>4 in 1 Wireless Gaming Stereo Headphones</h3>
+<div class="product-price">£32.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-0">Quantity</label>
+<input id="qty-0" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="4 in 1 Wireless Gaming Stereo Headphones" data-variation="" data-price="32.00" data-stock="1" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Auriculares Gamer Sprint Gm-002 Headphones">
+<img src="https://images.sumup.com/img_4EF3NKPGJG88MBW6AES8YVETQ5" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Auriculares Gamer Sprint Gm-002" class="product-image">
+<h3>Auriculares Gamer Sprint Gm-002</h3>
+<div class="product-price">£7.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-1">Quantity</label>
+<input id="qty-1" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Auriculares Gamer Sprint Gm-002" data-variation="" data-price="7.00" data-stock="1" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Gaming Headset Headphones">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Gaming Headset" class="product-image">
+<h3>Gaming Headset</h3>
+<div class="product-price">£15.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Gaming Headset" data-variation="" data-price="15.00" data-stock="2" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Headphones 2 in 1 Speaker and Headphone PF219 Headphones">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Headphones 2 in 1 Speaker and Headphone" class="product-image">
+<h3>Headphones 2 in 1 Speaker and Headphone</h3>
+<div class="product-price">£32.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Headphones 2 in 1 Speaker and Headphone" data-variation="" data-price="32.00" data-stock="1" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Stereo Headphones Headphones">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Stereo Headphones" class="product-image">
+<h3>Stereo Headphones</h3>
+<div class="product-price">£22.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-4">Quantity</label>
+<input id="qty-4" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Stereo Headphones" data-variation="" data-price="22.00" data-stock="1" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Wireless Headphones PF241 Headphones">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Wireless Headphones" class="product-image">
+<h3>Wireless Headphones</h3>
+<div class="product-price">£18.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-5">Quantity</label>
+<input id="qty-5" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Wireless Headphones" data-variation="" data-price="18.00" data-stock="1" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+</div>
 </main>
+
+
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Holders - Evan's Smart Fix</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="accessory-shop.css">
+<link rel="icon" href="images/logo.png">
+
+</head>
+<body>
+<header>
+<div class="header-left">
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Phone Holders</h1><p>Phone Holders</p></div>
+</div>
+<nav>
+<a href="index.html">Home</a>
+<details class="nav-dropdown">
+<summary>Shop &amp; Repair</summary>
+<div class="dropdown-menu">
+<a href="brands.html">Book a Repair</a>
+<details class="sub-dropdown">
+<summary>Accessories</summary>
+<div class="sub-dropdown-menu">
+<a href="cases.html">Cases</a>
+<a href="cables.html">Cables</a>
+<a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
+<a href="headphones.html">Headphones</a>
+<a href="adapters.html">Adapters</a>
+<a href="screen-protectors.html">Screen Protectors</a>
+<a href="accessories.html">View All Accessories</a>
+</div>
+</details>
+</div>
+</details>
+<a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+</nav>
+</header>
+
+<main class="accessory-page">
+<h2>Phone Holders</h2>
+<p class="accessory-intro">Phone holders and stands.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
+<div class="accessory-grid">
+<div class="accessory-product" data-search="Phone Stand Table Photo Holder Holder">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Phone Stand Table Photo Holder" class="product-image">
+<h3>Phone Stand Table Photo Holder</h3>
+<div class="product-price">£7.99</div>
+<div class="stock-text">10 in stock</div>
+<label for="qty-0">Quantity</label>
+<input id="qty-0" type="number" min="1" max="10" value="1" >
+<button class="add-accessory-btn" data-name="Phone Stand Table Photo Holder" data-variation="" data-price="7.99" data-stock="10" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+</div>
+</main>
+
+
+<script src="accessory-shop.js"></script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

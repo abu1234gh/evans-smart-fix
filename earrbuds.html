@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earbuds - Evan's Smart Fix</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="accessory-shop.css">
+<link rel="icon" href="images/logo.png">
+
+</head>
+<body>
+<header>
+<div class="header-left">
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Earbuds</h1><p>Earbuds</p></div>
+</div>
+<nav>
+<a href="index.html">Home</a>
+<details class="nav-dropdown">
+<summary>Shop &amp; Repair</summary>
+<div class="dropdown-menu">
+<a href="brands.html">Book a Repair</a>
+<details class="sub-dropdown">
+<summary>Accessories</summary>
+<div class="sub-dropdown-menu">
+<a href="cases.html">Cases</a>
+<a href="cables.html">Cables</a>
+<a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
+<a href="headphones.html">Headphones</a>
+<a href="adapters.html">Adapters</a>
+<a href="screen-protectors.html">Screen Protectors</a>
+<a href="accessories.html">View All Accessories</a>
+</div>
+</details>
+</div>
+</details>
+<a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+</nav>
+</header>
+
+<main class="accessory-page">
+<h2>Earbuds</h2>
+<p class="accessory-intro">Wired and wireless earbuds from our SumUp catalogue.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
+<div class="accessory-grid">
+<div class="accessory-product" data-search="Earphone Wired PF231 Earbuds">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Earphone Wired" class="product-image">
+<h3>Earphone Wired</h3>
+<div class="product-price">£8.00</div>
+<div class="stock-text">9 in stock</div>
+<label for="qty-0">Quantity</label>
+<input id="qty-0" type="number" min="1" max="9" value="1" >
+<button class="add-accessory-btn" data-name="Earphone Wired" data-variation="" data-price="8.00" data-stock="9" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Earphone Wireless Black PF114 Earbuds">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Earphone Wireless Black" class="product-image">
+<h3>Earphone Wireless Black</h3>
+<div class="product-price">£8.00</div>
+<div class="stock-text">9 in stock</div>
+<label for="qty-1">Quantity</label>
+<input id="qty-1" type="number" min="1" max="9" value="1" >
+<button class="add-accessory-btn" data-name="Earphone Wireless Black" data-variation="" data-price="8.00" data-stock="9" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Stereo Earphones PF89 Earbuds">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Stereo Earphones" class="product-image">
+<h3>Stereo Earphones</h3>
+<div class="product-price">£7.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="Stereo Earphones" data-variation="" data-price="7.00" data-stock="2" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Wired Earphones PF220 Earbuds">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Wired Earphones" class="product-image">
+<h3>Wired Earphones</h3>
+<div class="product-price">£9.00</div>
+<div class="stock-text">1 in stock</div>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="Wired Earphones" data-variation="" data-price="9.00" data-stock="1" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Wireless Headset PF31 Earbuds">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Wireless Headset" class="product-image">
+<h3>Wireless Headset</h3>
+<div class="product-price">£17.00</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-4">Quantity</label>
+<input id="qty-4" type="number" min="1" max="4" value="1" >
+<button class="add-accessory-btn" data-name="Wireless Headset" data-variation="" data-price="17.00" data-stock="4" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+</div>
+</main>
+
+
+<script src="accessory-shop.js"></script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

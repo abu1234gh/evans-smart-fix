@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
 <link rel="icon" href="images/logo.png">
+
 </head>
 <body>
 <header>
 <div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo" width="100" height="100">
-<div><h1>Adapters</h1><p>Evan's Smart Fix</p></div>
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>Adapters</h1><p>Adapters</p></div>
 </div>
-
 <nav>
 <a href="index.html">Home</a>
 <details class="nav-dropdown">
@@ -27,6 +27,7 @@
 <a href="cases.html">Cases</a>
 <a href="cables.html">Cables</a>
 <a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
 <a href="headphones.html">Headphones</a>
 <a href="adapters.html">Adapters</a>
 <a href="screen-protectors.html">Screen Protectors</a>
@@ -37,178 +38,200 @@
 </details>
 <a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
 </nav>
-
 </header>
 
 <main class="accessory-page">
 <h2>Adapters</h2>
-<p class="accessory-intro">Adapters, hubs, card readers and audio connectors currently listed in stock.</p>
-<div class="accessory-toolbar"><input class="accessory-search" type="search" placeholder="Search adapters..." oninput="filterAccessoryProducts(this.value)"></div>
+<p class="accessory-intro">Adapters, hubs and card readers from our SumUp catalogue.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
 <div class="accessory-grid">
-<div class="accessory-product" data-search="3 IN 1 FHD CABLE">
-<img src="images/pf60.png" alt="3 IN 1 FHD CABLE" class="product-image">
+<div class="accessory-product" data-search="3 IN 1 FHD CABLE PF60 Adapter">
+<img src="images/pf60.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="3 IN 1 FHD CABLE" class="product-image">
 <h3>3 IN 1 FHD CABLE</h3>
 <div class="product-price">£14.99</div>
 <div class="stock-text">1 in stock</div>
 <label for="qty-0">Quantity</label>
-<input id="qty-0" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("3 IN 1 FHD CABLE","",14.99,document.getElementById("qty-0").value,1)'>Add to Basket</button>
+<input id="qty-0" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="3 IN 1 FHD CABLE" data-variation="" data-price="14.99" data-stock="1" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="3IN1 USB-C HUB">
-<img src="images/PF53.png" alt="3IN1 USB-C HUB" class="product-image">
+<div class="accessory-product" data-search="3IN1 USB-C HUB PF53 Adapter">
+<img src="images/PF53.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="3IN1 USB-C HUB" class="product-image">
 <h3>3IN1 USB-C HUB</h3>
 <div class="product-price">£7.99</div>
 <div class="stock-text">3 in stock</div>
 <label for="qty-1">Quantity</label>
-<input id="qty-1" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("3IN1 USB-C HUB","",7.99,document.getElementById("qty-1").value,3)'>Add to Basket</button>
+<input id="qty-1" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="3IN1 USB-C HUB" data-variation="" data-price="7.99" data-stock="3" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="3IN1 adapted HDTV">
-<img src="images/PF29.png" alt="3IN1 adapted HDTV" class="product-image">
+<div class="accessory-product" data-search="3IN1 USB-C HUB PF51 Adapter">
+<img src="images/pf51.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="3IN1 USB-C HUB" class="product-image">
+<h3>3IN1 USB-C HUB</h3>
+<div class="product-price">£7.99</div>
+<div class="stock-text">3 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="3IN1 USB-C HUB" data-variation="" data-price="7.99" data-stock="3" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="3IN1 adapted HDTV PF29 Adapter">
+<img src="images/PF29.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="3IN1 adapted HDTV" class="product-image">
 <h3>3IN1 adapted HDTV</h3>
 <div class="product-price">£14.00</div>
 <div class="stock-text">1 in stock</div>
-<label for="qty-2">Quantity</label>
-<input id="qty-2" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("3IN1 adapted HDTV","",14.00,document.getElementById("qty-2").value,1)'>Add to Basket</button>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="3IN1 adapted HDTV" data-variation="" data-price="14.00" data-stock="1" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="4K HDTV TYPE-C TO HDTV CABLE">
-<img src="images/pf59.png" alt="4K HDTV TYPE-C TO HDTV CABLE" class="product-image">
+<div class="accessory-product" data-search="45W PD Adapter Adapter">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="45W PD Adapter" class="product-image">
+<h3>45W PD Adapter</h3>
+<div class="product-price">£15.00</div>
+<div class="stock-text">2 in stock</div>
+<label for="qty-4">Quantity</label>
+<input id="qty-4" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="45W PD Adapter" data-variation="" data-price="15.00" data-stock="2" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="4K HDTV TYPE-C TO HDTV CABLE PF59 Adapter">
+<img src="images/pf59.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="4K HDTV TYPE-C TO HDTV CABLE" class="product-image">
 <h3>4K HDTV TYPE-C TO HDTV CABLE</h3>
 <div class="product-price">£14.99</div>
 <div class="stock-text">1 in stock</div>
-<label for="qty-3">Quantity</label>
-<input id="qty-3" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("4K HDTV TYPE-C TO HDTV CABLE","",14.99,document.getElementById("qty-3").value,1)'>Add to Basket</button>
+<label for="qty-5">Quantity</label>
+<input id="qty-5" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="4K HDTV TYPE-C TO HDTV CABLE" data-variation="" data-price="14.99" data-stock="1" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="6 IN 1 HUB MULTIFUNCTION ADAPTED">
-<img src="images/PF133.png" alt="6 IN 1 HUB MULTIFUNCTION ADAPTED" class="product-image">
+<div class="accessory-product" data-search="6 IN 1 HUB MULTIFUNCTION ADAPTED PF133 Adapter">
+<img src="images/PF133.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="6 IN 1 HUB MULTIFUNCTION ADAPTED" class="product-image">
 <h3>6 IN 1 HUB MULTIFUNCTION ADAPTED</h3>
 <div class="product-price">£22.99</div>
 <div class="stock-text">1 in stock</div>
-<label for="qty-4">Quantity</label>
-<input id="qty-4" type="number" min="1" max="1" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("6 IN 1 HUB MULTIFUNCTION ADAPTED","",22.99,document.getElementById("qty-4").value,1)'>Add to Basket</button>
+<label for="qty-6">Quantity</label>
+<input id="qty-6" type="number" min="1" max="1" value="1" >
+<button class="add-accessory-btn" data-name="6 IN 1 HUB MULTIFUNCTION ADAPTED" data-variation="" data-price="22.99" data-stock="1" data-qty-id="qty-6" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="AUDIO CABLE USB-C TO 3.5MM">
-<img src="images/pf205.png" alt="AUDIO CABLE USB-C TO 3.5MM" class="product-image">
+<div class="accessory-product" data-search="AUDIO CABLE USB-C TO 3.5MM PF205 Adapter">
+<img src="images/pf205.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="AUDIO CABLE USB-C TO 3.5MM" class="product-image">
 <h3>AUDIO CABLE USB-C TO 3.5MM</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-5">Quantity</label>
-<input id="qty-5" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("AUDIO CABLE USB-C TO 3.5MM","",6.00,document.getElementById("qty-5").value,3)'>Add to Basket</button>
+<label for="qty-7">Quantity</label>
+<input id="qty-7" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="AUDIO CABLE USB-C TO 3.5MM" data-variation="" data-price="6.00" data-stock="3" data-qty-id="qty-7" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="BLUETOOTH ADAPTED">
-<img src="images/PF57.png" alt="BLUETOOTH ADAPTED" class="product-image">
+<div class="accessory-product" data-search="BLUETOOTH ADAPTED PF57 Adapter">
+<img src="images/PF57.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="BLUETOOTH ADAPTED" class="product-image">
 <h3>BLUETOOTH ADAPTED</h3>
 <div class="product-price">£7.99</div>
 <div class="stock-text">2 in stock</div>
-<label for="qty-6">Quantity</label>
-<input id="qty-6" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("BLUETOOTH ADAPTED","",7.99,document.getElementById("qty-6").value,2)'>Add to Basket</button>
+<label for="qty-8">Quantity</label>
+<input id="qty-8" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="BLUETOOTH ADAPTED" data-variation="" data-price="7.99" data-stock="2" data-qty-id="qty-8" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="HEADPHONES ADAPTER APPLE TO 3.5MM">
-<img src="images/PF204.png" alt="HEADPHONES ADAPTER APPLE TO 3.5MM" class="product-image">
+<div class="accessory-product" data-search="HEADPHONES ADAPTER APPLE TO 3.5MM PF204 Adapter">
+<img src="images/PF204.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="HEADPHONES ADAPTER APPLE TO 3.5MM" class="product-image">
 <h3>HEADPHONES ADAPTER APPLE TO 3.5MM</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">2 in stock</div>
-<label for="qty-7">Quantity</label>
-<input id="qty-7" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("HEADPHONES ADAPTER APPLE TO 3.5MM","",6.00,document.getElementById("qty-7").value,2)'>Add to Basket</button>
+<label for="qty-9">Quantity</label>
+<input id="qty-9" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="HEADPHONES ADAPTER APPLE TO 3.5MM" data-variation="" data-price="6.00" data-stock="2" data-qty-id="qty-9" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="HEADPHONES ADAPTER USB-C TO 3.5MM">
-<img src="images/pf203.png" alt="HEADPHONES ADAPTER USB-C TO 3.5MM" class="product-image">
+<div class="accessory-product" data-search="HEADPHONES ADAPTER USB-C TO 3.5MM PF203 Adapter">
+<img src="images/pf203.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="HEADPHONES ADAPTER USB-C TO 3.5MM" class="product-image">
 <h3>HEADPHONES ADAPTER USB-C TO 3.5MM</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-8">Quantity</label>
-<input id="qty-8" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("HEADPHONES ADAPTER USB-C TO 3.5MM","",6.00,document.getElementById("qty-8").value,3)'>Add to Basket</button>
+<label for="qty-10">Quantity</label>
+<input id="qty-10" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="HEADPHONES ADAPTER USB-C TO 3.5MM" data-variation="" data-price="6.00" data-stock="3" data-qty-id="qty-10" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="MICRO SD USB- CARD READER">
-<img src="images/pf126.png" alt="MICRO SD USB- CARD READER" class="product-image">
+<div class="accessory-product" data-search="MICRO SD USB- CARD READER PF126 Adapter">
+<img src="images/pf126.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="MICRO SD USB- CARD READER" class="product-image">
 <h3>MICRO SD USB- CARD READER</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-9">Quantity</label>
-<input id="qty-9" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("MICRO SD USB- CARD READER","",5.00,document.getElementById("qty-9").value,3)'>Add to Basket</button>
+<label for="qty-11">Quantity</label>
+<input id="qty-11" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="MICRO SD USB- CARD READER" data-variation="" data-price="5.00" data-stock="3" data-qty-id="qty-11" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="MOBILE PHONE CARD READER">
-<img src="images/PF58.png" alt="MOBILE PHONE CARD READER" class="product-image">
+<div class="accessory-product" data-search="MOBILE PHONE CARD READER PF58 Adapter">
+<img src="images/PF58.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="MOBILE PHONE CARD READER" class="product-image">
 <h3>MOBILE PHONE CARD READER</h3>
 <div class="product-price">£11.99</div>
 <div class="stock-text">2 in stock</div>
-<label for="qty-10">Quantity</label>
-<input id="qty-10" type="number" min="1" max="2" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("MOBILE PHONE CARD READER","",11.99,document.getElementById("qty-10").value,2)'>Add to Basket</button>
+<label for="qty-12">Quantity</label>
+<input id="qty-12" type="number" min="1" max="2" value="1" >
+<button class="add-accessory-btn" data-name="MOBILE PHONE CARD READER" data-variation="" data-price="11.99" data-stock="2" data-qty-id="qty-12" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="OTG + USB Data Transmission">
-<img src="images/PF128.png" alt="OTG + USB Data Transmission" class="product-image">
+<div class="accessory-product" data-search="OTG + USB Data Transmission PF128 Adapter">
+<img src="images/PF128.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="OTG + USB Data Transmission" class="product-image">
 <h3>OTG + USB Data Transmission</h3>
 <div class="product-price">£4.50</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-11">Quantity</label>
-<input id="qty-11" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("OTG + USB Data Transmission","",4.50,document.getElementById("qty-11").value,3)'>Add to Basket</button>
+<label for="qty-13">Quantity</label>
+<input id="qty-13" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="OTG + USB Data Transmission" data-variation="" data-price="4.50" data-stock="3" data-qty-id="qty-13" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="OTG Apple Compatible OTG Adapter">
-<img src="images/PF52.png" alt="OTG Apple Compatible OTG Adapter" class="product-image">
+<div class="accessory-product" data-search="OTG Apple Compatible OTG Adapter PF52 Adapter">
+<img src="images/PF52.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="OTG Apple Compatible OTG Adapter" class="product-image">
 <h3>OTG Apple Compatible OTG Adapter</h3>
 <div class="product-price">£8.99</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-12">Quantity</label>
-<input id="qty-12" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("OTG Apple Compatible OTG Adapter","",8.99,document.getElementById("qty-12").value,3)'>Add to Basket</button>
+<label for="qty-14">Quantity</label>
+<input id="qty-14" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="OTG Apple Compatible OTG Adapter" data-variation="" data-price="8.99" data-stock="3" data-qty-id="qty-14" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="OTG Connecter Apple Male to Usb Female">
-<img src="images/PF127.png" alt="OTG Connecter Apple Male to Usb Female" class="product-image">
+<div class="accessory-product" data-search="OTG Connecter Apple Male to Usb Female Pf127 Adapter">
+<img src="images/PF127.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="OTG Connecter Apple Male to Usb Female" class="product-image">
 <h3>OTG Connecter Apple Male to Usb Female</h3>
 <div class="product-price">£3.99</div>
 <div class="stock-text">4 in stock</div>
-<label for="qty-13">Quantity</label>
-<input id="qty-13" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("OTG Connecter Apple Male to Usb Female","",3.99,document.getElementById("qty-13").value,4)'>Add to Basket</button>
+<label for="qty-15">Quantity</label>
+<input id="qty-15" type="number" min="1" max="4" value="1" >
+<button class="add-accessory-btn" data-name="OTG Connecter Apple Male to Usb Female" data-variation="" data-price="3.99" data-stock="4" data-qty-id="qty-15" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="OTG Connecter Type-C to Apple">
-<img src="images/pf131.png" alt="OTG Connecter Type-C to Apple" class="product-image">
+<div class="accessory-product" data-search="OTG Connecter Type-C to Apple Pf131 Adapter">
+<img src="images/pf131.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="OTG Connecter Type-C to Apple" class="product-image">
 <h3>OTG Connecter Type-C to Apple</h3>
 <div class="product-price">£4.50</div>
 <div class="stock-text">4 in stock</div>
-<label for="qty-14">Quantity</label>
-<input id="qty-14" type="number" min="1" max="4" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("OTG Connecter Type-C to Apple","",4.50,document.getElementById("qty-14").value,4)'>Add to Basket</button>
+<label for="qty-16">Quantity</label>
+<input id="qty-16" type="number" min="1" max="4" value="1" >
+<button class="add-accessory-btn" data-name="OTG Connecter Type-C to Apple" data-variation="" data-price="4.50" data-stock="4" data-qty-id="qty-16" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="pf129- PANTHER FORCE OTG CONNECTER">
-<img src="images/PF129.png" alt="pf129- PANTHER FORCE OTG CONNECTER" class="product-image">
-<h3>pf129- PANTHER FORCE OTG CONNECTER</h3>
+<div class="accessory-product" data-search="PF129- PANTHER FORCE OTG CONNECTER PF129 Adapter">
+<img src="images/PF129.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="PF129- PANTHER FORCE OTG CONNECTER" class="product-image">
+<h3>PF129- PANTHER FORCE OTG CONNECTER</h3>
 <div class="product-price">£4.99</div>
 <div class="stock-text">8 in stock</div>
-<label for="qty-15">Quantity</label>
-<input id="qty-15" type="number" min="1" max="8" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("pf129- PANTHER FORCE OTG CONNECTER","",4.99,document.getElementById("qty-15").value,8)'>Add to Basket</button>
+<label for="qty-17">Quantity</label>
+<input id="qty-17" type="number" min="1" max="8" value="1" >
+<button class="add-accessory-btn" data-name="PF129- PANTHER FORCE OTG CONNECTER" data-variation="" data-price="4.99" data-stock="8" data-qty-id="qty-17" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="USB-C Charge &amp; Listen To Music">
-<img src="images/pf122.png" alt="USB-C Charge &amp;amp; Listen To Music" class="product-image">
+<div class="accessory-product" data-search="USB-C Charge &amp; Listen To Music PF122 Adapter">
+<img src="images/pf122.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="USB-C Charge &amp; Listen To Music" class="product-image">
 <h3>USB-C Charge &amp; Listen To Music</h3>
 <div class="product-price">£5.99</div>
 <div class="stock-text">3 in stock</div>
-<label for="qty-16">Quantity</label>
-<input id="qty-16" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("USB-C Charge & Listen To Music","",5.99,document.getElementById("qty-16").value,3)'>Add to Basket</button>
+<label for="qty-18">Quantity</label>
+<input id="qty-18" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="USB-C Charge &amp; Listen To Music" data-variation="" data-price="5.99" data-stock="3" data-qty-id="qty-18" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
-<div class="accessory-product" data-search="Universal Travel Adapter">
-<img src="images/unavailable.png" alt="Universal Travel Adapter" class="product-image">
+<div class="accessory-product" data-search="Universal Travel Adapter Adapter">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Universal Travel Adapter" class="product-image">
 <h3>Universal Travel Adapter</h3>
 <div class="product-price">£15.00</div>
 <div class="stock-text">3 in stock</div>
-<label for="adapter-qty-0">Quantity</label>
-<input id="adapter-qty-0" type="number" min="1" max="3" value="1">
-<button class="add-accessory-btn" onclick='addAccessoryToCart("Universal Travel Adapter","",15.00,document.getElementById("adapter-qty-0").value,3)'>Add to Basket</button>
+<label for="qty-19">Quantity</label>
+<input id="qty-19" type="number" min="1" max="3" value="1" >
+<button class="add-accessory-btn" data-name="Universal Travel Adapter" data-variation="" data-price="15.00" data-stock="3" data-qty-id="qty-19" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
 </div>
 </main>
+
+
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="whatsapp.js"></script>

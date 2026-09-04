@@ -134,6 +134,17 @@ function addAccessoryToCart(
         );
 
 
+    if (stock <= 0) {
+
+        showAccessoryToast(
+            "This item is out of stock"
+        );
+
+        return;
+
+    }
+
+
     if (quantity < 1) {
 
         quantity = 1;
@@ -234,6 +245,28 @@ function addAccessoryToCart(
 
 }
 
+
+
+function addAccessoryFromButton(button) {
+
+    if (!button) {
+        return;
+    }
+
+    const qty =
+        document.getElementById(
+            button.dataset.qtyId
+        );
+
+    addAccessoryToCart(
+        button.dataset.name || "",
+        button.dataset.variation || "",
+        Number(button.dataset.price || 0),
+        qty ? qty.value : 1,
+        Number(button.dataset.stock || 0)
+    );
+
+}
 
 function filterAccessoryProducts(
     value

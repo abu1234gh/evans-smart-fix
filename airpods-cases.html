@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirPods Cases - Evan's Smart Fix</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="accessory-shop.css">
+<link rel="icon" href="images/logo.png">
+
+</head>
+<body>
+<header>
+<div class="header-left">
+<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
+<div><h1>AirPods Cases</h1><p>AirPods Cases</p></div>
+</div>
+<nav>
+<a href="index.html">Home</a>
+<details class="nav-dropdown">
+<summary>Shop &amp; Repair</summary>
+<div class="dropdown-menu">
+<a href="brands.html">Book a Repair</a>
+<details class="sub-dropdown">
+<summary>Accessories</summary>
+<div class="sub-dropdown-menu">
+<a href="cases.html">Cases</a>
+<a href="cables.html">Cables</a>
+<a href="chargers.html">Chargers</a>
+<a href="power-banks.html">Power Banks</a>
+<a href="headphones.html">Headphones</a>
+<a href="adapters.html">Adapters</a>
+<a href="screen-protectors.html">Screen Protectors</a>
+<a href="accessories.html">View All Accessories</a>
+</div>
+</details>
+</div>
+</details>
+<a href="cart.html" class="cart-link">🛒 Basket <span id="cartCount">0</span></a>
+</nav>
+</header>
+
+<main class="accessory-page">
+<h2>AirPods Cases</h2>
+<p class="accessory-intro">Protective cases for AirPods.</p>
+
+<div class="accessory-toolbar">
+<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
+</div>
+<div class="accessory-grid">
+<div class="accessory-product" data-search="Airpods 3 Case ESF13 Airpods Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Airpods 3 Case" class="product-image">
+<h3>Airpods 3 Case</h3>
+<div class="product-price">£8.99</div>
+<div class="stock-text">19 in stock</div>
+<label for="qty-0">Quantity</label>
+<input id="qty-0" type="number" min="1" max="19" value="1" >
+<button class="add-accessory-btn" data-name="Airpods 3 Case" data-variation="" data-price="8.99" data-stock="19" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Airpods 4 Case ESF14 Airpods Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Airpods 4 Case" class="product-image">
+<h3>Airpods 4 Case</h3>
+<div class="product-price">£7.99</div>
+<div class="stock-text">9 in stock</div>
+<label for="qty-1">Quantity</label>
+<input id="qty-1" type="number" min="1" max="9" value="1" >
+<button class="add-accessory-btn" data-name="Airpods 4 Case" data-variation="" data-price="7.99" data-stock="9" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Airpods Air 1/2 Case ESF11 Airpods Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Airpods Air 1/2 Case" class="product-image">
+<h3>Airpods Air 1/2 Case</h3>
+<div class="product-price">£7.99</div>
+<div class="stock-text">4 in stock</div>
+<label for="qty-2">Quantity</label>
+<input id="qty-2" type="number" min="1" max="4" value="1" >
+<button class="add-accessory-btn" data-name="Airpods Air 1/2 Case" data-variation="" data-price="7.99" data-stock="4" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+<div class="accessory-product" data-search="Airpods Pro 2 Case ESF12 Airpods Case">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Airpods Pro 2 Case" class="product-image">
+<h3>Airpods Pro 2 Case</h3>
+<div class="product-price">£7.99</div>
+<div class="stock-text">13 in stock</div>
+<label for="qty-3">Quantity</label>
+<input id="qty-3" type="number" min="1" max="13" value="1" >
+<button class="add-accessory-btn" data-name="Airpods Pro 2 Case" data-variation="" data-price="7.99" data-stock="13" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
+</div>
+</div>
+</main>
+
+
+<script src="accessory-shop.js"></script>
+<script src="social-dropdown.js"></script>
+<script src="whatsapp.js"></script>
+</body>
+</html>

@@ -1,12 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Brand - Evan's Smart Fix</title>
+
+    <title>Accessories - Evan's Smart Fix</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo.png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,6 +31,7 @@
             gap: 20px;
             flex-wrap: wrap;
             margin-top: 40px;
+            padding: 0 20px 40px;
         }
 
         .brand {
@@ -60,178 +64,198 @@
 
 <header>
 
+    <div class="header-left">
 
-<div class="header-left">
+        <img
+            src="images/logo.png"
+            alt="Logo"
+            class="logo"
+        >
 
-<img src="images/logo.png"
-alt="Logo"
-class="logo">
+        <p>Select an Accessory</p>
 
-<p>Select Your Device Brand</p>
+    </div>
 
-</div>
+    <nav>
 
-<nav>
-    <a href="index.html">Home</a>
+        <a href="index.html">Home</a>
 
-    <details class="nav-dropdown">
-        <summary>Shop &amp; Repair</summary>
+        <details class="nav-dropdown">
 
-        <div class="dropdown-menu">
-            <a href="brands.html">Book a Repair</a>
+            <summary>
+                Shop &amp; Repair
+            </summary>
 
-            <details class="sub-dropdown accessories-dropdown">
-                <summary>Accessories</summary>
+            <div class="dropdown-menu">
 
-                <div class="sub-dropdown-menu accessories-menu">
-                    <a href="cases.html">Cases</a>
-                    <a href="cables.html">Cables</a>
-                    <a href="chargers.html">Chargers</a>
-                    <a href="power-banks.html">Power Banks</a>
-                    <a href="headphones.html">Headphones</a>
-                    <a href="earbuds.html">Earbuds</a>
-                    <a href="adapters.html">Adapters</a>
-                    <a href="screen-protectors.html">Screen Protectors</a>
-                    <a href="airpods-cases.html">AirPods Cases</a>
+                <a href="brands.html">
+                    Book a Repair
+                </a>
 
-                    <a href="batteries.html">Batteries</a>
-                    <a href="camera-protectors.html">Camera Protectors</a>
-                    <a href="controllers.html">Controllers</a>
-                    <a href="holders.html">Phone Holders</a>
-                    <a href="keyboards.html">Keyboards</a>
-                    <a href="storage.html">Storage</a>
-                    <a href="watch-cases.html">Watch Cases</a>
-                    <a href="accessories.html">View All Accessories</a>
-                </div>
-            </details>
-        </div>
-    </details>
+                <details class="sub-dropdown accessories-dropdown">
 
-    <a href="cart.html" class="cart-link">
-        🛒 Basket <span id="cartCount">0</span>
-    </a>
-</nav>
+                    <summary>
+                        Accessories
+                    </summary>
+
+                    <div class="sub-dropdown-menu accessories-menu">
+
+                        <a href="cases.html">Cases</a>
+                        <a href="cables.html">Cables</a>
+                        <a href="chargers.html">Chargers</a>
+                        <a href="power-banks.html">Power Banks</a>
+                        <a href="headphones.html">Headphones</a>
+                        <a href="earbuds.html">Earbuds</a>
+                        <a href="adapters.html">Adapters</a>
+                        <a href="screen-protectors.html">Screen Protectors</a>
+                        <a href="airpods-cases.html">AirPods Cases</a>
+                        <a href="batteries.html">Batteries</a>
+                        <a href="camera-protectors.html">Camera Protectors</a>
+                        <a href="controllers.html">Controllers</a>
+                        <a href="holders.html">Phone Holders</a>
+                        <a href="keyboards.html">Keyboards</a>
+                        <a href="storage.html">Storage</a>
+                        <a href="watch-cases.html">Watch Cases</a>
+                        <a href="accessories.html">View All Accessories</a>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </details>
+
+        <a href="cart.html" class="cart-link">
+            🛒 Basket <span id="cartCount">0</span>
+        </a>
+
+    </nav>
+
 </header>
 
-<div class="accessories">
 
-    <div class="accessories">
+<div class="brands">
+
+    <div class="brand">
         <a href="cases.html">
-            <br>
-            cases
+            Cases
         </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="cables.html">
-            cables
+            Cables
         </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="chargers.html">
-             chargers
+            Chargers
         </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="power-banks.html">
-            power banks 
+            Power Banks
         </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="headphones.html">
-           headphones 
+            Headphones
         </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="earbuds.html">
-            earbuds
+            Earbuds
         </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="adapters.html">
-            adapters
-            </a>
+            Adapters
+        </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="screen-protectors.html">
-            screen protectors
-            </a>
-        </div>
+            Screen Protectors
+        </a>
+    </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="airpods-cases.html">
-            airpods cases
-            </a>
-        </div>
-    
-    <div class="accessories">
+            AirPods Cases
+        </a>
+    </div>
+
+    <div class="brand">
         <a href="batteries.html">
             Batteries
-            </a>
+        </a>
     </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="camera-protectors.html">
-            camera protector
+            Camera Protectors
         </a>
-        </div>
+    </div>
 
-    <div class="accessories">
+    <div class="brand">
         <a href="controllers.html">
-            controllers
+            Controllers
         </a>
     </div>
-    <div class="accessories">
+
+    <div class="brand">
         <a href="holders.html">
-            phone holders
+            Phone Holders
         </a>
     </div>
-    <div class="accessories">
+
+    <div class="brand">
         <a href="keyboards.html">
-            keyboards
+            Keyboards
         </a>
     </div>
-    <div class="accessories">
+
+    <div class="brand">
         <a href="storage.html">
-            storage devices
+            Storage Devices
         </a>
     </div>
-    <div class="accessories">
+
+    <div class="brand">
         <a href="watch-cases.html">
-            watch cases
+            Watch Cases
         </a>
     </div>
+
 </div>
+
+
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener("DOMContentLoaded", function(){
-
-    let cart =
-        JSON.parse(
-            localStorage.getItem("cart")
-        ) || [];
+    const cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
     const count =
         document.getElementById("cartCount");
 
-    if(count){
-
-        count.textContent =
-            cart.length;
-
+    if (count) {
+        count.textContent = cart.length;
     }
 
 });
-
 </script>
+
 <script src="social-dropdown.js"></script>
 <script src="shop-dropdown.js"></script>
-  <script src="whatsapp.js"></script>
+<script src="whatsapp.js"></script>
+
 </body>
 </html>
+```

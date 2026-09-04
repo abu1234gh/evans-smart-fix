@@ -1,20 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Watch Cases - Evan's Smart Fix</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="accessory-shop.css">
-<link rel="icon" href="images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Brand - Evan's Smart Fix</title>
 
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #ffffff;
+            margin: 0;
+        }
+
+        header {
+            background: #0057b8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .brands {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .brand {
+            background: white;
+            padding: 30px;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            transition: 0.2s;
+        }
+
+        .brand:hover {
+            transform: scale(1.05);
+        }
+
+        .brand a {
+            text-decoration: none;
+            color: #0057b8;
+            font-weight: bold;
+            display: block;
+        }
+
+        .brand img {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
+
 <header>
+
+
 <div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
-<div><h1>Watch Cases</h1><p>Watch Cases</p></div>
+
+<img src="images/logo.png"
+alt="Logo"
+class="logo">
+
+<p>Select Your Device Brand</p>
+
 </div>
+
 <nav>
     <a href="index.html">Home</a>
 
@@ -57,75 +113,125 @@
 </nav>
 </header>
 
-<main class="accessory-page">
-<h2>Watch Cases</h2>
-<p class="accessory-intro">Protective cases for smart watches.</p>
+<div class="accessories">
 
-<div class="accessory-toolbar">
-<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
-</div>
-<div class="accessory-grid">
-<div class="accessory-product" data-search="Watch Case 41mm ESF06 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 41mm" class="product-image">
-<h3>Watch Case 41mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">10 in stock</div>
-<label for="qty-0">Quantity</label>
-<input id="qty-0" type="number" min="1" max="10" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 41mm" data-variation="" data-price="5.99" data-stock="10" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 42mm ESF05 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 42mm" class="product-image">
-<h3>Watch Case 42mm</h3>
-<div class="product-price">£4.99</div>
-<div class="stock-text">5 in stock</div>
-<label for="qty-1">Quantity</label>
-<input id="qty-1" type="number" min="1" max="5" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 42mm" data-variation="" data-price="4.99" data-stock="5" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 44mm ESF04 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 44mm" class="product-image">
-<h3>Watch Case 44mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">10 in stock</div>
-<label for="qty-2">Quantity</label>
-<input id="qty-2" type="number" min="1" max="10" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 44mm" data-variation="" data-price="5.99" data-stock="10" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 45mm ESF03 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 45mm" class="product-image">
-<h3>Watch Case 45mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">3 in stock</div>
-<label for="qty-3">Quantity</label>
-<input id="qty-3" type="number" min="1" max="3" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 45mm" data-variation="" data-price="5.99" data-stock="3" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 46mm ESF02 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 46mm" class="product-image">
-<h3>Watch Case 46mm</h3>
-<div class="product-price">£4.99</div>
-<div class="stock-text">2 in stock</div>
-<label for="qty-4">Quantity</label>
-<input id="qty-4" type="number" min="1" max="2" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 46mm" data-variation="" data-price="4.99" data-stock="2" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 49mm ESF01 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 49mm" class="product-image">
-<h3>Watch Case 49mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">6 in stock</div>
-<label for="qty-5">Quantity</label>
-<input id="qty-5" type="number" min="1" max="6" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 49mm" data-variation="" data-price="5.99" data-stock="6" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-</div>
-</main>
+    <div class="accessories">
+        <a href="cases.html">
+            <br>
+            cases
+        </a>
+    </div>
 
+    <div class="accessories">
+        <a href="cables.html">
+            cables
+        </a>
+    </div>
 
-<script src="accessory-shop.js"></script>
+    <div class="accessories">
+        <a href="chargers.html">
+             chargers
+        </a>
+    </div>
+
+    <div class="accessories">
+        <a href="power-banks.html">
+            power banks 
+        </a>
+    </div>
+
+    <div class="accessories">
+        <a href="headphones.html">
+           headphones 
+        </a>
+    </div>
+
+    <div class="accessories">
+        <a href="earbuds.html">
+            earbuds
+        </a>
+    </div>
+
+    <div class="accessories">
+        <a href="adapters.html">
+            adapters
+            </a>
+    </div>
+
+    <div class="accessories">
+        <a href="screen-protectors.html">
+            screen protectors
+            </a>
+        </div>
+
+    <div class="accessories">
+        <a href="airpods-cases.html">
+            airpods cases
+            </a>
+        </div>
+    
+    <div class="accessories">
+        <a href="batteries.html">
+            Batteries
+            </a>
+    </div>
+
+    <div class="accessories">
+        <a href="camera-protectors.html">
+            camera protector
+        </a>
+        </div>
+
+    <div class="accessories">
+        <a href="controllers.html">
+            controllers
+        </a>
+    </div>
+    <div class="accessories">
+        <a href="holders.html">
+            phone holders
+        </a>
+    </div>
+    <div class="accessories">
+        <a href="keyboards.html">
+            keyboards
+        </a>
+    </div>
+    <div class="accessories">
+        <a href="storage.html">
+            storage devices
+        </a>
+    </div>
+    <div class="accessories">
+        <a href="watch-cases.html">
+            watch cases
+        </a>
+    </div>
+</div>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const count =
+        document.getElementById("cartCount");
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
+});
+
+</script>
 <script src="social-dropdown.js"></script>
 <script src="shop-dropdown.js"></script>
-<script src="whatsapp.js"></script>
+  <script src="whatsapp.js"></script>
 </body>
 </html>

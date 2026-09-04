@@ -1787,3 +1787,53 @@ nav a[href="cart.html"]:hover {
         content: "▴";
     }
 }
+/* Accessories dropdown - 2 rows */
+.accessories-menu {
+    display: grid !important;
+
+    grid-template-rows: repeat(2, auto);
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(140px, 1fr);
+
+    width: min(1100px, 92vw);
+    max-width: 92vw;
+
+    gap: 6px;
+
+    padding: 12px;
+}
+
+.accessories-menu a {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+/* Keep the large accessories menu on screen */
+.accessories-dropdown {
+    position: relative;
+}
+
+.accessories-dropdown .accessories-menu {
+    left: 0;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .accessories-menu {
+        grid-template-rows: none;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-flow: row;
+
+        width: min(92vw, 420px);
+    }
+
+    .accessories-menu a {
+        white-space: normal;
+    }
+}

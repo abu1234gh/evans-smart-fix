@@ -1837,3 +1837,38 @@ nav a[href="cart.html"]:hover {
         white-space: normal;
     }
 }
+.accessory-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 0 20px 40px;
+}
+
+.accessory-card {
+    background: white;
+    padding: 30px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.accessory-card:hover {
+    transform: scale(1.05);
+}
+
+.accessory-card a {
+    text-decoration: none;
+    color: #0057b8;
+    font-weight: bold;
+    display: block;
+}
+
+.accessory-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}

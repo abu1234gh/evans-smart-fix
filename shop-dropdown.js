@@ -36,7 +36,6 @@
     "brands.html"
   ];
 
-
   function addShopDropdownStyles() {
 
     if (document.getElementById("shared-shop-dropdown-styles")) {
@@ -65,21 +64,35 @@
         cursor: pointer;
       }
 
-
-      /* DESKTOP */
+      /* ACCESSORIES MENU */
       .shop-accessories-menu {
         box-sizing: border-box;
+
         display: grid !important;
 
-        grid-template-columns: repeat(9, minmax(0, 1fr));
-        grid-template-rows: repeat(2, auto);
-        grid-auto-flow: column;
+        /* 3 items across */
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        /* Fill left to right, then next row */
+        grid-auto-flow: row;
+
+        /* Fixed row height */
+        grid-auto-rows: 54px;
 
         gap: 6px;
-        padding: 14px;
+        padding: 12px;
 
-        width: min(1450px, calc(100vw - 40px));
-        max-width: calc(100vw - 40px);
+        width: min(650px, calc(100vw - 30px));
+        max-width: calc(100vw - 30px);
+
+        /*
+          Around 3 rows visible.
+          Scroll down for the rest.
+        */
+        max-height: 200px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
 
         position: absolute;
 
@@ -93,55 +106,29 @@
         border-radius: 18px;
       }
 
-
       .shop-accessories-menu a {
         box-sizing: border-box;
 
         display: flex;
         align-items: center;
+        justify-content: center;
 
         min-width: 0;
 
-        padding: 12px 10px;
+        padding: 8px;
 
         white-space: normal;
+
         overflow-wrap: anywhere;
 
-        line-height: 1.25;
+        text-align: center;
+
+        line-height: 1.2;
 
         text-decoration: none;
       }
 
-
-      /* SMALLER DESKTOP / LAPTOP */
-      @media (max-width: 1300px) {
-
-        .shop-accessories-menu {
-          grid-template-columns: repeat(6, minmax(0, 1fr));
-          grid-template-rows: none;
-          grid-auto-flow: row;
-
-          width: calc(100vw - 40px);
-        }
-
-      }
-
-
-      /* TABLET */
-      @media (max-width: 900px) {
-
-        .shop-accessories-menu {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-
-          width: calc(100vw - 30px);
-
-          padding: 12px;
-        }
-
-      }
-
-
-      /* MOBILE */
+      /* TABLETS / SMALLER SCREENS */
       @media (max-width: 650px) {
 
         .shop-accessories-menu {
@@ -149,13 +136,14 @@
 
           width: calc(100vw - 20px);
 
-          padding: 10px;
+          max-width: calc(100vw - 20px);
+
+          max-height: 200px;
         }
 
       }
 
-
-      /* SMALL PHONE */
+      /* SMALL PHONES */
       @media (max-width: 380px) {
 
         .shop-accessories-menu {
@@ -169,15 +157,12 @@
     document.head.appendChild(style);
   }
 
-
-
   function findShopDropdown() {
 
     const dropdowns =
       document.querySelectorAll(
         "details.nav-dropdown"
       );
-
 
     for (const details of dropdowns) {
 
@@ -186,7 +171,6 @@
           ":scope > summary"
         );
 
-
       if (
         summary &&
         summary.textContent
@@ -194,33 +178,26 @@
           .toLowerCase()
           === "shop & repair"
       ) {
-
         return details;
       }
     }
 
-
     return null;
   }
-
-
 
   function buildShopDropdown() {
 
     const shopDropdown =
       findShopDropdown();
 
-
     if (!shopDropdown) {
       return;
     }
-
 
     let dropdownMenu =
       shopDropdown.querySelector(
         ":scope > .dropdown-menu"
       );
-
 
     if (!dropdownMenu) {
 
@@ -235,14 +212,14 @@
       );
     }
 
-
     /*
-      Only replace Shop & Repair contents.
-      Socials stays untouched.
+      Remove only the old Shop & Repair
+      dropdown contents.
+
+      Home, Basket and Socials stay untouched.
     */
 
     dropdownMenu.innerHTML = "";
-
 
     /* BOOK A REPAIR */
 
@@ -259,8 +236,6 @@
       repairLink
     );
 
-
-
     /* ACCESSORIES */
 
     const accessoriesDetails =
@@ -268,7 +243,6 @@
 
     accessoriesDetails.className =
       "sub-dropdown shop-accessories-dropdown";
-
 
     const accessoriesSummary =
       document.createElement("summary");
@@ -280,13 +254,11 @@
       accessoriesSummary
     );
 
-
     const accessoriesMenu =
       document.createElement("div");
 
     accessoriesMenu.className =
       "sub-dropdown-menu shop-accessories-menu";
-
 
     ACCESSORY_LINKS.forEach(
       ([label, href]) => {
@@ -303,10 +275,8 @@
         accessoriesMenu.appendChild(
           link
         );
-
       }
     );
-
 
     accessoriesDetails.appendChild(
       accessoriesMenu
@@ -315,20 +285,14 @@
     dropdownMenu.appendChild(
       accessoriesDetails
     );
-
   }
-
-
 
   function initShopDropdown() {
 
     addShopDropdownStyles();
 
     buildShopDropdown();
-
   }
-
-
 
   if (
     document.readyState === "loading"
@@ -342,7 +306,6 @@
   } else {
 
     initShopDropdown();
-
   }
 
 })();

@@ -29,3 +29,34 @@
 .accessory-back-link{color:#0057b8;text-decoration:none;font-weight:bold}
 .add-accessory-btn:disabled{background:#9aa4b2;cursor:not-allowed;opacity:.78}
 .accessory-product input:disabled,.accessory-product select:disabled{background:#f1f1f1;color:#777}
+/* ========================================
+   GLOBAL PRODUCT GRID
+   Applies to all accessory/shop pages
+======================================== */
+
+.accessory-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px;
+    width: 100%;
+}
+
+.accessory-product {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .accessory-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+    .accessory-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

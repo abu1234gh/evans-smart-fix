@@ -1,130 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Watch Cases - Evan's Smart Fix</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="accessory-shop.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keyboards - Evan's Smart Fix</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="accessory-shop.css">
     <link rel="icon" href="images/logo.png">
 </head>
+
 <body>
+
 <header>
-<div class="header-left">
-<img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
-<div><h1>Watch Cases</h1><p>Watch Cases</p></div>
-</div>
-<nav>
-    <a href="index.html">Home</a>
+    <div class="header-left">
+        <img src="images/logo.png" alt="Evan's Smart Fix Logo" class="logo">
 
-    <details class="nav-dropdown">
-        <summary>Shop &amp; Repair</summary>
-
-        <div class="dropdown-menu">
-            <a href="brands.html">Book a Repair</a>
-
-            <details class="sub-dropdown accessories-dropdown">
-                <summary>Accessories</summary>
-
-                <div class="sub-dropdown-menu accessories-menu">
-                    <a href="cases.html">Cases</a>
-                    <a href="cables.html">Cables</a>
-                    <a href="chargers.html">Chargers</a>
-                    <a href="power-banks.html">Power Banks</a>
-                    <a href="headphones.html">Headphones</a>
-                    <a href="earbuds.html">Earbuds</a>
-                    <a href="adapters.html">Adapters</a>
-                    <a href="screen-protectors.html">Screen Protectors</a>
-                    <a href="airpods-cases.html">AirPods Cases</a>
-
-                    <a href="batteries.html">Batteries</a>
-                    <a href="camera-protectors.html">Camera Protectors</a>
-                    <a href="controllers.html">Controllers</a>
-                    <a href="holders.html">Phone Holders</a>
-                    <a href="keyboards.html">Keyboards</a>
-                    <a href="storage.html">Storage</a>
-                    <a href="watch-cases.html">Watch Cases</a>
-                    <a href="accessories.html">View All Accessories</a>
-                </div>
-            </details>
+        <div>
+            <h1>Keyboards</h1>
+            <p>Keyboards &amp; Mouse Sets</p>
         </div>
-    </details>
+    </div>
 
-    <a href="cart.html" class="cart-link">
-        🛒 Basket <span id="cartCount">0</span>
-    </a>
-</nav>
+    <nav>
+        <a href="index.html">Home</a>
+
+        <details class="nav-dropdown">
+            <summary>Shop &amp; Repair</summary>
+
+            <div class="dropdown-menu">
+                <a href="brands.html">Book a Repair</a>
+
+                <details class="sub-dropdown accessories-dropdown">
+                    <summary>Accessories</summary>
+
+                    <div class="sub-dropdown-menu accessories-menu">
+                        <a href="cases.html">Cases</a>
+                        <a href="cables.html">Cables</a>
+                        <a href="chargers.html">Chargers</a>
+                        <a href="power-banks.html">Power Banks</a>
+                        <a href="headphones.html">Headphones</a>
+                        <a href="earbuds.html">Earbuds</a>
+                        <a href="adapters.html">Adapters</a>
+                        <a href="screen-protectors.html">Screen Protectors</a>
+                        <a href="airpods-cases.html">AirPods Cases</a>
+                        <a href="batteries.html">Batteries</a>
+                        <a href="camera-protectors.html">Camera Protectors</a>
+                        <a href="controllers.html">Controllers</a>
+                        <a href="holders.html">Phone Holders</a>
+                        <a href="keyboards.html">Keyboards</a>
+                        <a href="storage.html">Storage</a>
+                        <a href="watch-cases.html">Watch Cases</a>
+                        <a href="accessories.html">View All Accessories</a>
+                    </div>
+                </details>
+            </div>
+        </details>
+
+        <a href="cart.html" class="cart-link">
+            🛒 Basket <span id="cartCount">0</span>
+        </a>
+    </nav>
 </header>
 
 <main class="accessory-page">
-<h2>Watch Cases</h2>
-<p class="accessory-intro">Protective cases for smart watches.</p>
 
-<div class="accessory-toolbar">
-<input class="accessory-search" type="search" placeholder="Search products..." oninput="filterAccessoryProducts(this.value)">
-</div>
-<div class="accessory-grid">
-<div class="accessory-product" data-search="Watch Case 41mm ESF06 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 41mm" class="product-image">
-<h3>Watch Case 41mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">10 in stock</div>
-<label for="qty-0">Quantity</label>
-<input id="qty-0" type="number" min="1" max="10" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 41mm" data-variation="" data-price="5.99" data-stock="10" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 42mm ESF05 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 42mm" class="product-image">
-<h3>Watch Case 42mm</h3>
-<div class="product-price">£4.99</div>
-<div class="stock-text">5 in stock</div>
-<label for="qty-1">Quantity</label>
-<input id="qty-1" type="number" min="1" max="5" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 42mm" data-variation="" data-price="4.99" data-stock="5" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 44mm ESF04 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 44mm" class="product-image">
-<h3>Watch Case 44mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">10 in stock</div>
-<label for="qty-2">Quantity</label>
-<input id="qty-2" type="number" min="1" max="10" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 44mm" data-variation="" data-price="5.99" data-stock="10" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 45mm ESF03 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 45mm" class="product-image">
-<h3>Watch Case 45mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">3 in stock</div>
-<label for="qty-3">Quantity</label>
-<input id="qty-3" type="number" min="1" max="3" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 45mm" data-variation="" data-price="5.99" data-stock="3" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 46mm ESF02 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 46mm" class="product-image">
-<h3>Watch Case 46mm</h3>
-<div class="product-price">£4.99</div>
-<div class="stock-text">2 in stock</div>
-<label for="qty-4">Quantity</label>
-<input id="qty-4" type="number" min="1" max="2" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 46mm" data-variation="" data-price="4.99" data-stock="2" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-<div class="accessory-product" data-search="Watch Case 49mm ESF01 Watch Case">
-<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="Watch Case 49mm" class="product-image">
-<h3>Watch Case 49mm</h3>
-<div class="product-price">£5.99</div>
-<div class="stock-text">6 in stock</div>
-<label for="qty-5">Quantity</label>
-<input id="qty-5" type="number" min="1" max="6" value="1" >
-<button class="add-accessory-btn" data-name="Watch Case 49mm" data-variation="" data-price="5.99" data-stock="6" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
-</div>
-</div>
+    <h2>Keyboards</h2>
+
+    <p class="accessory-intro">
+        Browse our keyboard and mouse sets.
+    </p>
+
+    <p>
+        <a href="accessories.html" class="accessory-back-link">← Back to Accessories</a>
+    </p>
+
+    <div class="accessory-toolbar">
+        <input
+            class="accessory-search"
+            type="search"
+            placeholder="Search keyboards..."
+            oninput="filterAccessoryProducts(this.value)"
+        >
+    </div>
+
+    <div class="accessory-grid">
+
+        <div class="accessory-product" data-search="Gaming Keyboard and Mouse PF139 Keyboard">
+            <img
+                src="images/PF139.png"
+                onerror="this.onerror=null;this.src='images/unavailable.png';"
+                alt="Gaming Keyboard and Mouse"
+                class="product-image"
+            >
+
+            <h3>Gaming Keyboard and Mouse</h3>
+
+            <div class="product-price">£20.00</div>
+
+            <label for="qty-0">Quantity</label>
+            <input id="qty-0" type="number" min="1" value="1">
+
+            <button
+                class="add-accessory-btn"
+                onclick="addAccessoryToCart('Gaming Keyboard and Mouse', '', 20.00, document.getElementById('qty-0').value)"
+            >
+                Add to Basket
+            </button>
+        </div>
+
+        <div class="accessory-product" data-search="Mech Keyboard Mouse PF138 Keyboard">
+            <img
+                src="images/PF138.png"
+                onerror="this.onerror=null;this.src='images/unavailable.png';"
+                alt="Mech Keyboard + Mouse"
+                class="product-image"
+            >
+
+            <h3>Mech Keyboard + Mouse</h3>
+
+            <div class="product-price">£31.99</div>
+
+            <label for="qty-1">Quantity</label>
+            <input id="qty-1" type="number" min="1" value="1">
+
+            <button
+                class="add-accessory-btn"
+                onclick="addAccessoryToCart('Mech Keyboard + Mouse', '', 31.99, document.getElementById('qty-1').value)"
+            >
+                Add to Basket
+            </button>
+        </div>
+
+        <div class="accessory-product" data-search="Wireless Keyboard Mouse PF292 Keyboard">
+            <img
+                src="images/PF292.png"
+                onerror="this.onerror=null;this.src='images/unavailable.png';"
+                alt="Wireless Keyboard + Mouse"
+                class="product-image"
+            >
+
+            <h3>Wireless Keyboard + Mouse</h3>
+
+            <div class="product-price">£20.00</div>
+
+            <label for="qty-2">Quantity</label>
+            <input id="qty-2" type="number" min="1" value="1">
+
+            <button
+                class="add-accessory-btn"
+                onclick="addAccessoryToCart('Wireless Keyboard + Mouse', '', 20.00, document.getElementById('qty-2').value)"
+            >
+                Add to Basket
+            </button>
+        </div>
+
+        <div class="accessory-product" data-search="Wireless Keyboard Mouse Black PF293 Keyboard">
+            <img
+                src="images/PF293.png"
+                onerror="this.onerror=null;this.src='images/unavailable.png';"
+                alt="Wireless Keyboard + Mouse Black"
+                class="product-image"
+            >
+
+            <h3>Wireless Keyboard + Mouse Black</h3>
+
+            <div class="product-price">£20.00</div>
+
+            <label for="qty-3">Quantity</label>
+            <input id="qty-3" type="number" min="1" value="1">
+
+            <button
+                class="add-accessory-btn"
+                onclick="addAccessoryToCart('Wireless Keyboard + Mouse Black', '', 20.00, document.getElementById('qty-3').value)"
+            >
+                Add to Basket
+            </button>
+        </div>
+
+    </div>
+
 </main>
-
 
 <script src="accessory-shop.js"></script>
 <script src="social-dropdown.js"></script>
 <script src="shop-dropdown.js"></script>
 <script src="whatsapp.js"></script>
+
 </body>
 </html>

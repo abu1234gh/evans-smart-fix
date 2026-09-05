@@ -2053,3 +2053,49 @@ nav a[href="cart.html"]:hover {
     }
 
 }
+.whatsapp-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    font-weight: bold;
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+
+    z-index: 9999;
+}
+
+.whatsapp-text {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-left: 0;
+
+    transition: 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    width: 165px;
+    border-radius: 30px;
+}
+
+.whatsapp-button:hover .whatsapp-text {
+    max-width: 100px;
+    opacity: 1;
+    margin-left: 8px;
+}

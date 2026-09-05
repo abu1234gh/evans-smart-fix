@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     const whatsappButton = document.createElement("a");
 
     whatsappButton.href = "https://wa.me/447861154960";
@@ -7,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     whatsappButton.innerHTML = `
         <span>💬</span>
-        WhatsApp Us
+        <span class="whatsapp-text">WhatsApp Us</span>
     `;
 
     document.body.appendChild(whatsappButton);
+
 });

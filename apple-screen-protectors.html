@@ -7,6 +7,45 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="accessory-shop.css">
     <link rel="icon" href="images/logo.png">
+
+<style>
+/* Responsive product grid for this page only */
+.accessory-page .accessory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+    width: 100%;
+}
+
+.accessory-page .accessory-product {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.accessory-page .product-image {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.accessory-page .add-accessory-btn {
+    margin-top: auto;
+}
+
+@media (max-width: 600px) {
+    .accessory-page .accessory-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .accessory-page .product-image {
+        height: 210px;
+    }
+}
+</style>
 </head>
 <body>
 <header>
@@ -65,7 +104,7 @@
 </div>
 <div class="accessory-grid">
 <div class="accessory-product" data-search="iPhone 11 Pro Max MaxMate Privacy 9D APP-SP-11PM-MM-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 11 Pro Max MaxMate Privacy 9D" class="product-image">
+<img src="images/iphone-11-pro-max-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 11 Pro Max MaxMate Privacy 9D" class="product-image">
 <h3>iPhone 11 Pro Max MaxMate Privacy 9D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -74,7 +113,7 @@
 <button class="add-accessory-btn" data-name="iPhone 11 Pro Max MaxMate Privacy 9D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-0" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 / 12 Pro Clear 0.4mm APP-SP-12-04 Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 / 12 Pro Clear 0.4mm" class="product-image">
+<img src="images/iphone-12-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 / 12 Pro Clear 0.4mm" class="product-image">
 <h3>iPhone 12 / 12 Pro Clear 0.4mm</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -83,7 +122,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 / 12 Pro Clear 0.4mm" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-1" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 / 12 Pro MaxMate Clear 9D APP-SP-12-MM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 / 12 Pro MaxMate Clear 9D" class="product-image">
+<img src="images/iphone-12-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 / 12 Pro MaxMate Clear 9D" class="product-image">
 <h3>iPhone 12 / 12 Pro MaxMate Clear 9D</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">Out of stock</div>
@@ -92,7 +131,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 / 12 Pro MaxMate Clear 9D" data-variation="" data-price="6.00" data-stock="0" data-qty-id="qty-2" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 / 12 Pro Privacy 10D APP-SP-12-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 / 12 Pro Privacy 10D" class="product-image">
+<img src="images/iphone-12-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 / 12 Pro Privacy 10D" class="product-image">
 <h3>iPhone 12 / 12 Pro Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -101,7 +140,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 / 12 Pro Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-3" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 Mini Clear Basic APP-SP-12MINI-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Mini Clear Basic" class="product-image">
+<img src="images/iphone-12-mini-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Mini Clear Basic" class="product-image">
 <h3>iPhone 12 Mini Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -110,7 +149,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 Mini Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-4" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 Pro Max Clear Basic APP-SP-12PM-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Pro Max Clear Basic" class="product-image">
+<img src="images/iphone-12-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Pro Max Clear Basic" class="product-image">
 <h3>iPhone 12 Pro Max Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -119,7 +158,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 Pro Max Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-5" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 Pro Max MaxMate Clear 9D APP-SP-12PM-MM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Pro Max MaxMate Clear 9D" class="product-image">
+<img src="images/iphone-12-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Pro Max MaxMate Clear 9D" class="product-image">
 <h3>iPhone 12 Pro Max MaxMate Clear 9D</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">Out of stock</div>
@@ -128,7 +167,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 Pro Max MaxMate Clear 9D" data-variation="" data-price="6.00" data-stock="0" data-qty-id="qty-6" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 12 Pro Max Privacy Basic APP-SP-12PM-PRIV-B Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Pro Max Privacy Basic" class="product-image">
+<img src="images/iphone-12-pro-max-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 12 Pro Max Privacy Basic" class="product-image">
 <h3>iPhone 12 Pro Max Privacy Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -137,7 +176,7 @@
 <button class="add-accessory-btn" data-name="iPhone 12 Pro Max Privacy Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-7" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13 / 13 Pro Clear Basic APP-SP-13-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 / 13 Pro Clear Basic" class="product-image">
+<img src="images/iphone-13-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 / 13 Pro Clear Basic" class="product-image">
 <h3>iPhone 13 / 13 Pro Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -146,7 +185,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13 / 13 Pro Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-8" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13 Mini Clear 0.4mm APP-SP-13MINI-04 Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Mini Clear 0.4mm" class="product-image">
+<img src="images/iphone-13-mini-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Mini Clear 0.4mm" class="product-image">
 <h3>iPhone 13 Mini Clear 0.4mm</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -155,7 +194,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13 Mini Clear 0.4mm" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-9" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13 Mini Privacy 10D APP-SP-13MINI-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Mini Privacy 10D" class="product-image">
+<img src="images/iphone-13-mini-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Mini Privacy 10D" class="product-image">
 <h3>iPhone 13 Mini Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -164,7 +203,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13 Mini Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-10" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13 Pro Max Clear Basic APP-SP-13PM-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Pro Max Clear Basic" class="product-image">
+<img src="images/iphone-13-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Pro Max Clear Basic" class="product-image">
 <h3>iPhone 13 Pro Max Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -173,7 +212,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13 Pro Max Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-11" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13 Pro Max MaxMate Clear 9D APP-SP-13PM-MM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Pro Max MaxMate Clear 9D" class="product-image">
+<img src="images/iphone-13-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Pro Max MaxMate Clear 9D" class="product-image">
 <h3>iPhone 13 Pro Max MaxMate Clear 9D</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">Out of stock</div>
@@ -182,7 +221,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13 Pro Max MaxMate Clear 9D" data-variation="" data-price="6.00" data-stock="0" data-qty-id="qty-12" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13 Pro Max Privacy 10D APP-SP-13PM-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Pro Max Privacy 10D" class="product-image">
+<img src="images/iphone-13-pro-max-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13 Pro Max Privacy 10D" class="product-image">
 <h3>iPhone 13 Pro Max Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -191,7 +230,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13 Pro Max Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-13" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 / 13 / 13 Pro / 16E Clear 10D APP-SP-1314-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 / 13 / 13 Pro / 16E Clear 10D" class="product-image">
+<img src="images/iphone-14-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 / 13 / 13 Pro / 16E Clear 10D" class="product-image">
 <h3>iPhone 14 / 13 / 13 Pro / 16E Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -200,7 +239,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 / 13 / 13 Pro / 16E Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-14" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 / 13 / 13 Pro / 16E Privacy 10D APP-SP-1314-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 / 13 / 13 Pro / 16E Privacy 10D" class="product-image">
+<img src="images/iphone-14-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 / 13 / 13 Pro / 16E Privacy 10D" class="product-image">
 <h3>iPhone 14 / 13 / 13 Pro / 16E Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -209,7 +248,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 / 13 / 13 Pro / 16E Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-15" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 Plus Privacy 10D APP-SP-14PLUS-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Plus Privacy 10D" class="product-image">
+<img src="images/iphone-14-plus-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Plus Privacy 10D" class="product-image">
 <h3>iPhone 14 Plus Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -218,7 +257,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 Plus Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-16" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 Pro Clear Basic APP-SP-14PRO-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Clear Basic" class="product-image">
+<img src="images/iphone-14-pro-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Clear Basic" class="product-image">
 <h3>iPhone 14 Pro Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -227,7 +266,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 Pro Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-17" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 Pro Max Clear Basic APP-SP-14PM-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Max Clear Basic" class="product-image">
+<img src="images/iphone-14-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Max Clear Basic" class="product-image">
 <h3>iPhone 14 Pro Max Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -236,7 +275,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 Pro Max Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-18" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 Pro Max Privacy 10D APP-SP-14PM-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Max Privacy 10D" class="product-image">
+<img src="images/iphone-14-pro-max-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Max Privacy 10D" class="product-image">
 <h3>iPhone 14 Pro Max Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -245,7 +284,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 Pro Max Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-19" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 Pro Privacy 10D APP-SP-14PRO-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Privacy 10D" class="product-image">
+<img src="images/iphone-14-pro-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Privacy 10D" class="product-image">
 <h3>iPhone 14 Pro Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -254,7 +293,7 @@
 <button class="add-accessory-btn" data-name="iPhone 14 Pro Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-20" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 15 Plus MaxMate Clear 9D APP-SP-15PLUS-MM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Plus MaxMate Clear 9D" class="product-image">
+<img src="images/iphone-15-plus-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Plus MaxMate Clear 9D" class="product-image">
 <h3>iPhone 15 Plus MaxMate Clear 9D</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">Out of stock</div>
@@ -263,7 +302,7 @@
 <button class="add-accessory-btn" data-name="iPhone 15 Plus MaxMate Clear 9D" data-variation="" data-price="6.00" data-stock="0" data-qty-id="qty-21" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 15 Plus MaxMate Privacy 9D APP-SP-15PLUS-MM-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Plus MaxMate Privacy 9D" class="product-image">
+<img src="images/iphone-15-plus-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Plus MaxMate Privacy 9D" class="product-image">
 <h3>iPhone 15 Plus MaxMate Privacy 9D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -272,7 +311,7 @@
 <button class="add-accessory-btn" data-name="iPhone 15 Plus MaxMate Privacy 9D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-22" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 15 Pro Clear 10D APP-SP-15PRO-PF-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Clear 10D" class="product-image">
+<img src="images/iphone-15-pro-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Clear 10D" class="product-image">
 <h3>iPhone 15 Pro Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -281,7 +320,7 @@
 <button class="add-accessory-btn" data-name="iPhone 15 Pro Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-23" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 15 Pro Max Clear 0.4mm APP-SP-15PM-04 Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Max Clear 0.4mm" class="product-image">
+<img src="images/iphone-15-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Max Clear 0.4mm" class="product-image">
 <h3>iPhone 15 Pro Max Clear 0.4mm</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -290,7 +329,7 @@
 <button class="add-accessory-btn" data-name="iPhone 15 Pro Max Clear 0.4mm" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-24" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 15 Pro Max MaxMate Clear 9D APP-SP-15PM-MM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Max MaxMate Clear 9D" class="product-image">
+<img src="images/iphone-15-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Max MaxMate Clear 9D" class="product-image">
 <h3>iPhone 15 Pro Max MaxMate Clear 9D</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">Out of stock</div>
@@ -299,7 +338,7 @@
 <button class="add-accessory-btn" data-name="iPhone 15 Pro Max MaxMate Clear 9D" data-variation="" data-price="6.00" data-stock="0" data-qty-id="qty-25" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 15 Pro Privacy 10D APP-SP-15PRO-PF-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Privacy 10D" class="product-image">
+<img src="images/iphone-15-pro-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 15 Pro Privacy 10D" class="product-image">
 <h3>iPhone 15 Pro Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -308,7 +347,7 @@
 <button class="add-accessory-btn" data-name="iPhone 15 Pro Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-26" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 16 Clear 10D APP-SP-16-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Clear 10D" class="product-image">
+<img src="images/iphone-16-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Clear 10D" class="product-image">
 <h3>iPhone 16 Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -317,7 +356,7 @@
 <button class="add-accessory-btn" data-name="iPhone 16 Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-27" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 16 Plus Privacy 10D APP-SP-16PLUS-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Plus Privacy 10D" class="product-image">
+<img src="images/iphone-16-plus-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Plus Privacy 10D" class="product-image">
 <h3>iPhone 16 Plus Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -326,7 +365,7 @@
 <button class="add-accessory-btn" data-name="iPhone 16 Plus Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-28" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 16 Privacy 10D APP-SP-16-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Privacy 10D" class="product-image">
+<img src="images/iphone-16-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Privacy 10D" class="product-image">
 <h3>iPhone 16 Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -335,7 +374,7 @@
 <button class="add-accessory-btn" data-name="iPhone 16 Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-29" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 16 Pro Clear 10D APP-SP-16PRO-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Pro Clear 10D" class="product-image">
+<img src="images/iphone-16-pro-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Pro Clear 10D" class="product-image">
 <h3>iPhone 16 Pro Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -344,7 +383,7 @@
 <button class="add-accessory-btn" data-name="iPhone 16 Pro Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-30" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 16 Pro Max Privacy 10D APP-SP-16PM-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Pro Max Privacy 10D" class="product-image">
+<img src="images/iphone-16-pro-max-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Pro Max Privacy 10D" class="product-image">
 <h3>iPhone 16 Pro Max Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -353,7 +392,7 @@
 <button class="add-accessory-btn" data-name="iPhone 16 Pro Max Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-31" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 16 Pro Privacy 10D APP-SP-16PRO-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Pro Privacy 10D" class="product-image">
+<img src="images/iphone-16-pro-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 16 Pro Privacy 10D" class="product-image">
 <h3>iPhone 16 Pro Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -362,7 +401,7 @@
 <button class="add-accessory-btn" data-name="iPhone 16 Pro Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-32" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Air Clear 10D APP-SP-17AIR-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Air Clear 10D" class="product-image">
+<img src="images/iphone-air-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Air Clear 10D" class="product-image">
 <h3>iPhone 17 Air Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -371,7 +410,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Air Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-33" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Air Privacy 10D APP-SP-17AIR-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Air Privacy 10D" class="product-image">
+<img src="images/iphone-air-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Air Privacy 10D" class="product-image">
 <h3>iPhone 17 Air Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -380,7 +419,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Air Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-34" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Clear 10D APP-SP-17-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Clear 10D" class="product-image">
+<img src="images/iphone-17-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Clear 10D" class="product-image">
 <h3>iPhone 17 Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -389,7 +428,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-35" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Privacy 10D APP-SP-17-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Privacy 10D" class="product-image">
+<img src="images/iphone-17-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Privacy 10D" class="product-image">
 <h3>iPhone 17 Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -398,7 +437,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-36" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Pro Clear 10D APP-SP-17P-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Clear 10D" class="product-image">
+<img src="images/iphone-17-pro-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Clear 10D" class="product-image">
 <h3>iPhone 17 Pro Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -407,7 +446,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Pro Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-37" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Pro Max Clear 10D APP-SP-17PM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Max Clear 10D" class="product-image">
+<img src="images/iphone-17-pro-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Max Clear 10D" class="product-image">
 <h3>iPhone 17 Pro Max Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -416,7 +455,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Pro Max Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-38" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Pro Max Privacy 10D APP-SP-17PM-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Max Privacy 10D" class="product-image">
+<img src="images/iphone-17-pro-max-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Max Privacy 10D" class="product-image">
 <h3>iPhone 17 Pro Max Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -425,7 +464,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Pro Max Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-39" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 17 Pro Privacy 10D APP-SP-17P-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Privacy 10D" class="product-image">
+<img src="images/iphone-17-pro-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 17 Pro Privacy 10D" class="product-image">
 <h3>iPhone 17 Pro Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -434,7 +473,7 @@
 <button class="add-accessory-btn" data-name="iPhone 17 Pro Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-40" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 6 / 6S / 7 / 8 Clear Basic APP-SP-678-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 6 / 6S / 7 / 8 Clear Basic" class="product-image">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 6 / 6S / 7 / 8 Clear Basic" class="product-image">
 <h3>iPhone 6 / 6S / 7 / 8 Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -443,7 +482,7 @@
 <button class="add-accessory-btn" data-name="iPhone 6 / 6S / 7 / 8 Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-41" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 7 Plus / 8 Plus Privacy 9D APP-SP-7P8P-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 7 Plus / 8 Plus Privacy 9D" class="product-image">
+<img src="images/unavailable.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 7 Plus / 8 Plus Privacy 9D" class="product-image">
 <h3>iPhone 7 Plus / 8 Plus Privacy 9D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -452,7 +491,7 @@
 <button class="add-accessory-btn" data-name="iPhone 7 Plus / 8 Plus Privacy 9D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-42" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone X / XS / 11 Pro Clear Basic APP-SP-X11P-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone X / XS / 11 Pro Clear Basic" class="product-image">
+<img src="images/iphone-xs-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone X / XS / 11 Pro Clear Basic" class="product-image">
 <h3>iPhone X / XS / 11 Pro Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -461,7 +500,7 @@
 <button class="add-accessory-btn" data-name="iPhone X / XS / 11 Pro Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-43" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone X / XS / 11 Pro MaxMate Clear 9D APP-SP-X11P-MM-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone X / XS / 11 Pro MaxMate Clear 9D" class="product-image">
+<img src="images/iphone-xs-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone X / XS / 11 Pro MaxMate Clear 9D" class="product-image">
 <h3>iPhone X / XS / 11 Pro MaxMate Clear 9D</h3>
 <div class="product-price">£6.00</div>
 <div class="stock-text">Out of stock</div>
@@ -470,7 +509,7 @@
 <button class="add-accessory-btn" data-name="iPhone X / XS / 11 Pro MaxMate Clear 9D" data-variation="" data-price="6.00" data-stock="0" data-qty-id="qty-44" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone XR / 11 Clear 10D APP-SP-XR11-CLR Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XR / 11 Clear 10D" class="product-image">
+<img src="images/iphone-xr-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XR / 11 Clear 10D" class="product-image">
 <h3>iPhone XR / 11 Clear 10D</h3>
 <div class="product-price">£7.00</div>
 <div class="stock-text">Out of stock</div>
@@ -479,7 +518,7 @@
 <button class="add-accessory-btn" data-name="iPhone XR / 11 Clear 10D" data-variation="" data-price="7.00" data-stock="0" data-qty-id="qty-45" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone XR / 11 Privacy 10D APP-SP-XR11-PRIV Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XR / 11 Privacy 10D" class="product-image">
+<img src="images/iphone-xr-privacy.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XR / 11 Privacy 10D" class="product-image">
 <h3>iPhone XR / 11 Privacy 10D</h3>
 <div class="product-price">£8.00</div>
 <div class="stock-text">Out of stock</div>
@@ -488,7 +527,7 @@
 <button class="add-accessory-btn" data-name="iPhone XR / 11 Privacy 10D" data-variation="" data-price="8.00" data-stock="0" data-qty-id="qty-46" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone XS Max / 11 Pro Max Clear Basic APP-SP-XSM11PM-BASIC Screen Protectors||iPhone">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XS Max / 11 Pro Max Clear Basic" class="product-image">
+<img src="images/iphone-xs-max-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone XS Max / 11 Pro Max Clear Basic" class="product-image">
 <h3>iPhone XS Max / 11 Pro Max Clear Basic</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">Out of stock</div>
@@ -497,7 +536,7 @@
 <button class="add-accessory-btn" data-name="iPhone XS Max / 11 Pro Max Clear Basic" data-variation="" data-price="5.00" data-stock="0" data-qty-id="qty-47" onclick="addAccessoryFromButton(this)" disabled>Out of Stock</button>
 </div>
 <div class="accessory-product" data-search="iPhone 13/13 Mini Full CAM-IPHONE1313MINIFULL iPhone||Screen Protectors">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13/13 Mini Full" class="product-image">
+<img src="images/iphone-13-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 13/13 Mini Full" class="product-image">
 <h3>iPhone 13/13 Mini Full</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">4 in stock</div>
@@ -506,7 +545,7 @@
 <button class="add-accessory-btn" data-name="iPhone 13/13 Mini Full" data-variation="" data-price="5.00" data-stock="4" data-qty-id="qty-48" onclick="addAccessoryFromButton(this)" >Add to Basket</button>
 </div>
 <div class="accessory-product" data-search="iPhone 14 Pro Lens CAM-IPHONE14PROLENS iPhone||Screen Protectors">
-<img src="images/screen.png" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Lens" class="product-image">
+<img src="images/iphone-14-pro-clear.jpg" onerror="this.onerror=null;this.src='images/unavailable.png';" alt="iPhone 14 Pro Lens" class="product-image">
 <h3>iPhone 14 Pro Lens</h3>
 <div class="product-price">£5.00</div>
 <div class="stock-text">9 in stock</div>

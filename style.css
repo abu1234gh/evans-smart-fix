@@ -1872,3 +1872,184 @@ nav a[href="cart.html"]:hover {
     height: auto;
     margin-bottom: 10px;
 }
+/* ========================================
+   CUSTOMER REVIEW SLIDER
+======================================== */
+
+.reviews-section {
+    text-align: center;
+}
+
+.testimonial-slider {
+    width: 90%;
+    max-width: 850px;
+    margin: 35px auto 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.testimonial-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.testimonial {
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+    animation: testimonialFade 0.4s ease;
+}
+
+.testimonial.active {
+    display: block;
+}
+
+.testimonial-stars {
+    font-size: 25px;
+
+    margin-bottom: 15px;
+
+    color: #f5b301;
+}
+
+.testimonial-text {
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    margin: 0 0 20px;
+}
+
+.testimonial h4 {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+
+/* ========================================
+   ARROWS
+======================================== */
+
+.testimonial-arrow {
+    flex-shrink: 0;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+    padding: 10px;
+
+    transition: transform 0.2s ease;
+}
+
+.testimonial-arrow:hover {
+    transform: scale(1.15);
+}
+
+
+/* ========================================
+   DOTS
+======================================== */
+
+.testimonial-dots {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+.testimonial-dot {
+    width: 11px;
+    height: 11px;
+
+    min-width: 11px;
+    min-height: 11px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #bbb;
+
+    cursor: pointer;
+}
+
+.testimonial-dot.active {
+    background: #333;
+}
+
+
+/* ========================================
+   SLIDE ANIMATION
+======================================== */
+
+@keyframes testimonialFade {
+
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .testimonial-slider {
+        width: 96%;
+        gap: 4px;
+    }
+
+    .testimonial {
+        padding: 25px 16px;
+    }
+
+    .testimonial-text {
+        font-size: 16px;
+    }
+
+    .testimonial-stars {
+        font-size: 22px;
+    }
+
+    .testimonial-arrow {
+        font-size: 25px;
+        padding: 5px;
+    }
+
+}

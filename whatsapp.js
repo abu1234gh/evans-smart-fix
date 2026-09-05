@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     whatsappButton.className = "whatsapp-button";
 
     whatsappButton.innerHTML = `
-        <span>💬</span>
+        <img src="images/whatsapp.png" alt="WhatsApp">
         <span class="whatsapp-text">WhatsApp Us</span>
     `;
 

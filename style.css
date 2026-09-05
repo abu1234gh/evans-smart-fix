@@ -1301,27 +1301,6 @@ nav a[href="cart.html"]:hover {
     }
 }
 
-.whatsapp-button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 18px;
-    border-radius: 50px;
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.whatsapp-button:hover {
-    transform: scale(1.05);
-}
-
 /*=========================================================
    MOBILE CATALOGUE REDESIGN — Brand / Model / Repair pages
    Phone-only overrides. Desktop layouts remain unchanged.
@@ -2053,49 +2032,89 @@ nav a[href="cart.html"]:hover {
     }
 
 }
+
+/* =========================================================
+   WHATSAPP FLOATING BUTTON
+   Round normally, expands on hover
+========================================================= */
+
 .whatsapp-button {
     position: fixed;
     right: 20px;
     bottom: 20px;
+    z-index: 9999;
 
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    height: 58px;
+    padding: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     background: #25D366;
-    color: white;
+    color: #ffffff;
     text-decoration: none;
 
     border-radius: 50%;
     overflow: hidden;
-
-    font-weight: bold;
     white-space: nowrap;
 
-    transition: 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 
-    z-index: 9999;
+    transition:
+        width 0.3s ease,
+        border-radius 0.3s ease,
+        padding 0.3s ease,
+        transform 0.2s ease;
+}
+
+.whatsapp-button img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex: 0 0 30px;
 }
 
 .whatsapp-text {
     max-width: 0;
-    opacity: 0;
-    overflow: hidden;
     margin-left: 0;
 
-    transition: 0.3s ease;
+    opacity: 0;
+    overflow: hidden;
+
+    font-weight: 700;
+    white-space: nowrap;
+
+    transition:
+        max-width 0.3s ease,
+        margin-left 0.3s ease,
+        opacity 0.2s ease;
 }
 
 .whatsapp-button:hover {
-    width: 165px;
+    width: 190px;
+    padding: 0 18px;
     border-radius: 30px;
+    transform: translateY(-2px);
 }
 
 .whatsapp-button:hover .whatsapp-text {
-    max-width: 100px;
+    max-width: 120px;
+    margin-left: 10px;
     opacity: 1;
-    margin-left: 8px;
 }
+
+/* Keep it easy to use on touch screens */
+@media (hover: none) {
+    .whatsapp-button {
+        width: 58px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .whatsapp-text {
+        display: none;
+    }
+}
+

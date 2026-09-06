@@ -109,3 +109,4 @@
         supabaseUrl: SUPABASE_URL
     };
 })();
+

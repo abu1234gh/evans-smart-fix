@@ -1,0 +1,174 @@
+/* =========================================================
+   EVAN'S SMART FIX - REPAIR QUALITY THEME
+   VISUAL STYLING ONLY
+   Prices and JavaScript logic remain in repair-quality.html.
+========================================================= */
+
+body.site-redesign #selectedRepair {
+    width: min(1100px, calc(100% - 36px));
+    margin: 46px auto 12px !important;
+    padding: 0 12px;
+    color: var(--esf-navy) !important;
+    text-align: center !important;
+    font-size: clamp(28px, 4vw, 44px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.8px;
+}
+
+body.site-redesign .repair-grid {
+    width: min(1080px, calc(100% - 36px)) !important;
+    max-width: 1080px !important;
+    margin: 30px auto 80px !important;
+    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+}
+
+body.site-redesign .repair-grid .model {
+    min-height: 250px !important;
+    padding: 26px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #ffffff !important;
+    border: 1px solid var(--esf-border) !important;
+    border-radius: 20px !important;
+    box-shadow: var(--esf-shadow) !important;
+    text-align: center !important;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease !important;
+}
+
+body.site-redesign .repair-grid .model:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: var(--esf-shadow-hover) !important;
+    border-color: #bfd8f4 !important;
+}
+
+body.site-redesign .repair-grid .model.selected {
+    background: var(--esf-blue-soft) !important;
+    border: 2px solid var(--esf-blue) !important;
+    box-shadow: 0 18px 40px rgba(0, 87, 184, 0.15) !important;
+}
+
+body.site-redesign .repair-grid .model a {
+    width: 100%;
+    color: var(--esf-text) !important;
+    text-decoration: none !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+}
+
+body.site-redesign .repair-grid .model a:hover {
+    color: var(--esf-blue) !important;
+}
+
+body.site-redesign .repair-grid .model img {
+    width: auto !important;
+    max-width: 150px !important;
+    height: 130px !important;
+    max-height: 130px !important;
+    margin: 0 auto 15px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 12px 16px rgba(18, 38, 63, 0.10));
+}
+
+body.site-redesign .repair-grid .model strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    margin-top: 10px;
+    padding: 8px 13px;
+    background: #f0f6ff;
+    color: var(--esf-blue) !important;
+    border-radius: 999px;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    line-height: 1.2;
+}
+
+body.site-redesign .genuine-button {
+    width: 100% !important;
+    min-height: 118px !important;
+    height: auto !important;
+    padding: 18px !important;
+    background: var(--esf-blue) !important;
+    color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 15px !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    line-height: 1.45 !important;
+    box-shadow: 0 10px 24px rgba(0, 87, 184, 0.20) !important;
+    cursor: pointer !important;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+body.site-redesign .genuine-button:hover {
+    background: var(--esf-blue-dark) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 14px 30px rgba(0, 87, 184, 0.26) !important;
+}
+
+/* Header visibility on white background */
+body.site-redesign header.top-bar .nav-dropdown > summary,
+body.site-redesign header.top-bar .esf-nav-button,
+body.site-redesign header.top-bar .esf-social-button,
+body.site-redesign header.top-bar nav a:not(.cart-link),
+body.site-redesign header.top-bar .esf-account-link {
+    color: var(--esf-text) !important;
+}
+
+body.site-redesign header.top-bar .nav-dropdown > summary:hover,
+body.site-redesign header.top-bar .esf-nav-button:hover,
+body.site-redesign header.top-bar .esf-social-button:hover,
+body.site-redesign header.top-bar nav a:not(.cart-link):hover,
+body.site-redesign header.top-bar .esf-account-link:hover {
+    color: var(--esf-blue) !important;
+}
+
+@media (max-width: 900px) {
+    body.site-redesign .repair-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 560px) {
+    body.site-redesign #selectedRepair {
+        margin-top: 34px !important;
+        font-size: 30px !important;
+    }
+
+    body.site-redesign .repair-grid {
+        width: min(100% - 24px, 520px) !important;
+        gap: 12px !important;
+    }
+
+    body.site-redesign .repair-grid .model {
+        min-height: 215px !important;
+        padding: 20px 12px !important;
+    }
+
+    body.site-redesign .repair-grid .model img {
+        max-width: 120px !important;
+        height: 105px !important;
+        max-height: 105px !important;
+    }
+
+    body.site-redesign .repair-grid .model a {
+        font-size: 15px !important;
+    }
+
+    body.site-redesign .repair-grid .model strong {
+        font-size: 16px !important;
+    }
+}

@@ -48,6 +48,19 @@
             text-align: center;
         }
 
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .item-details {
+            text-align: center;
+        }
+
         button {
             background: #0057b8;
             color: white;
@@ -293,6 +306,14 @@ function renderCart() {
                 "item";
 
 
+            const itemImage =
+                item.image ||
+                item.imageUrl ||
+                item.imageSrc ||
+                item.img ||
+                "images/unavailable.png";
+
+
 
             /*
             Support both repair items
@@ -316,7 +337,14 @@ function renderCart() {
 
                 div.innerHTML = `
 
-                    <div>
+                    <img
+                        src="${itemImage}"
+                        alt="${item.name || "Accessory"}"
+                        class="item-image"
+                        onerror="this.src='images/unavailable.png'"
+                    >
+
+                    <div class="item-details">
 
                         <strong>
                             ${item.name || "Accessory"}
@@ -357,7 +385,14 @@ function renderCart() {
 
                 div.innerHTML = `
 
-                    <div>
+                    <img
+                        src="${itemImage}"
+                        alt="${item.model || "Repair item"}"
+                        class="item-image"
+                        onerror="this.src='images/unavailable.png'"
+                    >
+
+                    <div class="item-details">
 
                         <strong>
                             ${item.model || ""}

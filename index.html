@@ -100,14 +100,24 @@
             gap: 12px;
         }
 
-        .home-redesign > header nav > a {
-            color: #172033;
+        .home-redesign > header nav a:not(.cart-link) {
+            color: #172033 !important;
             text-decoration: none;
             font-weight: 700;
         }
 
-        .home-redesign > header nav > a:hover {
-            color: #0057b8;
+        .home-redesign > header nav a:not(.cart-link):hover {
+            color: #0057b8 !important;
+        }
+
+        /* Login / My Account inserted by auth-nav.js */
+        .home-redesign > header nav [href*="login"],
+        .home-redesign > header nav [href*="account"],
+        .home-redesign > header nav .login-link,
+        .home-redesign > header nav .account-link,
+        .home-redesign > header nav .auth-nav-link {
+            color: #172033 !important;
+            background: transparent !important;
         }
 
 
@@ -1428,6 +1438,24 @@
                 Home
             </a>
 
+
+            <details class="nav-dropdown">
+
+                <summary>
+                    Shop &amp; Repair
+                </summary>
+
+                <div class="dropdown-menu">
+
+                    <a href="brands.html">
+                        Book a Repair
+                    </a>
+
+                </div>
+
+            </details>
+
+
             <a
                 href="cart.html"
                 class="cart-link"
@@ -2662,6 +2690,8 @@
         Shop & Repair + Socials.
     -->
     <script src="social-dropdown.js"></script>
+
+    <script src="shop-dropdown.js"></script>
 
     <script src="whatsapp.js"></script>
 

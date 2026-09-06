@@ -18,6 +18,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<!-- SUMUP PAYMENT WIDGET -->
+<script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
+
 <!-- CUSTOMER ACCOUNT LOGIN -->
 <script src="auth.js"></script>
 
@@ -321,6 +324,16 @@ alt="Evan's Smart Fix logo"
 
 
 <p id="status"></p>
+
+<div
+    id="sumup-card"
+    style="
+        display:none;
+        margin-top:20px;
+        width:100%;
+        max-width:520px;
+    "
+></div>
 
 
 </div>
@@ -1740,7 +1753,7 @@ if (payButton) {
                                         bookingReference,
 
                                     return_url:
-                                        "https://abu1234gh.github.io/evans-smart-fix/payment-success.html"
+                                        "https://evanssmartfix.co.uk/payment-success.html"
 
                                 })
 
@@ -1758,9 +1771,14 @@ if (payButton) {
                 );
 
 
+                const checkoutId =
+                    sumupData.checkout_id ||
+                    sumupData.id;
+
+
                 if (
                     !sumupResponse.ok ||
-                    !sumupData.hosted_checkout_url
+                    !checkoutId
                 ) {
 
                     console.error(
@@ -1775,7 +1793,7 @@ if (payButton) {
 
 
                 bookingData.sumupCheckoutId =
-                    sumupData.checkout_id;
+                    checkoutId;
 
 
                 localStorage.setItem(
@@ -1786,12 +1804,160 @@ if (payButton) {
                 );
 
 
+                if (
+                    !window.SumUpCard ||
+                    typeof window.SumUpCard.mount !== "function"
+                ) {
+
+                    throw new Error(
+                        "SumUp payment widget failed to load."
+                    );
+                }
+
+
+                const sumupCard =
+                    document.getElementById(
+                        "sumup-card"
+                    );
+
+
+                if (!sumupCard) {
+
+                    throw new Error(
+                        "SumUp payment container not found."
+                    );
+                }
+
+
+                sumupCard.style.display =
+                    "block";
+
+
+                payButton.style.display =
+                    "none";
+
+
                 status.textContent =
-                    "Opening secure payment...";
+                    "Loading secure payment...";
 
 
-                window.location.href =
-                    sumupData.hosted_checkout_url;
+                window.SumUpCard.mount({
+
+                    id:
+                        "sumup-card",
+
+                    checkoutId:
+                        checkoutId,
+
+                    amount:
+                        total.toFixed(2),
+
+                    currency:
+                        "GBP",
+
+                    locale:
+                        "en-GB",
+
+                    email:
+                        email,
+
+                    onLoad:
+                        function () {
+
+                            status.textContent =
+                                "Secure payment ready.";
+
+                        },
+
+                    onResponse:
+                        function (
+                            type,
+                            body
+                        ) {
+
+                            console.log(
+                                "SUMUP WIDGET RESPONSE:",
+                                type,
+                                body
+                            );
+
+
+                            if (
+                                type === "sent"
+                            ) {
+
+                                status.textContent =
+                                    "Processing your payment...";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "auth-screen"
+                            ) {
+
+                                status.textContent =
+                                    "Please complete your bank security check.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "invalid"
+                            ) {
+
+                                status.textContent =
+                                    "Please check your payment details.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "error"
+                            ) {
+
+                                console.error(
+                                    "SUMUP WIDGET ERROR:",
+                                    body
+                                );
+
+                                status.textContent =
+                                    "There was a problem processing the payment. Please try again.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "fail"
+                            ) {
+
+                                status.textContent =
+                                    "Payment was not completed. Please try again.";
+
+                                return;
+                            }
+
+
+                            if (
+                                type === "success"
+                            ) {
+
+                                status.textContent =
+                                    "Payment submitted. Verifying securely...";
+
+
+                                window.location.href =
+                                    "payment-success.html";
+
+                            }
+
+                        }
+
+                });
 
 
             } catch (error) {
@@ -1805,13 +1971,33 @@ if (payButton) {
                 status.textContent =
                     "Unable to start payment.";
 
+
                 alert(
                     "We couldn't start the payment. Please try again."
                 );
 
 
+                const sumupCard =
+                    document.getElementById(
+                        "sumup-card"
+                    );
+
+
+                if (sumupCard) {
+
+                    sumupCard.style.display =
+                        "none";
+
+                }
+
+
+                payButton.style.display =
+                    "inline-block";
+
+
                 payButton.disabled =
                     false;
+
 
                 payButton.textContent =
                     "Pay with Card";

@@ -114,63 +114,90 @@ function showAccessoryToast(message) {
 
 
 /* =========================================================
-   GET PRODUCT IMAGE
+   FIND PRODUCT IMAGE
 ========================================================= */
 
-function getAccessoryImage(button) {
+function getAccessoryImageByName(name) {
 
-    if (!button) {
-
-        return "images/unavailable.png";
-
-    }
-
-
-    const productCard =
-        button.closest(
+    const cards =
+        document.querySelectorAll(
             ".accessory-product"
         );
 
 
-    if (!productCard) {
+    for (
+        let i = 0;
+        i < cards.length;
+        i++
+    ) {
 
-        return "images/unavailable.png";
+        const card =
+            cards[i];
+
+
+        const button =
+            card.querySelector(
+                ".add-accessory-btn"
+            );
+
+
+        const heading =
+            card.querySelector(
+                "h3"
+            );
+
+
+        const cardName =
+            button &&
+            button.dataset.name
+                ? button.dataset.name.trim()
+                : heading
+                    ? heading.textContent.trim()
+                    : "";
+
+
+        if (
+            cardName ===
+            String(name || "").trim()
+        ) {
+
+            const image =
+                card.querySelector(
+                    ".product-image"
+                ) ||
+                card.querySelector(
+                    "img"
+                );
+
+
+            if (image) {
+
+                return (
+                    image.getAttribute("src") ||
+                    "images/unavailable.png"
+                );
+
+            }
+
+        }
 
     }
 
 
-    const image =
-        productCard.querySelector(
-            ".product-image"
-        );
-
-
-    if (!image) {
-
-        return "images/unavailable.png";
-
-    }
-
-
-    return (
-        image.getAttribute("src") ||
-        "images/unavailable.png"
-    );
+    return "images/unavailable.png";
 
 }
 
 
 /* =========================================================
    ADD ACCESSORY TO CART
-   Stock is ignored
 ========================================================= */
 
 function addAccessoryToCart(
     name,
     variation,
     price,
-    quantity,
-    sourceButton
+    quantity
 ) {
 
     quantity =
@@ -189,50 +216,9 @@ function addAccessoryToCart(
     }
 
 
-    /*
-    Work out which Add to Basket
-    button was clicked.
-    */
-
-    let button =
-        sourceButton || null;
-
-
-    if (
-        !button &&
-        typeof event !== "undefined" &&
-        event.currentTarget
-    ) {
-
-        button =
-            event.currentTarget;
-
-    }
-
-
-    if (
-        !button &&
-        document.activeElement &&
-        document.activeElement.classList &&
-        document.activeElement.classList.contains(
-            "add-accessory-btn"
-        )
-    ) {
-
-        button =
-            document.activeElement;
-
-    }
-
-
-    /*
-    Automatically get the image
-    from the product card.
-    */
-
     const image =
-        getAccessoryImage(
-            button
+        getAccessoryImageByName(
+            name
         );
 
 
@@ -274,12 +260,6 @@ function addAccessoryToCart(
             ) +
             quantity;
 
-
-        /*
-        Add the image to older cart
-        items that did not already
-        have one saved.
-        */
 
         if (
             !existing.image ||
@@ -338,7 +318,6 @@ function addAccessoryToCart(
 
 /* =========================================================
    ADD FROM PRODUCT BUTTON
-   Ignores data-stock completely
 ========================================================= */
 
 function addAccessoryFromButton(button) {
@@ -372,9 +351,7 @@ function addAccessoryFromButton(button) {
 
         qty
             ? qty.value
-            : 1,
-
-        button
+            : 1
 
     );
 
@@ -423,12 +400,10 @@ function filterAccessoryProducts(value) {
 
 
 /* =========================================================
-   REMOVE STOCK SYSTEM FROM ACCESSORY PAGES
+   REMOVE STOCK SYSTEM
 ========================================================= */
 
 function removeAccessoryStockSystem() {
-
-    /* Remove stock messages */
 
     document
         .querySelectorAll(
@@ -442,8 +417,6 @@ function removeAccessoryStockSystem() {
             }
         );
 
-
-    /* Enable all quantity boxes */
 
     document
         .querySelectorAll(
@@ -480,8 +453,6 @@ function removeAccessoryStockSystem() {
             }
         );
 
-
-    /* Enable every Add to Basket button */
 
     document
         .querySelectorAll(

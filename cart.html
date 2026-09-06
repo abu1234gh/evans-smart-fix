@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,142 +14,98 @@
 
     <style>
 
-        /*
-        ============================================
-        CART PAGE ONLY
-        Keeps the main website theme from
-        site-theme.css
-        ============================================
-        */
-
         .cart-page {
-            width: min(1100px, calc(100% - 32px));
-            margin: 32px auto 48px;
+            width: min(1000px, calc(100% - 28px));
+            margin: 30px auto 50px;
         }
 
-        .cart-heading {
+        .cart-intro {
             text-align: center;
             margin-bottom: 22px;
         }
 
-        .cart-heading h2 {
+        .cart-intro h2 {
             margin: 0 0 8px;
             font-size: clamp(26px, 4vw, 36px);
         }
 
-        .cart-heading p {
+        .cart-intro p {
             margin: 0;
             opacity: 0.75;
         }
 
-        #total {
-            max-width: 720px;
-            margin: 0 auto 18px;
-            padding: 16px 20px;
-            text-align: center;
-            background: var(--card-bg, #ffffff);
-            border: 1px solid var(--border-color, #e3e7ee);
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            font-size: 20px;
-        }
-
         #cartBox {
-            max-width: 820px;
+            max-width: 760px;
             margin: 0 auto;
         }
 
-        .empty-cart {
-            padding: 35px 20px;
+        #total {
+            max-width: 760px;
+            margin: 18px auto 0;
+            padding: 16px 20px;
+
             text-align: center;
+
             background: var(--card-bg, #ffffff);
-            border: 1px solid var(--border-color, #e3e7ee);
-            border-radius: 18px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color, #e4e7ec);
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 24px
+                rgba(0, 0, 0, 0.06);
+
+            font-size: 20px;
         }
 
         .item {
-            display: grid;
-            grid-template-columns: 110px 1fr auto;
+            display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 18px;
 
             margin-bottom: 14px;
-            padding: 16px;
+            padding: 18px;
 
             background: var(--card-bg, #ffffff);
-            border: 1px solid var(--border-color, #e3e7ee);
-            border-radius: 18px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        }
+            border: 1px solid var(--border-color, #e4e7ec);
+            border-radius: 16px;
 
-        .item-image-wrap {
-            width: 110px;
-            height: 110px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 14px;
-            background: #ffffff;
-            border: 1px solid #eeeeee;
-        }
-
-        .item-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 6px;
-            box-sizing: border-box;
+            box-shadow:
+                0 8px 24px
+                rgba(0, 0, 0, 0.06);
         }
 
         .item-details {
-            min-width: 0;
+            flex: 1;
             text-align: left;
         }
 
-        .item-name {
-            display: block;
-            margin-bottom: 7px;
+        .item-details strong {
             font-size: 17px;
-            font-weight: 700;
         }
 
-        .item-meta {
-            display: block;
-            margin-top: 4px;
+        .item-details small {
             opacity: 0.72;
-            font-size: 14px;
         }
 
-        .item-price {
-            display: block;
-            margin-top: 8px;
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .item-subtotal {
-            display: block;
-            margin-top: 4px;
-            opacity: 0.72;
-            font-size: 13px;
-        }
-
-        .remove-btn {
+        .item button {
             width: auto !important;
             min-width: 90px;
+
             margin: 0;
             padding: 10px 14px;
+
             border: none;
             border-radius: 9px;
-            cursor: pointer;
-            font-weight: 700;
+
             background: #b42318;
             color: white;
+
+            font-weight: 700;
+            cursor: pointer;
         }
 
-        .remove-btn:hover {
+        .item button:hover {
             opacity: 0.9;
         }
 
@@ -156,49 +113,68 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
             gap: 12px;
-            max-width: 820px;
+
+            max-width: 760px;
             margin: 22px auto 0;
         }
 
         .cart-actions button {
             width: auto !important;
             min-width: 180px;
+
             margin: 0;
             padding: 12px 18px;
+
             border: none;
             border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
+
             background: var(--primary-color, #0057b8);
             color: white;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
         }
 
         .cart-actions button:hover {
             opacity: 0.9;
         }
 
-        @media (max-width: 650px) {
+        .empty-cart {
+            padding: 34px 20px;
+
+            text-align: center;
+
+            background: var(--card-bg, #ffffff);
+            border: 1px solid var(--border-color, #e4e7ec);
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 24px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        @media (max-width: 600px) {
 
             .cart-page {
-                width: min(100% - 20px, 1100px);
+                width: min(100% - 20px, 1000px);
                 margin-top: 20px;
             }
 
             .item {
-                grid-template-columns: 82px 1fr;
-                gap: 12px;
-                padding: 12px;
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
             }
 
-            .item-image-wrap {
-                width: 82px;
-                height: 82px;
+            .item-details {
+                text-align: center;
             }
 
-            .remove-btn {
-                grid-column: 1 / -1;
+            .item button {
                 width: 100% !important;
             }
 
@@ -232,7 +208,10 @@
 
     <nav>
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+            Home
+        </a>
+
 
         <details class="nav-dropdown">
 
@@ -240,11 +219,13 @@
                 Shop &amp; Repair
             </summary>
 
+
             <div class="dropdown-menu">
 
                 <a href="brands.html">
                     Book a Repair
                 </a>
+
 
                 <details class="sub-dropdown accessories-dropdown">
 
@@ -252,25 +233,76 @@
                         Accessories
                     </summary>
 
+
                     <div class="sub-dropdown-menu accessories-menu">
 
-                        <a href="cases.html">Cases</a>
-                        <a href="cables.html">Cables</a>
-                        <a href="chargers.html">Chargers</a>
-                        <a href="power-banks.html">Power Banks</a>
-                        <a href="headphones.html">Headphones</a>
-                        <a href="earbuds.html">Earbuds</a>
-                        <a href="adapters.html">Adapters</a>
-                        <a href="screen-protectors.html">Screen Protectors</a>
-                        <a href="airpods-cases.html">AirPods Cases</a>
-                        <a href="batteries.html">Batteries</a>
-                        <a href="camera-protectors.html">Camera Protectors</a>
-                        <a href="controllers.html">Controllers</a>
-                        <a href="holders.html">Phone Holders</a>
-                        <a href="keyboards.html">Keyboards</a>
-                        <a href="storage.html">Storage</a>
-                        <a href="watch-cases.html">Watch Cases</a>
-                        <a href="accessories.html">View All Accessories</a>
+                        <a href="cases.html">
+                            Cases
+                        </a>
+
+                        <a href="cables.html">
+                            Cables
+                        </a>
+
+                        <a href="chargers.html">
+                            Chargers
+                        </a>
+
+                        <a href="power-banks.html">
+                            Power Banks
+                        </a>
+
+                        <a href="headphones.html">
+                            Headphones
+                        </a>
+
+                        <a href="earbuds.html">
+                            Earbuds
+                        </a>
+
+                        <a href="adapters.html">
+                            Adapters
+                        </a>
+
+                        <a href="screen-protectors.html">
+                            Screen Protectors
+                        </a>
+
+                        <a href="airpods-cases.html">
+                            AirPods Cases
+                        </a>
+
+                        <a href="batteries.html">
+                            Batteries
+                        </a>
+
+                        <a href="camera-protectors.html">
+                            Camera Protectors
+                        </a>
+
+                        <a href="controllers.html">
+                            Controllers
+                        </a>
+
+                        <a href="holders.html">
+                            Phone Holders
+                        </a>
+
+                        <a href="keyboards.html">
+                            Keyboards
+                        </a>
+
+                        <a href="storage.html">
+                            Storage
+                        </a>
+
+                        <a href="watch-cases.html">
+                            Watch Cases
+                        </a>
+
+                        <a href="accessories.html">
+                            View All Accessories
+                        </a>
 
                     </div>
 
@@ -292,9 +324,11 @@
 
 <main class="cart-page">
 
-    <div class="cart-heading">
+    <div class="cart-intro">
 
-        <h2>Your Basket</h2>
+        <h2>
+            Your Basket
+        </h2>
 
         <p>
             Review your items before checkout.
@@ -303,9 +337,10 @@
     </div>
 
 
-    <div id="total"></div>
-
     <div id="cartBox"></div>
+
+
+    <div id="total"></div>
 
 
     <div class="cart-actions">
@@ -339,48 +374,9 @@ let cart =
 
 
 /*
-====================================
-CART COUNT
-====================================
-*/
-
-function getCartCount() {
-
-    return cart.reduce(
-        function(sum, item) {
-
-            if (
-                item &&
-                item.type === "accessory"
-            ) {
-
-                const quantity =
-                    Number(
-                        item.quantity || 1
-                    );
-
-                return sum +
-                    (
-                        quantity > 0
-                            ? quantity
-                            : 1
-                    );
-
-            }
-
-            return sum + 1;
-
-        },
-        0
-    );
-
-}
-
-
-/*
-====================================
+================================
 DISPLAY CART
-====================================
+================================
 */
 
 function renderCart() {
@@ -397,35 +393,30 @@ function renderCart() {
         );
 
 
-    const cartCount =
-        document.getElementById(
-            "cartCount"
-        );
-
-
     box.innerHTML = "";
 
 
-    if (cartCount) {
-
-        cartCount.textContent =
-            getCartCount();
-
-    }
+    document.getElementById(
+        "cartCount"
+    ).textContent =
+        cart.length;
 
 
     /*
     EMPTY CART
     */
 
-    if (cart.length === 0) {
+    if (
+        cart.length === 0
+    ) {
 
         box.innerHTML = `
             <div class="empty-cart">
-                <strong>Your basket is empty</strong>
-                <p>
-                    Add a repair or accessory to get started.
-                </p>
+
+                <strong>
+                    Your basket is empty
+                </strong>
+
             </div>
         `;
 
@@ -445,6 +436,12 @@ function renderCart() {
     cart.forEach(
         function(item, index) {
 
+            total +=
+                Number(
+                    item.price
+                );
+
+
             const div =
                 document.createElement(
                     "div"
@@ -455,20 +452,13 @@ function renderCart() {
                 "item";
 
 
-            const itemImage =
-                item.image ||
-                item.imageUrl ||
-                item.imageSrc ||
-                item.img ||
-                "images/unavailable.png";
-
-
             /*
-            ACCESSORY
+            ACCESSORY ITEMS
             */
 
             if (
-                item.type === "accessory"
+                item.type ===
+                "accessory"
             ) {
 
                 const quantity =
@@ -483,73 +473,36 @@ function renderCart() {
                     );
 
 
-                const lineTotal =
-                    itemPrice *
-                    quantity;
-
-
-                total +=
-                    lineTotal;
-
-
                 div.innerHTML = `
-
-                    <div class="item-image-wrap">
-
-                        <img
-                            src="${itemImage}"
-                            alt="${item.name || "Accessory"}"
-                            class="item-image"
-                            onerror="this.onerror=null;this.src='images/unavailable.png';"
-                        >
-
-                    </div>
-
 
                     <div class="item-details">
 
-                        <span class="item-name">
+                        <strong>
                             ${item.name || "Accessory"}
-                        </span>
+                        </strong>
 
                         ${
                             item.variation
                                 ?
-                                `
-                                <span class="item-meta">
-                                    ${item.variation}
-                                </span>
-                                `
+                                `<br>${item.variation}`
                                 :
                                 ""
                         }
 
-                        <span class="item-meta">
+                        <br>
+
+                        <small>
                             Quantity: ${quantity}
-                        </span>
+                        </small>
 
-                        <span class="item-price">
-                            £${itemPrice.toFixed(2)}
-                        </span>
+                        <br>
 
-                        ${
-                            quantity > 1
-                                ?
-                                `
-                                <span class="item-subtotal">
-                                    Subtotal: £${lineTotal.toFixed(2)}
-                                </span>
-                                `
-                                :
-                                ""
-                        }
+                        £${itemPrice.toFixed(2)}
 
                     </div>
 
 
                     <button
-                        type="button"
-                        class="remove-btn"
                         onclick="removeItem(${index})"
                     >
                         Remove
@@ -561,75 +514,39 @@ function renderCart() {
 
 
             /*
-            REPAIR
+            REPAIR ITEMS
             */
 
             else {
 
-                const itemPrice =
-                    Number(
-                        item.price || 0
-                    );
-
-
-                total +=
-                    itemPrice;
-
-
                 div.innerHTML = `
-
-                    <div class="item-image-wrap">
-
-                        <img
-                            src="${itemImage}"
-                            alt="${item.model || "Repair item"}"
-                            class="item-image"
-                            onerror="this.onerror=null;this.src='images/unavailable.png';"
-                        >
-
-                    </div>
-
 
                     <div class="item-details">
 
-                        <span class="item-name">
-                            ${item.model || "Repair"}
-                        </span>
+                        <strong>
+                            ${item.model || ""}
+                        </strong>
 
-                        ${
-                            item.repair
-                                ?
-                                `
-                                <span class="item-meta">
-                                    ${item.repair}
-                                </span>
-                                `
-                                :
-                                ""
-                        }
+                        <br>
 
-                        ${
-                            item.quality
-                                ?
-                                `
-                                <span class="item-meta">
-                                    ${item.quality}
-                                </span>
-                                `
-                                :
-                                ""
-                        }
+                        ${item.repair || ""}
 
-                        <span class="item-price">
-                            £${itemPrice.toFixed(2)}
-                        </span>
+                        <br>
+
+                        <small>
+                            ${item.quality || ""}
+                        </small>
+
+                        <br>
+
+                        £${Number(
+                            item.price || 0
+                        ).toFixed(2)}
 
                     </div>
 
 
                     <button
-                        type="button"
-                        class="remove-btn"
                         onclick="removeItem(${index})"
                     >
                         Remove
@@ -649,17 +566,20 @@ function renderCart() {
 
 
     totalBox.innerHTML =
-        "<strong>Total: £" +
-        total.toFixed(2) +
-        "</strong>";
+
+        "<strong>Total: £"
+
+        + total.toFixed(2)
+
+        + "</strong>";
 
 }
 
 
 /*
-====================================
+================================
 REMOVE ITEM
-====================================
+================================
 */
 
 function removeItem(index) {
@@ -682,9 +602,9 @@ function removeItem(index) {
 
 
 /*
-====================================
-PROCEED TO CHECKOUT
-====================================
+================================
+CHECKOUT
+================================
 */
 
 function checkout() {
@@ -701,9 +621,7 @@ function checkout() {
                 )
             ) || [];
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
             "Could not read basket from localStorage:",
@@ -713,14 +631,11 @@ function checkout() {
     }
 
 
-    /*
-    Fall back to the basket currently
-    displayed on this page.
-    */
-
     if (
-        !checkoutCart.length &&
-        Array.isArray(cart) &&
+        !checkoutCart.length
+        &&
+        Array.isArray(cart)
+        &&
         cart.length
     ) {
 
@@ -737,6 +652,7 @@ function checkout() {
         alert(
             "Your basket is empty"
         );
+
 
         return;
 
@@ -766,9 +682,9 @@ function checkout() {
 
 
 /*
-====================================
+================================
 PAGE LOAD
-====================================
+================================
 */
 
 document.addEventListener(
@@ -792,9 +708,13 @@ document.addEventListener(
 
 
 <script src="social-dropdown.js"></script>
+
 <script src="shop-dropdown.js"></script>
+
 <script src="whatsapp.js"></script>
 
 
 </body>
+
 </html>
+```

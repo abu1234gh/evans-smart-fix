@@ -1,3 +1,4 @@
+```js
 function getAccessoryCart() {
 
     return JSON.parse(
@@ -113,6 +114,53 @@ function showAccessoryToast(message) {
 
 
 /* =========================================================
+   GET PRODUCT IMAGE
+========================================================= */
+
+function getAccessoryImage(button) {
+
+    if (!button) {
+
+        return "images/unavailable.png";
+
+    }
+
+
+    const productCard =
+        button.closest(
+            ".accessory-product"
+        );
+
+
+    if (!productCard) {
+
+        return "images/unavailable.png";
+
+    }
+
+
+    const image =
+        productCard.querySelector(
+            ".product-image"
+        );
+
+
+    if (!image) {
+
+        return "images/unavailable.png";
+
+    }
+
+
+    return (
+        image.getAttribute("src") ||
+        "images/unavailable.png"
+    );
+
+}
+
+
+/* =========================================================
    ADD ACCESSORY TO CART
    Stock is ignored
 ========================================================= */
@@ -121,7 +169,8 @@ function addAccessoryToCart(
     name,
     variation,
     price,
-    quantity
+    quantity,
+    sourceButton
 ) {
 
     quantity =
@@ -138,6 +187,53 @@ function addAccessoryToCart(
         quantity = 1;
 
     }
+
+
+    /*
+    Work out which Add to Basket
+    button was clicked.
+    */
+
+    let button =
+        sourceButton || null;
+
+
+    if (
+        !button &&
+        typeof event !== "undefined" &&
+        event.currentTarget
+    ) {
+
+        button =
+            event.currentTarget;
+
+    }
+
+
+    if (
+        !button &&
+        document.activeElement &&
+        document.activeElement.classList &&
+        document.activeElement.classList.contains(
+            "add-accessory-btn"
+        )
+    ) {
+
+        button =
+            document.activeElement;
+
+    }
+
+
+    /*
+    Automatically get the image
+    from the product card.
+    */
+
+    const image =
+        getAccessoryImage(
+            button
+        );
 
 
     const cart =
@@ -178,6 +274,24 @@ function addAccessoryToCart(
             ) +
             quantity;
 
+
+        /*
+        Add the image to older cart
+        items that did not already
+        have one saved.
+        */
+
+        if (
+            !existing.image ||
+            existing.image ===
+                "images/unavailable.png"
+        ) {
+
+            existing.image =
+                image;
+
+        }
+
     } else {
 
         cart.push({
@@ -195,7 +309,10 @@ function addAccessoryToCart(
                 Number(price),
 
             quantity:
-                quantity
+                quantity,
+
+            image:
+                image
 
         });
 
@@ -255,7 +372,9 @@ function addAccessoryFromButton(button) {
 
         qty
             ? qty.value
-            : 1
+            : 1,
+
+        button
 
     );
 
@@ -417,3 +536,4 @@ document.addEventListener(
 
     }
 );
+```

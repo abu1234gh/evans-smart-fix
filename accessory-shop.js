@@ -1,12 +1,31 @@
-```js
 function getAccessoryCart() {
 
-    return JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
+    try {
+
+        const saved =
+            localStorage.getItem("cart");
+
+        return saved
+            ? JSON.parse(saved)
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Could not read cart:",
+            error
+        );
+
+        return [];
+
+    }
 
 }
 
+
+/* =========================================================
+   CART COUNT
+========================================================= */
 
 function accessoryCartCount(cart) {
 
@@ -18,15 +37,15 @@ function accessoryCartCount(cart) {
                 item.type === "accessory"
             ) {
 
-                const q =
+                const quantity =
                     Number(
                         item.quantity || 1
                     );
 
                 return sum +
                     (
-                        q > 0
-                            ? q
+                        quantity > 0
+                            ? quantity
                             : 1
                     );
 
@@ -43,14 +62,15 @@ function accessoryCartCount(cart) {
 
 function updateAccessoryCartCount() {
 
-    const e =
+    const cartCount =
         document.getElementById(
             "cartCount"
         );
 
-    if (e) {
 
-        e.textContent =
+    if (cartCount) {
+
+        cartCount.textContent =
             accessoryCartCount(
                 getAccessoryCart()
             );
@@ -60,37 +80,43 @@ function updateAccessoryCartCount() {
 }
 
 
+/* =========================================================
+   TOAST
+========================================================= */
+
 function showAccessoryToast(message) {
 
-    let t =
+    let toast =
         document.getElementById(
             "accessoryToast"
         );
 
-    if (!t) {
 
-        t =
+    if (!toast) {
+
+        toast =
             document.createElement(
                 "div"
             );
 
-        t.id =
+        toast.id =
             "accessoryToast";
 
-        t.className =
+        toast.className =
             "accessory-toast";
 
-        document.body
-            .appendChild(t);
+        document.body.appendChild(
+            toast
+        );
 
     }
 
 
-    t.textContent =
+    toast.textContent =
         message;
 
 
-    t.style.display =
+    toast.style.display =
         "block";
 
 
@@ -103,7 +129,7 @@ function showAccessoryToast(message) {
         setTimeout(
             function() {
 
-                t.style.display =
+                toast.style.display =
                     "none";
 
             },
@@ -114,83 +140,129 @@ function showAccessoryToast(message) {
 
 
 /* =========================================================
-   FIND PRODUCT IMAGE
+   REMEMBER WHICH PRODUCT BUTTON WAS CLICKED
+
+   This lets us get the correct image WITHOUT
+   changing any of your HTML buttons.
 ========================================================= */
 
-function getAccessoryImageByName(name) {
-
-    const cards =
-        document.querySelectorAll(
-            ".accessory-product"
-        );
+window.__lastAccessoryButton =
+    null;
 
 
-    for (
-        let i = 0;
-        i < cards.length;
-        i++
-    ) {
+document.addEventListener(
+    "click",
+    function(event) {
 
-        const card =
-            cards[i];
+        const target =
+            event.target;
+
+
+        if (
+            !(target instanceof Element)
+        ) {
+
+            return;
+
+        }
 
 
         const button =
-            card.querySelector(
+            target.closest(
                 ".add-accessory-btn"
             );
 
 
-        const heading =
-            card.querySelector(
-                "h3"
-            );
+        if (button) {
 
-
-        const cardName =
-            button &&
-            button.dataset.name
-                ? button.dataset.name.trim()
-                : heading
-                    ? heading.textContent.trim()
-                    : "";
-
-
-        if (
-            cardName ===
-            String(name || "").trim()
-        ) {
-
-            const image =
-                card.querySelector(
-                    ".product-image"
-                ) ||
-                card.querySelector(
-                    "img"
-                );
-
-
-            if (image) {
-
-                return (
-                    image.getAttribute("src") ||
-                    "images/unavailable.png"
-                );
-
-            }
+            window.__lastAccessoryButton =
+                button;
 
         }
 
+    },
+    true
+);
+
+
+/* =========================================================
+   GET PRODUCT IMAGE
+========================================================= */
+
+function getAccessoryImage() {
+
+    try {
+
+        const button =
+            window.__lastAccessoryButton;
+
+
+        if (!button) {
+
+            return "images/unavailable.png";
+
+        }
+
+
+        const card =
+            button.closest(
+                ".accessory-product"
+            );
+
+
+        if (!card) {
+
+            return "images/unavailable.png";
+
+        }
+
+
+        const image =
+            card.querySelector(
+                ".product-image"
+            ) ||
+            card.querySelector(
+                "img"
+            );
+
+
+        if (!image) {
+
+            return "images/unavailable.png";
+
+        }
+
+
+        return (
+            image.getAttribute("src") ||
+            "images/unavailable.png"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Could not get product image:",
+            error
+        );
+
+
+        return "images/unavailable.png";
+
     }
-
-
-    return "images/unavailable.png";
 
 }
 
 
 /* =========================================================
    ADD ACCESSORY TO CART
+
+   IMPORTANT:
+   This keeps your ORIGINAL four arguments:
+
+   name
+   variation
+   price
+   quantity
 ========================================================= */
 
 function addAccessoryToCart(
@@ -200,138 +272,202 @@ function addAccessoryToCart(
     quantity
 ) {
 
-    quantity =
-        Number(
-            quantity || 1
-        );
+    try {
 
-
-    if (
-        !Number.isFinite(quantity) ||
-        quantity < 1
-    ) {
-
-        quantity = 1;
-
-    }
-
-
-    const image =
-        getAccessoryImageByName(
-            name
-        );
-
-
-    const cart =
-        getAccessoryCart();
-
-
-    const existing =
-        cart.find(
-            function(i) {
-
-                return (
-                    i &&
-                    i.type ===
-                        "accessory" &&
-                    i.name ===
-                        name &&
-                    (
-                        i.variation ||
-                        ""
-                    ) ===
-                    (
-                        variation ||
-                        ""
-                    ) &&
-                    Number(i.price) ===
-                        Number(price)
-                );
-
-            }
-        );
-
-
-    if (existing) {
-
-        existing.quantity =
+        quantity =
             Number(
-                existing.quantity || 1
-            ) +
-            quantity;
+                quantity || 1
+            );
 
 
         if (
-            !existing.image ||
-            existing.image ===
-                "images/unavailable.png"
+            !Number.isFinite(quantity) ||
+            quantity < 1
         ) {
 
-            existing.image =
-                image;
+            quantity = 1;
 
         }
 
-    } else {
 
-        cart.push({
+        price =
+            Number(
+                price || 0
+            );
 
-            type:
-                "accessory",
 
-            name:
-                name,
+        const cart =
+            getAccessoryCart();
 
-            variation:
-                variation || "",
 
-            price:
-                Number(price),
+        /*
+        Image lookup is separate.
 
-            quantity:
-                quantity,
+        Even if the image fails,
+        THE PRODUCT STILL ADDS.
+        */
 
-            image:
-                image
+        let image =
+            "images/unavailable.png";
 
-        });
+
+        try {
+
+            image =
+                getAccessoryImage();
+
+        } catch (imageError) {
+
+            console.error(
+                "Image lookup failed:",
+                imageError
+            );
+
+        }
+
+
+        const existing =
+            cart.find(
+                function(item) {
+
+                    return (
+                        item &&
+                        item.type === "accessory" &&
+                        item.name === name &&
+                        (
+                            item.variation || ""
+                        ) ===
+                        (
+                            variation || ""
+                        ) &&
+                        Number(item.price) ===
+                            price
+                    );
+
+                }
+            );
+
+
+        if (existing) {
+
+            existing.quantity =
+                Number(
+                    existing.quantity || 1
+                ) +
+                quantity;
+
+
+            /*
+            Add image to old basket items
+            if they do not already have one.
+            */
+
+            if (
+                !existing.image ||
+                existing.image ===
+                    "images/unavailable.png"
+            ) {
+
+                existing.image =
+                    image;
+
+            }
+
+        } else {
+
+            cart.push({
+
+                type:
+                    "accessory",
+
+                name:
+                    name,
+
+                variation:
+                    variation || "",
+
+                price:
+                    price,
+
+                quantity:
+                    quantity,
+
+                image:
+                    image
+
+            });
+
+        }
+
+
+        localStorage.setItem(
+            "cart",
+            JSON.stringify(cart)
+        );
+
+
+        updateAccessoryCartCount();
+
+
+        showAccessoryToast(
+            name +
+            " added to basket"
+        );
+
+
+        console.log(
+            "Added to basket:",
+            name
+        );
+
+    } catch (error) {
+
+        console.error(
+            "ADD TO BASKET ERROR:",
+            error
+        );
+
+
+        alert(
+            "There was a problem adding this item to your basket."
+        );
 
     }
-
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-
-    updateAccessoryCartCount();
-
-
-    showAccessoryToast(
-        name +
-        " added to basket"
-    );
 
 }
 
 
+/*
+Make absolutely sure your inline HTML
+onclick can see the function.
+*/
+
+window.addAccessoryToCart =
+    addAccessoryToCart;
+
+
 /* =========================================================
-   ADD FROM PRODUCT BUTTON
+   ADD FROM BUTTON
 ========================================================= */
 
 function addAccessoryFromButton(button) {
 
     if (!button) {
+
         return;
+
     }
+
+
+    window.__lastAccessoryButton =
+        button;
 
 
     const qtyId =
         button.dataset.qtyId;
 
 
-    const qty =
+    const qtyInput =
         qtyId
             ? document.getElementById(
                 qtyId
@@ -349,8 +485,8 @@ function addAccessoryFromButton(button) {
             button.dataset.price || 0
         ),
 
-        qty
-            ? qty.value
+        qtyInput
+            ? qtyInput.value
             : 1
 
     );
@@ -358,8 +494,12 @@ function addAccessoryFromButton(button) {
 }
 
 
+window.addAccessoryFromButton =
+    addAccessoryFromButton;
+
+
 /* =========================================================
-   SEARCH PRODUCTS
+   SEARCH
 ========================================================= */
 
 function filterAccessoryProducts(value) {
@@ -379,7 +519,7 @@ function filterAccessoryProducts(value) {
         .forEach(
             function(card) {
 
-                const s =
+                const search =
                     (
                         card.dataset.search ||
                         card.textContent ||
@@ -389,7 +529,7 @@ function filterAccessoryProducts(value) {
 
 
                 card.style.display =
-                    s.includes(value)
+                    search.includes(value)
                         ? ""
                         : "none";
 
@@ -397,6 +537,10 @@ function filterAccessoryProducts(value) {
         );
 
 }
+
+
+window.filterAccessoryProducts =
+    filterAccessoryProducts;
 
 
 /* =========================================================
@@ -428,13 +572,16 @@ function removeAccessoryStockSystem() {
                 input.disabled =
                     false;
 
+
                 input.removeAttribute(
                     "disabled"
                 );
 
+
                 input.removeAttribute(
                     "max"
                 );
+
 
                 input.min =
                     "1";
@@ -464,9 +611,11 @@ function removeAccessoryStockSystem() {
                 button.disabled =
                     false;
 
+
                 button.removeAttribute(
                     "disabled"
                 );
+
 
                 button.removeAttribute(
                     "data-stock"
@@ -507,4 +656,3 @@ document.addEventListener(
 
     }
 );
-```

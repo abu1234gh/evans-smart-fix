@@ -2,39 +2,30 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Evan's Smart Fix</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
-    <link
-        rel="icon"
-        href="images/logo.png"
-    >
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
 
     <style>
 
         /* =========================================================
-           HOME PAGE REDESIGN
-           Scoped to index.html only
+           HOME PAGE ONLY
         ========================================================= */
 
-        .home-redesign {
+        body.home-redesign {
+            margin: 0;
             background: #f7f9fc;
             color: #172033;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
+        body.home-redesign * {
+            box-sizing: border-box;
+        }
 
         .home-redesign main {
             width: 100%;
@@ -48,11 +39,10 @@
         .home-top-strip {
             background: #0d1b2a;
             color: #ffffff;
-            padding: 9px 6%;
             text-align: center;
+            padding: 9px 20px;
             font-size: 14px;
             font-weight: 700;
-            letter-spacing: 0.2px;
         }
 
 
@@ -68,17 +58,16 @@
             width: 100%;
             padding: 14px 6%;
 
-            background: #ffffff;
-            color: #172033;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 25px;
 
+            background: #ffffff;
+            color: #172033;
+
             box-shadow: 0 5px 22px rgba(21, 39, 66, 0.08);
         }
-
 
         .home-redesign .header-left {
             display: flex;
@@ -86,13 +75,11 @@
             gap: 14px;
         }
 
-
         .home-redesign .header-left .logo {
             width: 62px;
             height: 62px;
             object-fit: contain;
         }
-
 
         .home-redesign .header-left h1 {
             margin: 0;
@@ -101,44 +88,88 @@
             line-height: 1.15;
         }
 
-
         .home-redesign .header-left p {
             margin: 4px 0 0;
             color: #6d7888;
             font-size: 13px;
         }
 
-
         .home-redesign > header nav {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 12px;
         }
 
-
-        .home-redesign > header nav > a,
-        .home-redesign > header .nav-dropdown > summary {
+        .home-redesign > header nav > a {
             color: #172033;
+            text-decoration: none;
+            font-weight: 700;
         }
 
-
-        .home-redesign > header nav > a:hover,
-        .home-redesign > header .nav-dropdown > summary:hover {
+        .home-redesign > header nav > a:hover {
             color: #0057b8;
         }
 
 
+        /* =========================================================
+           IMPORTANT:
+           social-dropdown.js creates these buttons after page load.
+           Its own CSS uses white text, so we override it here.
+        ========================================================= */
+
+        .home-redesign .esf-nav-button,
+        .home-redesign .esf-social-button {
+            color: #172033 !important;
+            background: transparent !important;
+            border-radius: 10px !important;
+        }
+
+        .home-redesign .esf-nav-button:hover,
+        .home-redesign .esf-social-button:hover {
+            color: #0057b8 !important;
+            background: #eef5ff !important;
+        }
+
+        .home-redesign .esf-nav-arrow,
+        .home-redesign .esf-social-arrow {
+            color: inherit !important;
+        }
+
+
+        /* Basket */
+
         .home-redesign > header .cart-link {
             background: #0057b8;
             color: #ffffff !important;
-            border-radius: 999px;
-            padding: 10px 16px;
-        }
 
+            padding: 10px 16px;
+            border-radius: 999px;
+
+            text-decoration: none;
+            font-weight: 700;
+        }
 
         .home-redesign > header .cart-link:hover {
             background: #004494;
             color: #ffffff !important;
+        }
+
+        .home-redesign #cartCount {
+            background: #ffffff;
+            color: #0057b8;
+
+            min-width: 20px;
+            height: 20px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-left: 4px;
+            padding: 2px 6px;
+
+            border-radius: 50%;
+            font-size: 12px;
         }
 
 
@@ -151,10 +182,13 @@
             overflow: hidden;
 
             min-height: 620px;
-            padding: 72px 6%;
+            padding: 72px 6% 100px;
 
             display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.85fr);
+            grid-template-columns:
+                minmax(0, 1.15fr)
+                minmax(330px, 0.85fr);
+
             gap: 58px;
             align-items: center;
 
@@ -172,30 +206,29 @@
                 );
         }
 
-
         .home-hero::before {
             content: "";
+
             position: absolute;
-            width: 330px;
-            height: 330px;
-            border-radius: 50%;
-            background: rgba(255, 122, 0, 0.08);
             left: -120px;
             bottom: -160px;
-        }
 
+            width: 330px;
+            height: 330px;
+
+            border-radius: 50%;
+            background: rgba(255, 122, 0, 0.08);
+        }
 
         .hero-copy {
             position: relative;
             z-index: 2;
+
             max-width: 720px;
         }
 
-
         .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-block;
 
             margin-bottom: 18px;
             padding: 8px 12px;
@@ -211,7 +244,6 @@
             text-transform: uppercase;
         }
 
-
         .hero-copy h2 {
             margin: 0 0 22px;
 
@@ -222,11 +254,9 @@
             letter-spacing: -2.5px;
         }
 
-
         .hero-copy h2 span {
             color: #0057b8;
         }
-
 
         .hero-copy > p {
             max-width: 650px;
@@ -238,14 +268,18 @@
             line-height: 1.75;
         }
 
-
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 13px;
+
             margin-bottom: 30px;
         }
 
+
+        /* =========================================================
+           HOME BUTTONS
+        ========================================================= */
 
         .home-primary-btn,
         .home-secondary-btn {
@@ -267,28 +301,28 @@
                 background 0.2s ease;
         }
 
-
         .home-primary-btn {
             background: #0057b8;
             color: #ffffff;
-            box-shadow: 0 12px 28px rgba(0, 87, 184, 0.22);
-        }
 
+            box-shadow:
+                0 12px 28px
+                rgba(0, 87, 184, 0.22);
+        }
 
         .home-primary-btn:hover {
             background: #004494;
             color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 15px 34px rgba(0, 87, 184, 0.28);
-        }
 
+            transform: translateY(-2px);
+        }
 
         .home-secondary-btn {
             background: #ffffff;
             color: #172033;
+
             border: 1px solid #d7e0ea;
         }
-
 
         .home-secondary-btn:hover {
             color: #0057b8;
@@ -296,16 +330,20 @@
         }
 
 
+        /* =========================================================
+           HERO POINTS
+        ========================================================= */
+
         .hero-points {
             display: flex;
             flex-wrap: wrap;
             gap: 16px 24px;
 
             color: #344054;
+
             font-size: 14px;
             font-weight: 700;
         }
-
 
         .hero-points span {
             display: inline-flex;
@@ -313,9 +351,9 @@
             gap: 7px;
         }
 
-
         .hero-points span::before {
             content: "✓";
+
             width: 22px;
             height: 22px;
 
@@ -323,10 +361,10 @@
             align-items: center;
             justify-content: center;
 
-            border-radius: 50%;
-
             background: #e9f7ef;
             color: #118a45;
+
+            border-radius: 50%;
 
             font-size: 12px;
             font-weight: 900;
@@ -334,70 +372,76 @@
 
 
         /* =========================================================
-           HERO SERVICE CARD
+           HERO REPAIR CARD
         ========================================================= */
 
         .hero-service-card {
             position: relative;
             z-index: 2;
 
+            padding: 34px;
+
             background: #0d1b2a;
             color: #ffffff;
 
-            padding: 34px;
             border-radius: 24px;
 
-            box-shadow: 0 26px 60px rgba(18, 38, 63, 0.20);
+            box-shadow:
+                0 26px 60px
+                rgba(18, 38, 63, 0.20);
         }
-
 
         .hero-service-card > span {
             display: block;
+
             margin-bottom: 8px;
 
             color: #8dc4ff;
+
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 0.8px;
             text-transform: uppercase;
         }
 
-
         .hero-service-card h3 {
             margin: 0 0 10px;
+
             font-size: 28px;
             line-height: 1.2;
         }
 
-
         .hero-service-card > p {
             margin: 0 0 25px;
+
             color: #c5cfda;
             line-height: 1.65;
         }
 
-
         .repair-steps {
             display: grid;
             gap: 12px;
+
             margin-bottom: 24px;
         }
 
-
         .repair-step {
+            padding: 13px;
+
             display: grid;
             grid-template-columns: 42px minmax(0, 1fr);
             gap: 14px;
             align-items: center;
 
-            padding: 13px;
+            background:
+                rgba(255, 255, 255, 0.06);
 
-            background: rgba(255, 255, 255, 0.06);
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
 
-            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 13px;
         }
-
 
         .repair-step-number {
             width: 42px;
@@ -416,27 +460,26 @@
             font-weight: 900;
         }
 
-
         .repair-step strong {
             display: block;
+
             margin-bottom: 2px;
             font-size: 15px;
         }
-
 
         .repair-step small {
             color: #aeb9c7;
             font-size: 12px;
         }
 
-
         .hero-service-card .home-primary-btn {
             width: 100%;
+
             background: #ffffff;
             color: #0d1b2a;
+
             box-shadow: none;
         }
-
 
         .hero-service-card .home-primary-btn:hover {
             background: #eaf3ff;
@@ -445,26 +488,26 @@
 
 
         /* =========================================================
-           FEATURE STRIP
+           FEATURE CARDS
         ========================================================= */
 
         .home-features {
-            max-width: 1220px;
-            margin: -42px auto 0;
-            padding: 0 24px;
-
             position: relative;
             z-index: 5;
 
+            max-width: 1220px;
+
+            margin: -42px auto 0;
+            padding: 0 24px;
+
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
             gap: 18px;
         }
 
-
         .home-feature {
-            position: relative;
-
             min-height: 180px;
             padding: 28px;
 
@@ -473,12 +516,14 @@
             border: 1px solid #e5eaf1;
             border-radius: 18px;
 
-            box-shadow: 0 14px 34px rgba(18, 38, 63, 0.08);
+            box-shadow:
+                0 14px 34px
+                rgba(18, 38, 63, 0.08);
         }
-
 
         .home-feature-number {
             display: block;
+
             margin-bottom: 18px;
 
             color: #0057b8;
@@ -488,24 +533,25 @@
             letter-spacing: 1px;
         }
 
-
         .home-feature h3 {
             margin: 0 0 9px;
+
             color: #172033;
             font-size: 20px;
         }
 
-
         .home-feature p {
             margin: 0;
+
             color: #6b7280;
+
             line-height: 1.6;
             font-size: 14px;
         }
 
 
         /* =========================================================
-           GENERAL SECTION
+           GENERAL SECTIONS
         ========================================================= */
 
         .home-section {
@@ -513,16 +559,16 @@
             padding: 90px 6%;
         }
 
-
         .home-section-inner {
             width: 100%;
             max-width: 1220px;
+
             margin: 0 auto;
         }
 
-
         .section-kicker {
             display: block;
+
             margin-bottom: 10px;
 
             color: #0057b8;
@@ -533,9 +579,9 @@
             text-transform: uppercase;
         }
 
-
         .section-heading {
             margin: 0;
+
             color: #0d1b2a;
 
             font-size: clamp(34px, 4vw, 52px);
@@ -543,44 +589,45 @@
             letter-spacing: -1.2px;
         }
 
-
         .section-copy {
-            margin: 18px 0 0;
             max-width: 700px;
 
+            margin: 18px 0 0;
+
             color: #667085;
+
             font-size: 16px;
             line-height: 1.75;
         }
 
 
         /* =========================================================
-           ABOUT / QUALITY
+           ABOUT
         ========================================================= */
 
         .home-about {
             background: #ffffff;
         }
 
-
         .about-grid {
             display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            grid-template-columns:
+                minmax(0, 0.9fr)
+                minmax(0, 1.1fr);
+
             gap: 65px;
             align-items: center;
         }
 
-
         .about-image-wrap {
             position: relative;
+            overflow: hidden;
 
-            min-height: 480px;
+            min-height: 470px;
 
             display: flex;
             align-items: center;
             justify-content: center;
-
-            border-radius: 26px;
 
             background:
                 linear-gradient(
@@ -589,66 +636,72 @@
                     #f8fbff
                 );
 
-            overflow: hidden;
+            border-radius: 26px;
         }
-
 
         .about-image-wrap::after {
             content: "";
+
             position: absolute;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: rgba(0, 87, 184, 0.10);
             right: -70px;
             bottom: -80px;
-        }
 
+            width: 220px;
+            height: 220px;
+
+            background:
+                rgba(0, 87, 184, 0.10);
+
+            border-radius: 50%;
+        }
 
         .about-image-wrap img {
             position: relative;
             z-index: 2;
 
-            width: min(86%, 430px);
-            max-height: 420px;
+            width: 78%;
+            max-width: 390px;
+            max-height: 380px;
+
             object-fit: contain;
 
-            filter: drop-shadow(0 24px 30px rgba(18, 38, 63, 0.16));
+            filter:
+                drop-shadow(
+                    0 24px 30px
+                    rgba(18, 38, 63, 0.16)
+                );
         }
-
-
-        .about-copy .section-copy {
-            max-width: 620px;
-        }
-
 
         .about-highlights {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 14px;
 
             margin: 28px 0;
         }
 
-
         .about-highlight {
             padding: 18px;
 
             background: #f7f9fc;
+
             border: 1px solid #e5eaf1;
             border-radius: 14px;
         }
 
-
         .about-highlight strong {
             display: block;
+
             margin-bottom: 5px;
+
             color: #172033;
         }
 
-
         .about-highlight span {
             color: #667085;
+
             font-size: 13px;
             line-height: 1.5;
         }
@@ -663,25 +716,23 @@
             color: #ffffff;
         }
 
-
         .home-services .section-heading {
             color: #ffffff;
         }
-
 
         .home-services .section-copy {
             color: #bac5d2;
         }
 
-
         .services-grid {
             margin-top: 38px;
 
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
             gap: 18px;
         }
-
 
         .service-card {
             min-height: 245px;
@@ -692,7 +743,10 @@
 
             background: #14263a;
 
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
             border-radius: 18px;
 
             transition:
@@ -700,12 +754,10 @@
                 background 0.2s ease;
         }
 
-
         .service-card:hover {
             transform: translateY(-5px);
             background: #19304a;
         }
-
 
         .service-card-number {
             width: 48px;
@@ -725,25 +777,27 @@
             font-weight: 900;
         }
 
-
         .service-card h3 {
             margin: 0 0 8px;
+
             color: #ffffff;
             font-size: 19px;
         }
 
-
         .service-card p {
             margin: 0 0 22px;
+
             color: #aeb9c7;
+
             font-size: 14px;
             line-height: 1.6;
         }
 
-
         .service-card a {
             margin-top: auto;
+
             color: #8dc4ff;
+
             text-decoration: none;
             font-weight: 800;
             font-size: 14px;
@@ -758,33 +812,35 @@
             background: #f7f9fc;
         }
 
-
         .why-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(0, 1fr);
+
             gap: 60px;
             align-items: center;
         }
 
-
         .why-cards {
             display: grid;
             gap: 14px;
+
+            margin-top: 28px;
         }
 
-
         .why-card {
+            padding: 19px;
+
             display: grid;
             grid-template-columns: 48px minmax(0, 1fr);
             gap: 15px;
 
-            padding: 19px;
-
             background: #ffffff;
+
             border: 1px solid #e2e8f0;
             border-radius: 15px;
         }
-
 
         .why-card-icon {
             width: 48px;
@@ -794,29 +850,29 @@
             align-items: center;
             justify-content: center;
 
-            border-radius: 12px;
-
             background: #eaf3ff;
             color: #0057b8;
+
+            border-radius: 12px;
 
             font-weight: 900;
         }
 
-
         .why-card h3 {
             margin: 0 0 4px;
-            font-size: 17px;
-            color: #172033;
-        }
 
+            color: #172033;
+            font-size: 17px;
+        }
 
         .why-card p {
             margin: 0;
+
             color: #667085;
+
             font-size: 13px;
             line-height: 1.55;
         }
-
 
         .why-image {
             min-height: 470px;
@@ -825,24 +881,24 @@
             align-items: center;
             justify-content: center;
 
+            overflow: hidden;
+
             background: #ffffff;
 
             border: 1px solid #e2e8f0;
             border-radius: 24px;
-
-            overflow: hidden;
         }
-
 
         .why-image img {
             width: min(82%, 480px);
             max-height: 400px;
+
             object-fit: contain;
         }
 
 
         /* =========================================================
-           TRUST STATS
+           TRUST BAND
         ========================================================= */
 
         .trust-band {
@@ -850,18 +906,20 @@
             color: #ffffff;
         }
 
-
         .trust-band .home-section-inner {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
             gap: 1px;
 
-            background: rgba(255, 255, 255, 0.18);
+            overflow: hidden;
+
+            background:
+                rgba(255, 255, 255, 0.18);
 
             border-radius: 20px;
-            overflow: hidden;
         }
-
 
         .trust-stat {
             padding: 35px 22px;
@@ -871,17 +929,18 @@
             text-align: center;
         }
 
-
         .trust-stat strong {
             display: block;
+
             margin-bottom: 6px;
 
-            font-size: clamp(28px, 3vw, 40px);
+            font-size:
+                clamp(24px, 3vw, 38px);
         }
-
 
         .trust-stat span {
             color: #dcecff;
+
             font-size: 14px;
             font-weight: 700;
         }
@@ -895,22 +954,20 @@
             background: #ffffff;
         }
 
-
-        .home-reviews .reviews-heading {
-            text-align: center;
+        .reviews-heading {
             margin-bottom: 35px;
+            text-align: center;
         }
 
-
-        .home-reviews .reviews-heading .section-copy {
+        .reviews-heading .section-copy {
             margin-left: auto;
             margin-right: auto;
         }
 
-
         .home-reviews .testimonial-slider {
             width: 100%;
             max-width: 950px;
+
             margin: 0 auto;
 
             display: flex;
@@ -918,12 +975,84 @@
             gap: 12px;
         }
 
+        .home-reviews .testimonial-wrapper {
+            width: 100%;
+        }
 
         .home-reviews .testimonial {
+            display: none;
+
+            width: 100%;
+            padding: 34px;
+
             background: #f7f9fc;
+
             border: 1px solid #e2e8f0;
-            box-shadow: none;
             border-radius: 18px;
+
+            text-align: center;
+        }
+
+        .home-reviews .testimonial.active {
+            display: block;
+        }
+
+        .testimonial-stars {
+            margin-bottom: 14px;
+
+            color: #f5b301;
+            font-size: 25px;
+        }
+
+        .testimonial-text {
+            margin: 0 0 18px;
+
+            color: #344054;
+
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        .testimonial h4 {
+            margin: 0;
+            color: #172033;
+        }
+
+        .testimonial-arrow {
+            flex-shrink: 0;
+
+            border: 0;
+            background: transparent;
+
+            color: #0057b8;
+
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+        .testimonial-dot {
+            width: 11px;
+            height: 11px;
+            padding: 0;
+
+            border: 0;
+            border-radius: 50%;
+
+            background: #c4cad2;
+
+            cursor: pointer;
+        }
+
+        .testimonial-dot.active {
+            background: #0057b8;
         }
 
 
@@ -933,14 +1062,14 @@
 
         .home-cta {
             padding: 80px 6%;
+
             background: #0d1b2a;
         }
 
-
         .home-cta-inner {
             max-width: 1220px;
-            margin: 0 auto;
 
+            margin: 0 auto;
             padding: 52px;
 
             display: flex;
@@ -958,48 +1087,49 @@
             border-radius: 24px;
         }
 
-
         .home-cta-copy {
             max-width: 730px;
         }
 
-
         .home-cta-copy span {
             display: block;
+
             margin-bottom: 8px;
 
             color: #dcecff;
+
             font-size: 13px;
             font-weight: 900;
-            text-transform: uppercase;
             letter-spacing: 0.8px;
+            text-transform: uppercase;
         }
-
 
         .home-cta-copy h2 {
             margin: 0 0 10px;
 
             color: #ffffff;
 
-            font-size: clamp(32px, 4vw, 48px);
+            font-size:
+                clamp(32px, 4vw, 48px);
+
             line-height: 1.05;
         }
 
-
         .home-cta-copy p {
             margin: 0;
+
             color: #dcecff;
             line-height: 1.65;
         }
 
-
         .home-cta .home-primary-btn {
             flex: 0 0 auto;
+
             background: #ffffff;
             color: #0057b8;
+
             box-shadow: none;
         }
-
 
         .home-cta .home-primary-btn:hover {
             background: #eef6ff;
@@ -1033,52 +1163,43 @@
                 justify-content: center;
             }
 
-
             .home-redesign > header nav {
                 width: 100%;
+
                 justify-content: center;
                 flex-wrap: wrap;
             }
 
-
             .home-hero {
                 grid-template-columns: 1fr;
+
                 min-height: auto;
                 padding-top: 58px;
                 padding-bottom: 90px;
             }
 
-
-            .hero-copy {
-                max-width: 800px;
-            }
-
-
             .hero-service-card {
                 max-width: 650px;
             }
-
 
             .home-features {
                 grid-template-columns: 1fr;
                 margin-top: -30px;
             }
 
-
             .about-grid,
             .why-grid {
                 grid-template-columns: 1fr;
             }
 
-
             .services-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
             }
-
 
             .about-image-wrap,
             .why-image {
-                min-height: 400px;
+                min-height: 390px;
             }
 
         }
@@ -1095,81 +1216,74 @@
                 font-size: 12px;
             }
 
-
             .home-redesign > header {
                 padding: 12px 14px;
                 gap: 10px;
             }
 
-
             .home-redesign .header-left {
                 width: 100%;
+
                 justify-content: center;
                 text-align: left;
             }
-
 
             .home-redesign .header-left .logo {
                 width: 50px;
                 height: 50px;
             }
 
-
             .home-redesign .header-left h1 {
                 font-size: 19px;
             }
-
 
             .home-redesign .header-left p {
                 font-size: 11px;
             }
 
-
             .home-redesign > header nav {
-                gap: 7px;
+                gap: 6px;
             }
-
 
             .home-redesign > header nav > a,
-            .home-redesign > header .nav-dropdown > summary {
-                padding: 7px 9px;
-                font-size: 12px;
+            .home-redesign .esf-nav-button,
+            .home-redesign .esf-social-button {
+                padding: 7px 9px !important;
+                font-size: 12px !important;
             }
-
 
             .home-redesign > header .cart-link {
                 padding: 8px 11px;
             }
 
-
             .home-hero {
-                padding: 45px 18px 78px;
+                padding:
+                    45px 18px
+                    78px;
+
                 gap: 34px;
             }
 
-
             .hero-copy h2 {
-                font-size: clamp(42px, 14vw, 58px);
+                font-size:
+                    clamp(42px, 14vw, 58px);
+
                 letter-spacing: -1.6px;
             }
-
 
             .hero-copy > p {
                 font-size: 16px;
             }
-
 
             .hero-actions {
                 display: grid;
                 grid-template-columns: 1fr;
             }
 
-
             .home-primary-btn,
             .home-secondary-btn {
                 width: 100%;
             }
-
 
             .hero-points {
                 display: grid;
@@ -1177,93 +1291,83 @@
                 gap: 10px;
             }
 
-
             .hero-service-card {
                 padding: 25px 18px;
                 border-radius: 18px;
             }
 
-
             .home-features {
                 padding: 0 14px;
             }
-
 
             .home-feature {
                 padding: 23px;
             }
 
-
             .home-section {
                 padding: 68px 18px;
             }
-
 
             .section-heading {
                 font-size: 36px;
             }
 
-
             .about-highlights {
                 grid-template-columns: 1fr;
             }
-
 
             .about-image-wrap,
             .why-image {
                 min-height: 300px;
             }
 
-
             .about-image-wrap img,
             .why-image img {
                 max-height: 285px;
             }
 
-
             .services-grid {
                 grid-template-columns: 1fr;
             }
-
 
             .trust-band .home-section-inner {
                 grid-template-columns: 1fr;
             }
 
-
             .home-reviews .testimonial-slider {
                 gap: 4px;
             }
 
+            .testimonial-arrow {
+                font-size: 24px;
+                padding: 4px;
+            }
+
+            .home-reviews .testimonial {
+                padding: 26px 17px;
+            }
+
+            .testimonial-text {
+                font-size: 15px;
+            }
 
             .home-cta {
                 padding: 60px 18px;
             }
 
-
             .home-cta-inner {
                 padding: 32px 22px;
+
                 flex-direction: column;
                 align-items: flex-start;
             }
-
 
             .home-cta .home-primary-btn {
                 width: 100%;
             }
 
         }
-.home-redesign .social-dropdown > summary {
-    color: #172033 !important;
-    background: #eef5ff;
-    padding: 9px 12px;
-    border-radius: 10px;
-}
 
-.home-redesign .social-dropdown > summary:hover {
-    background: #dcecff;
-    color: #0057b8 !important;
-}
     </style>
 
 </head>
@@ -1272,12 +1376,18 @@
 <body class="home-redesign">
 
 
+    <!-- =========================================================
+         TOP STRIP
+    ========================================================== -->
+
     <div class="home-top-strip">
         Fast, reliable repairs for phones, tablets and laptops
     </div>
 
 
-    <!-- ================= HEADER ================= -->
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
 
     <header>
 
@@ -1291,7 +1401,9 @@
 
             <div>
 
-                <h1>Evan's Smart Fix</h1>
+                <h1>
+                    Evan's Smart Fix
+                </h1>
 
                 <p>
                     Phone, Tablet &amp; Laptop Repairs
@@ -1302,118 +1414,26 @@
         </div>
 
 
+        <!--
+            social-dropdown.js automatically inserts:
+            - Shop & Repair
+            - Socials
+
+            before the Basket button.
+        -->
+
         <nav>
 
             <a href="index.html">
                 Home
             </a>
 
-
-            <details class="nav-dropdown">
-
-                <summary>
-                    Shop &amp; Repair
-                </summary>
-
-
-                <div class="dropdown-menu">
-
-                    <a href="brands.html">
-                        Book a Repair
-                    </a>
-
-
-                    <details class="sub-dropdown accessories-dropdown">
-
-                        <summary>
-                            Accessories
-                        </summary>
-
-
-                        <div class="sub-dropdown-menu accessories-menu">
-
-                            <a href="cases.html">
-                                Cases
-                            </a>
-
-                            <a href="cables.html">
-                                Cables
-                            </a>
-
-                            <a href="chargers.html">
-                                Chargers
-                            </a>
-
-                            <a href="power-banks.html">
-                                Power Banks
-                            </a>
-
-                            <a href="headphones.html">
-                                Headphones
-                            </a>
-
-                            <a href="earbuds.html">
-                                Earbuds
-                            </a>
-
-                            <a href="adapters.html">
-                                Adapters
-                            </a>
-
-                            <a href="screen-protectors.html">
-                                Screen Protectors
-                            </a>
-
-                            <a href="airpods-cases.html">
-                                AirPods Cases
-                            </a>
-
-                            <a href="batteries.html">
-                                Batteries
-                            </a>
-
-                            <a href="camera-protectors.html">
-                                Camera Protectors
-                            </a>
-
-                            <a href="controllers.html">
-                                Controllers
-                            </a>
-
-                            <a href="holders.html">
-                                Phone Holders
-                            </a>
-
-                            <a href="keyboards.html">
-                                Keyboards
-                            </a>
-
-                            <a href="storage.html">
-                                Storage
-                            </a>
-
-                            <a href="watch-cases.html">
-                                Watch Cases
-                            </a>
-
-                            <a href="accessories.html">
-                                View All Accessories
-                            </a>
-
-                        </div>
-
-                    </details>
-
-                </div>
-
-            </details>
-
-
             <a
                 href="cart.html"
                 class="cart-link"
             >
                 🛒 Basket
+
                 <span id="cartCount">
                     0
                 </span>
@@ -1427,9 +1447,12 @@
     <main>
 
 
-        <!-- ================= HERO ================= -->
+        <!-- =========================================================
+             HERO
+        ========================================================== -->
 
         <section class="home-hero">
+
 
             <div class="hero-copy">
 
@@ -1437,17 +1460,24 @@
                     Your Trusted Repair Partner
                 </div>
 
+
                 <h2>
+
                     Fast &amp; Reliable
+
                     <span>
                         Device Repairs
                     </span>
+
                 </h2>
 
+
                 <p>
-                    Professional repairs for phones, tablets and laptops using
-                    quality replacement parts, careful workmanship and a
-                    straightforward booking process.
+
+                    Professional repairs for phones, tablets and laptops
+                    using quality replacement parts, careful workmanship
+                    and a straightforward booking process.
+
                 </p>
 
 
@@ -1459,6 +1489,7 @@
                     >
                         Book a Repair
                     </a>
+
 
                     <a
                         href="accessories.html"
@@ -1495,17 +1526,22 @@
                     Start Your Repair
                 </span>
 
+
                 <h3>
                     Get your device sorted in 3 simple steps
                 </h3>
 
+
                 <p>
-                    Choose your device, select the repair you need and continue
-                    through our booking process.
+
+                    Choose your device, select the repair you need and
+                    continue through our booking process.
+
                 </p>
 
 
                 <div class="repair-steps">
+
 
                     <div class="repair-step">
 
@@ -1514,6 +1550,7 @@
                         </div>
 
                         <div>
+
                             <strong>
                                 Choose Your Device
                             </strong>
@@ -1521,6 +1558,7 @@
                             <small>
                                 Phone, tablet or laptop
                             </small>
+
                         </div>
 
                     </div>
@@ -1533,6 +1571,7 @@
                         </div>
 
                         <div>
+
                             <strong>
                                 Pick Your Repair
                             </strong>
@@ -1540,6 +1579,7 @@
                             <small>
                                 Select the fault or repair type
                             </small>
+
                         </div>
 
                     </div>
@@ -1552,6 +1592,7 @@
                         </div>
 
                         <div>
+
                             <strong>
                                 Book &amp; Continue
                             </strong>
@@ -1559,9 +1600,11 @@
                             <small>
                                 Review your repair and checkout
                             </small>
+
                         </div>
 
                     </div>
+
 
                 </div>
 
@@ -1575,12 +1618,16 @@
 
             </aside>
 
+
         </section>
 
 
-        <!-- ================= FEATURES ================= -->
+        <!-- =========================================================
+             THREE BENEFITS
+        ========================================================== -->
 
         <section class="home-features">
+
 
             <article class="home-feature">
 
@@ -1593,8 +1640,10 @@
                 </h3>
 
                 <p>
-                    Most common repairs are completed quickly so you can get
-                    back to using your device as soon as possible.
+
+                    Most common repairs are completed quickly so you
+                    can get back to using your device as soon as possible.
+
                 </p>
 
             </article>
@@ -1611,8 +1660,10 @@
                 </h3>
 
                 <p>
-                    Reliable replacement parts and careful repair work for
-                    phones, tablets and laptops.
+
+                    Reliable replacement parts and careful repair work
+                    for phones, tablets and laptops.
+
                 </p>
 
             </article>
@@ -1629,50 +1680,64 @@
                 </h3>
 
                 <p>
-                    Straightforward advice, clear booking and a repair service
-                    you can rely on.
+
+                    Straightforward advice, clear booking and a repair
+                    service you can rely on.
+
                 </p>
 
             </article>
 
+
         </section>
 
 
-        <!-- ================= ABOUT ================= -->
+        <!-- =========================================================
+             ABOUT
+        ========================================================== -->
 
         <section class="home-section home-about">
 
             <div class="home-section-inner about-grid">
 
+
                 <div class="about-image-wrap">
 
                     <img
-                        src="images/17pm.png?v=2"
+                        src="images/17pm.png?v=3"
                         alt="Exploded smartphone repair view"
                     >
 
                 </div>
 
 
-                <div class="about-copy">
+                <div>
 
                     <span class="section-kicker">
                         About Evan's Smart Fix
                     </span>
 
+
                     <h2 class="section-heading">
-                        Quality repair service for the devices you use every day
+
+                        Quality repair service for the devices
+                        you use every day
+
                     </h2>
 
+
                     <p class="section-copy">
+
                         Whether it's a cracked phone screen, charging issue,
                         battery replacement, tablet repair or laptop repair,
                         we're here to help with fast, affordable and
                         professional service.
+
                     </p>
 
 
                     <div class="about-highlights">
+
 
                         <div class="about-highlight">
 
@@ -1681,8 +1746,10 @@
                             </strong>
 
                             <span>
-                                Practical repair options without unnecessary
-                                complication.
+
+                                Practical repair options without
+                                unnecessary complication.
+
                             </span>
 
                         </div>
@@ -1695,11 +1762,14 @@
                             </strong>
 
                             <span>
-                                Careful workmanship and clear communication from
-                                start to finish.
+
+                                Careful workmanship and clear
+                                communication from start to finish.
+
                             </span>
 
                         </div>
+
 
                     </div>
 
@@ -1713,32 +1783,41 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
-        <!-- ================= SERVICES ================= -->
+        <!-- =========================================================
+             SERVICES
+        ========================================================== -->
 
         <section class="home-section home-services">
 
             <div class="home-section-inner">
 
+
                 <span class="section-kicker">
                     Our Services
                 </span>
+
 
                 <h2 class="section-heading">
                     Repair services for your everyday tech
                 </h2>
 
+
                 <p class="section-copy">
-                    Choose your device and follow our repair booking process to
-                    see the repair options available.
+
+                    Choose your device and follow our repair booking
+                    process to see the repair options available.
+
                 </p>
 
 
                 <div class="services-grid">
+
 
                     <article class="service-card">
 
@@ -1751,8 +1830,10 @@
                         </h3>
 
                         <p>
-                            Screen, battery, charging and other common phone
-                            repair options.
+
+                            Screen, battery, charging and other common
+                            phone repair options.
+
                         </p>
 
                         <a href="brands.html">
@@ -1773,7 +1854,10 @@
                         </h3>
 
                         <p>
-                            Professional repair options for tablets and iPads.
+
+                            Professional repair options for tablets
+                            and iPads.
+
                         </p>
 
                         <a href="brands.html">
@@ -1794,7 +1878,10 @@
                         </h3>
 
                         <p>
-                            Help with laptop faults and repair requirements.
+
+                            Help with laptop faults and repair
+                            requirements.
+
                         </p>
 
                         <a href="brands.html">
@@ -1815,7 +1902,10 @@
                         </h3>
 
                         <p>
-                            Cases, chargers, cables, screen protectors and more.
+
+                            Cases, chargers, cables, screen protectors
+                            and more.
+
                         </p>
 
                         <a href="accessories.html">
@@ -1824,36 +1914,50 @@
 
                     </article>
 
+
                 </div>
+
 
             </div>
 
         </section>
 
 
-        <!-- ================= WHY CHOOSE US ================= -->
+        <!-- =========================================================
+             WHY CHOOSE US
+        ========================================================== -->
 
         <section class="home-section home-why">
 
             <div class="home-section-inner why-grid">
 
+
                 <div>
+
 
                     <span class="section-kicker">
                         Why Choose Us
                     </span>
 
+
                     <h2 class="section-heading">
-                        When your device needs repair, we're here to help
+
+                        When your device needs repair,
+                        we're here to help
+
                     </h2>
 
+
                     <p class="section-copy">
-                        A simple booking process, quality parts and friendly
-                        service from Evan's Smart Fix.
+
+                        A simple booking process, quality parts and
+                        friendly service from Evan's Smart Fix.
+
                     </p>
 
 
                     <div class="why-cards">
+
 
                         <article class="why-card">
 
@@ -1862,13 +1966,18 @@
                             </div>
 
                             <div>
+
                                 <h3>
                                     Same-Day Common Repairs
                                 </h3>
 
                                 <p>
-                                    Many common repairs can be completed quickly.
+
+                                    Many common repairs can be
+                                    completed quickly.
+
                                 </p>
+
                             </div>
 
                         </article>
@@ -1881,14 +1990,18 @@
                             </div>
 
                             <div>
+
                                 <h3>
                                     Quality Parts
                                 </h3>
 
                                 <p>
-                                    Reliable replacement parts fitted with care
-                                    and precision.
+
+                                    Reliable replacement parts fitted
+                                    with care and precision.
+
                                 </p>
+
                             </div>
 
                         </article>
@@ -1901,19 +2014,26 @@
                             </div>
 
                             <div>
+
                                 <h3>
                                     Trusted Service
                                 </h3>
 
                                 <p>
-                                    Friendly communication and straightforward
-                                    advice throughout your repair.
+
+                                    Friendly communication and
+                                    straightforward advice throughout
+                                    your repair.
+
                                 </p>
+
                             </div>
 
                         </article>
 
+
                     </div>
+
 
                 </div>
 
@@ -1927,16 +2047,20 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
-        <!-- ================= TRUST BAND ================= -->
+        <!-- =========================================================
+             TRUST BAND
+        ========================================================== -->
 
         <section class="home-section trust-band">
 
             <div class="home-section-inner">
+
 
                 <div class="trust-stat">
 
@@ -1976,12 +2100,15 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
-        <!-- ================= REVIEWS ================= -->
+        <!-- =========================================================
+             REVIEWS
+        ========================================================== -->
 
         <section class="home-section home-reviews">
 
@@ -1994,9 +2121,11 @@
                         Customer Reviews
                     </span>
 
+
                     <h2 class="section-heading">
                         What our customers say
                     </h2>
+
 
                     <p class="section-copy">
                         See what customers say about Evan's Smart Fix.
@@ -2026,9 +2155,11 @@
                             </div>
 
                             <p class="testimonial-text">
-                                "Amazing service. My phone was repaired quickly
-                                and works perfectly. Would definitely recommend
-                                Evan's Smart Fix."
+
+                                "Amazing service. My phone was repaired
+                                quickly and works perfectly. Would definitely
+                                recommend Evan's Smart Fix."
+
                             </p>
 
                             <h4>
@@ -2045,9 +2176,11 @@
                             </div>
 
                             <p class="testimonial-text">
-                                "Fast, friendly and affordable service. The
-                                repair was completed much quicker than I
-                                expected."
+
+                                "Fast, friendly and affordable service.
+                                The repair was completed much quicker than
+                                I expected."
+
                             </p>
 
                             <h4>
@@ -2064,9 +2197,11 @@
                             </div>
 
                             <p class="testimonial-text">
-                                "Excellent customer service and really helpful
-                                throughout the repair. My phone looks brand new
-                                again."
+
+                                "Excellent customer service and really
+                                helpful throughout the repair. My phone
+                                looks brand new again."
+
                             </p>
 
                             <h4>
@@ -2083,8 +2218,10 @@
                             </div>
 
                             <p class="testimonial-text">
-                                "Great service from start to finish. Friendly,
-                                professional and reasonably priced."
+
+                                "Great service from start to finish.
+                                Friendly, professional and reasonably priced."
+
                             </p>
 
                             <h4>
@@ -2136,16 +2273,20 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
-        <!-- ================= CTA ================= -->
+        <!-- =========================================================
+             CTA
+        ========================================================== -->
 
         <section class="home-cta">
 
             <div class="home-cta-inner">
+
 
                 <div class="home-cta-copy">
 
@@ -2158,8 +2299,10 @@
                     </h2>
 
                     <p>
-                        Choose your device, select your repair and continue
-                        through our online booking process.
+
+                        Choose your device, select your repair and
+                        continue through our online booking process.
+
                     </p>
 
                 </div>
@@ -2172,6 +2315,7 @@
                     Book Your Repair
                 </a>
 
+
             </div>
 
         </section>
@@ -2180,7 +2324,9 @@
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
 
     <footer>
 
@@ -2191,7 +2337,10 @@
     </footer>
 
 
-    <!-- ================= BASKET COUNT ================= -->
+    <!-- =========================================================
+         BASKET COUNT
+         Does NOT clear the basket.
+    ========================================================== -->
 
     <script>
 
@@ -2205,7 +2354,7 @@
                     ) || [];
 
 
-                const count =
+                const totalItems =
                     cart.reduce(
                         function (total, item) {
 
@@ -2237,16 +2386,16 @@
                     );
 
 
-                const countElement =
+                const cartCount =
                     document.getElementById(
                         "cartCount"
                     );
 
 
-                if (countElement) {
+                if (cartCount) {
 
-                    countElement.textContent =
-                        count;
+                    cartCount.textContent =
+                        totalItems;
 
                 }
 
@@ -2256,7 +2405,9 @@
     </script>
 
 
-    <!-- ================= TESTIMONIAL SLIDER ================= -->
+    <!-- =========================================================
+         TESTIMONIAL SLIDER
+    ========================================================== -->
 
     <script>
 
@@ -2315,17 +2466,17 @@
                     dots.forEach(
                         function (dot) {
 
-                            dot.classList.remove(
-                                "active"
-                            );
+                            dot
+                                .classList
+                                .remove(
+                                    "active"
+                                );
 
                         }
                     );
 
 
-                    if (
-                        testimonials[index]
-                    ) {
+                    if (testimonials[index]) {
 
                         testimonials[index]
                             .classList
@@ -2336,9 +2487,7 @@
                     }
 
 
-                    if (
-                        dots[index]
-                    ) {
+                    if (dots[index]) {
 
                         dots[index]
                             .classList
@@ -2352,7 +2501,6 @@
 
 
                 function nextTestimonial() {
-
 
                     currentTestimonial++;
 
@@ -2377,7 +2525,6 @@
 
                 function previousTestimonial() {
 
-
                     currentTestimonial--;
 
 
@@ -2399,7 +2546,6 @@
 
 
                 function startAutoSlide() {
-
 
                     if (
                         testimonials.length <= 1
@@ -2425,51 +2571,43 @@
 
                 function resetAutoSlide() {
 
-
                     clearInterval(
                         autoSlide
                     );
-
 
                     startAutoSlide();
 
                 }
 
 
-                if (
-                    nextButton
-                ) {
+                if (nextButton) {
 
-                    nextButton
-                        .addEventListener(
-                            "click",
-                            function () {
+                    nextButton.addEventListener(
+                        "click",
+                        function () {
 
-                                nextTestimonial();
+                            nextTestimonial();
 
-                                resetAutoSlide();
+                            resetAutoSlide();
 
-                            }
-                        );
+                        }
+                    );
 
                 }
 
 
-                if (
-                    previousButton
-                ) {
+                if (previousButton) {
 
-                    previousButton
-                        .addEventListener(
-                            "click",
-                            function () {
+                    previousButton.addEventListener(
+                        "click",
+                        function () {
 
-                                previousTestimonial();
+                            previousTestimonial();
 
-                                resetAutoSlide();
+                            resetAutoSlide();
 
-                            }
-                        );
+                        }
+                    );
 
                 }
 
@@ -2515,11 +2653,15 @@
     </script>
 
 
-    <!-- ================= EXISTING WEBSITE SCRIPTS ================= -->
+    <!-- =========================================================
+         SHARED WEBSITE SCRIPTS
+    ========================================================== -->
 
+    <!--
+        social-dropdown.js currently controls BOTH:
+        Shop & Repair + Socials.
+    -->
     <script src="social-dropdown.js"></script>
-
-    <script src="shop-dropdown.js"></script>
 
     <script src="whatsapp.js"></script>
 

@@ -5,791 +5,2513 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Evan's Smart Fix</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-    <link rel="icon" href="images/logo.png">
+    <link
+        rel="icon"
+        href="images/logo.png"
+    >
+
+
+    <style>
+
+        /* =========================================================
+           HOME PAGE REDESIGN
+           Scoped to index.html only
+        ========================================================= */
+
+        .home-redesign {
+            background: #f7f9fc;
+            color: #172033;
+        }
+
+
+        .home-redesign main {
+            width: 100%;
+        }
+
+
+        /* =========================================================
+           TOP STRIP
+        ========================================================= */
+
+        .home-top-strip {
+            background: #0d1b2a;
+            color: #ffffff;
+            padding: 9px 6%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .home-redesign > header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+            padding: 14px 6%;
+
+            background: #ffffff;
+            color: #172033;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+
+            box-shadow: 0 5px 22px rgba(21, 39, 66, 0.08);
+        }
+
+
+        .home-redesign .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+
+        .home-redesign .header-left .logo {
+            width: 62px;
+            height: 62px;
+            object-fit: contain;
+        }
+
+
+        .home-redesign .header-left h1 {
+            margin: 0;
+            color: #0d1b2a;
+            font-size: 23px;
+            line-height: 1.15;
+        }
+
+
+        .home-redesign .header-left p {
+            margin: 4px 0 0;
+            color: #6d7888;
+            font-size: 13px;
+        }
+
+
+        .home-redesign > header nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+
+        .home-redesign > header nav > a,
+        .home-redesign > header .nav-dropdown > summary {
+            color: #172033;
+        }
+
+
+        .home-redesign > header nav > a:hover,
+        .home-redesign > header .nav-dropdown > summary:hover {
+            color: #0057b8;
+        }
+
+
+        .home-redesign > header .cart-link {
+            background: #0057b8;
+            color: #ffffff !important;
+            border-radius: 999px;
+            padding: 10px 16px;
+        }
+
+
+        .home-redesign > header .cart-link:hover {
+            background: #004494;
+            color: #ffffff !important;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .home-hero {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 620px;
+            padding: 72px 6%;
+
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.85fr);
+            gap: 58px;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(0, 87, 184, 0.15),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f7fbff 0%,
+                    #ffffff 56%,
+                    #eef5ff 100%
+                );
+        }
+
+
+        .home-hero::before {
+            content: "";
+            position: absolute;
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            background: rgba(255, 122, 0, 0.08);
+            left: -120px;
+            bottom: -160px;
+        }
+
+
+        .hero-copy {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 18px;
+            padding: 8px 12px;
+
+            background: #eaf3ff;
+            color: #0057b8;
+
+            border-radius: 999px;
+
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+
+        .hero-copy h2 {
+            margin: 0 0 22px;
+
+            color: #0d1b2a;
+
+            font-size: clamp(46px, 6vw, 78px);
+            line-height: 0.98;
+            letter-spacing: -2.5px;
+        }
+
+
+        .hero-copy h2 span {
+            color: #0057b8;
+        }
+
+
+        .hero-copy > p {
+            max-width: 650px;
+            margin: 0 0 30px;
+
+            color: #5f6b7a;
+
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-bottom: 30px;
+        }
+
+
+        .home-primary-btn,
+        .home-secondary-btn {
+            min-height: 52px;
+            padding: 13px 22px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .home-primary-btn {
+            background: #0057b8;
+            color: #ffffff;
+            box-shadow: 0 12px 28px rgba(0, 87, 184, 0.22);
+        }
+
+
+        .home-primary-btn:hover {
+            background: #004494;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 34px rgba(0, 87, 184, 0.28);
+        }
+
+
+        .home-secondary-btn {
+            background: #ffffff;
+            color: #172033;
+            border: 1px solid #d7e0ea;
+        }
+
+
+        .home-secondary-btn:hover {
+            color: #0057b8;
+            transform: translateY(-2px);
+        }
+
+
+        .hero-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+
+            color: #344054;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .hero-points span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+
+        .hero-points span::before {
+            content: "✓";
+            width: 22px;
+            height: 22px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #e9f7ef;
+            color: #118a45;
+
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           HERO SERVICE CARD
+        ========================================================= */
+
+        .hero-service-card {
+            position: relative;
+            z-index: 2;
+
+            background: #0d1b2a;
+            color: #ffffff;
+
+            padding: 34px;
+            border-radius: 24px;
+
+            box-shadow: 0 26px 60px rgba(18, 38, 63, 0.20);
+        }
+
+
+        .hero-service-card > span {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #8dc4ff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+
+        .hero-service-card h3 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            line-height: 1.2;
+        }
+
+
+        .hero-service-card > p {
+            margin: 0 0 25px;
+            color: #c5cfda;
+            line-height: 1.65;
+        }
+
+
+        .repair-steps {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+
+        .repair-step {
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 14px;
+            align-items: center;
+
+            padding: 13px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 13px;
+        }
+
+
+        .repair-step-number {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #0057b8;
+            color: #ffffff;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+
+        .repair-step strong {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 15px;
+        }
+
+
+        .repair-step small {
+            color: #aeb9c7;
+            font-size: 12px;
+        }
+
+
+        .hero-service-card .home-primary-btn {
+            width: 100%;
+            background: #ffffff;
+            color: #0d1b2a;
+            box-shadow: none;
+        }
+
+
+        .hero-service-card .home-primary-btn:hover {
+            background: #eaf3ff;
+            color: #0057b8;
+        }
+
+
+        /* =========================================================
+           FEATURE STRIP
+        ========================================================= */
+
+        .home-features {
+            max-width: 1220px;
+            margin: -42px auto 0;
+            padding: 0 24px;
+
+            position: relative;
+            z-index: 5;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+
+        .home-feature {
+            position: relative;
+
+            min-height: 180px;
+            padding: 28px;
+
+            background: #ffffff;
+
+            border: 1px solid #e5eaf1;
+            border-radius: 18px;
+
+            box-shadow: 0 14px 34px rgba(18, 38, 63, 0.08);
+        }
+
+
+        .home-feature-number {
+            display: block;
+            margin-bottom: 18px;
+
+            color: #0057b8;
+
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+
+        .home-feature h3 {
+            margin: 0 0 9px;
+            color: #172033;
+            font-size: 20px;
+        }
+
+
+        .home-feature p {
+            margin: 0;
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           GENERAL SECTION
+        ========================================================= */
+
+        .home-section {
+            width: 100%;
+            padding: 90px 6%;
+        }
+
+
+        .home-section-inner {
+            width: 100%;
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 10px;
+
+            color: #0057b8;
+
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+
+        .section-heading {
+            margin: 0;
+            color: #0d1b2a;
+
+            font-size: clamp(34px, 4vw, 52px);
+            line-height: 1.06;
+            letter-spacing: -1.2px;
+        }
+
+
+        .section-copy {
+            margin: 18px 0 0;
+            max-width: 700px;
+
+            color: #667085;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+
+        /* =========================================================
+           ABOUT / QUALITY
+        ========================================================= */
+
+        .home-about {
+            background: #ffffff;
+        }
+
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 65px;
+            align-items: center;
+        }
+
+
+        .about-image-wrap {
+            position: relative;
+
+            min-height: 480px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 26px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #eef5ff,
+                    #f8fbff
+                );
+
+            overflow: hidden;
+        }
+
+
+        .about-image-wrap::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(0, 87, 184, 0.10);
+            right: -70px;
+            bottom: -80px;
+        }
+
+
+        .about-image-wrap img {
+            position: relative;
+            z-index: 2;
+
+            width: min(86%, 430px);
+            max-height: 420px;
+            object-fit: contain;
+
+            filter: drop-shadow(0 24px 30px rgba(18, 38, 63, 0.16));
+        }
+
+
+        .about-copy .section-copy {
+            max-width: 620px;
+        }
+
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+
+            margin: 28px 0;
+        }
+
+
+        .about-highlight {
+            padding: 18px;
+
+            background: #f7f9fc;
+            border: 1px solid #e5eaf1;
+            border-radius: 14px;
+        }
+
+
+        .about-highlight strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #172033;
+        }
+
+
+        .about-highlight span {
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           SERVICES
+        ========================================================= */
+
+        .home-services {
+            background: #0d1b2a;
+            color: #ffffff;
+        }
+
+
+        .home-services .section-heading {
+            color: #ffffff;
+        }
+
+
+        .home-services .section-copy {
+            color: #bac5d2;
+        }
+
+
+        .services-grid {
+            margin-top: 38px;
+
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+
+        .service-card {
+            min-height: 245px;
+            padding: 25px;
+
+            display: flex;
+            flex-direction: column;
+
+            background: #14263a;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: #19304a;
+        }
+
+
+        .service-card-number {
+            width: 48px;
+            height: 48px;
+
+            margin-bottom: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #0057b8;
+            color: #ffffff;
+
+            border-radius: 13px;
+
+            font-weight: 900;
+        }
+
+
+        .service-card h3 {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 19px;
+        }
+
+
+        .service-card p {
+            margin: 0 0 22px;
+            color: #aeb9c7;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        .service-card a {
+            margin-top: auto;
+            color: #8dc4ff;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           WHY CHOOSE US
+        ========================================================= */
+
+        .home-why {
+            background: #f7f9fc;
+        }
+
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 60px;
+            align-items: center;
+        }
+
+
+        .why-cards {
+            display: grid;
+            gap: 14px;
+        }
+
+
+        .why-card {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: 15px;
+
+            padding: 19px;
+
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+        }
+
+
+        .why-card-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #eaf3ff;
+            color: #0057b8;
+
+            font-weight: 900;
+        }
+
+
+        .why-card h3 {
+            margin: 0 0 4px;
+            font-size: 17px;
+            color: #172033;
+        }
+
+
+        .why-card p {
+            margin: 0;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+
+        .why-image {
+            min-height: 470px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+
+            overflow: hidden;
+        }
+
+
+        .why-image img {
+            width: min(82%, 480px);
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+
+        /* =========================================================
+           TRUST STATS
+        ========================================================= */
+
+        .trust-band {
+            background: #0057b8;
+            color: #ffffff;
+        }
+
+
+        .trust-band .home-section-inner {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1px;
+
+            background: rgba(255, 255, 255, 0.18);
+
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+
+        .trust-stat {
+            padding: 35px 22px;
+
+            background: #0057b8;
+
+            text-align: center;
+        }
+
+
+        .trust-stat strong {
+            display: block;
+            margin-bottom: 6px;
+
+            font-size: clamp(28px, 3vw, 40px);
+        }
+
+
+        .trust-stat span {
+            color: #dcecff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           REVIEWS
+        ========================================================= */
+
+        .home-reviews {
+            background: #ffffff;
+        }
+
+
+        .home-reviews .reviews-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .home-reviews .reviews-heading .section-copy {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .home-reviews .testimonial-slider {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .home-reviews .testimonial {
+            background: #f7f9fc;
+            border: 1px solid #e2e8f0;
+            box-shadow: none;
+            border-radius: 18px;
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .home-cta {
+            padding: 80px 6%;
+            background: #0d1b2a;
+        }
+
+
+        .home-cta-inner {
+            max-width: 1220px;
+            margin: 0 auto;
+
+            padding: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0057b8,
+                    #004494
+                );
+
+            border-radius: 24px;
+        }
+
+
+        .home-cta-copy {
+            max-width: 730px;
+        }
+
+
+        .home-cta-copy span {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #dcecff;
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+
+        .home-cta-copy h2 {
+            margin: 0 0 10px;
+
+            color: #ffffff;
+
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.05;
+        }
+
+
+        .home-cta-copy p {
+            margin: 0;
+            color: #dcecff;
+            line-height: 1.65;
+        }
+
+
+        .home-cta .home-primary-btn {
+            flex: 0 0 auto;
+            background: #ffffff;
+            color: #0057b8;
+            box-shadow: none;
+        }
+
+
+        .home-cta .home-primary-btn:hover {
+            background: #eef6ff;
+            color: #004494;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .home-redesign footer {
+            margin-top: 0;
+            padding: 28px 6%;
+
+            background: #08131f;
+            color: #b7c3d1;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 980px) {
+
+            .home-redesign > header {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+
+            .home-redesign > header nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+
+            .home-hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-top: 58px;
+                padding-bottom: 90px;
+            }
+
+
+            .hero-copy {
+                max-width: 800px;
+            }
+
+
+            .hero-service-card {
+                max-width: 650px;
+            }
+
+
+            .home-features {
+                grid-template-columns: 1fr;
+                margin-top: -30px;
+            }
+
+
+            .about-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+
+            .about-image-wrap,
+            .why-image {
+                min-height: 400px;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 650px) {
+
+            .home-top-strip {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+
+            .home-redesign > header {
+                padding: 12px 14px;
+                gap: 10px;
+            }
+
+
+            .home-redesign .header-left {
+                width: 100%;
+                justify-content: center;
+                text-align: left;
+            }
+
+
+            .home-redesign .header-left .logo {
+                width: 50px;
+                height: 50px;
+            }
+
+
+            .home-redesign .header-left h1 {
+                font-size: 19px;
+            }
+
+
+            .home-redesign .header-left p {
+                font-size: 11px;
+            }
+
+
+            .home-redesign > header nav {
+                gap: 7px;
+            }
+
+
+            .home-redesign > header nav > a,
+            .home-redesign > header .nav-dropdown > summary {
+                padding: 7px 9px;
+                font-size: 12px;
+            }
+
+
+            .home-redesign > header .cart-link {
+                padding: 8px 11px;
+            }
+
+
+            .home-hero {
+                padding: 45px 18px 78px;
+                gap: 34px;
+            }
+
+
+            .hero-copy h2 {
+                font-size: clamp(42px, 14vw, 58px);
+                letter-spacing: -1.6px;
+            }
+
+
+            .hero-copy > p {
+                font-size: 16px;
+            }
+
+
+            .hero-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+
+            .home-primary-btn,
+            .home-secondary-btn {
+                width: 100%;
+            }
+
+
+            .hero-points {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+
+            .hero-service-card {
+                padding: 25px 18px;
+                border-radius: 18px;
+            }
+
+
+            .home-features {
+                padding: 0 14px;
+            }
+
+
+            .home-feature {
+                padding: 23px;
+            }
+
+
+            .home-section {
+                padding: 68px 18px;
+            }
+
+
+            .section-heading {
+                font-size: 36px;
+            }
+
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+
+
+            .about-image-wrap,
+            .why-image {
+                min-height: 300px;
+            }
+
+
+            .about-image-wrap img,
+            .why-image img {
+                max-height: 285px;
+            }
+
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .trust-band .home-section-inner {
+                grid-template-columns: 1fr;
+            }
+
+
+            .home-reviews .testimonial-slider {
+                gap: 4px;
+            }
+
+
+            .home-cta {
+                padding: 60px 18px;
+            }
+
+
+            .home-cta-inner {
+                padding: 32px 22px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+
+            .home-cta .home-primary-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
-<body>
+<body class="home-redesign">
 
 
-<!-- ================= HEADER ================= -->
-
-<header>
-
-    <div class="header-left">
-
-        <img
-            src="images/logo.png"
-            alt="Evan's Smart Fix Logo"
-            class="logo"
-            width="100"
-            height="100"
-        >
-
-        <div>
-
-            <h1>Evan's Smart Fix</h1>
-
-            <p>Phone, Tablet & Laptop Repairs</p>
-
-        </div>
-
+    <div class="home-top-strip">
+        Fast, reliable repairs for phones, tablets and laptops
     </div>
 
 
-    <nav>
+    <!-- ================= HEADER ================= -->
 
-        <a href="index.html">Home</a>
+    <header>
+
+        <div class="header-left">
+
+            <img
+                src="images/logo.png"
+                alt="Evan's Smart Fix Logo"
+                class="logo"
+            >
+
+            <div>
+
+                <h1>Evan's Smart Fix</h1>
+
+                <p>
+                    Phone, Tablet &amp; Laptop Repairs
+                </p>
+
+            </div>
+
+        </div>
 
 
-        <details class="nav-dropdown">
+        <nav>
 
-            <summary>
-                Shop &amp; Repair
-            </summary>
-
-
-            <div class="dropdown-menu">
-
-                <a href="brands.html">
-                    Book a Repair
-                </a>
+            <a href="index.html">
+                Home
+            </a>
 
 
-                <details class="sub-dropdown accessories-dropdown">
+            <details class="nav-dropdown">
 
-                    <summary>
-                        Accessories
-                    </summary>
+                <summary>
+                    Shop &amp; Repair
+                </summary>
 
 
-                    <div class="sub-dropdown-menu accessories-menu">
+                <div class="dropdown-menu">
 
-                        <a href="cases.html">
-                            Cases
-                        </a>
+                    <a href="brands.html">
+                        Book a Repair
+                    </a>
 
-                        <a href="cables.html">
-                            Cables
-                        </a>
 
-                        <a href="chargers.html">
-                            Chargers
-                        </a>
+                    <details class="sub-dropdown accessories-dropdown">
 
-                        <a href="power-banks.html">
-                            Power Banks
-                        </a>
+                        <summary>
+                            Accessories
+                        </summary>
 
-                        <a href="headphones.html">
-                            Headphones
-                        </a>
 
-                        <a href="earbuds.html">
-                            Earbuds
-                        </a>
+                        <div class="sub-dropdown-menu accessories-menu">
 
-                        <a href="adapters.html">
-                            Adapters
-                        </a>
+                            <a href="cases.html">
+                                Cases
+                            </a>
 
-                        <a href="screen-protectors.html">
-                            Screen Protectors
-                        </a>
+                            <a href="cables.html">
+                                Cables
+                            </a>
 
-                        <a href="airpods-cases.html">
-                            AirPods Cases
-                        </a>
+                            <a href="chargers.html">
+                                Chargers
+                            </a>
 
-                        <a href="batteries.html">
-                            Batteries
-                        </a>
+                            <a href="power-banks.html">
+                                Power Banks
+                            </a>
 
-                        <a href="camera-protectors.html">
-                            Camera Protectors
-                        </a>
+                            <a href="headphones.html">
+                                Headphones
+                            </a>
 
-                        <a href="controllers.html">
-                            Controllers
-                        </a>
+                            <a href="earbuds.html">
+                                Earbuds
+                            </a>
 
-                        <a href="holders.html">
-                            Phone Holders
-                        </a>
+                            <a href="adapters.html">
+                                Adapters
+                            </a>
 
-                        <a href="keyboards.html">
-                            Keyboards
-                        </a>
+                            <a href="screen-protectors.html">
+                                Screen Protectors
+                            </a>
 
-                        <a href="storage.html">
-                            Storage
-                        </a>
+                            <a href="airpods-cases.html">
+                                AirPods Cases
+                            </a>
 
-                        <a href="watch-cases.html">
-                            Watch Cases
-                        </a>
+                            <a href="batteries.html">
+                                Batteries
+                            </a>
 
-                        <a href="accessories.html">
-                            View All Accessories
-                        </a>
+                            <a href="camera-protectors.html">
+                                Camera Protectors
+                            </a>
+
+                            <a href="controllers.html">
+                                Controllers
+                            </a>
+
+                            <a href="holders.html">
+                                Phone Holders
+                            </a>
+
+                            <a href="keyboards.html">
+                                Keyboards
+                            </a>
+
+                            <a href="storage.html">
+                                Storage
+                            </a>
+
+                            <a href="watch-cases.html">
+                                Watch Cases
+                            </a>
+
+                            <a href="accessories.html">
+                                View All Accessories
+                            </a>
+
+                        </div>
+
+                    </details>
+
+                </div>
+
+            </details>
+
+
+            <a
+                href="cart.html"
+                class="cart-link"
+            >
+                🛒 Basket
+                <span id="cartCount">
+                    0
+                </span>
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="home-hero">
+
+            <div class="hero-copy">
+
+                <div class="hero-eyebrow">
+                    Your Trusted Repair Partner
+                </div>
+
+                <h2>
+                    Fast &amp; Reliable
+                    <span>
+                        Device Repairs
+                    </span>
+                </h2>
+
+                <p>
+                    Professional repairs for phones, tablets and laptops using
+                    quality replacement parts, careful workmanship and a
+                    straightforward booking process.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="brands.html"
+                        class="home-primary-btn"
+                    >
+                        Book a Repair
+                    </a>
+
+                    <a
+                        href="accessories.html"
+                        class="home-secondary-btn"
+                    >
+                        Shop Accessories
+                    </a>
+
+                </div>
+
+
+                <div class="hero-points">
+
+                    <span>
+                        Same-day common repairs
+                    </span>
+
+                    <span>
+                        Quality parts
+                    </span>
+
+                    <span>
+                        Friendly service
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <aside class="hero-service-card">
+
+                <span>
+                    Start Your Repair
+                </span>
+
+                <h3>
+                    Get your device sorted in 3 simple steps
+                </h3>
+
+                <p>
+                    Choose your device, select the repair you need and continue
+                    through our booking process.
+                </p>
+
+
+                <div class="repair-steps">
+
+                    <div class="repair-step">
+
+                        <div class="repair-step-number">
+                            01
+                        </div>
+
+                        <div>
+                            <strong>
+                                Choose Your Device
+                            </strong>
+
+                            <small>
+                                Phone, tablet or laptop
+                            </small>
+                        </div>
 
                     </div>
 
-                </details>
 
-            </div>
+                    <div class="repair-step">
 
-        </details>
+                        <div class="repair-step-number">
+                            02
+                        </div>
 
+                        <div>
+                            <strong>
+                                Pick Your Repair
+                            </strong>
 
-        <a href="cart.html" class="cart-link">
+                            <small>
+                                Select the fault or repair type
+                            </small>
+                        </div>
 
-            🛒 Basket
+                    </div>
 
-            <span id="cartCount">
-                0
-            </span>
 
-        </a>
+                    <div class="repair-step">
 
-    </nav>
+                        <div class="repair-step-number">
+                            03
+                        </div>
 
-</header>
+                        <div>
+                            <strong>
+                                Book &amp; Continue
+                            </strong>
 
+                            <small>
+                                Review your repair and checkout
+                            </small>
+                        </div>
 
+                    </div>
 
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-    <div class="repair-section">
-
-
-        <!-- LEFT SIDE -->
-
-        <div class="hero-text">
-
-            <h2>
-                Fast & Reliable Repairs
-            </h2>
-
-
-            <p>
-
-                Professional repairs for phones, tablets and laptops using
-                high quality replacement parts and expert technicians.
-
-            </p>
-
-
-            <a href="brands.html" class="button">
-
-                Book a Repair
-
-            </a>
-
-        </div>
-
-
-
-        <!-- RIGHT SIDE -->
-
-        <div class="repair-image">
-
-            <img
-                src="images/repair.png"
-                alt="Fast and Reliable Repairs"
-            >
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= TRUST SECTION ================= -->
-
-<section class="brands">
-
-
-    <div class="model">
-
-        <h3>
-            ⚡ Same-Day Repairs
-        </h3>
-
-        <br>
-
-        <p>
-
-            Most common repairs completed quickly so
-            you're back using your device as soon as possible.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="model">
-
-        <h3>
-            🛡 Quality Parts
-        </h3>
-
-        <br>
-
-        <p>
-
-            We use reliable replacement parts and carry out
-            every repair with care and precision.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="model">
-
-        <h3>
-            ⭐ Trusted Service
-        </h3>
-
-        <br>
-
-        <p>
-
-            Friendly service, honest advice and repairs
-            you can rely on every time.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= SECOND HERO ================= -->
-
-<section class="hero">
-
-    <div class="repair-section">
-
-
-        <div class="hero-text">
-
-            <h2>
-                Why Choose Evan's Smart Fix?
-            </h2>
-
-
-            <p>
-
-                Whether it's a cracked phone screen,
-                charging issue, battery replacement,
-                tablet repair or laptop repair,
-                we're here to help with fast,
-                affordable and professional service.
-
-            </p>
-
-
-            <a href="brands.html" class="button">
-
-                Start Your Repair
-
-            </a>
-
-        </div>
-
-
-
-        <div class="repair-image">
-
-            <img
-                src="images/17pm.png?v=2"
-                alt="Repair Service"
-            
-                style="width: 70%; max-width: 350px; height: auto;">
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= CUSTOMER REVIEWS ================= -->
-
-<section class="hero reviews-section">
-
-
-    <div class="hero-text">
-
-        <h2>
-            Customer Reviews
-        </h2>
-
-
-        <p>
-
-            See what our customers say about
-            Evan's Smart Fix.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="testimonial-slider">
-
-
-        <!-- LEFT ARROW -->
-
-        <button
-            class="testimonial-arrow testimonial-prev"
-            aria-label="Previous review"
-        >
-
-            ❮
-
-        </button>
-
-
-
-        <!-- REVIEWS -->
-
-        <div class="testimonial-wrapper">
-
-
-            <!-- REVIEW 1 -->
-
-            <div class="testimonial active">
-
-                <div class="testimonial-stars">
-                    ★★★★★
                 </div>
 
 
-                <p class="testimonial-text">
+                <a
+                    href="brands.html"
+                    class="home-primary-btn"
+                >
+                    Start Repair
+                </a>
 
-                    "Amazing service. My phone was repaired quickly and works perfectly.
-                    Would definitely recommend Evan's Smart Fix."
+            </aside>
 
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="home-features">
+
+            <article class="home-feature">
+
+                <span class="home-feature-number">
+                    01
+                </span>
+
+                <h3>
+                    Fast Repair Service
+                </h3>
+
+                <p>
+                    Most common repairs are completed quickly so you can get
+                    back to using your device as soon as possible.
                 </p>
 
-
-                <h4>
-                    Zach smith
-                </h4>
-
-            </div>
+            </article>
 
 
+            <article class="home-feature">
 
-            <!-- REVIEW 2 -->
+                <span class="home-feature-number">
+                    02
+                </span>
 
-            <div class="testimonial">
+                <h3>
+                    Quality Replacement Parts
+                </h3>
 
-                <div class="testimonial-stars">
-                    ★★★★★
+                <p>
+                    Reliable replacement parts and careful repair work for
+                    phones, tablets and laptops.
+                </p>
+
+            </article>
+
+
+            <article class="home-feature">
+
+                <span class="home-feature-number">
+                    03
+                </span>
+
+                <h3>
+                    Friendly, Trusted Service
+                </h3>
+
+                <p>
+                    Straightforward advice, clear booking and a repair service
+                    you can rely on.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="home-section home-about">
+
+            <div class="home-section-inner about-grid">
+
+                <div class="about-image-wrap">
+
+                    <img
+                        src="images/17pm.png?v=2"
+                        alt="Exploded smartphone repair view"
+                    >
+
                 </div>
 
 
-                <p class="testimonial-text">
+                <div class="about-copy">
 
-                    "Fast, friendly and affordable service.
-                    The repair was completed much quicker than I expected."
+                    <span class="section-kicker">
+                        About Evan's Smart Fix
+                    </span>
 
-                </p>
+                    <h2 class="section-heading">
+                        Quality repair service for the devices you use every day
+                    </h2>
+
+                    <p class="section-copy">
+                        Whether it's a cracked phone screen, charging issue,
+                        battery replacement, tablet repair or laptop repair,
+                        we're here to help with fast, affordable and
+                        professional service.
+                    </p>
 
 
-                <h4>
-                    Tilly D
-                </h4>
+                    <div class="about-highlights">
+
+                        <div class="about-highlight">
+
+                            <strong>
+                                Affordable Repairs
+                            </strong>
+
+                            <span>
+                                Practical repair options without unnecessary
+                                complication.
+                            </span>
+
+                        </div>
+
+
+                        <div class="about-highlight">
+
+                            <strong>
+                                Reliable Service
+                            </strong>
+
+                            <span>
+                                Careful workmanship and clear communication from
+                                start to finish.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="brands.html"
+                        class="home-primary-btn"
+                    >
+                        Discover Repairs
+                    </a>
+
+                </div>
 
             </div>
 
+        </section>
 
 
-            <!-- REVIEW 3 -->
+        <!-- ================= SERVICES ================= -->
 
-            <div class="testimonial">
+        <section class="home-section home-services">
 
-                <div class="testimonial-stars">
-                    ★★★★★
+            <div class="home-section-inner">
+
+                <span class="section-kicker">
+                    Our Services
+                </span>
+
+                <h2 class="section-heading">
+                    Repair services for your everyday tech
+                </h2>
+
+                <p class="section-copy">
+                    Choose your device and follow our repair booking process to
+                    see the repair options available.
+                </p>
+
+
+                <div class="services-grid">
+
+                    <article class="service-card">
+
+                        <div class="service-card-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Phone Repairs
+                        </h3>
+
+                        <p>
+                            Screen, battery, charging and other common phone
+                            repair options.
+                        </p>
+
+                        <a href="brands.html">
+                            View phone repairs →
+                        </a>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-card-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Tablet Repairs
+                        </h3>
+
+                        <p>
+                            Professional repair options for tablets and iPads.
+                        </p>
+
+                        <a href="brands.html">
+                            View tablet repairs →
+                        </a>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-card-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Laptop Repairs
+                        </h3>
+
+                        <p>
+                            Help with laptop faults and repair requirements.
+                        </p>
+
+                        <a href="brands.html">
+                            View laptop repairs →
+                        </a>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-card-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Accessories
+                        </h3>
+
+                        <p>
+                            Cases, chargers, cables, screen protectors and more.
+                        </p>
+
+                        <a href="accessories.html">
+                            Shop accessories →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WHY CHOOSE US ================= -->
+
+        <section class="home-section home-why">
+
+            <div class="home-section-inner why-grid">
+
+                <div>
+
+                    <span class="section-kicker">
+                        Why Choose Us
+                    </span>
+
+                    <h2 class="section-heading">
+                        When your device needs repair, we're here to help
+                    </h2>
+
+                    <p class="section-copy">
+                        A simple booking process, quality parts and friendly
+                        service from Evan's Smart Fix.
+                    </p>
+
+
+                    <div class="why-cards">
+
+                        <article class="why-card">
+
+                            <div class="why-card-icon">
+                                01
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Same-Day Common Repairs
+                                </h3>
+
+                                <p>
+                                    Many common repairs can be completed quickly.
+                                </p>
+                            </div>
+
+                        </article>
+
+
+                        <article class="why-card">
+
+                            <div class="why-card-icon">
+                                02
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Quality Parts
+                                </h3>
+
+                                <p>
+                                    Reliable replacement parts fitted with care
+                                    and precision.
+                                </p>
+                            </div>
+
+                        </article>
+
+
+                        <article class="why-card">
+
+                            <div class="why-card-icon">
+                                03
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Trusted Service
+                                </h3>
+
+                                <p>
+                                    Friendly communication and straightforward
+                                    advice throughout your repair.
+                                </p>
+                            </div>
+
+                        </article>
+
+                    </div>
+
                 </div>
 
 
-                <p class="testimonial-text">
+                <div class="why-image">
 
-                    "Excellent customer service and really helpful throughout
-                    the repair. My phone looks brand new again."
+                    <img
+                        src="images/repair.png"
+                        alt="Professional phone repair service"
+                    >
 
-                </p>
-
-
-                <h4>
-                    Muhammad Shafeeq
-                </h4>
+                </div>
 
             </div>
 
+        </section>
 
 
-            <!-- REVIEW 4 -->
+        <!-- ================= TRUST BAND ================= -->
 
-            <div class="testimonial">
+        <section class="home-section trust-band">
 
-                <div class="testimonial-stars">
-                    ★★★★★
+            <div class="home-section-inner">
+
+                <div class="trust-stat">
+
+                    <strong>
+                        Same Day
+                    </strong>
+
+                    <span>
+                        Common Repairs
+                    </span>
+
                 </div>
 
 
-                <p class="testimonial-text">
+                <div class="trust-stat">
 
-                    "Great service from start to finish.
-                    Friendly, professional and reasonably priced."
+                    <strong>
+                        Phone • Tablet • Laptop
+                    </strong>
 
-                </p>
+                    <span>
+                        Multi-Device Repair Service
+                    </span>
+
+                </div>
 
 
-                <h4>
-                    Ezekiel Abrahams
-                </h4>
+                <div class="trust-stat">
+
+                    <strong>
+                        Quality Parts
+                    </strong>
+
+                    <span>
+                        Carefully Fitted
+                    </span>
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
 
+        <!-- ================= REVIEWS ================= -->
 
-        <!-- RIGHT ARROW -->
+        <section class="home-section home-reviews">
 
-        <button
-            class="testimonial-arrow testimonial-next"
-            aria-label="Next review"
-        >
-
-            ❯
-
-        </button>
-
-    </div>
+            <div class="home-section-inner">
 
 
+                <div class="reviews-heading">
 
-    <!-- REVIEW DOTS -->
+                    <span class="section-kicker">
+                        Customer Reviews
+                    </span>
 
-    <div class="testimonial-dots">
+                    <h2 class="section-heading">
+                        What our customers say
+                    </h2>
 
-        <button
-            class="testimonial-dot active"
-            data-slide="0"
-            aria-label="Review 1"
-        ></button>
+                    <p class="section-copy">
+                        See what customers say about Evan's Smart Fix.
+                    </p>
 
-        <button
-            class="testimonial-dot"
-            data-slide="1"
-            aria-label="Review 2"
-        ></button>
-
-        <button
-            class="testimonial-dot"
-            data-slide="2"
-            aria-label="Review 3"
-        ></button>
-
-        <button
-            class="testimonial-dot"
-            data-slide="3"
-            aria-label="Review 4"
-        ></button>
-
-    </div>
+                </div>
 
 
-</section>
+                <div class="testimonial-slider">
 
 
+                    <button
+                        class="testimonial-arrow testimonial-prev"
+                        aria-label="Previous review"
+                    >
+                        ❮
+                    </button>
 
-<!-- ================= CALL TO ACTION ================= -->
 
-<section class="hero">
-
-    <div class="hero-text">
+                    <div class="testimonial-wrapper">
 
 
-        <h2>
-            Ready to Book Your Repair?
-        </h2>
+                        <div class="testimonial active">
 
+                            <div class="testimonial-stars">
+                                ★★★★★
+                            </div>
+
+                            <p class="testimonial-text">
+                                "Amazing service. My phone was repaired quickly
+                                and works perfectly. Would definitely recommend
+                                Evan's Smart Fix."
+                            </p>
+
+                            <h4>
+                                Zach smith
+                            </h4>
+
+                        </div>
+
+
+                        <div class="testimonial">
+
+                            <div class="testimonial-stars">
+                                ★★★★★
+                            </div>
+
+                            <p class="testimonial-text">
+                                "Fast, friendly and affordable service. The
+                                repair was completed much quicker than I
+                                expected."
+                            </p>
+
+                            <h4>
+                                Tilly D
+                            </h4>
+
+                        </div>
+
+
+                        <div class="testimonial">
+
+                            <div class="testimonial-stars">
+                                ★★★★★
+                            </div>
+
+                            <p class="testimonial-text">
+                                "Excellent customer service and really helpful
+                                throughout the repair. My phone looks brand new
+                                again."
+                            </p>
+
+                            <h4>
+                                Muhammad Shafeeq
+                            </h4>
+
+                        </div>
+
+
+                        <div class="testimonial">
+
+                            <div class="testimonial-stars">
+                                ★★★★★
+                            </div>
+
+                            <p class="testimonial-text">
+                                "Great service from start to finish. Friendly,
+                                professional and reasonably priced."
+                            </p>
+
+                            <h4>
+                                Ezekiel Abrahams
+                            </h4>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        class="testimonial-arrow testimonial-next"
+                        aria-label="Next review"
+                    >
+                        ❯
+                    </button>
+
+
+                </div>
+
+
+                <div class="testimonial-dots">
+
+                    <button
+                        class="testimonial-dot active"
+                        data-slide="0"
+                        aria-label="Review 1"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        data-slide="1"
+                        aria-label="Review 2"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        data-slide="2"
+                        aria-label="Review 3"
+                    ></button>
+
+                    <button
+                        class="testimonial-dot"
+                        data-slide="3"
+                        aria-label="Review 4"
+                    ></button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="home-cta">
+
+            <div class="home-cta-inner">
+
+                <div class="home-cta-copy">
+
+                    <span>
+                        Ready To Get Started?
+                    </span>
+
+                    <h2>
+                        Get your device repair started today
+                    </h2>
+
+                    <p>
+                        Choose your device, select your repair and continue
+                        through our online booking process.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="brands.html"
+                    class="home-primary-btn"
+                >
+                    Book Your Repair
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
 
         <p>
-
-            From cracked screens and battery replacements
-            to charging ports, tablets and laptops,
-            we're ready to get your device working again.
-
+            © 2026 Evan's Smart Fix
         </p>
 
+    </footer>
 
-        <a href="brands.html" class="button">
 
-            Book Your Repair
+    <!-- ================= BASKET COUNT ================= -->
 
-        </a>
+    <script>
 
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-    </div>
+                const cart =
+                    JSON.parse(
+                        localStorage.getItem("cart")
+                    ) || [];
 
-</section>
 
+                const count =
+                    cart.reduce(
+                        function (total, item) {
 
+                            if (
+                                item &&
+                                item.type === "accessory"
+                            ) {
 
-<!-- ================= FOOTER ================= -->
+                                const quantity =
+                                    Number(
+                                        item.quantity || 1
+                                    );
 
-<footer>
+                                return (
+                                    total +
+                                    (
+                                        quantity > 0
+                                            ? quantity
+                                            : 1
+                                    )
+                                );
 
-    <p>
-        © 2026 Evan's Smart Fix
-    </p>
+                            }
 
-</footer>
+                            return total + 1;
 
+                        },
+                        0
+                    );
 
 
-<!-- ================= BASKET ================= -->
+                const countElement =
+                    document.getElementById(
+                        "cartCount"
+                    );
 
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
+                if (countElement) {
 
-    localStorage.removeItem("cart");
+                    countElement.textContent =
+                        count;
 
-    const count = document.getElementById("cartCount");
+                }
 
-    if (count) {
+            }
+        );
 
-        count.textContent = 0;
+    </script>
 
-    }
 
-});
+    <!-- ================= TESTIMONIAL SLIDER ================= -->
 
-</script>
+    <script>
 
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
 
-<!-- ================= TESTIMONIAL SLIDER ================= -->
+                const testimonials =
+                    document.querySelectorAll(
+                        ".testimonial"
+                    );
 
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
+                const dots =
+                    document.querySelectorAll(
+                        ".testimonial-dot"
+                    );
 
 
-    const testimonials =
-        document.querySelectorAll(".testimonial");
+                const previousButton =
+                    document.querySelector(
+                        ".testimonial-prev"
+                    );
 
 
-    const dots =
-        document.querySelectorAll(".testimonial-dot");
+                const nextButton =
+                    document.querySelector(
+                        ".testimonial-next"
+                    );
 
 
-    const previousButton =
-        document.querySelector(".testimonial-prev");
+                let currentTestimonial =
+                    0;
 
 
-    const nextButton =
-        document.querySelector(".testimonial-next");
+                let autoSlide;
 
 
-    let currentTestimonial = 0;
+                function showTestimonial(index) {
 
 
-    let autoSlide;
+                    testimonials.forEach(
+                        function (testimonial) {
 
+                            testimonial
+                                .classList
+                                .remove(
+                                    "active"
+                                );
 
+                        }
+                    );
 
-    function showTestimonial(index) {
 
+                    dots.forEach(
+                        function (dot) {
 
-        testimonials.forEach(function (testimonial) {
+                            dot.classList.remove(
+                                "active"
+                            );
 
-            testimonial.classList.remove("active");
+                        }
+                    );
 
-        });
 
+                    if (
+                        testimonials[index]
+                    ) {
 
-        dots.forEach(function (dot) {
+                        testimonials[index]
+                            .classList
+                            .add(
+                                "active"
+                            );
 
-            dot.classList.remove("active");
+                    }
 
-        });
 
+                    if (
+                        dots[index]
+                    ) {
 
+                        dots[index]
+                            .classList
+                            .add(
+                                "active"
+                            );
 
-        testimonials[index].classList.add("active");
+                    }
 
+                }
 
-        if (dots[index]) {
 
-            dots[index].classList.add("active");
+                function nextTestimonial() {
 
-        }
 
-    }
+                    currentTestimonial++;
 
 
+                    if (
+                        currentTestimonial >=
+                        testimonials.length
+                    ) {
 
-    function nextTestimonial() {
+                        currentTestimonial =
+                            0;
 
+                    }
 
-        currentTestimonial++;
 
+                    showTestimonial(
+                        currentTestimonial
+                    );
 
-        if (currentTestimonial >= testimonials.length) {
+                }
 
-            currentTestimonial = 0;
 
-        }
+                function previousTestimonial() {
 
 
-        showTestimonial(currentTestimonial);
+                    currentTestimonial--;
 
-    }
 
+                    if (
+                        currentTestimonial < 0
+                    ) {
 
+                        currentTestimonial =
+                            testimonials.length - 1;
 
-    function previousTestimonial() {
+                    }
 
 
-        currentTestimonial--;
+                    showTestimonial(
+                        currentTestimonial
+                    );
 
+                }
 
-        if (currentTestimonial < 0) {
 
-            currentTestimonial = testimonials.length - 1;
+                function startAutoSlide() {
 
-        }
 
+                    if (
+                        testimonials.length <= 1
+                    ) {
 
-        showTestimonial(currentTestimonial);
+                        return;
 
-    }
+                    }
 
 
+                    autoSlide =
+                        setInterval(
+                            function () {
 
-    function startAutoSlide() {
+                                nextTestimonial();
 
+                            },
+                            5000
+                        );
 
-        autoSlide = setInterval(function () {
+                }
 
-            nextTestimonial();
 
-        }, 5000);
+                function resetAutoSlide() {
 
-    }
 
+                    clearInterval(
+                        autoSlide
+                    );
 
 
-    function resetAutoSlide() {
+                    startAutoSlide();
 
+                }
 
-        clearInterval(autoSlide);
 
-        startAutoSlide();
+                if (
+                    nextButton
+                ) {
 
-    }
+                    nextButton
+                        .addEventListener(
+                            "click",
+                            function () {
 
+                                nextTestimonial();
 
+                                resetAutoSlide();
 
-    if (nextButton) {
+                            }
+                        );
 
+                }
 
-        nextButton.addEventListener("click", function () {
 
-            nextTestimonial();
+                if (
+                    previousButton
+                ) {
 
-            resetAutoSlide();
+                    previousButton
+                        .addEventListener(
+                            "click",
+                            function () {
 
-        });
+                                previousTestimonial();
 
-    }
+                                resetAutoSlide();
 
+                            }
+                        );
 
+                }
 
-    if (previousButton) {
 
+                dots.forEach(
+                    function (dot, index) {
 
-        previousButton.addEventListener("click", function () {
+                        dot.addEventListener(
+                            "click",
+                            function () {
 
-            previousTestimonial();
+                                currentTestimonial =
+                                    index;
 
-            resetAutoSlide();
+                                showTestimonial(
+                                    currentTestimonial
+                                );
 
-        });
+                                resetAutoSlide();
 
-    }
+                            }
+                        );
 
+                    }
+                );
 
 
-    dots.forEach(function (dot, index) {
+                if (
+                    testimonials.length > 0
+                ) {
 
+                    showTestimonial(
+                        currentTestimonial
+                    );
 
-        dot.addEventListener("click", function () {
+                    startAutoSlide();
 
+                }
 
-            currentTestimonial = index;
+            }
+        );
 
+    </script>
 
-            showTestimonial(currentTestimonial);
 
+    <!-- ================= EXISTING WEBSITE SCRIPTS ================= -->
 
-            resetAutoSlide();
+    <script src="social-dropdown.js"></script>
 
-        });
+    <script src="shop-dropdown.js"></script>
 
-    });
-
-
-
-    if (testimonials.length > 0) {
-
-        showTestimonial(currentTestimonial);
-
-        startAutoSlide();
-
-    }
-
-
-});
-
-</script>
-
-
-
-<!-- ================= EXISTING WEBSITE SCRIPTS ================= -->
-
-<script src="social-dropdown.js"></script>
-
-<script src="shop-dropdown.js"></script>
-
-<script src="whatsapp.js"></script>
+    <script src="whatsapp.js"></script>
 
 
 </body>

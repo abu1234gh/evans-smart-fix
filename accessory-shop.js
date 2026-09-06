@@ -1,4 +1,4 @@
-```js
+
 function getAccessoryCart() {
 
     return JSON.parse(
@@ -418,4 +418,123 @@ document.addEventListener(
 
     }
 );
-```
+
+/* =========================================================
+   SAVE PRODUCT IMAGE SEPARATELY
+   DOES NOT CHANGE THE CART
+========================================================= */
+
+function accessoryImageKey(
+    name,
+    variation,
+    price
+) {
+
+    return [
+        String(name || "").trim(),
+        String(variation || "").trim(),
+        Number(price || 0).toFixed(2)
+    ].join("||");
+
+}
+
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const button =
+            event.target.closest(
+                ".add-accessory-btn"
+            );
+
+
+        if (!button) {
+            return;
+        }
+
+
+        const card =
+            button.closest(
+                ".accessory-product"
+            );
+
+
+        if (!card) {
+            return;
+        }
+
+
+        const image =
+            card.querySelector(
+                ".product-image"
+            ) ||
+            card.querySelector(
+                "img"
+            );
+
+
+        if (!image) {
+            return;
+        }
+
+
+        const imageSrc =
+            image.getAttribute(
+                "src"
+            );
+
+
+        if (!imageSrc) {
+            return;
+        }
+
+
+        let imageMap = {};
+
+
+        try {
+
+            imageMap =
+                JSON.parse(
+                    localStorage.getItem(
+                        "accessoryCartImages"
+                    )
+                ) || {};
+
+        } catch (error) {
+
+            imageMap = {};
+
+        }
+
+
+        const key =
+            accessoryImageKey(
+
+                button.dataset.name || "",
+
+                button.dataset.variation || "",
+
+                button.dataset.price || 0
+
+            );
+
+
+        imageMap[key] =
+            imageSrc;
+
+
+        localStorage.setItem(
+
+            "accessoryCartImages",
+
+            JSON.stringify(
+                imageMap
+            )
+
+        );
+
+    },
+    true
+);

@@ -47,7 +47,6 @@ function updateAccessoryCartCount() {
             "cartCount"
         );
 
-
     if (e) {
 
         e.textContent =
@@ -67,7 +66,6 @@ function showAccessoryToast(message) {
             "accessoryToast"
         );
 
-
     if (!t) {
 
         t =
@@ -75,14 +73,11 @@ function showAccessoryToast(message) {
                 "div"
             );
 
-
         t.id =
             "accessoryToast";
 
-
         t.className =
             "accessory-toast";
-
 
         document.body
             .appendChild(t);
@@ -105,21 +100,28 @@ function showAccessoryToast(message) {
 
     window.__toast =
         setTimeout(
-            () =>
+            function() {
+
                 t.style.display =
-                    "none",
+                    "none";
+
+            },
             1800
         );
 
 }
 
 
+/* =========================================================
+   ADD ACCESSORY TO CART
+   Stock is ignored
+========================================================= */
+
 function addAccessoryToCart(
     name,
     variation,
     price,
-    quantity,
-    stock
+    quantity
 ) {
 
     quantity =
@@ -128,36 +130,12 @@ function addAccessoryToCart(
         );
 
 
-    stock =
-        Number(
-            stock || 0
-        );
-
-
-    if (stock <= 0) {
-
-        showAccessoryToast(
-            "This item is out of stock"
-        );
-
-        return;
-
-    }
-
-
-    if (quantity < 1) {
-
-        quantity = 1;
-
-    }
-
-
     if (
-        stock > 0 &&
-        quantity > stock
+        !Number.isFinite(quantity) ||
+        quantity < 1
     ) {
 
-        quantity = stock;
+        quantity = 1;
 
     }
 
@@ -168,42 +146,37 @@ function addAccessoryToCart(
 
     const existing =
         cart.find(
-            i =>
-                i &&
-                i.type ===
-                    "accessory" &&
-                i.name ===
-                    name &&
-                (
-                    i.variation ||
-                    ""
-                ) ===
-                (
-                    variation ||
-                    ""
-                ) &&
-                Number(i.price) ===
-                Number(price)
+            function(i) {
+
+                return (
+                    i &&
+                    i.type ===
+                        "accessory" &&
+                    i.name ===
+                        name &&
+                    (
+                        i.variation ||
+                        ""
+                    ) ===
+                    (
+                        variation ||
+                        ""
+                    ) &&
+                    Number(i.price) ===
+                        Number(price)
+                );
+
+            }
         );
 
 
     if (existing) {
 
-        const nq =
+        existing.quantity =
             Number(
-                existing.quantity ||
-                1
+                existing.quantity || 1
             ) +
             quantity;
-
-
-        existing.quantity =
-            stock > 0
-                ? Math.min(
-                    nq,
-                    stock
-                )
-                : nq;
 
     } else {
 
@@ -246,6 +219,10 @@ function addAccessoryToCart(
 }
 
 
+/* =========================================================
+   ADD FROM PRODUCT BUTTON
+   Ignores data-stock completely
+========================================================= */
 
 function addAccessoryFromButton(button) {
 
@@ -253,24 +230,43 @@ function addAccessoryFromButton(button) {
         return;
     }
 
+
+    const qtyId =
+        button.dataset.qtyId;
+
+
     const qty =
-        document.getElementById(
-            button.dataset.qtyId
-        );
+        qtyId
+            ? document.getElementById(
+                qtyId
+            )
+            : null;
+
 
     addAccessoryToCart(
+
         button.dataset.name || "",
+
         button.dataset.variation || "",
-        Number(button.dataset.price || 0),
-        qty ? qty.value : 1,
-        Number(button.dataset.stock || 0)
+
+        Number(
+            button.dataset.price || 0
+        ),
+
+        qty
+            ? qty.value
+            : 1
+
     );
 
 }
 
-function filterAccessoryProducts(
-    value
-) {
+
+/* =========================================================
+   SEARCH PRODUCTS
+========================================================= */
+
+function filterAccessoryProducts(value) {
 
     value =
         String(
@@ -285,7 +281,7 @@ function filterAccessoryProducts(
             ".accessory-product"
         )
         .forEach(
-            card => {
+            function(card) {
 
                 const s =
                     (
@@ -307,7 +303,117 @@ function filterAccessoryProducts(
 }
 
 
+/* =========================================================
+   REMOVE STOCK SYSTEM FROM ACCESSORY PAGES
+========================================================= */
+
+function removeAccessoryStockSystem() {
+
+    /* Remove stock messages */
+
+    document
+        .querySelectorAll(
+            ".stock-text"
+        )
+        .forEach(
+            function(stockText) {
+
+                stockText.remove();
+
+            }
+        );
+
+
+    /* Enable all quantity boxes */
+
+    document
+        .querySelectorAll(
+            ".accessory-product input[type='number']"
+        )
+        .forEach(
+            function(input) {
+
+                input.disabled =
+                    false;
+
+                input.removeAttribute(
+                    "disabled"
+                );
+
+                input.removeAttribute(
+                    "max"
+                );
+
+                input.min =
+                    "1";
+
+
+                if (
+                    !input.value ||
+                    Number(input.value) < 1
+                ) {
+
+                    input.value =
+                        "1";
+
+                }
+
+            }
+        );
+
+
+    /* Enable every Add to Basket button */
+
+    document
+        .querySelectorAll(
+            ".add-accessory-btn"
+        )
+        .forEach(
+            function(button) {
+
+                button.disabled =
+                    false;
+
+                button.removeAttribute(
+                    "disabled"
+                );
+
+                button.removeAttribute(
+                    "data-stock"
+                );
+
+
+                if (
+                    button.textContent
+                        .trim()
+                        .toLowerCase()
+                        .includes(
+                            "out of stock"
+                        )
+                ) {
+
+                    button.textContent =
+                        "Add to Basket";
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
 document.addEventListener(
     "DOMContentLoaded",
-    updateAccessoryCartCount
+    function() {
+
+        updateAccessoryCartCount();
+
+        removeAccessoryStockSystem();
+
+    }
 );

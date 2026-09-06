@@ -102,6 +102,218 @@
 
 </style>
 
+
+<style>
+
+    .section-confirm-overlay {
+        position: absolute;
+        inset: 0;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px;
+
+        background:
+            rgba(255, 255, 255, 0.88);
+
+        backdrop-filter:
+            blur(3px);
+
+        z-index: 20;
+
+        border-radius: inherit;
+
+        box-sizing: border-box;
+    }
+
+
+    .section-confirm-overlay.show {
+        display: flex;
+    }
+
+
+    .section-confirm-box {
+        width:
+            min(
+                420px,
+                100%
+            );
+
+        padding:
+            22px;
+
+        text-align:
+            center;
+
+        background:
+            #ffffff;
+
+        border:
+            1px solid
+            var(
+                --border-color,
+                #e4e7ec
+            );
+
+        border-radius:
+            16px;
+
+        box-shadow:
+            0 18px 45px
+            rgba(
+                0,
+                0,
+                0,
+                0.16
+            );
+    }
+
+
+    .section-confirm-box h3 {
+        margin:
+            0 0 8px;
+    }
+
+
+    .section-confirm-box p {
+        margin:
+            0 0 18px;
+
+        opacity:
+            0.75;
+    }
+
+
+    .section-confirm-actions {
+        display:
+            flex;
+
+        justify-content:
+            center;
+
+        gap:
+            10px;
+
+        flex-wrap:
+            wrap;
+    }
+
+
+    .section-confirm-actions button {
+        width:
+            auto !important;
+
+        min-width:
+            120px;
+    }
+
+
+    .confirm-yes-button {
+        padding:
+            11px 16px;
+
+        border:
+            none;
+
+        border-radius:
+            9px;
+
+        background:
+            var(
+                --primary-color,
+                #0057b8
+            );
+
+        color:
+            white;
+
+        font-weight:
+            700;
+
+        cursor:
+            pointer;
+    }
+
+
+    .confirm-no-button {
+        padding:
+            11px 16px;
+
+        border:
+            none;
+
+        border-radius:
+            9px;
+
+        background:
+            #6c757d;
+
+        color:
+            white;
+
+        font-weight:
+            700;
+
+        cursor:
+            pointer;
+    }
+
+
+    .confirm-delete-button {
+        padding:
+            11px 16px;
+
+        border:
+            none;
+
+        border-radius:
+            9px;
+
+        background:
+            #b42318;
+
+        color:
+            white;
+
+        font-weight:
+            700;
+
+        cursor:
+            pointer;
+    }
+
+
+    .account-card,
+    .account-history-card,
+    .profile-card,
+    .history-card,
+    section {
+        position:
+            relative;
+    }
+
+
+    @media (
+        max-width: 600px
+    ) {
+
+        .section-confirm-actions {
+            flex-direction:
+                column;
+        }
+
+
+        .section-confirm-actions button {
+            width:
+                100% !important;
+        }
+
+    }
+
+</style>
+
 </head>
 <body class="site-redesign">
 
@@ -234,6 +446,55 @@
                     aria-live="polite"
                 ></p>
 
+
+                <!-- =========================================
+                     SAVE DETAILS CONFIRMATION
+                ========================================== -->
+
+                <div
+                    id="saveDetailsConfirm"
+                    class="section-confirm-overlay"
+                    aria-hidden="true"
+                >
+
+                    <div class="section-confirm-box">
+
+                        <h3>
+                            Save changes?
+                        </h3>
+
+
+                        <p>
+                            Are you sure you want to save
+                            these account detail changes?
+                        </p>
+
+
+                        <div class="section-confirm-actions">
+
+                            <button
+                                type="button"
+                                class="confirm-no-button"
+                                id="cancelSaveDetails"
+                            >
+                                No, keep editing
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="confirm-yes-button"
+                                id="confirmSaveDetails"
+                            >
+                                Yes, save changes
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </form>
 
 
@@ -269,6 +530,57 @@
                 >
                     Delete Order History
                 </button>
+
+
+                <!-- =========================================
+                     DELETE HISTORY CONFIRMATION
+                ========================================== -->
+
+                <div
+                    id="deleteHistoryConfirm"
+                    class="section-confirm-overlay"
+                    aria-hidden="true"
+                >
+
+                    <div class="section-confirm-box">
+
+                        <h3>
+                            Delete order history?
+                        </h3>
+
+
+                        <p>
+                            Are you sure you want to remove
+                            your order history from your account view?
+                            Evan's Smart Fix will still keep the
+                            business and payment records.
+                        </p>
+
+
+                        <div class="section-confirm-actions">
+
+                            <button
+                                type="button"
+                                class="confirm-no-button"
+                                id="cancelDeleteHistory"
+                            >
+                                No, keep history
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="confirm-delete-button"
+                                id="confirmDeleteHistory"
+                            >
+                                Yes, delete history
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -521,38 +833,95 @@
     );
 
 
+    const saveDetailsConfirm =
+        document.getElementById(
+            "saveDetailsConfirm"
+        );
+
+
+    const confirmSaveDetails =
+        document.getElementById(
+            "confirmSaveDetails"
+        );
+
+
+    const cancelSaveDetails =
+        document.getElementById(
+            "cancelSaveDetails"
+        );
+
+
+    function openSaveDetailsConfirm() {
+
+        saveDetailsConfirm.classList.add(
+            "show"
+        );
+
+
+        saveDetailsConfirm.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+
+
+    function closeSaveDetailsConfirm() {
+
+        saveDetailsConfirm.classList.remove(
+            "show"
+        );
+
+
+        saveDetailsConfirm.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
     profileForm.addEventListener(
         "submit",
-        async function (event) {
+        function (event) {
 
             event.preventDefault();
 
 
             /*
-            IMPORTANT:
-            The "Are you sure?" appears HERE,
-            after Save Changes is clicked.
+            Show the styled confirmation only AFTER
+            Save Changes is clicked.
             */
 
-            const confirmed =
-                window.confirm(
-                    "Are you sure you want to save these changes?"
-                );
+            openSaveDetailsConfirm();
+
+        }
+    );
 
 
-            if (!confirmed) {
+    cancelSaveDetails.addEventListener(
+        "click",
+        function () {
 
-                profileStatus.className =
-                    "auth-status";
-
-
-                profileStatus.textContent =
-                    "Changes have not been saved.";
+            closeSaveDetailsConfirm();
 
 
-                return;
+            profileStatus.className =
+                "auth-status";
 
-            }
+
+            profileStatus.textContent =
+                "Changes have not been saved.";
+
+        }
+    );
+
+
+    confirmSaveDetails.addEventListener(
+        "click",
+        async function () {
+
+            closeSaveDetailsConfirm();
 
 
             saveButton.disabled =
@@ -1035,9 +1404,57 @@
     }
 
 
+    const deleteHistoryConfirm =
+        document.getElementById(
+            "deleteHistoryConfirm"
+        );
+
+
+    const confirmDeleteHistory =
+        document.getElementById(
+            "confirmDeleteHistory"
+        );
+
+
+    const cancelDeleteHistory =
+        document.getElementById(
+            "cancelDeleteHistory"
+        );
+
+
+    function openDeleteHistoryConfirm() {
+
+        deleteHistoryConfirm.classList.add(
+            "show"
+        );
+
+
+        deleteHistoryConfirm.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+
+
+    function closeDeleteHistoryConfirm() {
+
+        deleteHistoryConfirm.classList.remove(
+            "show"
+        );
+
+
+        deleteHistoryConfirm.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
     deleteHistoryButton.addEventListener(
         "click",
-        async function () {
+        function () {
 
             if (
                 !currentBookings.length
@@ -1052,15 +1469,27 @@
             }
 
 
-            const confirmed =
-                window.confirm(
-                    "Are you sure you want to delete your order history from your account view? This will not delete Evan's Smart Fix business or payment records."
-                );
+            openDeleteHistoryConfirm();
+
+        }
+    );
 
 
-            if (!confirmed) {
-                return;
-            }
+    cancelDeleteHistory.addEventListener(
+        "click",
+        function () {
+
+            closeDeleteHistoryConfirm();
+
+        }
+    );
+
+
+    confirmDeleteHistory.addEventListener(
+        "click",
+        async function () {
+
+            closeDeleteHistoryConfirm();
 
 
             deleteHistoryButton.disabled =

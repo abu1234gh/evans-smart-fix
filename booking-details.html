@@ -105,6 +105,63 @@
 
 </style>
 
+
+<style>
+
+    .checkout-confirm-details {
+        padding: 18px;
+        margin-bottom: 10px;
+
+        background: var(--card-bg, #ffffff);
+
+        border:
+            1px solid
+            var(--border-color, #e4e7ec);
+
+        border-radius: 14px;
+    }
+
+    .checkout-confirm-details h3 {
+        margin-top: 0;
+        margin-bottom: 14px;
+    }
+
+    .checkout-confirm-details .confirmation-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        padding: 10px 0;
+
+        border-bottom:
+            1px solid
+            var(--border-color, #e4e7ec);
+    }
+
+    .checkout-confirm-details .confirmation-row:last-of-type {
+        border-bottom: none;
+    }
+
+    .checkout-confirm-details strong {
+        text-align: right;
+        word-break: break-word;
+    }
+
+    @media (max-width: 600px) {
+
+        .checkout-confirm-details .confirmation-row {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .checkout-confirm-details strong {
+            text-align: left;
+        }
+
+    }
+
+</style>
+
 </head>
 
 <body class="site-redesign">
@@ -321,6 +378,57 @@ alt="Evan's Smart Fix logo"
 <h2>
     Review
 </h2>
+
+
+<div class="checkout-confirm-details">
+
+    <h3>
+        Your Details
+    </h3>
+
+
+    <div class="confirmation-row">
+
+        <span>
+            Name
+        </span>
+
+        <strong id="reviewName">
+            Not entered
+        </strong>
+
+    </div>
+
+
+    <div class="confirmation-row">
+
+        <span>
+            Email
+        </span>
+
+        <strong id="reviewEmail">
+            Not entered
+        </strong>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="confirm-btn"
+        onclick="editDetails()"
+        style="
+            margin-top:14px;
+            background:#6c757d;
+        "
+    >
+        Details are incorrect
+    </button>
+
+</div>
+
+
+<br>
 
 
 <p>
@@ -1431,6 +1539,48 @@ if (totalPrice) {
 
 function goToStep(step) {
 
+    /*
+    Update the confirmation details every time
+    Step 2 is opened.
+    */
+
+    if (step === 2) {
+
+        const nameInput =
+            document.getElementById("name");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const reviewName =
+            document.getElementById("reviewName");
+
+        const reviewEmail =
+            document.getElementById("reviewEmail");
+
+
+        if (reviewName) {
+
+            reviewName.textContent =
+                nameInput && nameInput.value.trim()
+                    ? nameInput.value.trim()
+                    : "Not entered";
+
+        }
+
+
+        if (reviewEmail) {
+
+            reviewEmail.textContent =
+                emailInput && emailInput.value.trim()
+                    ? emailInput.value.trim()
+                    : "Not entered";
+
+        }
+
+    }
+
+
     document
         .querySelectorAll(".step-page")
         .forEach(function(page) {
@@ -1475,6 +1625,34 @@ function goToStep(step) {
         );
     }
 }
+
+
+/*
+========================================
+EDIT CUSTOMER DETAILS
+========================================
+
+Returns to Step 1 without clearing
+any of the information already entered.
+*/
+
+function editDetails() {
+
+    goToStep(1);
+
+
+    const nameInput =
+        document.getElementById("name");
+
+
+    if (nameInput) {
+
+        nameInput.focus();
+
+    }
+
+}
+
 
 
 /* =========================================================
@@ -1937,94 +2115,13 @@ if (payButton) {
             );
 
 
-            try {
+            /* =================================================
+               IMPORTANT
+               Do NOT save the order to Supabase yet.
 
-                const bookingRecord = {
-
-                    order_reference:
-                        bookingReference,
-
-                    customer_name:
-                        name,
-
-                    customer_phone:
-                        phone,
-
-                    customer_email:
-                        email,
-
-                    customer_address:
-                        address,
-
-                    device_model:
-                        deviceText,
-
-                    repair:
-                        repairText,
-
-                    total_price:
-                        total,
-
-                    status:
-                        "Pending"
-
-                };
-
-
-                /*
-                   Only account checkouts get linked to a user.
-                   Guest orders stay as normal guest orders.
-                */
-                if (checkoutAccountUser) {
-
-                    bookingRecord.user_id =
-                        checkoutAccountUser.id;
-
-                }
-
-
-                const supabaseResult =
-                    await supabaseClient
-                        .from("bookings")
-                        .insert(
-                            bookingRecord
-                        );
-
-
-                if (supabaseResult.error) {
-
-                    console.error(
-                        "SUPABASE ERROR:",
-                        supabaseResult.error
-                    );
-
-                    throw new Error(
-                        "Could not save order."
-                    );
-                }
-
-
-            } catch (error) {
-
-                console.error(
-                    error
-                );
-
-                status.textContent =
-                    "We couldn't save your order.";
-
-                alert(
-                    "There was a problem saving your order. Please try again."
-                );
-
-                payButton.disabled =
-                    false;
-
-                payButton.textContent =
-                    "Pay with Card";
-
-                return;
-            }
+               The order is saved only after payment-success.html
+               verifies that SumUp reports the checkout as PAID.
+            ================================================= */
 
 
             status.textContent =

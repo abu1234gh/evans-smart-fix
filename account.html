@@ -8,6 +8,100 @@
     <link rel="stylesheet" href="auth.css">
         <link rel="icon" href="images/logo.png">
     <link rel="stylesheet" href="site-theme.css">
+
+<style>
+
+    .account-edit-actions,
+    .history-actions,
+    .booking-card-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .account-edit-actions button,
+    .history-actions button,
+    .booking-card-actions button {
+        width: auto !important;
+    }
+
+    .account-locked-input[readonly] {
+        cursor: default;
+        opacity: 0.78;
+        background: #f3f4f6;
+    }
+
+    .account-editing .account-locked-input {
+        opacity: 1;
+        background: #ffffff;
+    }
+
+    .account-secondary {
+        padding: 11px 16px;
+        border: none;
+        border-radius: 9px;
+        background: #5f6b7a;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .account-danger-small {
+        padding: 9px 13px;
+        border: none;
+        border-radius: 9px;
+        background: #b42318;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .account-warning-small {
+        padding: 9px 13px;
+        border: none;
+        border-radius: 9px;
+        background: #9a6700;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .account-history-danger {
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color, #e4e7ec);
+    }
+
+    .account-history-danger p {
+        margin: 0 0 10px;
+        opacity: 0.72;
+        font-size: 14px;
+    }
+
+    .booking-status.cancellation-requested {
+        background: #fff3cd;
+        color: #664d03;
+    }
+
+    @media (max-width: 600px) {
+
+        .account-edit-actions,
+        .history-actions,
+        .booking-card-actions {
+            flex-direction: column;
+        }
+
+        .account-edit-actions button,
+        .history-actions button,
+        .booking-card-actions button {
+            width: 100% !important;
+        }
+
+    }
+
+</style>
+
 </head>
 <body class="site-redesign">
 
@@ -66,26 +160,90 @@
             <p class="account-email" id="accountEmail">Loading...</p>
 
             <form id="profileForm" class="auth-form">
+
                 <div class="auth-field">
                     <label for="name">Full name</label>
-                    <input type="text" id="name" autocomplete="name">
+                    <input
+                        type="text"
+                        id="name"
+                        class="account-locked-input"
+                        autocomplete="name"
+                        readonly
+                    >
                 </div>
 
                 <div class="auth-field">
                     <label for="phone">Phone</label>
-                    <input type="tel" id="phone" autocomplete="tel">
+                    <input
+                        type="tel"
+                        id="phone"
+                        class="account-locked-input"
+                        autocomplete="tel"
+                        readonly
+                    >
                 </div>
 
                 <div class="auth-field">
                     <label for="address">Address</label>
-                    <input type="text" id="address" autocomplete="street-address">
+                    <input
+                        type="text"
+                        id="address"
+                        class="account-locked-input"
+                        autocomplete="street-address"
+                        readonly
+                    >
                 </div>
 
-                <button type="submit" class="auth-primary" id="saveButton">Save Details</button>
-                <p id="profileStatus" class="auth-status" aria-live="polite"></p>
+
+                <div class="account-edit-actions">
+
+                    <button
+                        type="button"
+                        class="auth-primary"
+                        id="changeDetailsButton"
+                    >
+                        Change Details
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="auth-primary"
+                        id="saveButton"
+                        style="display:none;"
+                    >
+                        Save Changes
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="account-secondary"
+                        id="cancelEditButton"
+                        style="display:none;"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="profileStatus"
+                    class="auth-status"
+                    aria-live="polite"
+                ></p>
+
             </form>
 
-            <button type="button" class="auth-danger" id="logoutButton">Log Out</button>
+
+            <button
+                type="button"
+                class="auth-danger"
+                id="logoutButton"
+            >
+                Log Out
+            </button>
         </section>
 
         <section class="account-panel">
@@ -94,6 +252,26 @@
             <div id="bookingHistory" class="booking-history-list">
                 <p class="empty-history">Loading your bookings...</p>
             </div>
+
+
+            <div class="account-history-danger">
+
+                <p>
+                    This removes the history from your account view.
+                    Evan's Smart Fix will still keep the business and payment record.
+                </p>
+
+
+                <button
+                    type="button"
+                    class="auth-danger"
+                    id="deleteHistoryButton"
+                >
+                    Delete Order History
+                </button>
+
+            </div>
+
         </section>
     </div>
 </main>
@@ -101,122 +279,891 @@
 <script src="auth.js"></script>
 <script>
 (async function () {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cartCount").textContent = cart.length;
 
-    const client = await window.ESFAuth.getClient();
-    const { data: userData, error: userError } = await client.auth.getUser();
-    const user = userData.user;
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
 
-    if (userError || !user) {
-        window.location.href = "login.html?next=account.html";
+
+    document.getElementById(
+        "cartCount"
+    ).textContent =
+        cart.length;
+
+
+    const client =
+        await window.ESFAuth.getClient();
+
+
+    const {
+        data: userData,
+        error: userError
+    } =
+        await client.auth.getUser();
+
+
+    const user =
+        userData.user;
+
+
+    if (
+        userError ||
+        !user
+    ) {
+
+        window.location.href =
+            "login.html?next=account.html";
+
         return;
+
     }
 
-    const metadata = user.user_metadata || {};
-    document.getElementById("accountEmail").textContent = user.email || "";
-    document.getElementById("name").value = metadata.full_name || metadata.name || "";
-    document.getElementById("phone").value = metadata.phone || "";
-    document.getElementById("address").value = metadata.address || "";
 
-    const profileForm = document.getElementById("profileForm");
-    const profileStatus = document.getElementById("profileStatus");
-    const saveButton = document.getElementById("saveButton");
+    /* =========================================================
+       ACCOUNT DETAILS
+    ========================================================= */
 
-    profileForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
-        saveButton.disabled = true;
-        profileStatus.className = "auth-status";
-        profileStatus.textContent = "Saving...";
+    const metadata =
+        user.user_metadata || {};
 
-        const { error } = await client.auth.updateUser({
-            data: {
-                full_name: document.getElementById("name").value.trim(),
-                phone: document.getElementById("phone").value.trim(),
-                address: document.getElementById("address").value.trim()
+
+    const accountEmail =
+        document.getElementById(
+            "accountEmail"
+        );
+
+
+    const nameInput =
+        document.getElementById(
+            "name"
+        );
+
+
+    const phoneInput =
+        document.getElementById(
+            "phone"
+        );
+
+
+    const addressInput =
+        document.getElementById(
+            "address"
+        );
+
+
+    const profileForm =
+        document.getElementById(
+            "profileForm"
+        );
+
+
+    const profileStatus =
+        document.getElementById(
+            "profileStatus"
+        );
+
+
+    const changeDetailsButton =
+        document.getElementById(
+            "changeDetailsButton"
+        );
+
+
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    const cancelEditButton =
+        document.getElementById(
+            "cancelEditButton"
+        );
+
+
+    accountEmail.textContent =
+        user.email || "";
+
+
+    nameInput.value =
+        metadata.full_name ||
+        metadata.name ||
+        "";
+
+
+    phoneInput.value =
+        metadata.phone ||
+        "";
+
+
+    addressInput.value =
+        metadata.address ||
+        "";
+
+
+    let savedProfileValues = {
+
+        name:
+            nameInput.value,
+
+        phone:
+            phoneInput.value,
+
+        address:
+            addressInput.value
+
+    };
+
+
+    function setDetailsEditing(
+        editing
+    ) {
+
+        profileForm.classList.toggle(
+            "account-editing",
+            editing
+        );
+
+
+        [
+            nameInput,
+            phoneInput,
+            addressInput
+        ].forEach(
+            function(input) {
+
+                input.readOnly =
+                    !editing;
+
             }
-        });
+        );
 
-        if (error) {
-            profileStatus.className = "auth-status error";
-            profileStatus.textContent = error.message;
-        } else {
-            profileStatus.className = "auth-status success";
-            profileStatus.textContent = "Details saved.";
-        }
 
-        saveButton.disabled = false;
-    });
+        changeDetailsButton.style.display =
+            editing
+                ? "none"
+                : "inline-block";
 
-    document.getElementById("logoutButton").addEventListener("click", async function () {
-        await client.auth.signOut();
-        localStorage.removeItem("checkoutMode");
-        window.location.href = "index.html";
-    });
 
-    const history = document.getElementById("bookingHistory");
+        saveButton.style.display =
+            editing
+                ? "inline-block"
+                : "none";
 
-    try {
-        const { data: bookings, error } = await client
-            .from("bookings")
-            .select("*")
-            .eq("user_id", user.id);
 
-        if (error) throw error;
+        cancelEditButton.style.display =
+            editing
+                ? "inline-block"
+                : "none";
 
-        if (!bookings || !bookings.length) {
-            history.innerHTML = '<p class="empty-history">You don\'t have any account bookings yet.</p>';
-            return;
-        }
-
-        const sorted = [...bookings].sort((a, b) => {
-            const aTime = a.created_at ? new Date(a.created_at).getTime() : 0;
-            const bTime = b.created_at ? new Date(b.created_at).getTime() : 0;
-            return bTime - aTime;
-        });
-
-        history.innerHTML = sorted.map(booking => {
-            const reference = booking.order_reference || "Booking";
-            const device = booking.device_model || "Device not listed";
-            const repair = booking.repair || "Repair";
-            const status = booking.status || "Received";
-            const total = Number(booking.total_price || 0).toFixed(2);
-            const date = booking.created_at
-                ? new Date(booking.created_at).toLocaleDateString("en-GB")
-                : "";
-
-            return `
-                <article class="booking-history-card">
-                    <div class="booking-history-top">
-                        <div>
-                            <div class="booking-reference">${escapeHtml(reference)}</div>
-                            ${date ? `<small>${escapeHtml(date)}</small>` : ""}
-                        </div>
-                        <span class="booking-status">${escapeHtml(status)}</span>
-                    </div>
-                    <p><strong>Device:</strong> ${escapeHtml(device)}</p>
-                    <p><strong>Repair:</strong> ${escapeHtml(repair)}</p>
-                    <p><strong>Total:</strong> £${total}</p>
-                </article>
-            `;
-        }).join("");
-    } catch (error) {
-        console.error(error);
-        history.innerHTML = `
-            <p class="empty-history">
-                Booking history is not connected yet. Run the supplied Supabase setup SQL first.
-            </p>
-        `;
     }
+
+
+    changeDetailsButton.addEventListener(
+        "click",
+        function () {
+
+            profileStatus.textContent =
+                "";
+
+
+            savedProfileValues = {
+
+                name:
+                    nameInput.value,
+
+                phone:
+                    phoneInput.value,
+
+                address:
+                    addressInput.value
+
+            };
+
+
+            setDetailsEditing(
+                true
+            );
+
+
+            nameInput.focus();
+
+        }
+    );
+
+
+    cancelEditButton.addEventListener(
+        "click",
+        function () {
+
+            nameInput.value =
+                savedProfileValues.name;
+
+
+            phoneInput.value =
+                savedProfileValues.phone;
+
+
+            addressInput.value =
+                savedProfileValues.address;
+
+
+            profileStatus.textContent =
+                "";
+
+
+            setDetailsEditing(
+                false
+            );
+
+        }
+    );
+
+
+    profileForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /*
+            IMPORTANT:
+            The "Are you sure?" appears HERE,
+            after Save Changes is clicked.
+            */
+
+            const confirmed =
+                window.confirm(
+                    "Are you sure you want to save these changes?"
+                );
+
+
+            if (!confirmed) {
+
+                profileStatus.className =
+                    "auth-status";
+
+
+                profileStatus.textContent =
+                    "Changes have not been saved.";
+
+
+                return;
+
+            }
+
+
+            saveButton.disabled =
+                true;
+
+
+            cancelEditButton.disabled =
+                true;
+
+
+            profileStatus.className =
+                "auth-status";
+
+
+            profileStatus.textContent =
+                "Saving...";
+
+
+            const {
+                error
+            } =
+                await client.auth.updateUser({
+
+                    data: {
+
+                        full_name:
+                            nameInput.value.trim(),
+
+                        phone:
+                            phoneInput.value.trim(),
+
+                        address:
+                            addressInput.value.trim()
+
+                    }
+
+                });
+
+
+            if (error) {
+
+                profileStatus.className =
+                    "auth-status error";
+
+
+                profileStatus.textContent =
+                    error.message;
+
+
+            } else {
+
+                savedProfileValues = {
+
+                    name:
+                        nameInput.value,
+
+                    phone:
+                        phoneInput.value,
+
+                    address:
+                        addressInput.value
+
+                };
+
+
+                profileStatus.className =
+                    "auth-status success";
+
+
+                profileStatus.textContent =
+                    "Details saved.";
+
+
+                setDetailsEditing(
+                    false
+                );
+
+            }
+
+
+            saveButton.disabled =
+                false;
+
+
+            cancelEditButton.disabled =
+                false;
+
+        }
+    );
+
+
+    /* =========================================================
+       LOG OUT
+    ========================================================= */
+
+    document
+        .getElementById(
+            "logoutButton"
+        )
+        .addEventListener(
+            "click",
+            async function () {
+
+                await client.auth.signOut();
+
+
+                localStorage.removeItem(
+                    "checkoutMode"
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+    /* =========================================================
+       ORDER HISTORY
+    ========================================================= */
+
+    const history =
+        document.getElementById(
+            "bookingHistory"
+        );
+
+
+    const deleteHistoryButton =
+        document.getElementById(
+            "deleteHistoryButton"
+        );
+
+
+    let currentBookings =
+        [];
+
+
+    async function loadBookings() {
+
+        history.innerHTML =
+            '<p class="empty-history">Loading your bookings...</p>';
+
+
+        try {
+
+            const {
+                data: bookings,
+                error
+            } =
+                await client
+                    .from("bookings")
+                    .select("*")
+                    .eq(
+                        "user_id",
+                        user.id
+                    )
+                    .eq(
+                        "customer_hidden",
+                        false
+                    );
+
+
+            if (error) {
+                throw error;
+            }
+
+
+            currentBookings =
+                bookings || [];
+
+
+            if (
+                !currentBookings.length
+            ) {
+
+                history.innerHTML =
+                    '<p class="empty-history">You don\'t have any account bookings yet.</p>';
+
+                return;
+
+            }
+
+
+            const sorted =
+                [...currentBookings]
+                    .sort(
+                        function(a, b) {
+
+                            const aTime =
+                                a.created_at
+                                    ? new Date(
+                                        a.created_at
+                                    ).getTime()
+                                    : 0;
+
+
+                            const bTime =
+                                b.created_at
+                                    ? new Date(
+                                        b.created_at
+                                    ).getTime()
+                                    : 0;
+
+
+                            return (
+                                bTime -
+                                aTime
+                            );
+
+                        }
+                    );
+
+
+            history.innerHTML =
+                sorted.map(
+                    function(booking) {
+
+                        const reference =
+                            booking.order_reference ||
+                            "Booking";
+
+
+                        const device =
+                            booking.device_model ||
+                            "Device not listed";
+
+
+                        const repair =
+                            booking.repair ||
+                            "Repair";
+
+
+                        const status =
+                            booking.status ||
+                            "Received";
+
+
+                        const total =
+                            Number(
+                                booking.total_price ||
+                                0
+                            ).toFixed(2);
+
+
+                        const date =
+                            booking.created_at
+                                ? new Date(
+                                    booking.created_at
+                                ).toLocaleDateString(
+                                    "en-GB"
+                                )
+                                : "";
+
+
+                        const statusClass =
+                            status ===
+                            "Cancellation Requested"
+                                ? " cancellation-requested"
+                                : "";
+
+
+                        const cannotCancel = [
+                            "Cancelled",
+                            "Cancellation Requested",
+                            "Completed",
+                            "Refunded"
+                        ].includes(
+                            status
+                        );
+
+
+                        return `
+
+                            <article
+                                class="booking-history-card"
+                            >
+
+                                <div
+                                    class="booking-history-top"
+                                >
+
+                                    <div>
+
+                                        <div
+                                            class="booking-reference"
+                                        >
+                                            ${escapeHtml(reference)}
+                                        </div>
+
+                                        ${
+                                            date
+                                                ? `<small>${escapeHtml(date)}</small>`
+                                                : ""
+                                        }
+
+                                    </div>
+
+
+                                    <span
+                                        class="booking-status${statusClass}"
+                                    >
+                                        ${escapeHtml(status)}
+                                    </span>
+
+                                </div>
+
+
+                                <p>
+                                    <strong>Device:</strong>
+                                    ${escapeHtml(device)}
+                                </p>
+
+
+                                <p>
+                                    <strong>Repair:</strong>
+                                    ${escapeHtml(repair)}
+                                </p>
+
+
+                                <p>
+                                    <strong>Total:</strong>
+                                    £${total}
+                                </p>
+
+
+                                ${
+                                    !cannotCancel
+                                        ? `
+                                            <div
+                                                class="booking-card-actions"
+                                            >
+
+                                                <button
+                                                    type="button"
+                                                    class="account-warning-small"
+                                                    data-cancel-reference="${escapeAttribute(reference)}"
+                                                >
+                                                    Cancel Order
+                                                </button>
+
+                                            </div>
+                                        `
+                                        : ""
+                                }
+
+                            </article>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+
+            history
+                .querySelectorAll(
+                    "[data-cancel-reference]"
+                )
+                .forEach(
+                    function(button) {
+
+                        button.addEventListener(
+                            "click",
+                            async function () {
+
+                                const reference =
+                                    button.dataset
+                                        .cancelReference;
+
+
+                                const confirmed =
+                                    window.confirm(
+                                        "Are you sure you want to cancel this order?"
+                                    );
+
+
+                                if (!confirmed) {
+                                    return;
+                                }
+
+
+                                button.disabled =
+                                    true;
+
+
+                                button.textContent =
+                                    "Requesting cancellation...";
+
+
+                                try {
+
+                                    const {
+                                        data,
+                                        error
+                                    } =
+                                        await client.rpc(
+                                            "esf_request_cancel_booking",
+                                            {
+                                                p_order_reference:
+                                                    reference
+                                            }
+                                        );
+
+
+                                    if (error) {
+                                        throw error;
+                                    }
+
+
+                                    if (!data) {
+
+                                        alert(
+                                            "This order can no longer be cancelled online. Please contact Evan's Smart Fix."
+                                        );
+
+                                        await loadBookings();
+
+                                        return;
+
+                                    }
+
+
+                                    alert(
+                                        "Cancellation requested. Evan's Smart Fix will review the order."
+                                    );
+
+
+                                    await loadBookings();
+
+
+                                } catch (error) {
+
+                                    console.error(
+                                        error
+                                    );
+
+
+                                    alert(
+                                        "We couldn't request the cancellation. Please try again."
+                                    );
+
+
+                                    button.disabled =
+                                        false;
+
+
+                                    button.textContent =
+                                        "Cancel Order";
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            history.innerHTML = `
+
+                <p class="empty-history">
+
+                    Account order controls need the supplied
+                    Supabase account-controls SQL update.
+
+                </p>
+
+            `;
+
+        }
+
+    }
+
+
+    deleteHistoryButton.addEventListener(
+        "click",
+        async function () {
+
+            if (
+                !currentBookings.length
+            ) {
+
+                alert(
+                    "There is no order history to delete."
+                );
+
+                return;
+
+            }
+
+
+            const confirmed =
+                window.confirm(
+                    "Are you sure you want to delete your order history from your account view? This will not delete Evan's Smart Fix business or payment records."
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            deleteHistoryButton.disabled =
+                true;
+
+
+            deleteHistoryButton.textContent =
+                "Deleting history...";
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await client.rpc(
+                        "esf_hide_booking_history"
+                    );
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                await loadBookings();
+
+
+                alert(
+                    "Your order history has been removed from your account view."
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+                    "We couldn't delete the order history. Please try again."
+                );
+
+            }
+
+
+            deleteHistoryButton.disabled =
+                false;
+
+
+            deleteHistoryButton.textContent =
+                "Delete Order History";
+
+        }
+    );
+
+
+    await loadBookings();
+
+
+    /* =========================================================
+       ESCAPE HELPERS
+    ========================================================= */
 
     function escapeHtml(value) {
-        return String(value ?? "")
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
+
+        return String(
+            value ?? ""
+        )
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
+
     }
+
+
+    function escapeAttribute(value) {
+
+        return escapeHtml(
+            value
+        );
+
+    }
+
 })();
 </script>
 <script src="social-dropdown.js"></script>

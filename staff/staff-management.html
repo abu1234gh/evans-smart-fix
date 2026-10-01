@@ -1,0 +1,140 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Staff Management - Evan's Smart Fix</title><link rel="icon" href="../images/logo.png"><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../site-theme.css"><link rel="stylesheet" href="staff.css"></head><body class="site-redesign staff-body">
+<div id="staffBootMessage" style="max-width:720px;margin:60px auto;padding:24px;font-family:Arial,sans-serif">
+  <h2>Loading Staff Management…</h2>
+  <p>If this message stays on screen, refresh the page or sign in to the staff portal again.</p>
+</div>
+<script src="../auth.js"></script><script src="staff-auth.js"></script><script src="staff-common.js"></script><script>
+document.addEventListener('DOMContentLoaded', async () => {
+try {
+  if (!window.ESFAuth || !window.ESFStaff || !window.ESFUI) {
+    throw new Error('One or more staff portal scripts did not load.');
+  }
+
+  const staff = await ESFStaff.requireStaff('manage_staff');
+  if (!staff) return;
+
+  const main = ESFUI.mount('staff');
+  main.innerHTML = `
+    <div style="margin-top:30px">
+      <h2 class="staff-page-title">Staff Management</h2>
+      <p class="staff-muted">Create staff accounts here. Supabase user IDs are handled automatically and are not shown.</p>
+
+      <section class="staff-card" style="margin-top:22px">
+        <h3>Add Staff</h3>
+        <form id="form" class="staff-form" style="margin-top:15px">
+          <div class="staff-field"><label>Display name *</label><input name="display_name" required></div>
+          <div class="staff-field"><label>Email *</label><input name="email" type="email" autocomplete="off" required></div>
+          <div class="staff-field"><label>Temporary password *</label><input name="password" type="password" minlength="8" autocomplete="new-password" required></div>
+          <div class="staff-field"><label>Role</label><select name="role"><option value="staff">General Staff</option><option value="admin">Admin</option></select></div>
+          <div class="staff-field full"><label>General Staff Permissions</label><div id="perms" class="permission-list"></div></div>
+          <div class="staff-field full"><button class="staff-btn" id="createBtn">Create Staff Account</button><div id="msg"></div></div>
+        </form>
+      </section>
+
+      <section class="staff-card" style="margin-top:18px">
+        <h3>Current Staff</h3>
+        <div class="staff-table-wrap"><table class="staff-table"><thead><tr><th>Name</th><th>Role</th><th>Active</th></tr></thead><tbody id="rows"></tbody></table></div>
+      </section>
+
+      <section class="staff-card" style="margin-top:18px">
+        <h3>Manager Override PIN</h3>
+        <p class="staff-muted">The PIN is hashed by the database. It is never stored in the website code.</p>
+        <div class="staff-form"><div class="staff-field"><label>New 6+ digit PIN</label><input id="pin" type="password" inputmode="numeric" minlength="6"></div><div class="staff-field"><label>Default override minutes</label><input id="mins" type="number" min="1" max="120" value="15"></div></div>
+        <div class="staff-actions"><button id="setPin" class="staff-btn">Set Manager PIN</button></div><div id="pinMsg"></div>
+      </section>
+    </div>`;
+
+  const perms = document.getElementById('perms');
+  const form = document.getElementById('form');
+  const msg = document.getElementById('msg');
+  const rows = document.getElementById('rows');
+  const createBtn = document.getElementById('createBtn');
+  const pin = document.getElementById('pin');
+  const mins = document.getElementById('mins');
+  const setPin = document.getElementById('setPin');
+  const pinMsg = document.getElementById('pinMsg');
+
+  perms.innerHTML = ESFStaff.PERMS
+    .filter(p => !['manage_staff','view_audit','system_settings'].includes(p))
+    .map(p => `<label class="permission-item"><input type="checkbox" name="perm" value="${p}" ${p === 'issue_refunds' ? '' : 'checked'}> ${p.replaceAll('_',' ')}</label>`)
+    .join('');
+
+  const db = await ESFUI.db();
+
+  async function load() {
+    const {data,error} = await db.from('staff_profiles').select('display_name,role,active').order('display_name');
+    rows.innerHTML = error
+      ? `<tr><td colspan="3">${ESFUI.esc(error.message)}</td></tr>`
+      : (data || []).map(s => `<tr><td>${ESFUI.esc(s.display_name)}</td><td><span class="role-pill">${ESFUI.esc(s.role)}</span></td><td>${s.active ? 'Yes' : 'No'}</td></tr>`).join('');
+  }
+
+  form.onsubmit = async e => {
+    e.preventDefault();
+    createBtn.disabled = true;
+    msg.innerHTML = '';
+
+    const fd = new FormData(form);
+    const permissions = {};
+    ESFStaff.PERMS.forEach(p => permissions[p] = false);
+    fd.getAll('perm').forEach(p => permissions[p] = true);
+
+    try {
+      const { data: sessionData } = await db.auth.getSession();
+      const token = sessionData.session?.access_token;
+      if (!token) throw new Error('Your staff session has expired. Please log in again.');
+
+      const response = await fetch(`${ESFAuth.supabaseUrl}/functions/v1/create-staff-user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          display_name: String(fd.get('display_name') || '').trim(),
+          email: String(fd.get('email') || '').trim(),
+          password: String(fd.get('password') || ''),
+          role: fd.get('role'),
+          permissions
+        })
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok) throw new Error(result.message || 'Could not create staff account.');
+
+      msg.innerHTML = `<div class="staff-notice success">${ESFUI.esc(result.message || 'Staff account created.')}</div>`;
+      form.reset();
+      perms.querySelectorAll('input[name="perm"]').forEach(box => box.checked = box.value !== 'issue_refunds');
+      await load();
+    } catch (err) {
+      msg.innerHTML = `<div class="staff-notice error">${ESFUI.esc(err.message || 'Could not create staff account.')}</div>`;
+    } finally {
+      createBtn.disabled = false;
+    }
+  };
+
+  setPin.onclick = async () => {
+    const {data,error} = await db.rpc('set_manager_override_pin',{p_pin:pin.value,p_default_minutes:Number(mins.value)});
+    pinMsg.innerHTML = '<div class="staff-notice '+(error||!data?.ok?'error':'success')+'">'+ESFUI.esc(data?.message||error?.message||'Manager PIN updated.')+'</div>';
+    if (!error) pin.value='';
+  };
+
+  load();
+} catch (error) {
+  console.error('Staff Management error:', error);
+  const boot = document.getElementById('staffBootMessage');
+  if (boot) {
+    boot.innerHTML =
+      '<h2>Staff Management could not load</h2>' +
+      '<p>' + String(error && error.message ? error.message : error) + '</p>' +
+      '<p><a href="login.html">Return to Staff Login</a></p>';
+  } else {
+    document.body.innerHTML =
+      '<div style="max-width:720px;margin:60px auto;padding:24px;font-family:Arial,sans-serif">' +
+      '<h2>Staff Management could not load</h2>' +
+      '<p>' + String(error && error.message ? error.message : error) + '</p>' +
+      '<p><a href="login.html">Return to Staff Login</a></p></div>';
+  }
+}
+
+});
+</script></body></html>

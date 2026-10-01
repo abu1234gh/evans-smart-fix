@@ -121,9 +121,7 @@ Fast, reliable repairs for phones, tablets and laptops
 
 <main class="track-wrap">
 
-
 <section class="track-card">
-
 
 <div id="lookup">
 
@@ -132,7 +130,6 @@ Fast, reliable repairs for phones, tablets and laptops
 <p>
 Scan the QR on your repair ticket or enter the secure tracking code.
 </p>
-
 
 <div class="auth-field">
 
@@ -147,7 +144,6 @@ Tracking code
 
 </div>
 
-
 <button
     id="trackBtn"
     class="auth-primary"
@@ -160,12 +156,9 @@ Track Repair
 
 </div>
 
-
 <div id="result"></div>
 
-
 </section>
-
 
 </main>
 
@@ -181,7 +174,6 @@ Track Repair
 
 
 var steps = [
-
     'Received',
     'Diagnosing',
     'Awaiting Customer Approval',
@@ -190,7 +182,6 @@ var steps = [
     'Testing',
     'Ready for Collection',
     'Collected'
-
 ];
 
 
@@ -233,13 +224,11 @@ function safe(value) {
         function (character) {
 
             var map = {
-
                 '&': '&amp;',
                 '<': '&lt;',
                 '>': '&gt;',
                 '"': '&quot;',
                 "'": '&#39;'
-
             };
 
             return map[character];
@@ -280,11 +269,6 @@ async function track() {
 
     try {
 
-        /*
-         * Use the same Supabase client
-         * used by the rest of the site.
-         */
-
         var db =
             await ESFAuth.getClient();
 
@@ -302,8 +286,7 @@ async function track() {
             await db.rpc(
                 'track_repair',
                 {
-                    p_token:
-                        trackingToken
+                    p_token: trackingToken
                 }
             );
 
@@ -315,31 +298,27 @@ async function track() {
         }
 
 
-        var data =
-            response.data;
-
-
         /*
-         * Supabase can return either an
-         * object or an array depending on
-         * the RPC definition.
+         * Supabase is returning an array.
+         * Take the first row returned by
+         * the tracking function.
          */
 
+        var rows =
+            Array.isArray(response.data)
+            ? response.data
+            : [response.data];
+
+
+        var repair =
+            rows.length > 0
+            ? rows[0]
+            : null;
+
+
         if (
-            Array.isArray(data)
-        ) {
-
-            data =
-                data.length > 0
-                ? data[0]
-                : null;
-
-        }
-
-
-        if (
-            !data ||
-            !data.ticket_number
+            !repair ||
+            !repair.ticket_number
         ) {
 
             throw new Error(
@@ -349,9 +328,9 @@ async function track() {
         }
 
 
-        var index =
+        var currentIndex =
             steps.indexOf(
-                data.status
+                repair.status
             );
 
 
@@ -372,7 +351,10 @@ async function track() {
                 '○ ';
 
 
-            if (i < index) {
+            if (
+                currentIndex >= 0 &&
+                i < currentIndex
+            ) {
 
                 className +=
                     ' done';
@@ -382,7 +364,7 @@ async function track() {
 
             }
             else if (
-                i === index
+                i === currentIndex
             ) {
 
                 className +=
@@ -405,10 +387,13 @@ async function track() {
         }
 
 
-        var updateHtml = '';
+        var updateHtml =
+            '';
 
 
-        if (data.customer_notes) {
+        if (
+            repair.customer_notes
+        ) {
 
             updateHtml =
 
@@ -419,12 +404,36 @@ async function track() {
                     '<p>' +
 
                         safe(
-                            data.customer_notes
+                            repair.customer_notes
                         ) +
 
                     '</p>' +
 
                 '</div>';
+
+        }
+
+
+        var updatedText =
+            '';
+
+
+        if (
+            repair.updated_at
+        ) {
+
+            updatedText =
+                new Date(
+                    repair.updated_at
+                ).toLocaleString(
+                    'en-GB'
+                );
+
+        }
+        else {
+
+            updatedText =
+                'Not available';
 
         }
 
@@ -436,7 +445,7 @@ async function track() {
             '<h2>' +
 
                 safe(
-                    data.ticket_number
+                    repair.ticket_number
                 ) +
 
             '</h2>' +
@@ -446,13 +455,13 @@ async function track() {
                 '<b>' +
 
                     safe(
-                        data.device_brand
+                        repair.device_brand
                     ) +
 
                     ' ' +
 
                     safe(
-                        data.device_model
+                        repair.device_model
                     ) +
 
                 '</b>' +
@@ -460,7 +469,7 @@ async function track() {
                 '<br>' +
 
                 safe(
-                    data.repair_required
+                    repair.repair_required
                 ) +
 
             '</p>' +
@@ -477,16 +486,15 @@ async function track() {
 
                 'Last updated: ' +
 
-                new Date(
-                    data.updated_at
-                ).toLocaleString(
-                    'en-GB'
+                safe(
+                    updatedText
                 ) +
 
             '</p>';
 
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             'Repair tracking error:',
@@ -535,7 +543,6 @@ if (preset) {
     track();
 
 }
-
 
 })();
 

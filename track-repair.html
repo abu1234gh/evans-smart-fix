@@ -34,42 +34,671 @@
 
 <style>
 
-.track-wrap {
-    width: min(760px, 92%);
-    margin: 45px auto;
+/* =========================================================
+   TRACK REPAIR REDESIGN
+   Design only. Tracking logic remains unchanged.
+   ========================================================= */
+
+:root {
+    --track-blue: #0057b8;
+    --track-blue-dark: #00458f;
+    --track-blue-light: #eef6ff;
+    --track-green: #16845b;
+    --track-green-light: #eaf8f1;
+    --track-red: #c62828;
+    --track-red-light: #fff0f0;
+    --track-text: #172033;
+    --track-muted: #667085;
+    --track-border: #e4e7ec;
+    --track-bg: #f6f8fb;
+    --track-white: #ffffff;
+    --track-shadow: 0 18px 45px rgba(16, 24, 40, 0.08);
 }
 
-.track-card {
-    background: #fff;
-    border: 1px solid var(--esf-border);
-    border-radius: 18px;
+
+/* Page */
+
+.track-page {
+    min-height: calc(100vh - 120px);
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(0, 87, 184, 0.08),
+            transparent 34%
+        ),
+        linear-gradient(
+            180deg,
+            #f7faff 0%,
+            #f8fafc 100%
+        );
+    padding: 45px 18px 70px;
+}
+
+
+/* Main width */
+
+.track-container {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+
+/* Hero */
+
+.track-hero {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.track-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: var(--track-blue-light);
+    color: var(--track-blue);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    margin-bottom: 13px;
+}
+
+.track-hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--track-blue);
+}
+
+.track-hero h2 {
+    margin: 0;
+    color: var(--track-text);
+    font-size: clamp(30px, 5vw, 43px);
+    line-height: 1.1;
+}
+
+.track-hero p {
+    max-width: 610px;
+    margin: 12px auto 0;
+    color: var(--track-muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* Lookup card */
+
+.track-lookup-card {
+    background: var(--track-white);
+    border: 1px solid var(--track-border);
+    border-radius: 22px;
     padding: 25px;
-    box-shadow: var(--esf-shadow);
+    box-shadow: var(--track-shadow);
+    margin-bottom: 24px;
 }
 
-.track-steps {
-    display: grid;
-    gap: 12px;
-    margin-top: 20px;
+.track-lookup-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
-.track-step {
-    padding: 13px 15px;
-    border-radius: 11px;
-    background: #f2f4f7;
-    color: #667085;
+.track-lookup-icon {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--track-blue-light);
+    color: var(--track-blue);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.track-lookup-heading h3 {
+    margin: 0;
+    color: var(--track-text);
+    font-size: 20px;
+}
+
+.track-lookup-heading p {
+    margin: 3px 0 0;
+    color: var(--track-muted);
+    font-size: 14px;
+}
+
+.track-field-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--track-text);
+    font-size: 14px;
     font-weight: 800;
 }
 
-.track-step.done {
-    background: #e8f7ef;
-    color: #137a55;
+.track-input-row {
+    display: flex;
+    gap: 10px;
 }
 
-.track-step.current {
-    background: var(--esf-blue-soft);
-    color: var(--esf-blue);
-    outline: 2px solid #bfd8f4;
+.track-input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border: 1px solid #d0d5dd;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--track-text);
+    font-size: 15px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.track-input:focus {
+    border-color: var(--track-blue);
+    box-shadow: 0 0 0 4px rgba(0, 87, 184, 0.10);
+}
+
+.track-button {
+    height: 50px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--track-blue);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.track-button:hover {
+    background: var(--track-blue-dark);
+    box-shadow: 0 7px 18px rgba(0, 87, 184, 0.20);
+}
+
+.track-button:active {
+    transform: translateY(1px);
+}
+
+
+/* Result */
+
+#result {
+    width: 100%;
+}
+
+.track-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    min-height: 100px;
+    background: #fff;
+    border: 1px solid var(--track-border);
+    border-radius: 18px;
+    color: var(--track-muted);
+    font-weight: 700;
+}
+
+.track-spinner {
+    width: 19px;
+    height: 19px;
+    border: 3px solid #dbe8f7;
+    border-top-color: var(--track-blue);
+    border-radius: 50%;
+    animation: track-spin 0.8s linear infinite;
+}
+
+@keyframes track-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Error */
+
+.track-error {
+    padding: 16px 18px;
+    border: 1px solid #f1b8b8;
+    border-radius: 14px;
+    background: var(--track-red-light);
+    color: var(--track-red);
+    font-weight: 700;
+}
+
+
+/* Main result card */
+
+.track-result-card {
+    background: #fff;
+    border: 1px solid var(--track-border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: var(--track-shadow);
+}
+
+
+/* Result header */
+
+.track-result-header {
+    padding: 25px;
+    border-bottom: 1px solid var(--track-border);
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f7fbff 100%
+        );
+}
+
+.track-result-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.track-ticket-label {
+    margin: 0 0 5px;
+    color: var(--track-muted);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.track-ticket-number {
+    margin: 0;
+    color: var(--track-text);
+    font-size: clamp(26px, 5vw, 34px);
+    line-height: 1.1;
+}
+
+
+/* Status pill */
+
+.track-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+    border-radius: 999px;
+    background: var(--track-blue-light);
+    color: var(--track-blue);
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.track-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+
+/* Device information */
+
+.track-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 22px 25px;
+    border-bottom: 1px solid var(--track-border);
+}
+
+.track-info-box {
+    padding: 16px;
+    border-radius: 15px;
+    background: #f8fafc;
+    border: 1px solid #edf0f3;
+}
+
+.track-info-label {
+    margin-bottom: 5px;
+    color: var(--track-muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.track-info-value {
+    color: var(--track-text);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+
+/* Progress section */
+
+.track-progress-section {
+    padding: 25px;
+}
+
+.track-section-title {
+    margin: 0;
+    color: var(--track-text);
+    font-size: 20px;
+}
+
+.track-section-subtitle {
+    margin: 5px 0 22px;
+    color: var(--track-muted);
+    font-size: 14px;
+}
+
+
+/* Progress */
+
+.track-progress {
+    position: relative;
+    display: grid;
+    gap: 0;
+}
+
+.track-progress-line {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    width: 3px;
+    background: #e5e7eb;
+    transform: translateX(-50%);
+}
+
+.track-progress-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    min-height: 62px;
+}
+
+.track-progress-marker {
+    position: relative;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: #fff;
+    border: 3px solid #dfe3e8;
+    color: #98a2b3;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.track-progress-step.done .track-progress-marker {
+    background: var(--track-green);
+    border-color: var(--track-green);
+    color: #fff;
+}
+
+.track-progress-step.current .track-progress-marker {
+    background: var(--track-blue);
+    border-color: var(--track-blue);
+    color: #fff;
+    box-shadow: 0 0 0 5px rgba(0, 87, 184, 0.10);
+}
+
+.track-progress-content {
+    padding: 7px 0 21px;
+}
+
+.track-progress-title {
+    margin: 0;
+    color: #98a2b3;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.track-progress-step.done .track-progress-title {
+    color: var(--track-green);
+}
+
+.track-progress-step.current .track-progress-title {
+    color: var(--track-blue);
+}
+
+.track-progress-state {
+    margin: 3px 0 0;
+    color: var(--track-muted);
+    font-size: 13px;
+}
+
+
+/* Current status banner */
+
+.track-current-banner {
+    margin: 0 25px 25px;
+    padding: 18px;
+    border-radius: 16px;
+    background: var(--track-blue-light);
+    border: 1px solid #d7e8fa;
+}
+
+.track-current-banner-label {
+    margin: 0 0 4px;
+    color: var(--track-blue);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.track-current-banner-value {
+    margin: 0;
+    color: var(--track-text);
+    font-size: 19px;
+    font-weight: 900;
+}
+
+
+/* Latest update */
+
+.track-update {
+    margin: 0 25px 25px;
+    padding: 20px;
+    border: 1px solid var(--track-border);
+    border-radius: 17px;
+    background: #fff;
+}
+
+.track-update-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.track-update-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--track-green-light);
+    color: var(--track-green);
+    font-weight: 900;
+}
+
+.track-update h3 {
+    margin: 0;
+    color: var(--track-text);
+    font-size: 17px;
+}
+
+.track-update p {
+    margin: 0;
+    color: #475467;
+    line-height: 1.65;
+    white-space: pre-wrap;
+}
+
+
+/* Footer information */
+
+.track-result-footer {
+    padding: 17px 25px;
+    background: #f8fafc;
+    border-top: 1px solid var(--track-border);
+    color: var(--track-muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.track-result-footer strong {
+    color: var(--track-text);
+}
+
+
+/* Cancelled */
+
+.track-cancelled {
+    margin: 0 25px 25px;
+    padding: 20px;
+    border-radius: 17px;
+    background: var(--track-red-light);
+    border: 1px solid #f1c0c0;
+}
+
+.track-cancelled-label {
+    margin: 0 0 4px;
+    color: var(--track-red);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.track-cancelled-value {
+    margin: 0;
+    color: #7a1c1c;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+
+/* Bottom help */
+
+.track-help {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--track-muted);
+    font-size: 14px;
+}
+
+.track-help a {
+    color: var(--track-blue);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.track-help a:hover {
+    text-decoration: underline;
+}
+
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    .track-page {
+        padding: 28px 12px 50px;
+    }
+
+    .track-hero {
+        margin-bottom: 20px;
+    }
+
+    .track-hero h2 {
+        font-size: 30px;
+    }
+
+    .track-hero p {
+        font-size: 14px;
+    }
+
+    .track-lookup-card,
+    .track-result-header,
+    .track-progress-section {
+        padding: 20px;
+    }
+
+    .track-input-row {
+        flex-direction: column;
+    }
+
+    .track-button {
+        width: 100%;
+    }
+
+    .track-result-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .track-status {
+        white-space: normal;
+    }
+
+    .track-info-grid {
+        grid-template-columns: 1fr;
+        padding: 18px 20px;
+    }
+
+    .track-current-banner,
+    .track-update,
+    .track-cancelled {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .track-result-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+}
+
+
+/* Smaller phones */
+
+@media (max-width: 400px) {
+
+    .track-hero-badge {
+        font-size: 12px;
+    }
+
+    .track-lookup-heading h3 {
+        font-size: 18px;
+    }
+
+    .track-ticket-number {
+        font-size: 27px;
+    }
+
 }
 
 </style>
@@ -119,35 +748,82 @@ Fast, reliable repairs for phones, tablets and laptops
 </header>
 
 
-<main class="track-wrap">
+<main class="track-page">
 
-<section class="track-card">
 
-<div id="lookup">
+<div class="track-container">
 
-<h2>Repair Tracking</h2>
 
-<p>
-Scan the QR on your repair ticket or enter the secure tracking code.
-</p>
+<section class="track-hero">
 
-<div class="auth-field">
+<div class="track-hero-badge">
 
-<label for="token">
-Tracking code
-</label>
+<span class="track-hero-badge-dot"></span>
 
-<input
-    id="token"
-    autocomplete="off"
->
+Live repair tracking
 
 </div>
 
+
+<h2>Track Your Repair</h2>
+
+
+<p>
+
+See the latest progress of your repair,
+from the moment we receive your device
+through to collection.
+
+</p>
+
+</section>
+
+
+<section class="track-lookup-card">
+
+
+<div class="track-lookup-heading">
+
+<div class="track-lookup-icon">
+⌕
+</div>
+
+<div>
+
+<h3>Find your repair</h3>
+
+<p>
+Enter the secure tracking code from your repair ticket.
+</p>
+
+</div>
+
+</div>
+
+
+<label
+    class="track-field-label"
+    for="token"
+>
+
+Tracking code
+
+</label>
+
+
+<div class="track-input-row">
+
+<input
+    id="token"
+    class="track-input"
+    autocomplete="off"
+    placeholder="e.g. ESF-000004 or your tracking code"
+>
+
 <button
     id="trackBtn"
-    class="auth-primary"
-    style="margin-top:14px"
+    class="track-button"
+    type="button"
 >
 
 Track Repair
@@ -156,9 +832,25 @@ Track Repair
 
 </div>
 
-<div id="result"></div>
 
 </section>
+
+
+<div id="result"></div>
+
+
+<div class="track-help">
+
+Need help with your repair?
+
+<a href="contact.html">
+Contact Evan's Smart Fix
+</a>
+
+</div>
+
+
+</div>
 
 </main>
 
@@ -173,7 +865,14 @@ Track Repair
 'use strict';
 
 
+/* =========================================================
+   WORKING TRACKING LOGIC
+   Preserved from the existing version.
+   ========================================================= */
+
+
 var steps = [
+
     'Received',
     'Diagnosing',
     'Awaiting Customer Approval',
@@ -182,6 +881,7 @@ var steps = [
     'Testing',
     'Ready for Collection',
     'Collected'
+
 ];
 
 
@@ -224,17 +924,48 @@ function safe(value) {
         function (character) {
 
             var map = {
+
                 '&': '&amp;',
                 '<': '&lt;',
                 '>': '&gt;',
                 '"': '&quot;',
                 "'": '&#39;'
+
             };
 
             return map[character];
 
         }
     );
+
+}
+
+
+function formatStatus(status) {
+
+    if (!status) {
+
+        return 'Unknown';
+
+    }
+
+    return String(status);
+
+}
+
+
+function getStatusClass(status) {
+
+    if (
+        String(status).toLowerCase() ===
+        'cancelled'
+    ) {
+
+        return 'cancelled';
+
+    }
+
+    return 'normal';
 
 }
 
@@ -250,8 +981,11 @@ async function track() {
     if (!trackingToken) {
 
         result.innerHTML =
-            '<div style="margin-top:15px;color:#b42318;font-weight:700">' +
-            'Please enter your tracking code.' +
+
+            '<div class="track-error">' +
+
+                'Please enter your tracking code.' +
+
             '</div>';
 
         return;
@@ -264,10 +998,22 @@ async function track() {
 
 
     result.innerHTML =
-        '<p>Loading...</p>';
+
+        '<div class="track-loading">' +
+
+            '<span class="track-spinner"></span>' +
+
+            '<span>Loading your repair...</span>' +
+
+        '</div>';
 
 
     try {
+
+        /*
+         * Use the same Supabase client
+         * used by the rest of the site.
+         */
 
         var db =
             await ESFAuth.getClient();
@@ -286,7 +1032,8 @@ async function track() {
             await db.rpc(
                 'track_repair',
                 {
-                    p_token: trackingToken
+                    p_token:
+                        trackingToken
                 }
             );
 
@@ -298,27 +1045,31 @@ async function track() {
         }
 
 
+        var data =
+            response.data;
+
+
         /*
-         * Supabase is returning an array.
-         * Take the first row returned by
-         * the tracking function.
+         * Supabase can return either an
+         * object or an array depending on
+         * the RPC definition.
          */
 
-        var rows =
-            Array.isArray(response.data)
-            ? response.data
-            : [response.data];
+        if (
+            Array.isArray(data)
+        ) {
 
+            data =
+                data.length > 0
+                ? data[0]
+                : null;
 
-        var repair =
-            rows.length > 0
-            ? rows[0]
-            : null;
+        }
 
 
         if (
-            !repair ||
-            !repair.ticket_number
+            !data ||
+            !data.ticket_number
         ) {
 
             throw new Error(
@@ -328,11 +1079,23 @@ async function track() {
         }
 
 
-        var currentIndex =
+        var currentStatus =
+            formatStatus(data.status);
+
+
+        var statusClass =
+            getStatusClass(currentStatus);
+
+
+        var index =
             steps.indexOf(
-                repair.status
+                data.status
             );
 
+
+        /*
+         * Build progress tracker.
+         */
 
         var stepsHtml = '';
 
@@ -344,157 +1107,381 @@ async function track() {
         ) {
 
             var className =
-                'track-step';
+                'track-progress-step';
 
 
-            var icon =
-                '○ ';
+            var marker =
+                '';
 
 
-            if (
-                currentIndex >= 0 &&
-                i < currentIndex
-            ) {
+            var stateText =
+                'Not reached yet';
+
+
+            if (i < index) {
 
                 className +=
                     ' done';
 
-                icon =
-                    '✓ ';
+                marker =
+                    '✓';
+
+                stateText =
+                    'Completed';
 
             }
             else if (
-                i === currentIndex
+                i === index
             ) {
 
                 className +=
                     ' current';
 
-                icon =
-                    '● ';
+                marker =
+                    '●';
+
+                stateText =
+                    'Current stage';
+
+            }
+            else {
+
+                marker =
+                    String(i + 1);
 
             }
 
 
             stepsHtml +=
+
                 '<div class="' +
                 className +
                 '">' +
-                icon +
-                safe(steps[i]) +
+
+                    '<div class="track-progress-marker">' +
+
+                        marker +
+
+                    '</div>' +
+
+                    '<div class="track-progress-content">' +
+
+                        '<p class="track-progress-title">' +
+
+                            safe(
+                                steps[i]
+                            ) +
+
+                        '</p>' +
+
+                        '<p class="track-progress-state">' +
+
+                            safe(
+                                stateText
+                            ) +
+
+                        '</p>' +
+
+                    '</div>' +
+
                 '</div>';
 
         }
 
 
-        var updateHtml =
-            '';
+        /*
+         * Latest update.
+         */
+
+        var updateHtml = '';
 
 
-        if (
-            repair.customer_notes
-        ) {
+        if (data.customer_notes) {
 
             updateHtml =
 
-                '<div style="margin-top:20px">' +
+                '<section class="track-update">' +
 
-                    '<h3>Latest update</h3>' +
+                    '<div class="track-update-heading">' +
+
+                        '<div class="track-update-icon">' +
+                            '✓' +
+                        '</div>' +
+
+                        '<h3>Latest update</h3>' +
+
+                    '</div>' +
 
                     '<p>' +
 
                         safe(
-                            repair.customer_notes
+                            data.customer_notes
                         ) +
 
                     '</p>' +
 
-                '</div>';
+                '</section>';
 
         }
 
 
-        var updatedText =
-            '';
+        /*
+         * Special cancelled message.
+         */
+
+        var cancelledHtml = '';
 
 
         if (
-            repair.updated_at
+            statusClass ===
+            'cancelled'
         ) {
 
-            updatedText =
-                new Date(
-                    repair.updated_at
-                ).toLocaleString(
-                    'en-GB'
-                );
+            cancelledHtml =
+
+                '<section class="track-cancelled">' +
+
+                    '<p class="track-cancelled-label">' +
+
+                        'Repair status' +
+
+                    '</p>' +
+
+                    '<p class="track-cancelled-value">' +
+
+                        'This repair has been cancelled.' +
+
+                    '</p>' +
+
+                '</section>';
+
+        }
+
+
+        /*
+         * Current status banner.
+         */
+
+        var currentBannerClass =
+            statusClass === 'cancelled'
+            ? 'track-cancelled'
+            : 'track-current-banner';
+
+
+        var currentBannerLabel =
+            statusClass === 'cancelled'
+            ? 'Current status'
+            : 'Current stage';
+
+
+        var currentBanner = '';
+
+
+        if (
+            statusClass ===
+            'cancelled'
+        ) {
+
+            currentBanner = '';
 
         }
         else {
 
-            updatedText =
-                'Not available';
+            currentBanner =
+
+                '<section class="' +
+                currentBannerClass +
+                '">' +
+
+                    '<p class="track-current-banner-label">' +
+
+                        currentBannerLabel +
+
+                    '</p>' +
+
+                    '<p class="track-current-banner-value">' +
+
+                        safe(
+                            currentStatus
+                        ) +
+
+                    '</p>' +
+
+                '</section>';
 
         }
 
 
+        /*
+         * Last updated.
+         */
+
+        var lastUpdated =
+            data.updated_at
+            ? new Date(
+                data.updated_at
+            ).toLocaleString(
+                'en-GB'
+            )
+            : 'Not available';
+
+
+        /*
+         * Full result card.
+         */
+
         result.innerHTML =
 
-            '<hr style="margin:22px 0;border:0;border-top:1px solid #e2e8f0">' +
+            '<article class="track-result-card">' +
 
-            '<h2>' +
 
-                safe(
-                    repair.ticket_number
+                '<header class="track-result-header">' +
+
+                    '<div class="track-result-top">' +
+
+                        '<div>' +
+
+                            '<p class="track-ticket-label">' +
+
+                                'Repair ticket' +
+
+                            '</p>' +
+
+                            '<h2 class="track-ticket-number">' +
+
+                                safe(
+                                    data.ticket_number
+                                ) +
+
+                            '</h2>' +
+
+                        '</div>' +
+
+
+                        '<div class="track-status">' +
+
+                            '<span class="track-status-dot"></span>' +
+
+                            safe(
+                                currentStatus
+                            ) +
+
+                        '</div>' +
+
+                    '</div>' +
+
+                '</header>' +
+
+
+                '<section class="track-info-grid">' +
+
+                    '<div class="track-info-box">' +
+
+                        '<div class="track-info-label">' +
+
+                            'Device' +
+
+                        '</div>' +
+
+                        '<div class="track-info-value">' +
+
+                            safe(
+                                data.device_brand
+                            ) +
+
+                            ' ' +
+
+                            safe(
+                                data.device_model
+                            ) +
+
+                        '</div>' +
+
+                    '</div>' +
+
+
+                    '<div class="track-info-box">' +
+
+                        '<div class="track-info-label">' +
+
+                            'Repair required' +
+
+                        '</div>' +
+
+                        '<div class="track-info-value">' +
+
+                            safe(
+                                data.repair_required
+                            ) +
+
+                        '</div>' +
+
+                    '</div>' +
+
+                '</section>' +
+
+
+                currentBanner +
+
+
+                cancelledHtml +
+
+
+                (
+                    statusClass === 'cancelled'
+                    ? ''
+                    :
+
+                    '<section class="track-progress-section">' +
+
+                        '<h3 class="track-section-title">' +
+
+                            'Repair progress' +
+
+                        '</h3>' +
+
+                        '<p class="track-section-subtitle">' +
+
+                            'Follow your device through each stage of the repair.' +
+
+                        '</p>' +
+
+
+                        '<div class="track-progress">' +
+
+                            '<div class="track-progress-line"></div>' +
+
+                            stepsHtml +
+
+                        '</div>' +
+
+                    '</section>'
+
                 ) +
 
-            '</h2>' +
 
-            '<p>' +
-
-                '<b>' +
-
-                    safe(
-                        repair.device_brand
-                    ) +
-
-                    ' ' +
-
-                    safe(
-                        repair.device_model
-                    ) +
-
-                '</b>' +
-
-                '<br>' +
-
-                safe(
-                    repair.repair_required
-                ) +
-
-            '</p>' +
-
-            '<div class="track-steps">' +
-
-                stepsHtml +
-
-            '</div>' +
-
-            updateHtml +
-
-            '<p style="margin-top:20px;color:#667085">' +
-
-                'Last updated: ' +
-
-                safe(
-                    updatedText
-                ) +
-
-            '</p>';
+                updateHtml +
 
 
-    }
-    catch (error) {
+                '<footer class="track-result-footer">' +
+
+                    'Last updated: ' +
+
+                    '<strong>' +
+
+                        safe(
+                            lastUpdated
+                        ) +
+
+                    '</strong>' +
+
+                '</footer>' +
+
+
+            '</article>';
+
+
+    } catch (error) {
 
         console.error(
             'Repair tracking error:',
@@ -504,7 +1491,7 @@ async function track() {
 
         result.innerHTML =
 
-            '<div style="margin-top:15px;color:#b42318;font-weight:700">' +
+            '<div class="track-error">' +
 
                 safe(
                     error.message ||
@@ -543,6 +1530,7 @@ if (preset) {
     track();
 
 }
+
 
 })();
 
